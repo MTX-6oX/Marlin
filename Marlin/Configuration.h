@@ -1,2846 +1,3364 @@
-
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="en" data-color-mode="auto" data-light-theme="light" data-dark-theme="dark"  data-a11y-animated-images="system" data-a11y-link-underlines="false">
-
-    <style>
-  /* for each iteration, uncomment the CSS variable */
-
-  /* light themes */
-  [data-color-mode="light"][data-light-theme*="light"],
-  [data-color-mode="auto"][data-light-theme*="light"] {
-    /* iteration 1 */
-    --border-color-iteration-1: #C8CCD0;
-    /* iteration 2 */
-    --border-color-iteration-2: #BABFC5;
-    /* iteration 3 */
-    --border-color-iteration-3: #A6ADB4;
-    /* iteration final */
-    /* --border-color-iteration-4: #868F99; */
-
-    /* the first value is the final step, which falls back to previous iterations */
-    --control-borderColor-rest: var(--border-color-iteration-4, var(--border-color-iteration-3, var(--border-color-iteration-2, var(--border-color-iteration-1)))) !important;
-  }
-
-  /* dark themes */
-  [data-color-mode="dark"][data-dark-theme*="dark"],
-  [data-color-mode="auto"][data-light-theme*="dark"] {
-    /* iteration 1 */
-    --border-color-iteration-1: #363940;
-    /* iteration 2 */
-    --border-color-iteration-2: #3F434B;
-    /* iteration 3 */
-    --border-color-iteration-3: #4B5159;
-    /* iteration final */
-    /* --border-color-iteration-4: #666E79; */
-
-    /* the first value is the final step, which falls back to previous iterations */
-    --control-borderColor-rest: var(--border-color-iteration-4, var(--border-color-iteration-3, var(--border-color-iteration-2, var(--border-color-iteration-1)))) !important;
-  }
-
-  [data-color-mode="dark"][data-dark-theme="dark_dimmed"],
-  [data-color-mode="dark"][data-dark-theme="light_high_contrast"],
-  [data-color-mode="dark"][data-dark-theme="dark_high_contrast"],
-  [data-color-mode="light"][data-light-theme="dark_dimmed"],
-  [data-color-mode="light"][data-light-theme="light_high_contrast"],
-  [data-color-mode="light"][data-light-theme="dark_high_contrast"] {
-    /* skip these themes, use the fallback */
-    --control-borderColor-rest: initial !important;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    /* dark colors in dark mode */
-    [data-color-mode="auto"][data-dark-theme*="dark"] {
-      /* iteration 1 */
-      --border-color-iteration-1: #363940;
-      /* iteration 2 */
-      --border-color-iteration-2: #3F434B;
-      /* iteration 3 */
-      --border-color-iteration-3: #4B5159;
-      /* iteration final */
-      /* --border-color-iteration-4: #666E79; */
-
-      /* the first value is the final step, which falls back to previous iterations */
-      --control-borderColor-rest: var(--border-color-iteration-4, var(--border-color-iteration-3, var(--border-color-iteration-2, var(--border-color-iteration-1)))) !important;
-    }
-
-    /* light colors in dark mode */
-    [data-color-mode="auto"][data-dark-theme*="light"] {
-      /* iteration 1 */
-      --border-color-iteration-1: #C8CCD0;
-      /* iteration 2 */
-      --border-color-iteration-2: #BABFC5;
-      /* iteration 3 */
-      --border-color-iteration-3: #A6ADB4;
-      /* iteration final */
-      /* --border-color-iteration-4: #868F99; */
-
-      /* the first value is the final step, which falls back to previous iterations */
-      --control-borderColor-rest: var(--border-color-iteration-4, var(--border-color-iteration-3, var(--border-color-iteration-2, var(--border-color-iteration-1)))) !important;
-      }
-
-    [data-color-mode="auto"][data-dark-theme="dark_dimmed"],
-    [data-color-mode="auto"][data-dark-theme="light_high_contrast"],
-    [data-color-mode="auto"][data-dark-theme="dark_high_contrast"] {
-      /* skip these themes, use the fallback */
-      --control-borderColor-rest: initial !important;
-    }
-  }
-
-  @media (prefers-color-scheme: light) {
-    /* dark colors in light mode */
-    [data-color-mode="auto"][data-light-theme*="dark"] {
-      /* iteration 1 */
-      --border-color-iteration-1: #363940;
-      /* iteration 2 */
-      --border-color-iteration-2: #3F434B;
-      /* iteration 3 */
-      --border-color-iteration-3: #4B5159;
-      /* iteration final */
-      /* --border-color-iteration-4: #666E79; */
-
-      /* the first value is the final step, which falls back to previous iterations */
-      --control-borderColor-rest: var(--border-color-iteration-4, var(--border-color-iteration-3, var(--border-color-iteration-2, var(--border-color-iteration-1)))) !important;
-    }
-
-    /* light colors in light mode */
-    [data-color-mode="auto"][data-light-theme*="light"] {
-      /* iteration 1 */
-      --border-color-iteration-1: #C8CCD0;
-      /* iteration 2 */
-      --border-color-iteration-2: #BABFC5;
-      /* iteration 3 */
-      --border-color-iteration-3: #A6ADB4;
-      /* iteration final */
-      /* --border-color-iteration-4: #868F99; */
-
-      /* the first value is the final step, which falls back to previous iterations */
-      --control-borderColor-rest: var(--border-color-iteration-4, var(--border-color-iteration-3, var(--border-color-iteration-2, var(--border-color-iteration-1)))) !important;
-    }
-
-    [data-color-mode="auto"][data-light-theme="dark_dimmed"],
-    [data-color-mode="auto"][data-light-theme="light_high_contrast"],
-    [data-color-mode="auto"][data-light-theme="dark_high_contrast"] {
-      /* skip these themes, use the fallback */
-      --control-borderColor-rest: initial !important;
-    }
-  }
-</style>
-
-
-  <head>
-    <meta charset="utf-8">
-  <link rel="dns-prefetch" href="https://github.githubassets.com">
-  <link rel="dns-prefetch" href="https://avatars.githubusercontent.com">
-  <link rel="dns-prefetch" href="https://github-cloud.s3.amazonaws.com">
-  <link rel="dns-prefetch" href="https://user-images.githubusercontent.com/">
-  <link rel="preconnect" href="https://github.githubassets.com" crossorigin>
-  <link rel="preconnect" href="https://avatars.githubusercontent.com">
-
-  
-
-
-  <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/light-b92e9647318f.css" /><link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/dark-5d486a4ede8e.css" /><link data-color-theme="dark_dimmed" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_dimmed-27c8d635e4e5.css" /><link data-color-theme="dark_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_high_contrast-8438e75afd36.css" /><link data-color-theme="dark_colorblind" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_colorblind-bf5665b96628.css" /><link data-color-theme="light_colorblind" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light_colorblind-c414b5ba1dce.css" /><link data-color-theme="light_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light_high_contrast-e5868b7374db.css" /><link data-color-theme="light_tritanopia" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light_tritanopia-299ac9c64ec0.css" /><link data-color-theme="dark_tritanopia" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_tritanopia-3a26e78ad0ff.css" />
-  
-    <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/primer-primitives-6143c8f97ed1.css" />
-    <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/primer-d6dcdf72e61d.css" />
-    <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/global-9ffa87928b0c.css" />
-    <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/github-757ef6ea9a38.css" />
-  <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/code-d9915ef76aab.css" />
-
-  
-
-  <script type="application/json" id="client-env">{"locale":"en","featureFlags":["copilot_conversational_ux_direct_connection","failbot_handle_non_errors","geojson_azure_maps","hovercard_show_on_focus","image_metric_tracking","repository_suggester_elastic_search","turbo_experiment_risky","sample_network_conn_type","star_button_focus"]}</script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/wp-runtime-293a4cfe9cd3.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_dompurify_dist_purify_js-64d590970fa6.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_stacktrace-parser_dist_stack-trace-parser_esm_js-node_modules_github_bro-a4c183-18bf85b8e9f4.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/ui_packages_soft-nav_soft-nav_ts-56133143b228.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/environment-fc6543d75794.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_github_selector-observer_dist_index_esm_js-2646a2c533e3.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_primer_behaviors_dist_esm_focus-zone_js-d55308df5023.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_github_relative-time-element_dist_index_js-99e288659d4f.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_fzy_js_index_js-node_modules_github_combobox-nav_dist_index_js-node_modu-344bff-91b70bb50d68.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_delegated-events_dist_index_js-node_modules_github_auto-complete-element-81d69b-f766607dc0c8.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_github_filter-input-element_dist_index_js-node_modules_github_remote-inp-2e8678-d593bf262480.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_github_file-attachment-element_dist_index_js-node_modules_primer_view-co-70ad06-590eabf75ee5.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/github-elements-91cab150efc8.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/element-registry-8be91f72663b.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_lit-html_lit-html_js-4ccebb6ebf7d.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_github_mini-throttle_dist_index_js-node_modules_github_alive-client_dist-bf5aa2-504c8d53fb8e.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_morphdom_dist_morphdom-esm_js-b1fdd7158cf0.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_github_turbo_dist_turbo_es2017-esm_js-9a3541181451.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_github_remote-form_dist_index_js-node_modules_scroll-anchoring_dist_scro-52dc4b-e1e33bfc0b7e.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_color-convert_index_js-35b3ae68c408.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_primer_behaviors_dist_esm_dimensions_js-node_modules_github_jtml_lib_index_js-a18147cea3a6.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_github_paste-markdown_dist_index_esm_js-node_modules_github_quote-select-581a1f-4a3074d34892.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/app_assets_modules_github_details-dialog_ts-app_assets_modules_github_fetch_ts-add1ab03ecb3.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/app_assets_modules_github_updatable-content_ts-ui_packages_hydro-analytics_hydro-analytics_ts-0a5a30c9b976.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/app_assets_modules_github_onfocus_ts-app_assets_modules_github_sticky-scroll-into-view_ts-c56a5dfc8975.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/app_assets_modules_github_behaviors_task-list_ts-app_assets_modules_github_sso_ts-ui_packages-7d50ad-9491f2be61ee.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/app_assets_modules_github_behaviors_ajax-error_ts-app_assets_modules_github_behaviors_include-2e2258-d77f85c54572.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/app_assets_modules_github_behaviors_commenting_edit_ts-app_assets_modules_github_behaviors_ht-83c235-f22ac6b94445.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/behaviors-8e3546d05c82.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_delegated-events_dist_index_js-node_modules_github_catalyst_lib_index_js-623425af41e1.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/notifications-global-0104a8043aa4.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/code-menu-6bd50a0647d6.js"></script>
-  
-  <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/react-lib-210c4b5934c3.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_primer_octicons-react_dist_index_esm_js-node_modules_primer_react_lib-es-3db9ab-5f4faa9f1811.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_Box_Box_js-96a44addc402.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_Button_Button_js-node_modules_primer_react_lib-esm_-f6da63-1976b80d3486.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_Truncate_Truncate_js-node_modules_primer_react_lib--5d1957-92534314547a.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_Button_index_js-node_modules_primer_react_lib-esm_O-279bf8-c9a61955d545.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_Text_Text_js-node_modules_primer_react_lib-esm_Text-85a14b-0f28951279b7.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_ActionList_index_js-535c8ee1ebe8.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_ActionMenu_ActionMenu_js-2f08ef908241.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_primer_behaviors_dist_esm_scroll-into-view_js-node_modules_primer_react_-04bb1b-a6096689d2d5.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_FormControl_FormControl_js-9b048a5a5ceb.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_react-router-dom_dist_index_js-4a785319b497.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_PageLayout_PageLayout_js-node_modules_github_hydro--f8521d-3f6cf7a0555b.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_Dialog_js-node_modules_primer_react_lib-esm_Flash_F-54f402-a4b2e2f869fc.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_UnderlineNav2_index_js-b739f40cf454.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_Avatar_Avatar_js-node_modules_primer_react_lib-esm_-9bd36c-e93a7a0139a4.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_AvatarStack_AvatarStack_js-node_modules_primer_reac-6d3540-684005f5bdbe.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_Breadcrumbs_Breadcrumbs_js-node_modules_primer_reac-2cc1c1-f1b7af6c0e71.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/ui_packages_react-core_create-browser-history_ts-ui_packages_react-core_deferred-registry_ts--ebbb92-1ee1e572fd0e.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/ui_packages_react-core_register-app_ts-afd2d748b726.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/ui_packages_ref-selector_RefSelector_tsx-ad340cacacd4.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/ui_packages_alive_alive_ts-ui_packages_alive_connect-alive-subscription_ts-cb0029a27ade.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/app_assets_modules_github_blob-anchor_ts-app_assets_modules_github_filter-sort_ts-app_assets_-e50ab6-45a716748d94.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/app_assets_modules_react-code-view_pages_CodeView_tsx-36ea0bb7fa39.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/react-code-view-c38def576ff9.js"></script>
-
-
-  <title>Configurations/config/examples/Creality/Ender-3 Pro/BigTreeTech SKR Mini E3 1.2/Configuration.h at release-2.1.2.1 · MarlinFirmware/Configurations</title>
-
-
-
-  <meta name="route-pattern" content="/:user_id/:repository/blob/*name(/*path)">
-
-    
-  <meta name="current-catalog-service-hash" content="82c569b93da5c18ed649ebd4c2c79437db4611a6a1373e805a3cb001c64130b7">
-
-
-  <meta name="request-id" content="8A41:7577:2C50F32:2CC9B8E:65245AD7" data-turbo-transient="true" /><meta name="html-safe-nonce" content="93dde5c32ae725c9f84acf728c69b823f28709113db22838f16814cf11a58902" data-turbo-transient="true" /><meta name="visitor-payload" content="eyJyZWZlcnJlciI6Imh0dHBzOi8vZ2l0aHViLmNvbS9NYXJsaW5GaXJtd2FyZS9Db25maWd1cmF0aW9ucy90cmVlL3JlbGVhc2UtMi4xLjIuMS9jb25maWcvZXhhbXBsZXMvQ3JlYWxpdHkvRW5kZXItMyUyMFByby9CaWdUcmVlVGVjaCUyMFNLUiUyME1pbmklMjBFMyUyMDEuMiIsInJlcXVlc3RfaWQiOiI4QTQxOjc1Nzc6MkM1MEYzMjoyQ0M5QjhFOjY1MjQ1QUQ3IiwidmlzaXRvcl9pZCI6IjQxMjYwMDYwMjAxNjYzOTE1NjUiLCJyZWdpb25fZWRnZSI6ImZyYSIsInJlZ2lvbl9yZW5kZXIiOiJpYWQifQ==" data-turbo-transient="true" /><meta name="visitor-hmac" content="1d8608ffa04b571d725d0131d6fa20af31a7ac5d1ab07c0c653187d850cf54fc" data-turbo-transient="true" />
-
-
-    <meta name="hovercard-subject-tag" content="repository:211756905" data-turbo-transient>
-
-
-  <meta name="github-keyboard-shortcuts" content="repository,source-code,file-tree" data-turbo-transient="true" />
-  
-
-  <meta name="selected-link" value="repo_source" data-turbo-transient>
-  <link rel="assets" href="https://github.githubassets.com/">
-
-    <meta name="google-site-verification" content="c1kuD-K2HIVF635lypcsWPoD4kilo5-jA_wBFyT4uMY">
-  <meta name="google-site-verification" content="KT5gs8h0wvaagLKAVWq8bbeNwnZZK1r1XQysX3xurLU">
-  <meta name="google-site-verification" content="ZzhVyEFwb7w3e0-uOTltm8Jsck2F5StVihD0exw2fsA">
-  <meta name="google-site-verification" content="GXs5KoUUkNCoaAZn7wPN-t01Pywp9M3sEjnt_3_ZWPc">
-  <meta name="google-site-verification" content="Apib7-x98H0j5cPqHWwSMm6dNU4GmODRoqxLiDzdx9I">
-
-<meta name="octolytics-url" content="https://collector.github.com/github/collect" /><meta name="octolytics-actor-id" content="40661905" /><meta name="octolytics-actor-login" content="MTX-6oX" /><meta name="octolytics-actor-hash" content="b594e1941f085e30db1961365d73becec3d0ff1f15b02c8a5610a3c6d6ae25ea" />
-
-  <meta name="analytics-location" content="/&lt;user-name&gt;/&lt;repo-name&gt;/blob/show" data-turbo-transient="true" />
-
-  
-
-
-
-
-  
-
-    <meta name="user-login" content="MTX-6oX">
-
-  <link rel="sudo-modal" href="/sessions/sudo_modal">
-
-    <meta name="viewport" content="width=device-width">
-    
-      <meta name="description" content="Configurations for Marlin Firmware. Contribute to MarlinFirmware/Configurations development by creating an account on GitHub.">
-      <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub">
-    <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
-    <meta property="fb:app_id" content="1401488693436528">
-    <meta name="apple-itunes-app" content="app-id=1477376905, app-argument=https://github.com/MarlinFirmware/Configurations/blob/release-2.1.2.1/config/examples/Creality/Ender-3%20Pro/BigTreeTech%20SKR%20Mini%20E3%201.2/Configuration.h" />
-      <meta name="twitter:image:src" content="https://opengraph.githubassets.com/3e7938008ef511781a36fb45940f37c7bbb39f23674cfa15e84b264bb770fc73/MarlinFirmware/Configurations" /><meta name="twitter:site" content="@github" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="Configurations/config/examples/Creality/Ender-3 Pro/BigTreeTech SKR Mini E3 1.2/Configuration.h at release-2.1.2.1 · MarlinFirmware/Configurations" /><meta name="twitter:description" content="Configurations for Marlin Firmware. Contribute to MarlinFirmware/Configurations development by creating an account on GitHub." />
-      <meta property="og:image" content="https://opengraph.githubassets.com/3e7938008ef511781a36fb45940f37c7bbb39f23674cfa15e84b264bb770fc73/MarlinFirmware/Configurations" /><meta property="og:image:alt" content="Configurations for Marlin Firmware. Contribute to MarlinFirmware/Configurations development by creating an account on GitHub." /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="600" /><meta property="og:site_name" content="GitHub" /><meta property="og:type" content="object" /><meta property="og:title" content="Configurations/config/examples/Creality/Ender-3 Pro/BigTreeTech SKR Mini E3 1.2/Configuration.h at release-2.1.2.1 · MarlinFirmware/Configurations" /><meta property="og:url" content="https://github.com/MarlinFirmware/Configurations/blob/release-2.1.2.1/config/examples/Creality/Ender-3%20Pro/BigTreeTech%20SKR%20Mini%20E3%201.2/Configuration.h" /><meta property="og:description" content="Configurations for Marlin Firmware. Contribute to MarlinFirmware/Configurations development by creating an account on GitHub." />
-      
-
-      <link rel="shared-web-socket" href="wss://alive.github.com/_sockets/u/40661905/ws?session=eyJ2IjoiVjMiLCJ1Ijo0MDY2MTkwNSwicyI6MTIxOTExNzkzOCwiYyI6MjM5ODA4MjQwMCwidCI6MTY5Njg4MTM4N30=--47e8b9637ad491d3a8daee5094fdbf2bee244180c200c420d676ee8e5df84272" data-refresh-url="/_alive" data-session-id="58eafe5dfc0ca24cdab469daf24c4ab3afe4472ca943037c5dbefdbeeb8b48fa">
-      <link rel="shared-web-socket-src" href="/assets-cdn/worker/socket-worker-cee473359cfe.js">
-
-
-        <meta name="hostname" content="github.com">
-
-
-      <meta name="keyboard-shortcuts-preference" content="all">
-
-        <meta name="expected-hostname" content="github.com">
-
-
-  <meta http-equiv="x-pjax-version" content="b9ea2b318bd50bcdde79e22c61caa6564f6da33411be92a0fcff2ef02b3e21f6" data-turbo-track="reload">
-  <meta http-equiv="x-pjax-csp-version" content="ee14a7165914197d62e19f664bfb961fcfdfc1ec31939a5c7b137fbab1751c87" data-turbo-track="reload">
-  <meta http-equiv="x-pjax-css-version" content="1f84aa97cbc38726ff3d71be9430d99c83d691376d899045c0df09e7017e50cd" data-turbo-track="reload">
-  <meta http-equiv="x-pjax-js-version" content="3c6cb554fddc35966b1f1cb0fa6598dc5df20a4e19f8fa5f0e90be0055f08fad" data-turbo-track="reload">
-
-  <meta name="turbo-cache-control" content="no-preview" data-turbo-transient="">
-
-      <meta name="turbo-cache-control" content="no-cache" data-turbo-transient>
-    <meta data-hydrostats="publish">
-
-  <meta name="go-import" content="github.com/MarlinFirmware/Configurations git https://github.com/MarlinFirmware/Configurations.git">
-
-  <meta name="octolytics-dimension-user_id" content="10418365" /><meta name="octolytics-dimension-user_login" content="MarlinFirmware" /><meta name="octolytics-dimension-repository_id" content="211756905" /><meta name="octolytics-dimension-repository_nwo" content="MarlinFirmware/Configurations" /><meta name="octolytics-dimension-repository_public" content="true" /><meta name="octolytics-dimension-repository_is_fork" content="false" /><meta name="octolytics-dimension-repository_network_root_id" content="211756905" /><meta name="octolytics-dimension-repository_network_root_nwo" content="MarlinFirmware/Configurations" />
-
-
-
-  <meta name="turbo-body-classes" content="logged-in env-production page-responsive">
-
-
-  <meta name="browser-stats-url" content="https://api.github.com/_private/browser/stats">
-
-  <meta name="browser-errors-url" content="https://api.github.com/_private/browser/errors">
-
-  <meta name="browser-optimizely-client-errors-url" content="https://api.github.com/_private/browser/optimizely_client/errors">
-
-  <link rel="mask-icon" href="https://github.githubassets.com/pinned-octocat.svg" color="#000000">
-  <link rel="alternate icon" class="js-site-favicon" type="image/png" href="https://github.githubassets.com/favicons/favicon.png">
-  <link rel="icon" class="js-site-favicon" type="image/svg+xml" href="https://github.githubassets.com/favicons/favicon.svg">
-
-<meta name="theme-color" content="#1e2327">
-<meta name="color-scheme" content="light dark" />
-
-
-  <link rel="manifest" href="/manifest.json" crossOrigin="use-credentials">
-
-  </head>
-
-  <body class="logged-in env-production page-responsive" style="word-wrap: break-word;">
-    <div data-turbo-body class="logged-in env-production page-responsive" style="word-wrap: break-word;">
-      
-
-
-    <div class="position-relative js-header-wrapper ">
-      <a href="#start-of-content" class="p-3 color-bg-accent-emphasis color-fg-on-emphasis show-on-focus js-skip-to-content">Skip to content</a>
-      <span data-view-component="true" class="progress-pjax-loader Progress position-fixed width-full">
-    <span style="width: 0%;" data-view-component="true" class="Progress-item progress-pjax-loader-bar left-0 top-0 color-bg-accent-emphasis"></span>
-</span>      
-      
-
-
-      
-
-        <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_allex_crc32_lib_crc32_esm_js-node_modules_github_mini-throttle_dist_deco-b38cad-602b62a2ec65.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_github_clipboard-copy-element_dist_index_esm_js-node_modules_delegated-e-b37f7d-a9177ba414f2.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/app_assets_modules_github_command-palette_items_help-item_ts-app_assets_modules_github_comman-48ad9d-cd9b93d835e9.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/command-palette-342a472a4c54.js"></script>
-
-            <header class="AppHeader">
-    
-
-    <div class="AppHeader-globalBar pb-2 js-global-bar">
-      <div class="AppHeader-globalBar-start">
-          <deferred-side-panel data-url="/_side-panels/global">
-  <include-fragment data-target="deferred-side-panel.fragment">
-      
-  <button aria-label="Open global navigation menu" data-action="click:deferred-side-panel#loadPanel click:deferred-side-panel#panelOpened" data-show-dialog-id="dialog-2a55b740-f895-4ff1-916e-f4d3435b3a9e" id="dialog-show-dialog-2a55b740-f895-4ff1-916e-f4d3435b3a9e" type="button" data-view-component="true" class="Button Button--iconOnly Button--secondary Button--medium AppHeader-button color-bg-transparent p-0 color-fg-muted">    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-three-bars Button-visual">
-    <path d="M1 2.75A.75.75 0 0 1 1.75 2h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 2.75Zm0 5A.75.75 0 0 1 1.75 7h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 7.75ZM1.75 12h12.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5Z"></path>
-</svg>
-</button>  
-
-<div class="Overlay--hidden Overlay-backdrop--side Overlay-backdrop--placement-left" data-modal-dialog-overlay>
-  <modal-dialog data-target="deferred-side-panel.panel" role="dialog" id="dialog-2a55b740-f895-4ff1-916e-f4d3435b3a9e" aria-modal="true" aria-disabled="true" aria-labelledby="dialog-2a55b740-f895-4ff1-916e-f4d3435b3a9e-title" aria-describedby="dialog-2a55b740-f895-4ff1-916e-f4d3435b3a9e-description" data-view-component="true" class="Overlay Overlay-whenNarrow Overlay--size-small-portrait Overlay--motion-scaleFade SidePanel">
-    <div styles="flex-direction: row;" data-view-component="true" class="Overlay-header">
-  <div class="Overlay-headerContentWrap">
-    <div class="Overlay-titleWrap">
-      <h1 class="Overlay-title sr-only" id="dialog-2a55b740-f895-4ff1-916e-f4d3435b3a9e-title">
-        Global navigation
-      </h1>
-            <div data-view-component="true" class="d-flex">
-      <div data-view-component="true" class="AppHeader-logo position-relative">
-        <svg aria-hidden="true" height="24" viewBox="0 0 16 16" version="1.1" width="24" data-view-component="true" class="octicon octicon-mark-github">
-    <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
-</svg>
-</div></div>
-    </div>
-    <div class="Overlay-actionWrap">
-      <button data-close-dialog-id="dialog-2a55b740-f895-4ff1-916e-f4d3435b3a9e" aria-label="Close" type="button" data-view-component="true" class="close-button Overlay-closeButton"><svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-x">
-    <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
-</svg></button>
-    </div>
-  </div>
-</div>
-      <div data-view-component="true" class="Overlay-body d-flex flex-column height-full px-2">      <nav aria-label="Site navigation" data-view-component="true" class="ActionList">
-  
-  <nav-list>
-    <ul data-view-component="true" class="ActionListWrap">
-        
-          
-<li data-item-id="" data-targets="nav-list.items" data-view-component="true" class="ActionListItem">
-    
-    <a data-hotkey="g d" data-analytics-event="{&quot;category&quot;:&quot;Global navigation&quot;,&quot;action&quot;:&quot;HOME&quot;,&quot;label&quot;:null}" id="item-f44de738-f7a9-4a18-9b70-bc0762ce3ec8" href="/dashboard" data-view-component="true" class="ActionListContent ActionListContent--visual16">
-        <span class="ActionListItem-visual ActionListItem-visual--leading">
-          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-home">
-    <path d="M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z"></path>
-</svg>
-        </span>
-      
-        <span data-view-component="true" class="ActionListItem-label">
-          Home
-</span></a>
-  
-  
-</li>
-
-        
-          
-<li data-item-id="" data-targets="nav-list.items" data-view-component="true" class="ActionListItem">
-    
-    <a data-hotkey="g i" data-analytics-event="{&quot;category&quot;:&quot;Global navigation&quot;,&quot;action&quot;:&quot;ISSUES&quot;,&quot;label&quot;:null}" id="item-005e19f1-2347-419e-9194-d3815d665e03" href="/issues" data-view-component="true" class="ActionListContent ActionListContent--visual16">
-        <span class="ActionListItem-visual ActionListItem-visual--leading">
-          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-issue-opened">
-    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z"></path>
-</svg>
-        </span>
-      
-        <span data-view-component="true" class="ActionListItem-label">
-          Issues
-</span></a>
-  
-  
-</li>
-
-        
-          
-<li data-item-id="" data-targets="nav-list.items" data-view-component="true" class="ActionListItem">
-    
-    <a data-hotkey="g p" data-analytics-event="{&quot;category&quot;:&quot;Global navigation&quot;,&quot;action&quot;:&quot;PULL_REQUESTS&quot;,&quot;label&quot;:null}" id="item-b64e7cf0-5b46-4935-b7c3-ba7d2c88bd67" href="/pulls" data-view-component="true" class="ActionListContent ActionListContent--visual16">
-        <span class="ActionListItem-visual ActionListItem-visual--leading">
-          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-git-pull-request">
-    <path d="M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354ZM3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm0 9.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm8.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Z"></path>
-</svg>
-        </span>
-      
-        <span data-view-component="true" class="ActionListItem-label">
-          Pull requests
-</span></a>
-  
-  
-</li>
-
-        
-          
-<li data-item-id="" data-targets="nav-list.items" data-view-component="true" class="ActionListItem">
-    
-    <a data-analytics-event="{&quot;category&quot;:&quot;Global navigation&quot;,&quot;action&quot;:&quot;DISCUSSIONS&quot;,&quot;label&quot;:null}" id="item-9a227b39-ad23-46e2-ae82-e4b244967cc6" href="/discussions" data-view-component="true" class="ActionListContent ActionListContent--visual16">
-        <span class="ActionListItem-visual ActionListItem-visual--leading">
-          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-comment-discussion">
-    <path d="M1.75 1h8.5c.966 0 1.75.784 1.75 1.75v5.5A1.75 1.75 0 0 1 10.25 10H7.061l-2.574 2.573A1.458 1.458 0 0 1 2 11.543V10h-.25A1.75 1.75 0 0 1 0 8.25v-5.5C0 1.784.784 1 1.75 1ZM1.5 2.75v5.5c0 .138.112.25.25.25h1a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h3.5a.25.25 0 0 0 .25-.25v-5.5a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25Zm13 2a.25.25 0 0 0-.25-.25h-.5a.75.75 0 0 1 0-1.5h.5c.966 0 1.75.784 1.75 1.75v5.5A1.75 1.75 0 0 1 14.25 12H14v1.543a1.458 1.458 0 0 1-2.487 1.03L9.22 12.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.22 2.22v-2.19a.75.75 0 0 1 .75-.75h1a.25.25 0 0 0 .25-.25Z"></path>
-</svg>
-        </span>
-      
-        <span data-view-component="true" class="ActionListItem-label">
-          Discussions
-</span></a>
-  
-  
-</li>
-
-        
-          
-<li data-item-id="" data-targets="nav-list.items" data-view-component="true" class="ActionListItem">
-    
-    <a data-analytics-event="{&quot;category&quot;:&quot;Global navigation&quot;,&quot;action&quot;:&quot;CODESPACES&quot;,&quot;label&quot;:null}" id="item-04623317-c558-4551-ba2e-543892caa25d" href="https://github.com/codespaces" data-view-component="true" class="ActionListContent ActionListContent--visual16">
-        <span class="ActionListItem-visual ActionListItem-visual--leading">
-          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-codespaces">
-    <path d="M0 11.25c0-.966.784-1.75 1.75-1.75h12.5c.966 0 1.75.784 1.75 1.75v3A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25Zm2-9.5C2 .784 2.784 0 3.75 0h8.5C13.216 0 14 .784 14 1.75v5a1.75 1.75 0 0 1-1.75 1.75h-8.5A1.75 1.75 0 0 1 2 6.75Zm1.75-.25a.25.25 0 0 0-.25.25v5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-5a.25.25 0 0 0-.25-.25Zm-2 9.5a.25.25 0 0 0-.25.25v3c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25v-3a.25.25 0 0 0-.25-.25Z"></path><path d="M7 12.75a.75.75 0 0 1 .75-.75h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1-.75-.75Zm-4 0a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1-.75-.75Z"></path>
-</svg>
-        </span>
-      
-        <span data-view-component="true" class="ActionListItem-label">
-          Codespaces
-</span></a>
-  
-  
-</li>
-
-        
-          <li role="presentation" aria-hidden="true" data-view-component="true" class="ActionList-sectionDivider"></li>
-        
-          
-<li data-item-id="" data-targets="nav-list.items" data-view-component="true" class="ActionListItem">
-    
-    <a data-analytics-event="{&quot;category&quot;:&quot;Global navigation&quot;,&quot;action&quot;:&quot;EXPLORE&quot;,&quot;label&quot;:null}" id="item-586f2eb2-bbe6-497b-bc6d-f1c1c76c2d9d" href="/explore" data-view-component="true" class="ActionListContent ActionListContent--visual16">
-        <span class="ActionListItem-visual ActionListItem-visual--leading">
-          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-telescope">
-    <path d="M14.184 1.143v-.001l1.422 2.464a1.75 1.75 0 0 1-.757 2.451L3.104 11.713a1.75 1.75 0 0 1-2.275-.702l-.447-.775a1.75 1.75 0 0 1 .53-2.32L11.682.573a1.748 1.748 0 0 1 2.502.57Zm-4.709 9.32h-.001l2.644 3.863a.75.75 0 1 1-1.238.848l-1.881-2.75v2.826a.75.75 0 0 1-1.5 0v-2.826l-1.881 2.75a.75.75 0 1 1-1.238-.848l2.049-2.992a.746.746 0 0 1 .293-.253l1.809-.87a.749.749 0 0 1 .944.252ZM9.436 3.92h-.001l-4.97 3.39.942 1.63 5.42-2.61Zm3.091-2.108h.001l-1.85 1.26 1.505 2.605 2.016-.97a.247.247 0 0 0 .13-.151.247.247 0 0 0-.022-.199l-1.422-2.464a.253.253 0 0 0-.161-.119.254.254 0 0 0-.197.038ZM1.756 9.157a.25.25 0 0 0-.075.33l.447.775a.25.25 0 0 0 .325.1l1.598-.769-.83-1.436-1.465 1Z"></path>
-</svg>
-        </span>
-      
-        <span data-view-component="true" class="ActionListItem-label">
-          Explore
-</span></a>
-  
-  
-</li>
-
-        
-          
-<li data-item-id="" data-targets="nav-list.items" data-view-component="true" class="ActionListItem">
-    
-    <a data-analytics-event="{&quot;category&quot;:&quot;Global navigation&quot;,&quot;action&quot;:&quot;MARKETPLACE&quot;,&quot;label&quot;:null}" id="item-80689ffb-fc60-47a0-b045-8838d8032a48" href="/marketplace" data-view-component="true" class="ActionListContent ActionListContent--visual16">
-        <span class="ActionListItem-visual ActionListItem-visual--leading">
-          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-gift">
-    <path d="M2 2.75A2.75 2.75 0 0 1 4.75 0c.983 0 1.873.42 2.57 1.232.268.318.497.668.68 1.042.183-.375.411-.725.68-1.044C9.376.42 10.266 0 11.25 0a2.75 2.75 0 0 1 2.45 4h.55c.966 0 1.75.784 1.75 1.75v2c0 .698-.409 1.301-1 1.582v4.918A1.75 1.75 0 0 1 13.25 16H2.75A1.75 1.75 0 0 1 1 14.25V9.332C.409 9.05 0 8.448 0 7.75v-2C0 4.784.784 4 1.75 4h.55c-.192-.375-.3-.8-.3-1.25ZM7.25 9.5H2.5v4.75c0 .138.112.25.25.25h4.5Zm1.5 0v5h4.5a.25.25 0 0 0 .25-.25V9.5Zm0-4V8h5.5a.25.25 0 0 0 .25-.25v-2a.25.25 0 0 0-.25-.25Zm-7 0a.25.25 0 0 0-.25.25v2c0 .138.112.25.25.25h5.5V5.5h-5.5Zm3-4a1.25 1.25 0 0 0 0 2.5h2.309c-.233-.818-.542-1.401-.878-1.793-.43-.502-.915-.707-1.431-.707ZM8.941 4h2.309a1.25 1.25 0 0 0 0-2.5c-.516 0-1 .205-1.43.707-.337.392-.646.975-.879 1.793Z"></path>
-</svg>
-        </span>
-      
-        <span data-view-component="true" class="ActionListItem-label">
-          Marketplace
-</span></a>
-  
-  
-</li>
-
-</ul>  </nav-list>
-</nav>
-
-      <div data-view-component="true" class="my-3 d-flex flex-justify-center height-full">
-        <svg style="box-sizing: content-box; color: var(--color-icon-primary);" width="16" height="16" viewBox="0 0 16 16" fill="none" data-view-component="true" class="anim-rotate">
-  <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-opacity="0.25" stroke-width="2" vector-effect="non-scaling-stroke" fill="none" />
-  <path d="M15 8a7.002 7.002 0 00-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke" />
-</svg>
-</div>
-</div>
-      <div data-view-component="true" class="Overlay-footer Overlay-footer--alignEnd d-block pt-0">      <li role="presentation" aria-hidden="true" data-view-component="true" class="ActionList-sectionDivider mt-0 mb-1"></li>
-
-        <nav aria-label="Additional navigation" data-view-component="true" class="ActionList px-0 flex-1">
-  
-  <nav-list>
-    <ul data-view-component="true" class="ActionListWrap">
-        
-          
-<li data-item-id="" data-targets="nav-list.items" data-view-component="true" class="ActionListItem">
-    
-    <a data-analytics-event="{&quot;category&quot;:&quot;Global navigation&quot;,&quot;action&quot;:&quot;FEEDBACK&quot;,&quot;label&quot;:null}" id="item-ba1fb451-8b09-438b-bdfe-cc12df9f5fc4" href="https://gh.io/navigation-update" data-view-component="true" class="ActionListContent ActionListContent--visual16">
-        <span class="ActionListItem-visual ActionListItem-visual--leading">
-          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-comment-discussion">
-    <path d="M1.75 1h8.5c.966 0 1.75.784 1.75 1.75v5.5A1.75 1.75 0 0 1 10.25 10H7.061l-2.574 2.573A1.458 1.458 0 0 1 2 11.543V10h-.25A1.75 1.75 0 0 1 0 8.25v-5.5C0 1.784.784 1 1.75 1ZM1.5 2.75v5.5c0 .138.112.25.25.25h1a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h3.5a.25.25 0 0 0 .25-.25v-5.5a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25Zm13 2a.25.25 0 0 0-.25-.25h-.5a.75.75 0 0 1 0-1.5h.5c.966 0 1.75.784 1.75 1.75v5.5A1.75 1.75 0 0 1 14.25 12H14v1.543a1.458 1.458 0 0 1-2.487 1.03L9.22 12.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.22 2.22v-2.19a.75.75 0 0 1 .75-.75h1a.25.25 0 0 0 .25-.25Z"></path>
-</svg>
-        </span>
-      
-        <span data-view-component="true" class="ActionListItem-label">
-          Give new navigation feedback
-</span>        <span class="ActionListItem-visual ActionListItem-visual--trailing">
-          <span title="Beta" data-view-component="true" class="Counter color-bg-default color-border-success-emphasis color-fg-success">Beta</span>
-        </span>
-</a>
-  
-  
-</li>
-
-</ul>  </nav-list>
-</nav>
-
-      <div data-view-component="true" class="px-2">      <p class="color-fg-subtle text-small text-light">&copy; 2023 GitHub, Inc.</p>
-
-      <div data-view-component="true" class="d-flex text-small text-light">
-          <a target="_blank" href="/about" data-view-component="true" class="Link mr-2">About</a>
-          <a target="_blank" href="https://github.blog" data-view-component="true" class="Link mr-2">Blog</a>
-          <a target="_blank" href="https://docs.github.com/site-policy/github-terms/github-terms-of-service" data-view-component="true" class="Link mr-2">Terms</a>
-          <a target="_blank" href="https://docs.github.com/site-policy/privacy-policies/github-privacy-statement" data-view-component="true" class="Link mr-2">Privacy</a>
-          <a target="_blank" href="/security" data-view-component="true" class="Link mr-2">Security</a>
-        <a target="_blank" href="https://www.githubstatus.com/" data-view-component="true" class="Link mr-3">Status</a>
-</div></div>
-</div>
-</modal-dialog></div>
-
-  </include-fragment>
-</deferred-side-panel>
-
-        <a
-          class="AppHeader-logo ml-2"
-          href="https://github.com/"
-          data-hotkey="g d"
-          aria-label="Homepage "
-          data-turbo="false"
-          data-analytics-event="{&quot;category&quot;:&quot;Header&quot;,&quot;action&quot;:&quot;go to dashboard&quot;,&quot;label&quot;:&quot;icon:logo&quot;}"
-        >
-          <svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32" data-view-component="true" class="octicon octicon-mark-github v-align-middle color-fg-default">
-    <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
-</svg>
-        </a>
-
-          <div class="AppHeader-context" >
-  <div class="AppHeader-context-compact">
-        <button aria-expanded="false" aria-haspopup="dialog" aria-label="Page context: MarlinFirmware / Configurations" id="dialog-show-context-region-dialog" data-show-dialog-id="context-region-dialog" type="button" data-view-component="true" class="AppHeader-context-compact-trigger Truncate Button--secondary Button--medium Button box-shadow-none">    <span class="Button-content">
-      <span class="Button-label"><span class="AppHeader-context-compact-lead">
-                <span class="AppHeader-context-compact-parentItem">MarlinFirmware</span>
-                <span class="AppHeader-context-compact-separator">&nbsp;/</span>
-
-            </span>
-
-            <strong class="AppHeader-context-compact-mainItem d-flex flex-items-center Truncate" >
-  <span class="Truncate-text ">Configurations</span>
-
-</strong></span>
-    </span>
-</button>  
-
-<div class="Overlay--hidden Overlay-backdrop--center" data-modal-dialog-overlay>
-  <modal-dialog role="dialog" id="context-region-dialog" aria-modal="true" aria-disabled="true" aria-labelledby="context-region-dialog-title" aria-describedby="context-region-dialog-description" data-view-component="true" class="Overlay Overlay-whenNarrow Overlay--size-medium Overlay--motion-scaleFade">
-    <div data-view-component="true" class="Overlay-header">
-  <div class="Overlay-headerContentWrap">
-    <div class="Overlay-titleWrap">
-      <h1 class="Overlay-title " id="context-region-dialog-title">
-        Navigate back to
-      </h1>
-    </div>
-    <div class="Overlay-actionWrap">
-      <button data-close-dialog-id="context-region-dialog" aria-label="Close" type="button" data-view-component="true" class="close-button Overlay-closeButton"><svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-x">
-    <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
-</svg></button>
-    </div>
-  </div>
-</div>
-      <div data-view-component="true" class="Overlay-body">          <ul role="list" class="list-style-none" >
-    <li>
-      <a data-analytics-event="{&quot;category&quot;:&quot;SiteHeaderComponent&quot;,&quot;action&quot;:&quot;context_region_crumb&quot;,&quot;label&quot;:&quot;MarlinFirmware&quot;,&quot;screen_size&quot;:&quot;compact&quot;}" href="/MarlinFirmware" data-view-component="true" class="Link--primary Truncate d-flex flex-items-center py-1">
-        <span class="AppHeader-context-item-label Truncate-text ">
-            <svg aria-hidden="true" height="12" viewBox="0 0 16 16" version="1.1" width="12" data-view-component="true" class="octicon octicon-organization mr-1">
-    <path d="M1.75 16A1.75 1.75 0 0 1 0 14.25V1.75C0 .784.784 0 1.75 0h8.5C11.216 0 12 .784 12 1.75v12.5c0 .085-.006.168-.018.25h2.268a.25.25 0 0 0 .25-.25V8.285a.25.25 0 0 0-.111-.208l-1.055-.703a.749.749 0 1 1 .832-1.248l1.055.703c.487.325.779.871.779 1.456v5.965A1.75 1.75 0 0 1 14.25 16h-3.5a.766.766 0 0 1-.197-.026c-.099.017-.2.026-.303.026h-3a.75.75 0 0 1-.75-.75V14h-1v1.25a.75.75 0 0 1-.75.75Zm-.25-1.75c0 .138.112.25.25.25H4v-1.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 .75.75v1.25h2.25a.25.25 0 0 0 .25-.25V1.75a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25ZM3.75 6h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1 0-1.5ZM3 3.75A.75.75 0 0 1 3.75 3h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 3 3.75Zm4 3A.75.75 0 0 1 7.75 6h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 7 6.75ZM7.75 3h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1 0-1.5ZM3 9.75A.75.75 0 0 1 3.75 9h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 3 9.75ZM7.75 9h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1 0-1.5Z"></path>
-</svg>
-
-          MarlinFirmware
-        </span>
-
-</a>
-    </li>
-    <li>
-      <a data-analytics-event="{&quot;category&quot;:&quot;SiteHeaderComponent&quot;,&quot;action&quot;:&quot;context_region_crumb&quot;,&quot;label&quot;:&quot;Configurations&quot;,&quot;screen_size&quot;:&quot;compact&quot;}" href="/MarlinFirmware/Configurations" data-view-component="true" class="Link--primary Truncate d-flex flex-items-center py-1">
-        <span class="AppHeader-context-item-label Truncate-text ">
-            <svg aria-hidden="true" height="12" viewBox="0 0 16 16" version="1.1" width="12" data-view-component="true" class="octicon octicon-repo mr-1">
-    <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path>
-</svg>
-
-          Configurations
-        </span>
-
-</a>
-    </li>
-</ul>
-
-</div>
-      
-</modal-dialog></div>
-  </div>
-
-  <div class="AppHeader-context-full">
-    <nav role="navigation" aria-label="Page context">
-      <ul role="list" class="list-style-none" >
-    <li>
-      <a data-analytics-event="{&quot;category&quot;:&quot;SiteHeaderComponent&quot;,&quot;action&quot;:&quot;context_region_crumb&quot;,&quot;label&quot;:&quot;MarlinFirmware&quot;,&quot;screen_size&quot;:&quot;full&quot;}" data-hovercard-type="organization" data-hovercard-url="/orgs/MarlinFirmware/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/MarlinFirmware" data-view-component="true" class="AppHeader-context-item">
-        <span class="AppHeader-context-item-label  ">
-
-          MarlinFirmware
-        </span>
-
-</a>
-        <span class="AppHeader-context-item-separator">/</span>
-    </li>
-    <li>
-      <a data-analytics-event="{&quot;category&quot;:&quot;SiteHeaderComponent&quot;,&quot;action&quot;:&quot;context_region_crumb&quot;,&quot;label&quot;:&quot;Configurations&quot;,&quot;screen_size&quot;:&quot;full&quot;}" href="/MarlinFirmware/Configurations" data-view-component="true" class="AppHeader-context-item">
-        <span class="AppHeader-context-item-label  ">
-
-          Configurations
-        </span>
-
-</a>
-    </li>
-</ul>
-
-    </nav>
-  </div>
-</div>
-
-      </div>
-      <div class="AppHeader-globalBar-end">
-          <div class="AppHeader-search" >
-              
-
-
-<qbsearch-input class="search-input" data-scope="repo:MarlinFirmware/Configurations" data-custom-scopes-path="/search/custom_scopes" data-delete-custom-scopes-csrf="XmSayqduypaPyW4f99qYq1p1Vhae8GrFQRyiasD8GTd2iZfel03hZVY2VcoSKazmIVPQMy9X2V12G2g5femEsA" data-max-custom-scopes="10" data-header-redesign-enabled="true" data-initial-value="" data-blackbird-suggestions-path="/search/suggestions" data-jump-to-suggestions-path="/_graphql/GetSuggestedNavigationDestinations" data-current-repository="MarlinFirmware/Configurations" data-current-org="MarlinFirmware" data-current-owner="" data-logged-in="true">
-  <div
-    class="search-input-container search-with-dialog position-relative d-flex flex-row flex-items-center height-auto color-bg-transparent border-0 color-fg-subtle mx-0"
-    data-action="click:qbsearch-input#searchInputContainerClicked"
-  >
-      
-            <button type="button" data-action="click:qbsearch-input#handleExpand" class="AppHeader-button AppHeader-search-whenNarrow" aria-label="Search or jump to…" aria-expanded="false" aria-haspopup="dialog">
-            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-search">
-    <path d="M10.68 11.74a6 6 0 0 1-7.922-8.982 6 6 0 0 1 8.982 7.922l3.04 3.04a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215ZM11.5 7a4.499 4.499 0 1 0-8.997 0A4.499 4.499 0 0 0 11.5 7Z"></path>
-</svg>
-          </button>
-
-
-<div class="AppHeader-search-whenRegular">
-  <div class="AppHeader-search-wrap AppHeader-search-wrap--hasTrailing">
-    <div class="AppHeader-search-control">
-      <label
-        for="AppHeader-searchInput"
-        aria-label="Search or jump to…"
-        class="AppHeader-search-visual--leading"
-      >
-        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-search">
-    <path d="M10.68 11.74a6 6 0 0 1-7.922-8.982 6 6 0 0 1 8.982 7.922l3.04 3.04a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215ZM11.5 7a4.499 4.499 0 1 0-8.997 0A4.499 4.499 0 0 0 11.5 7Z"></path>
-</svg>
-      </label>
-
-                <button
-            type="button"
-            data-target="qbsearch-input.inputButton"
-            data-action="click:qbsearch-input#handleExpand"
-            class="AppHeader-searchButton form-control input-contrast text-left color-fg-subtle no-wrap"
-            data-hotkey="s,/"
-            data-analytics-event="{&quot;category&quot;:&quot;Global navigation&quot;,&quot;action&quot;:&quot;SEARCH&quot;,&quot;label&quot;:null}"
-          >
-            <div class="overflow-hidden">
-              <span id="qb-input-query" data-target="qbsearch-input.inputButtonText">
-                  Type <kbd class="AppHeader-search-kbd">/</kbd> to search
-              </span>
-            </div>
-          </button>
-
-    </div>
-
-
-      <button type="button" id="AppHeader-commandPalette-button" class="AppHeader-search-action--trailing js-activate-command-palette" data-analytics-event="{&quot;category&quot;:&quot;SiteHeaderComponent&quot;,&quot;action&quot;:&quot;command_palette&quot;,&quot;label&quot;:&quot;open command palette&quot;}">
-        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-command-palette">
-    <path d="m6.354 8.04-4.773 4.773a.75.75 0 1 0 1.061 1.06L7.945 8.57a.75.75 0 0 0 0-1.06L2.642 2.206a.75.75 0 0 0-1.06 1.061L6.353 8.04ZM8.75 11.5a.75.75 0 0 0 0 1.5h5.5a.75.75 0 0 0 0-1.5h-5.5Z"></path>
-</svg>
-      </button>
-
-      <tool-tip id="tooltip-ad504da0-9706-4549-a70d-429943b6efa5" for="AppHeader-commandPalette-button" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">Command palette</tool-tip>
-  </div>
-</div>
-
-    <input type="hidden" name="type" class="js-site-search-type-field">
-
-    
-<div class="Overlay--hidden " data-modal-dialog-overlay>
-  <modal-dialog data-action="close:qbsearch-input#handleClose cancel:qbsearch-input#handleClose" data-target="qbsearch-input.searchSuggestionsDialog" role="dialog" id="search-suggestions-dialog" aria-modal="true" aria-labelledby="search-suggestions-dialog-header" data-view-component="true" class="Overlay Overlay--width-medium Overlay--height-auto">
-      <h1 id="search-suggestions-dialog-header" class="sr-only">Search code, repositories, users, issues, pull requests...</h1>
-    <div class="Overlay-body Overlay-body--paddingNone">
-      
-          <div data-view-component="true">        <div class="search-suggestions position-absolute width-full color-shadow-large border color-fg-default color-bg-default overflow-hidden d-flex flex-column query-builder-container"
-          style="border-radius: 12px;"
-          data-target="qbsearch-input.queryBuilderContainer"
-          hidden
-        >
-          <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="query-builder-test-form" action="" accept-charset="UTF-8" method="get">
-  <query-builder data-target="qbsearch-input.queryBuilder" id="query-builder-query-builder-test" data-filter-key=":" data-view-component="true" class="QueryBuilder search-query-builder">
-    <div class="FormControl FormControl--fullWidth">
-      <label id="query-builder-test-label" for="query-builder-test" class="FormControl-label sr-only">
-        Search
-      </label>
-      <div
-        class="QueryBuilder-StyledInput width-fit "
-        data-target="query-builder.styledInput"
-      >
-          <span id="query-builder-test-leadingvisual-wrap" class="FormControl-input-leadingVisualWrap QueryBuilder-leadingVisualWrap">
-            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-search FormControl-input-leadingVisual">
-    <path d="M10.68 11.74a6 6 0 0 1-7.922-8.982 6 6 0 0 1 8.982 7.922l3.04 3.04a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215ZM11.5 7a4.499 4.499 0 1 0-8.997 0A4.499 4.499 0 0 0 11.5 7Z"></path>
-</svg>
-          </span>
-        <div data-target="query-builder.styledInputContainer" class="QueryBuilder-StyledInputContainer">
-          <div
-            aria-hidden="true"
-            class="QueryBuilder-StyledInputContent"
-            data-target="query-builder.styledInputContent"
-          ></div>
-          <div class="QueryBuilder-InputWrapper">
-            <div aria-hidden="true" class="QueryBuilder-Sizer" data-target="query-builder.sizer"></div>
-            <input id="query-builder-test" name="query-builder-test" value="" autocomplete="off" type="text" role="combobox" spellcheck="false" aria-expanded="false" aria-describedby="validation-067db1cb-1f5f-450c-b1fe-774a11e3a2bc" data-target="query-builder.input" data-action="
-          input:query-builder#inputChange
-          blur:query-builder#inputBlur
-          keydown:query-builder#inputKeydown
-          focus:query-builder#inputFocus
-        " data-view-component="true" class="FormControl-input QueryBuilder-Input FormControl-medium" />
-          </div>
-        </div>
-          <span class="sr-only" id="query-builder-test-clear">Clear</span>
-          
-  <button role="button" id="query-builder-test-clear-button" aria-labelledby="query-builder-test-clear query-builder-test-label" data-target="query-builder.clearButton" data-action="
-                click:query-builder#clear
-                focus:query-builder#clearButtonFocus
-                blur:query-builder#clearButtonBlur
-              " variant="small" hidden="hidden" type="button" data-view-component="true" class="Button Button--iconOnly Button--invisible Button--medium mr-1 px-2 py-0 d-flex flex-items-center rounded-1 color-fg-muted">    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-x-circle-fill Button-visual">
-    <path d="M2.343 13.657A8 8 0 1 1 13.658 2.343 8 8 0 0 1 2.343 13.657ZM6.03 4.97a.751.751 0 0 0-1.042.018.751.751 0 0 0-.018 1.042L6.94 8 4.97 9.97a.749.749 0 0 0 .326 1.275.749.749 0 0 0 .734-.215L8 9.06l1.97 1.97a.749.749 0 0 0 1.275-.326.749.749 0 0 0-.215-.734L9.06 8l1.97-1.97a.749.749 0 0 0-.326-1.275.749.749 0 0 0-.734.215L8 6.94Z"></path>
-</svg>
-</button>  
-
-      </div>
-      <template id="search-icon">
-  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-search">
-    <path d="M10.68 11.74a6 6 0 0 1-7.922-8.982 6 6 0 0 1 8.982 7.922l3.04 3.04a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215ZM11.5 7a4.499 4.499 0 1 0-8.997 0A4.499 4.499 0 0 0 11.5 7Z"></path>
-</svg>
-</template>
-
-<template id="code-icon">
-  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-code">
-    <path d="m11.28 3.22 4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L13.94 8l-3.72-3.72a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215Zm-6.56 0a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L2.06 8l3.72 3.72a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L.47 8.53a.75.75 0 0 1 0-1.06Z"></path>
-</svg>
-</template>
-
-<template id="file-code-icon">
-  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-file-code">
-    <path d="M4 1.75C4 .784 4.784 0 5.75 0h5.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v8.586A1.75 1.75 0 0 1 14.25 15h-9a.75.75 0 0 1 0-1.5h9a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 10 4.25V1.5H5.75a.25.25 0 0 0-.25.25v2.5a.75.75 0 0 1-1.5 0Zm1.72 4.97a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734l1.47-1.47-1.47-1.47a.75.75 0 0 1 0-1.06ZM3.28 7.78 1.81 9.25l1.47 1.47a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-2-2a.75.75 0 0 1 0-1.06l2-2a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042Zm8.22-6.218V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"></path>
-</svg>
-</template>
-
-<template id="history-icon">
-  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-history">
-    <path d="m.427 1.927 1.215 1.215a8.002 8.002 0 1 1-1.6 5.685.75.75 0 1 1 1.493-.154 6.5 6.5 0 1 0 1.18-4.458l1.358 1.358A.25.25 0 0 1 3.896 6H.25A.25.25 0 0 1 0 5.75V2.104a.25.25 0 0 1 .427-.177ZM7.75 4a.75.75 0 0 1 .75.75v2.992l2.028.812a.75.75 0 0 1-.557 1.392l-2.5-1A.751.751 0 0 1 7 8.25v-3.5A.75.75 0 0 1 7.75 4Z"></path>
-</svg>
-</template>
-
-<template id="repo-icon">
-  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo">
-    <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path>
-</svg>
-</template>
-
-<template id="bookmark-icon">
-  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-bookmark">
-    <path d="M3 2.75C3 1.784 3.784 1 4.75 1h6.5c.966 0 1.75.784 1.75 1.75v11.5a.75.75 0 0 1-1.227.579L8 11.722l-3.773 3.107A.751.751 0 0 1 3 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.91l3.023-2.489a.75.75 0 0 1 .954 0l3.023 2.49V2.75a.25.25 0 0 0-.25-.25Z"></path>
-</svg>
-</template>
-
-<template id="plus-circle-icon">
-  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-plus-circle">
-    <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Zm7.25-3.25v2.5h2.5a.75.75 0 0 1 0 1.5h-2.5v2.5a.75.75 0 0 1-1.5 0v-2.5h-2.5a.75.75 0 0 1 0-1.5h2.5v-2.5a.75.75 0 0 1 1.5 0Z"></path>
-</svg>
-</template>
-
-<template id="circle-icon">
-  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-dot-fill">
-    <path d="M8 4a4 4 0 1 1 0 8 4 4 0 0 1 0-8Z"></path>
-</svg>
-</template>
-
-<template id="trash-icon">
-  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-trash">
-    <path d="M11 1.75V3h2.25a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1 0-1.5H5V1.75C5 .784 5.784 0 6.75 0h2.5C10.216 0 11 .784 11 1.75ZM4.496 6.675l.66 6.6a.25.25 0 0 0 .249.225h5.19a.25.25 0 0 0 .249-.225l.66-6.6a.75.75 0 0 1 1.492.149l-.66 6.6A1.748 1.748 0 0 1 10.595 15h-5.19a1.75 1.75 0 0 1-1.741-1.575l-.66-6.6a.75.75 0 1 1 1.492-.15ZM6.5 1.75V3h3V1.75a.25.25 0 0 0-.25-.25h-2.5a.25.25 0 0 0-.25.25Z"></path>
-</svg>
-</template>
-
-<template id="team-icon">
-  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-people">
-    <path d="M2 5.5a3.5 3.5 0 1 1 5.898 2.549 5.508 5.508 0 0 1 3.034 4.084.75.75 0 1 1-1.482.235 4 4 0 0 0-7.9 0 .75.75 0 0 1-1.482-.236A5.507 5.507 0 0 1 3.102 8.05 3.493 3.493 0 0 1 2 5.5ZM11 4a3.001 3.001 0 0 1 2.22 5.018 5.01 5.01 0 0 1 2.56 3.012.749.749 0 0 1-.885.954.752.752 0 0 1-.549-.514 3.507 3.507 0 0 0-2.522-2.372.75.75 0 0 1-.574-.73v-.352a.75.75 0 0 1 .416-.672A1.5 1.5 0 0 0 11 5.5.75.75 0 0 1 11 4Zm-5.5-.5a2 2 0 1 0-.001 3.999A2 2 0 0 0 5.5 3.5Z"></path>
-</svg>
-</template>
-
-<template id="project-icon">
-  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-project">
-    <path d="M1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25V1.75C0 .784.784 0 1.75 0ZM1.5 1.75v12.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V1.75a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25ZM11.75 3a.75.75 0 0 1 .75.75v7.5a.75.75 0 0 1-1.5 0v-7.5a.75.75 0 0 1 .75-.75Zm-8.25.75a.75.75 0 0 1 1.5 0v5.5a.75.75 0 0 1-1.5 0ZM8 3a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 3Z"></path>
-</svg>
-</template>
-
-<template id="pencil-icon">
-  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-pencil">
-    <path d="M11.013 1.427a1.75 1.75 0 0 1 2.474 0l1.086 1.086a1.75 1.75 0 0 1 0 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 0 1-.927-.928l.929-3.25c.081-.286.235-.547.445-.758l8.61-8.61Zm.176 4.823L9.75 4.81l-6.286 6.287a.253.253 0 0 0-.064.108l-.558 1.953 1.953-.558a.253.253 0 0 0 .108-.064Zm1.238-3.763a.25.25 0 0 0-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 0 0 0-.354Z"></path>
-</svg>
-</template>
-
-        <div class="position-relative">
-                <ul
-                  role="listbox"
-                  class="ActionListWrap QueryBuilder-ListWrap"
-                  aria-label="Suggestions"
-                  data-action="
-                    combobox-commit:query-builder#comboboxCommit
-                    mousedown:query-builder#resultsMousedown
-                  "
-                  data-target="query-builder.resultsList"
-                  data-persist-list=false
-                  id="query-builder-test-results"
-                ></ul>
-        </div>
-      <div class="FormControl-inlineValidation" id="validation-067db1cb-1f5f-450c-b1fe-774a11e3a2bc" hidden="hidden">
-        <span class="FormControl-inlineValidation--visual">
-          <svg aria-hidden="true" height="12" viewBox="0 0 12 12" version="1.1" width="12" data-view-component="true" class="octicon octicon-alert-fill">
-    <path d="M4.855.708c.5-.896 1.79-.896 2.29 0l4.675 8.351a1.312 1.312 0 0 1-1.146 1.954H1.33A1.313 1.313 0 0 1 .183 9.058ZM7 7V3H5v4Zm-1 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"></path>
-</svg>
-        </span>
-        <span></span>
-</div>    </div>
-    <div data-target="query-builder.screenReaderFeedback" aria-live="polite" aria-atomic="true" class="sr-only"></div>
-</query-builder></form>
-          <div class="d-flex flex-row color-fg-muted px-3 text-small color-bg-default search-feedback-prompt">
-            <a target="_blank" href="https://docs.github.com/en/search-github/github-code-search/understanding-github-code-search-syntax" data-view-component="true" class="Link color-fg-accent text-normal ml-2">
-              Search syntax tips
-</a>            <div class="d-flex flex-1"></div>
-                <button data-action="click:qbsearch-input#showFeedbackDialog" type="button" data-view-component="true" class="Button--link Button--medium Button color-fg-accent text-normal ml-2">    <span class="Button-content">
-      <span class="Button-label">Give feedback</span>
-    </span>
-</button>  
-          </div>
-        </div>
-</div>
-
-    </div>
-</modal-dialog></div>
-  </div>
-  <div data-action="click:qbsearch-input#retract" class="dark-backdrop position-fixed" hidden data-target="qbsearch-input.darkBackdrop"></div>
-  <div class="color-fg-default">
-    
-<div class="Overlay--hidden Overlay-backdrop--center" data-modal-dialog-overlay>
-  <modal-dialog data-target="qbsearch-input.feedbackDialog" data-action="close:qbsearch-input#handleDialogClose cancel:qbsearch-input#handleDialogClose" role="dialog" id="feedback-dialog" aria-modal="true" aria-disabled="true" aria-labelledby="feedback-dialog-title" aria-describedby="feedback-dialog-description" data-view-component="true" class="Overlay Overlay-whenNarrow Overlay--size-medium Overlay--motion-scaleFade">
-    <div data-view-component="true" class="Overlay-header">
-  <div class="Overlay-headerContentWrap">
-    <div class="Overlay-titleWrap">
-      <h1 class="Overlay-title " id="feedback-dialog-title">
-        Provide feedback
-      </h1>
-    </div>
-    <div class="Overlay-actionWrap">
-      <button data-close-dialog-id="feedback-dialog" aria-label="Close" type="button" data-view-component="true" class="close-button Overlay-closeButton"><svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-x">
-    <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
-</svg></button>
-    </div>
-  </div>
-</div>
-      <div data-view-component="true" class="Overlay-body">        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="code-search-feedback-form" data-turbo="false" action="/search/feedback" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="OAnHOISpB0TYaFg_JeOnLTi01rPtol3TBX2B9EFVTRAyeKsJl8jhzkKrkSbTctJ9oqBZME-DqxX-6TeYp_aEFQ" />
-          <p>We read every piece of feedback, and take your input very seriously.</p>
-          <textarea name="feedback" class="form-control width-full mb-2" style="height: 120px" id="feedback"></textarea>
-          <input name="include_email" id="include_email" aria-label="Include my email address so I can be contacted" class="form-control mr-2" type="checkbox">
-          <label for="include_email" style="font-weight: normal">Include my email address so I can be contacted</label>
-</form></div>
-      <div data-view-component="true" class="Overlay-footer Overlay-footer--alignEnd">          <button data-close-dialog-id="feedback-dialog" type="button" data-view-component="true" class="btn">    Cancel
-</button>
-          <button form="code-search-feedback-form" data-action="click:qbsearch-input#submitFeedback" type="submit" data-view-component="true" class="btn-primary btn">    Submit feedback
-</button>
-</div>
-</modal-dialog></div>
-
-    <custom-scopes data-target="qbsearch-input.customScopesManager">
-    
-<div class="Overlay--hidden Overlay-backdrop--center" data-modal-dialog-overlay>
-  <modal-dialog data-target="custom-scopes.customScopesModalDialog" data-action="close:qbsearch-input#handleDialogClose cancel:qbsearch-input#handleDialogClose" role="dialog" id="custom-scopes-dialog" aria-modal="true" aria-disabled="true" aria-labelledby="custom-scopes-dialog-title" aria-describedby="custom-scopes-dialog-description" data-view-component="true" class="Overlay Overlay-whenNarrow Overlay--size-medium Overlay--motion-scaleFade">
-    <div data-view-component="true" class="Overlay-header Overlay-header--divided">
-  <div class="Overlay-headerContentWrap">
-    <div class="Overlay-titleWrap">
-      <h1 class="Overlay-title " id="custom-scopes-dialog-title">
-        Saved searches
-      </h1>
-        <h2 id="custom-scopes-dialog-description" class="Overlay-description">Use saved searches to filter your results more quickly</h2>
-    </div>
-    <div class="Overlay-actionWrap">
-      <button data-close-dialog-id="custom-scopes-dialog" aria-label="Close" type="button" data-view-component="true" class="close-button Overlay-closeButton"><svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-x">
-    <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
-</svg></button>
-    </div>
-  </div>
-</div>
-      <div data-view-component="true" class="Overlay-body">        <div data-target="custom-scopes.customScopesModalDialogFlash"></div>
-
-        <div hidden class="create-custom-scope-form" data-target="custom-scopes.createCustomScopeForm">
-        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="custom-scopes-dialog-form" data-turbo="false" action="/search/custom_scopes" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="H48KGEe0ZlrXXfFMdtMUk3rUmch3NIi6AKQcxKnQotVi-qpqxTu5MlHUERAPyB3KtcUcW5ZL80YI9gnWOrcvbg" />
-          <div data-target="custom-scopes.customScopesModalDialogFlash"></div>
-
-          <input type="hidden" id="custom_scope_id" name="custom_scope_id" data-target="custom-scopes.customScopesIdField">
-
-          <div class="form-group">
-            <label for="custom_scope_name">Name</label>
-            <auto-check src="/search/custom_scopes/check_name" required>
-              <input
-                type="text"
-                name="custom_scope_name"
-                id="custom_scope_name"
-                data-target="custom-scopes.customScopesNameField"
-                class="form-control"
-                autocomplete="off"
-                placeholder="github-ruby"
-                required
-                maxlength="50">
-              <input type="hidden" value="il9kxzqVe82HFplWftVtbMXehBiKSomqtuG_B3nrspZv4MeYzP2GGp18Z8MPCumnhY0LEGzbw1LTcFIWtGXUyw" data-csrf="true" />
-            </auto-check>
-          </div>
-
-          <div class="form-group">
-            <label for="custom_scope_query">Query</label>
-            <input
-              type="text"
-              name="custom_scope_query"
-              id="custom_scope_query"
-              data-target="custom-scopes.customScopesQueryField"
-              class="form-control"
-              autocomplete="off"
-              placeholder="(repo:mona/a OR repo:mona/b) AND lang:python"
-              required
-              maxlength="500">
-          </div>
-
-          <p class="text-small color-fg-muted">
-            To see all available qualifiers, see our <a class="Link--inTextBlock" href="https://docs.github.com/en/search-github/github-code-search/understanding-github-code-search-syntax">documentation</a>.
-          </p>
-</form>        </div>
-
-        <div data-target="custom-scopes.manageCustomScopesForm">
-          <div data-target="custom-scopes.list"></div>
-        </div>
-
-</div>
-      <div data-view-component="true" class="Overlay-footer Overlay-footer--alignEnd Overlay-footer--divided">          <button data-action="click:custom-scopes#customScopesCancel" type="button" data-view-component="true" class="btn">    Cancel
-</button>
-          <button form="custom-scopes-dialog-form" data-action="click:custom-scopes#customScopesSubmit" data-target="custom-scopes.customScopesSubmitButton" type="submit" data-view-component="true" class="btn-primary btn">    Create saved search
-</button>
-</div>
-</modal-dialog></div>
-    </custom-scopes>
-  </div>
-</qbsearch-input><input type="hidden" value="LHq0a8Jj8rP7JGDXGOqAgm5i3sKQNTIRsBVCBlYMSIQgxVZbsQcRdxBLj7b94OyxGbTZ1rzB8u_qksRiAXslpQ" data-csrf="true" class="js-data-jump-to-suggestions-path-csrf" />
-
-          </div>
-
-        <div class="AppHeader-actions">
-          <action-menu data-select-variant="none" data-view-component="true">
-  <focus-group direction="vertical" mnemonics retain>
-    <div data-view-component="true" class="Button-withTooltip">  <button id="global-create-menu-button" popovertarget="global-create-menu-overlay" aria-label="Create something new" aria-controls="global-create-menu-list" aria-haspopup="true" type="button" data-view-component="true" class="AppHeader-button Button--secondary Button--small Button width-auto color-fg-muted">    <span class="Button-content">
-        <span class="Button-visual Button-leadingVisual">
-          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-plus">
-    <path d="M7.75 2a.75.75 0 0 1 .75.75V7h4.25a.75.75 0 0 1 0 1.5H8.5v4.25a.75.75 0 0 1-1.5 0V8.5H2.75a.75.75 0 0 1 0-1.5H7V2.75A.75.75 0 0 1 7.75 2Z"></path>
-</svg>
-        </span>
-      <span class="Button-label"><svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-triangle-down">
-    <path d="m4.427 7.427 3.396 3.396a.25.25 0 0 0 .354 0l3.396-3.396A.25.25 0 0 0 11.396 7H4.604a.25.25 0 0 0-.177.427Z"></path>
-</svg></span>
-    </span>
-</button>  <tool-tip id="tooltip-5a4b739a-48a2-4618-837e-7082cfb298dc" for="global-create-menu-button" popover="manual" data-direction="s" data-type="description" data-view-component="true" class="sr-only position-absolute">Create new...</tool-tip>
-</div>
-
-<anchored-position id="global-create-menu-overlay" anchor="global-create-menu-button" align="end" side="outside-bottom" anchor-offset="normal" popover="auto" data-view-component="true">
-  <div data-view-component="true" class="Overlay Overlay--size-auto">
-    
-      
-        <div data-view-component="true">
-  <ul aria-labelledby="global-create-menu-button" id="global-create-menu-list" role="menu" data-view-component="true" class="ActionListWrap--inset ActionListWrap">
-      <li data-analytics-event="{&quot;category&quot;:&quot;SiteHeaderComponent&quot;,&quot;action&quot;:&quot;add_dropdown&quot;,&quot;label&quot;:&quot;new repository&quot;}" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
-    
-    <a href="/new" tabindex="-1" id="item-94a3bd40-91f4-4e45-a6a6-1c6d8f892e28" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
-        <span class="ActionListItem-visual ActionListItem-visual--leading">
-          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo">
-    <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path>
-</svg>
-        </span>
-      
-        <span data-view-component="true" class="ActionListItem-label">
-              New repository
-
-</span></a>
-  
-  
-</li>
-      <li data-analytics-event="{&quot;category&quot;:&quot;SiteHeaderComponent&quot;,&quot;action&quot;:&quot;add_dropdown&quot;,&quot;label&quot;:&quot;import repository&quot;}" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
-    
-    <a href="/new/import" tabindex="-1" id="item-cc95087c-b84b-409b-9b99-96dfd7be9a11" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
-        <span class="ActionListItem-visual ActionListItem-visual--leading">
-          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-push">
-    <path d="M1 2.5A2.5 2.5 0 0 1 3.5 0h8.75a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0V1.5h-8a1 1 0 0 0-1 1v6.708A2.493 2.493 0 0 1 3.5 9h3.25a.75.75 0 0 1 0 1.5H3.5a1 1 0 0 0 0 2h5.75a.75.75 0 0 1 0 1.5H3.5A2.5 2.5 0 0 1 1 11.5Zm13.23 7.79h-.001l-1.224-1.224v6.184a.75.75 0 0 1-1.5 0V9.066L10.28 10.29a.75.75 0 0 1-1.06-1.061l2.505-2.504a.75.75 0 0 1 1.06 0L15.29 9.23a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018Z"></path>
-</svg>
-        </span>
-      
-        <span data-view-component="true" class="ActionListItem-label">
-                Import repository
-
-</span></a>
-  
-  
-</li>
-      <li role="presentation" aria-hidden="true" data-view-component="true" class="ActionList-sectionDivider"></li>
-      <li data-analytics-event="{&quot;category&quot;:&quot;SiteHeaderComponent&quot;,&quot;action&quot;:&quot;add_dropdown&quot;,&quot;label&quot;:&quot;new codespace&quot;}" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
-    
-    <a href="/codespaces/new" tabindex="-1" id="item-699eaf7d-7da8-428b-95f9-8385f728de50" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
-        <span class="ActionListItem-visual ActionListItem-visual--leading">
-          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-codespaces">
-    <path d="M0 11.25c0-.966.784-1.75 1.75-1.75h12.5c.966 0 1.75.784 1.75 1.75v3A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25Zm2-9.5C2 .784 2.784 0 3.75 0h8.5C13.216 0 14 .784 14 1.75v5a1.75 1.75 0 0 1-1.75 1.75h-8.5A1.75 1.75 0 0 1 2 6.75Zm1.75-.25a.25.25 0 0 0-.25.25v5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-5a.25.25 0 0 0-.25-.25Zm-2 9.5a.25.25 0 0 0-.25.25v3c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25v-3a.25.25 0 0 0-.25-.25Z"></path><path d="M7 12.75a.75.75 0 0 1 .75-.75h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1-.75-.75Zm-4 0a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1-.75-.75Z"></path>
-</svg>
-        </span>
-      
-        <span data-view-component="true" class="ActionListItem-label">
-                New codespace
-
-</span></a>
-  
-  
-</li>
-      <li data-analytics-event="{&quot;category&quot;:&quot;SiteHeaderComponent&quot;,&quot;action&quot;:&quot;add_dropdown&quot;,&quot;label&quot;:&quot;new gist&quot;}" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
-    
-    <a href="https://gist.github.com/" tabindex="-1" id="item-06ea1d14-b611-4f29-bd87-759b17925fd3" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
-        <span class="ActionListItem-visual ActionListItem-visual--leading">
-          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-code">
-    <path d="m11.28 3.22 4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L13.94 8l-3.72-3.72a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215Zm-6.56 0a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L2.06 8l3.72 3.72a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L.47 8.53a.75.75 0 0 1 0-1.06Z"></path>
-</svg>
-        </span>
-      
-        <span data-view-component="true" class="ActionListItem-label">
-                New gist
-
-</span></a>
-  
-  
-</li>
-      <li role="presentation" aria-hidden="true" data-view-component="true" class="ActionList-sectionDivider"></li>
-      <li data-analytics-event="{&quot;category&quot;:&quot;SiteHeaderComponent&quot;,&quot;action&quot;:&quot;add_dropdown&quot;,&quot;label&quot;:&quot;new organization&quot;}" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
-    
-    <a href="/account/organizations/new" tabindex="-1" id="item-7a528849-87b7-4e4d-8a99-0155fe6974b6" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
-        <span class="ActionListItem-visual ActionListItem-visual--leading">
-          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-organization">
-    <path d="M1.75 16A1.75 1.75 0 0 1 0 14.25V1.75C0 .784.784 0 1.75 0h8.5C11.216 0 12 .784 12 1.75v12.5c0 .085-.006.168-.018.25h2.268a.25.25 0 0 0 .25-.25V8.285a.25.25 0 0 0-.111-.208l-1.055-.703a.749.749 0 1 1 .832-1.248l1.055.703c.487.325.779.871.779 1.456v5.965A1.75 1.75 0 0 1 14.25 16h-3.5a.766.766 0 0 1-.197-.026c-.099.017-.2.026-.303.026h-3a.75.75 0 0 1-.75-.75V14h-1v1.25a.75.75 0 0 1-.75.75Zm-.25-1.75c0 .138.112.25.25.25H4v-1.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 .75.75v1.25h2.25a.25.25 0 0 0 .25-.25V1.75a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25ZM3.75 6h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1 0-1.5ZM3 3.75A.75.75 0 0 1 3.75 3h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 3 3.75Zm4 3A.75.75 0 0 1 7.75 6h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 7 6.75ZM7.75 3h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1 0-1.5ZM3 9.75A.75.75 0 0 1 3.75 9h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 3 9.75ZM7.75 9h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1 0-1.5Z"></path>
-</svg>
-        </span>
-      
-        <span data-view-component="true" class="ActionListItem-label">
-                New organization
-
-</span></a>
-  
-  
-</li>
-</ul>  
-</div>
-
-</div></anchored-position>  </focus-group>
-</action-menu>
-
-          <div class="position-relative">
-            <div data-view-component="true" class="Button-withTooltip">
-  <a href="/issues" data-analytics-event="{&quot;category&quot;:&quot;Global navigation&quot;,&quot;action&quot;:&quot;ISSUES_HEADER&quot;,&quot;label&quot;:null}" id="icon-button-aece971b-ac0a-4878-abc8-ed00664bfa7b" aria-labelledby="tooltip-cf2c5fe9-ecb6-42fb-b237-75eef023ab8a" data-view-component="true" class="Button Button--iconOnly Button--secondary Button--medium AppHeader-button color-fg-muted">    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-issue-opened Button-visual">
-    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z"></path>
-</svg>
-</a>  <tool-tip id="tooltip-cf2c5fe9-ecb6-42fb-b237-75eef023ab8a" for="icon-button-aece971b-ac0a-4878-abc8-ed00664bfa7b" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">Issues</tool-tip>
-</div>
-            <div data-view-component="true" class="Button-withTooltip">
-  <a href="/pulls" data-analytics-event="{&quot;category&quot;:&quot;Global navigation&quot;,&quot;action&quot;:&quot;PULL_REQUESTS_HEADER&quot;,&quot;label&quot;:null}" id="icon-button-c3a7e2e8-048e-4cea-880b-bc0fe171358b" aria-labelledby="tooltip-63abbd84-f8bb-46e2-ae62-fbf3104a9318" data-view-component="true" class="Button Button--iconOnly Button--secondary Button--medium AppHeader-button color-fg-muted">    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-git-pull-request Button-visual">
-    <path d="M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354ZM3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm0 9.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm8.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Z"></path>
-</svg>
-</a>  <tool-tip id="tooltip-63abbd84-f8bb-46e2-ae62-fbf3104a9318" for="icon-button-c3a7e2e8-048e-4cea-880b-bc0fe171358b" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">Pull requests</tool-tip>
-</div>
-            
-          </div>
-        </div>
-
-        
-
-<notification-indicator data-channel="eyJjIjoibm90aWZpY2F0aW9uLWNoYW5nZWQ6NDA2NjE5MDUiLCJ0IjoxNjk2ODgxMzg3fQ==--c14410b58c38ac183bbae6ff99a9551a84e1355335deadc652ae48dbac743ead" data-indicator-mode="none" data-tooltip-global="You have unread notifications" data-tooltip-unavailable="Notifications are unavailable at the moment." data-tooltip-none="You have no unread notifications" data-header-redesign-enabled="true" data-fetch-indicator-src="/notifications/indicator" data-fetch-indicator-enabled="true" data-view-component="true" class="js-socket-channel">
-  <a id="AppHeader-notifications-button" href="/notifications"
-    class="AppHeader-button Button--secondary"
-
-    style="width:32px;height:32px;"
-
-    data-hotkey="g n"
-    data-target="notification-indicator.link"
-    aria-label="Notifications"
-
-      data-analytics-event="{&quot;category&quot;:&quot;SiteHeaderComponent&quot;,&quot;action&quot;:&quot;notifications&quot;,&quot;label&quot;:null}"
-  >
-
-    <span
-      data-target="notification-indicator.badge"
-      class="mail-status unread d-none" hidden>
-    </span>
-
-      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-inbox color-fg-muted mr-0">
-    <path d="M2.8 2.06A1.75 1.75 0 0 1 4.41 1h7.18c.7 0 1.333.417 1.61 1.06l2.74 6.395c.04.093.06.194.06.295v4.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25v-4.5c0-.101.02-.202.06-.295Zm1.61.44a.25.25 0 0 0-.23.152L1.887 8H4.75a.75.75 0 0 1 .6.3L6.625 10h2.75l1.275-1.7a.75.75 0 0 1 .6-.3h2.863L11.82 2.652a.25.25 0 0 0-.23-.152Zm10.09 7h-2.875l-1.275 1.7a.75.75 0 0 1-.6.3h-3.5a.75.75 0 0 1-.6-.3L4.375 9.5H1.5v3.75c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25Z"></path>
-</svg>
-  </a>
-
-    <tool-tip data-target="notification-indicator.tooltip" id="tooltip-6fdaaf9d-12db-4ae4-bca2-3f73d3e246d9" for="AppHeader-notifications-button" popover="manual" data-direction="s" data-type="description" data-view-component="true" class="sr-only position-absolute">Notifications</tool-tip>
-</notification-indicator>
-
-        
-
-        <div class="AppHeader-user">
-          <deferred-side-panel data-url="/_side-panels/user?memex_enabled=true&amp;repository=Configurations&amp;user=MTX-6oX&amp;user_can_create_organizations=true&amp;user_id=40661905">
-  <include-fragment data-target="deferred-side-panel.fragment">
-      <user-drawer-side-panel>
-      <button aria-label="Open user account menu" data-action="click:deferred-side-panel#loadPanel click:deferred-side-panel#panelOpened" data-show-dialog-id="dialog-add288b6-1411-4175-8724-27955b4af1c7" id="dialog-show-dialog-add288b6-1411-4175-8724-27955b4af1c7" type="button" data-view-component="true" class="AppHeader-logo Button--invisible Button--medium Button Button--invisible-noVisuals color-bg-transparent p-0">    <span class="Button-content">
-      <span class="Button-label"><img src="https://avatars.githubusercontent.com/u/40661905?v=4" alt="" size="32" height="32" width="32" data-view-component="true" class="avatar circle" /></span>
-    </span>
-</button>  
-
-<div class="Overlay--hidden Overlay-backdrop--side Overlay-backdrop--placement-right" data-modal-dialog-overlay>
-  <modal-dialog data-target="deferred-side-panel.panel" role="dialog" id="dialog-add288b6-1411-4175-8724-27955b4af1c7" aria-modal="true" aria-disabled="true" aria-labelledby="dialog-add288b6-1411-4175-8724-27955b4af1c7-title" aria-describedby="dialog-add288b6-1411-4175-8724-27955b4af1c7-description" data-view-component="true" class="Overlay Overlay-whenNarrow Overlay--size-small-portrait Overlay--motion-scaleFade SidePanel">
-    <div styles="flex-direction: row;" data-view-component="true" class="Overlay-header">
-  <div class="Overlay-headerContentWrap">
-    <div class="Overlay-titleWrap">
-      <h1 class="Overlay-title sr-only" id="dialog-add288b6-1411-4175-8724-27955b4af1c7-title">
-        Account menu
-      </h1>
-            <div data-view-component="true" class="d-flex">
-      <div data-view-component="true" class="AppHeader-logo position-relative">
-        <img src="https://avatars.githubusercontent.com/u/40661905?v=4" alt="" size="32" height="32" width="32" data-view-component="true" class="avatar circle" />
-</div>        <div data-view-component="true" class="overflow-hidden d-flex width-full">        <div data-view-component="true" class="lh-condensed overflow-hidden d-flex flex-column flex-justify-center ml-2 f5 mr-auto width-full">
-          <span data-view-component="true" class="Truncate text-bold">
-    <span data-view-component="true" class="Truncate-text">
-            MTX-6oX
-</span>
-</span>          </div>
-</div>
-</div>
-    </div>
-    <div class="Overlay-actionWrap">
-      <button data-close-dialog-id="dialog-add288b6-1411-4175-8724-27955b4af1c7" aria-label="Close" type="button" data-view-component="true" class="close-button Overlay-closeButton"><svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-x">
-    <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
-</svg></button>
-    </div>
-  </div>
-</div>
-      <div data-view-component="true" class="Overlay-body d-flex flex-column height-full px-2">      <nav aria-label="User navigation" data-view-component="true" class="ActionList">
-  
-  <nav-list>
-    <ul data-view-component="true" class="ActionListWrap">
-        
-          
-<li data-item-id="" data-targets="nav-list.items" data-view-component="true" class="ActionListItem">
-    
-    <button id="item-0c491a88-ad47-47a6-b006-7edc21d600b6" type="button" data-view-component="true" class="ActionListContent ActionListContent--visual16">
-        <span class="ActionListItem-visual ActionListItem-visual--leading">
-          <span data-view-component="true" class="d-flex flex-items-center">    <svg style="box-sizing: content-box; color: var(--color-icon-primary);" width="16" height="16" viewBox="0 0 16 16" fill="none" data-view-component="true" class="anim-rotate">
-  <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-opacity="0.25" stroke-width="2" vector-effect="non-scaling-stroke" fill="none" />
-  <path d="M15 8a7.002 7.002 0 00-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke" />
-</svg>
-</span>
-        </span>
-      
-        <span data-view-component="true" class="ActionListItem-label">
-          
-
-  <span class="color-fg-muted">
-    Loading...
-  </span>
-
-</span></button>
-  
-  
-</li>
-
-        
-          <li role="presentation" aria-hidden="true" data-view-component="true" class="ActionList-sectionDivider"></li>
-        
-          
-<li data-item-id="" data-targets="nav-list.items" data-view-component="true" class="ActionListItem">
-    
-    <a data-analytics-event="{&quot;category&quot;:&quot;Global navigation&quot;,&quot;action&quot;:&quot;PROFILE&quot;,&quot;label&quot;:null}" id="item-f097907f-fc02-4796-a592-22e1309e31a9" href="https://github.com/MTX-6oX" data-view-component="true" class="ActionListContent ActionListContent--visual16">
-        <span class="ActionListItem-visual ActionListItem-visual--leading">
-          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-person">
-    <path d="M10.561 8.073a6.005 6.005 0 0 1 3.432 5.142.75.75 0 1 1-1.498.07 4.5 4.5 0 0 0-8.99 0 .75.75 0 0 1-1.498-.07 6.004 6.004 0 0 1 3.431-5.142 3.999 3.999 0 1 1 5.123 0ZM10.5 5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path>
-</svg>
-        </span>
-      
-        <span data-view-component="true" class="ActionListItem-label">
-          Your profile
-</span></a>
-  
-  
-</li>
-
-        
-          <li role="presentation" aria-hidden="true" data-view-component="true" class="ActionList-sectionDivider"></li>
-        
-          
-<li data-item-id="" data-targets="nav-list.items" data-view-component="true" class="ActionListItem">
-    
-    <a data-analytics-event="{&quot;category&quot;:&quot;Global navigation&quot;,&quot;action&quot;:&quot;YOUR_REPOSITORIES&quot;,&quot;label&quot;:null}" id="item-1f10a7a1-9bcb-48ce-a921-f55d58adc335" href="/MTX-6oX?tab=repositories" data-view-component="true" class="ActionListContent ActionListContent--visual16">
-        <span class="ActionListItem-visual ActionListItem-visual--leading">
-          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo">
-    <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path>
-</svg>
-        </span>
-      
-        <span data-view-component="true" class="ActionListItem-label">
-          Your repositories
-</span></a>
-  
-  
-</li>
-
-        
-          
-<li data-item-id="" data-targets="nav-list.items" data-view-component="true" class="ActionListItem">
-    
-    <a data-analytics-event="{&quot;category&quot;:&quot;Global navigation&quot;,&quot;action&quot;:&quot;YOUR_PROJECTS&quot;,&quot;label&quot;:null}" id="item-e82a274d-d2e8-444b-81ab-d47fd7889bb3" href="/MTX-6oX?tab=projects" data-view-component="true" class="ActionListContent ActionListContent--visual16">
-        <span class="ActionListItem-visual ActionListItem-visual--leading">
-          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-project">
-    <path d="M1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25V1.75C0 .784.784 0 1.75 0ZM1.5 1.75v12.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V1.75a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25ZM11.75 3a.75.75 0 0 1 .75.75v7.5a.75.75 0 0 1-1.5 0v-7.5a.75.75 0 0 1 .75-.75Zm-8.25.75a.75.75 0 0 1 1.5 0v5.5a.75.75 0 0 1-1.5 0ZM8 3a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 3Z"></path>
-</svg>
-        </span>
-      
-        <span data-view-component="true" class="ActionListItem-label">
-          Your projects
-</span></a>
-  
-  
-</li>
-
-        
-          
-<li data-item-id="" data-targets="nav-list.items" data-view-component="true" class="ActionListItem">
-    
-    <button id="item-9cae96a6-6875-4251-a987-dbf024d89429" type="button" data-view-component="true" class="ActionListContent ActionListContent--visual16">
-        <span class="ActionListItem-visual ActionListItem-visual--leading">
-          <span data-view-component="true" class="d-flex flex-items-center">    <svg style="box-sizing: content-box; color: var(--color-icon-primary);" width="16" height="16" viewBox="0 0 16 16" fill="none" data-view-component="true" class="anim-rotate">
-  <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-opacity="0.25" stroke-width="2" vector-effect="non-scaling-stroke" fill="none" />
-  <path d="M15 8a7.002 7.002 0 00-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke" />
-</svg>
-</span>
-        </span>
-      
-        <span data-view-component="true" class="ActionListItem-label">
-          
-
-  <span class="color-fg-muted">
-    Loading...
-  </span>
-
-</span></button>
-  
-  
-</li>
-
-        
-          
-<li data-item-id="" data-targets="nav-list.items" data-view-component="true" class="ActionListItem">
-    
-    <a data-analytics-event="{&quot;category&quot;:&quot;Global navigation&quot;,&quot;action&quot;:&quot;YOUR_STARS&quot;,&quot;label&quot;:null}" id="item-7f5e2d95-ca64-4d1b-a93d-211d25465729" href="/MTX-6oX?tab=stars" data-view-component="true" class="ActionListContent ActionListContent--visual16">
-        <span class="ActionListItem-visual ActionListItem-visual--leading">
-          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">
-    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
-</svg>
-        </span>
-      
-        <span data-view-component="true" class="ActionListItem-label">
-          Your stars
-</span></a>
-  
-  
-</li>
-
-        
-          
-<li data-item-id="" data-targets="nav-list.items" data-view-component="true" class="ActionListItem">
-    
-    <a data-analytics-event="{&quot;category&quot;:&quot;Global navigation&quot;,&quot;action&quot;:&quot;SPONSORS&quot;,&quot;label&quot;:null}" id="item-e0f844b3-9087-411b-9028-611d6ae2e856" href="/sponsors/accounts" data-view-component="true" class="ActionListContent ActionListContent--visual16">
-        <span class="ActionListItem-visual ActionListItem-visual--leading">
-          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-heart">
-    <path d="m8 14.25.345.666a.75.75 0 0 1-.69 0l-.008-.004-.018-.01a7.152 7.152 0 0 1-.31-.17 22.055 22.055 0 0 1-3.434-2.414C2.045 10.731 0 8.35 0 5.5 0 2.836 2.086 1 4.25 1 5.797 1 7.153 1.802 8 3.02 8.847 1.802 10.203 1 11.75 1 13.914 1 16 2.836 16 5.5c0 2.85-2.045 5.231-3.885 6.818a22.066 22.066 0 0 1-3.744 2.584l-.018.01-.006.003h-.002ZM4.25 2.5c-1.336 0-2.75 1.164-2.75 3 0 2.15 1.58 4.144 3.365 5.682A20.58 20.58 0 0 0 8 13.393a20.58 20.58 0 0 0 3.135-2.211C12.92 9.644 14.5 7.65 14.5 5.5c0-1.836-1.414-3-2.75-3-1.373 0-2.609.986-3.029 2.456a.749.749 0 0 1-1.442 0C6.859 3.486 5.623 2.5 4.25 2.5Z"></path>
-</svg>
-        </span>
-      
-        <span data-view-component="true" class="ActionListItem-label">
-          Your sponsors
-</span></a>
-  
-  
-</li>
-
-        
-          
-<li data-item-id="" data-targets="nav-list.items" data-view-component="true" class="ActionListItem">
-    
-    <a data-analytics-event="{&quot;category&quot;:&quot;Global navigation&quot;,&quot;action&quot;:&quot;YOUR_GISTS&quot;,&quot;label&quot;:null}" id="item-26bbc5ec-c711-4cad-8f65-9d0217e93d65" href="https://gist.github.com/mine" data-view-component="true" class="ActionListContent ActionListContent--visual16">
-        <span class="ActionListItem-visual ActionListItem-visual--leading">
-          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-code-square">
-    <path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V1.75a.25.25 0 0 0-.25-.25Zm7.47 3.97a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L10.69 8 9.22 6.53a.75.75 0 0 1 0-1.06ZM6.78 6.53 5.31 8l1.47 1.47a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215l-2-2a.75.75 0 0 1 0-1.06l2-2a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042Z"></path>
-</svg>
-        </span>
-      
-        <span data-view-component="true" class="ActionListItem-label">
-          Your gists
-</span></a>
-  
-  
-</li>
-
-        
-          <li role="presentation" aria-hidden="true" data-view-component="true" class="ActionList-sectionDivider"></li>
-        
-          
-<li data-item-id="" data-targets="nav-list.items" data-view-component="true" class="ActionListItem">
-    
-    <button id="item-a73bc34e-283b-43e9-9011-b94c986f70e3" type="button" data-view-component="true" class="ActionListContent ActionListContent--visual16">
-        <span class="ActionListItem-visual ActionListItem-visual--leading">
-          <span data-view-component="true" class="d-flex flex-items-center">    <svg style="box-sizing: content-box; color: var(--color-icon-primary);" width="16" height="16" viewBox="0 0 16 16" fill="none" data-view-component="true" class="anim-rotate">
-  <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-opacity="0.25" stroke-width="2" vector-effect="non-scaling-stroke" fill="none" />
-  <path d="M15 8a7.002 7.002 0 00-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke" />
-</svg>
-</span>
-        </span>
-      
-        <span data-view-component="true" class="ActionListItem-label">
-          
-
-  <span class="color-fg-muted">
-    Loading...
-  </span>
-
-</span></button>
-  
-  
-</li>
-
-        
-          
-<li data-item-id="" data-targets="nav-list.items" data-view-component="true" class="ActionListItem">
-    
-    <button id="item-b0c61aea-d0d4-4e89-a12a-b9b25b6e2e57" type="button" data-view-component="true" class="ActionListContent ActionListContent--visual16">
-        <span class="ActionListItem-visual ActionListItem-visual--leading">
-          <span data-view-component="true" class="d-flex flex-items-center">    <svg style="box-sizing: content-box; color: var(--color-icon-primary);" width="16" height="16" viewBox="0 0 16 16" fill="none" data-view-component="true" class="anim-rotate">
-  <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-opacity="0.25" stroke-width="2" vector-effect="non-scaling-stroke" fill="none" />
-  <path d="M15 8a7.002 7.002 0 00-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke" />
-</svg>
-</span>
-        </span>
-      
-        <span data-view-component="true" class="ActionListItem-label">
-          
-
-  <span class="color-fg-muted">
-    Loading...
-  </span>
-
-</span></button>
-  
-  
-</li>
-
-        
-          
-<li data-item-id="" data-targets="nav-list.items" data-view-component="true" class="ActionListItem">
-    
-    <button id="item-e2c61c76-445c-4fef-8f88-db3642d81967" type="button" data-view-component="true" class="ActionListContent ActionListContent--visual16">
-        <span class="ActionListItem-visual ActionListItem-visual--leading">
-          <span data-view-component="true" class="d-flex flex-items-center">    <svg style="box-sizing: content-box; color: var(--color-icon-primary);" width="16" height="16" viewBox="0 0 16 16" fill="none" data-view-component="true" class="anim-rotate">
-  <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-opacity="0.25" stroke-width="2" vector-effect="non-scaling-stroke" fill="none" />
-  <path d="M15 8a7.002 7.002 0 00-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke" />
-</svg>
-</span>
-        </span>
-      
-        <span data-view-component="true" class="ActionListItem-label">
-          
-
-  <span class="color-fg-muted">
-    Loading...
-  </span>
-
-</span></button>
-  
-  
-</li>
-
-        
-          
-<li data-item-id="" data-targets="nav-list.items" data-view-component="true" class="ActionListItem">
-    
-    <a data-analytics-event="{&quot;category&quot;:&quot;Global navigation&quot;,&quot;action&quot;:&quot;SETTINGS&quot;,&quot;label&quot;:null}" id="item-b060de02-3692-4840-9875-3ad1abe630c8" href="/settings/profile" data-view-component="true" class="ActionListContent ActionListContent--visual16">
-        <span class="ActionListItem-visual ActionListItem-visual--leading">
-          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-gear">
-    <path d="M8 0a8.2 8.2 0 0 1 .701.031C9.444.095 9.99.645 10.16 1.29l.288 1.107c.018.066.079.158.212.224.231.114.454.243.668.386.123.082.233.09.299.071l1.103-.303c.644-.176 1.392.021 1.82.63.27.385.506.792.704 1.218.315.675.111 1.422-.364 1.891l-.814.806c-.049.048-.098.147-.088.294.016.257.016.515 0 .772-.01.147.038.246.088.294l.814.806c.475.469.679 1.216.364 1.891a7.977 7.977 0 0 1-.704 1.217c-.428.61-1.176.807-1.82.63l-1.102-.302c-.067-.019-.177-.011-.3.071a5.909 5.909 0 0 1-.668.386c-.133.066-.194.158-.211.224l-.29 1.106c-.168.646-.715 1.196-1.458 1.26a8.006 8.006 0 0 1-1.402 0c-.743-.064-1.289-.614-1.458-1.26l-.289-1.106c-.018-.066-.079-.158-.212-.224a5.738 5.738 0 0 1-.668-.386c-.123-.082-.233-.09-.299-.071l-1.103.303c-.644.176-1.392-.021-1.82-.63a8.12 8.12 0 0 1-.704-1.218c-.315-.675-.111-1.422.363-1.891l.815-.806c.05-.048.098-.147.088-.294a6.214 6.214 0 0 1 0-.772c.01-.147-.038-.246-.088-.294l-.815-.806C.635 6.045.431 5.298.746 4.623a7.92 7.92 0 0 1 .704-1.217c.428-.61 1.176-.807 1.82-.63l1.102.302c.067.019.177.011.3-.071.214-.143.437-.272.668-.386.133-.066.194-.158.211-.224l.29-1.106C6.009.645 6.556.095 7.299.03 7.53.01 7.764 0 8 0Zm-.571 1.525c-.036.003-.108.036-.137.146l-.289 1.105c-.147.561-.549.967-.998 1.189-.173.086-.34.183-.5.29-.417.278-.97.423-1.529.27l-1.103-.303c-.109-.03-.175.016-.195.045-.22.312-.412.644-.573.99-.014.031-.021.11.059.19l.815.806c.411.406.562.957.53 1.456a4.709 4.709 0 0 0 0 .582c.032.499-.119 1.05-.53 1.456l-.815.806c-.081.08-.073.159-.059.19.162.346.353.677.573.989.02.03.085.076.195.046l1.102-.303c.56-.153 1.113-.008 1.53.27.161.107.328.204.501.29.447.222.85.629.997 1.189l.289 1.105c.029.109.101.143.137.146a6.6 6.6 0 0 0 1.142 0c.036-.003.108-.036.137-.146l.289-1.105c.147-.561.549-.967.998-1.189.173-.086.34-.183.5-.29.417-.278.97-.423 1.529-.27l1.103.303c.109.029.175-.016.195-.045.22-.313.411-.644.573-.99.014-.031.021-.11-.059-.19l-.815-.806c-.411-.406-.562-.957-.53-1.456a4.709 4.709 0 0 0 0-.582c-.032-.499.119-1.05.53-1.456l.815-.806c.081-.08.073-.159.059-.19a6.464 6.464 0 0 0-.573-.989c-.02-.03-.085-.076-.195-.046l-1.102.303c-.56.153-1.113.008-1.53-.27a4.44 4.44 0 0 0-.501-.29c-.447-.222-.85-.629-.997-1.189l-.289-1.105c-.029-.11-.101-.143-.137-.146a6.6 6.6 0 0 0-1.142 0ZM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM9.5 8a1.5 1.5 0 1 0-3.001.001A1.5 1.5 0 0 0 9.5 8Z"></path>
-</svg>
-        </span>
-      
-        <span data-view-component="true" class="ActionListItem-label">
-          Settings
-</span></a>
-  
-  
-</li>
-
-        
-          <li role="presentation" aria-hidden="true" data-view-component="true" class="ActionList-sectionDivider"></li>
-        
-          
-<li data-item-id="" data-targets="nav-list.items" data-view-component="true" class="ActionListItem">
-    
-    <a data-analytics-event="{&quot;category&quot;:&quot;Global navigation&quot;,&quot;action&quot;:&quot;DOCS&quot;,&quot;label&quot;:null}" id="item-0d08e518-c6e6-45ed-87eb-57ec2106449d" href="https://docs.github.com" data-view-component="true" class="ActionListContent ActionListContent--visual16">
-        <span class="ActionListItem-visual ActionListItem-visual--leading">
-          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-book">
-    <path d="M0 1.75A.75.75 0 0 1 .75 1h4.253c1.227 0 2.317.59 3 1.501A3.743 3.743 0 0 1 11.006 1h4.245a.75.75 0 0 1 .75.75v10.5a.75.75 0 0 1-.75.75h-4.507a2.25 2.25 0 0 0-1.591.659l-.622.621a.75.75 0 0 1-1.06 0l-.622-.621A2.25 2.25 0 0 0 5.258 13H.75a.75.75 0 0 1-.75-.75Zm7.251 10.324.004-5.073-.002-2.253A2.25 2.25 0 0 0 5.003 2.5H1.5v9h3.757a3.75 3.75 0 0 1 1.994.574ZM8.755 4.75l-.004 7.322a3.752 3.752 0 0 1 1.992-.572H14.5v-9h-3.495a2.25 2.25 0 0 0-2.25 2.25Z"></path>
-</svg>
-        </span>
-      
-        <span data-view-component="true" class="ActionListItem-label">
-          GitHub Docs
-</span></a>
-  
-  
-</li>
-
-        
-          
-<li data-item-id="" data-targets="nav-list.items" data-view-component="true" class="ActionListItem">
-    
-    <a data-analytics-event="{&quot;category&quot;:&quot;Global navigation&quot;,&quot;action&quot;:&quot;SUPPORT&quot;,&quot;label&quot;:null}" id="item-673da30a-0924-450c-acd6-6c43fc58d913" href="https://support.github.com" data-view-component="true" class="ActionListContent ActionListContent--visual16">
-        <span class="ActionListItem-visual ActionListItem-visual--leading">
-          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-people">
-    <path d="M2 5.5a3.5 3.5 0 1 1 5.898 2.549 5.508 5.508 0 0 1 3.034 4.084.75.75 0 1 1-1.482.235 4 4 0 0 0-7.9 0 .75.75 0 0 1-1.482-.236A5.507 5.507 0 0 1 3.102 8.05 3.493 3.493 0 0 1 2 5.5ZM11 4a3.001 3.001 0 0 1 2.22 5.018 5.01 5.01 0 0 1 2.56 3.012.749.749 0 0 1-.885.954.752.752 0 0 1-.549-.514 3.507 3.507 0 0 0-2.522-2.372.75.75 0 0 1-.574-.73v-.352a.75.75 0 0 1 .416-.672A1.5 1.5 0 0 0 11 5.5.75.75 0 0 1 11 4Zm-5.5-.5a2 2 0 1 0-.001 3.999A2 2 0 0 0 5.5 3.5Z"></path>
-</svg>
-        </span>
-      
-        <span data-view-component="true" class="ActionListItem-label">
-          GitHub Support
-</span></a>
-  
-  
-</li>
-
-        
-          <li role="presentation" aria-hidden="true" data-view-component="true" class="ActionList-sectionDivider"></li>
-        
-          
-<li data-item-id="" data-targets="nav-list.items" data-view-component="true" class="ActionListItem">
-    
-    <a data-analytics-event="{&quot;category&quot;:&quot;Global navigation&quot;,&quot;action&quot;:&quot;LOGOUT&quot;,&quot;label&quot;:null}" id="item-c480486b-1166-4631-88ba-16bb7cb69d8d" href="/logout" data-view-component="true" class="ActionListContent">
-      
-        <span data-view-component="true" class="ActionListItem-label">
-          Sign out
-</span></a>
-  
-  
-</li>
-
-</ul>  </nav-list>
-</nav>
-
-
-</div>
-      
-</modal-dialog></div>
-  </user-drawer-side-panel>
-
-  </include-fragment>
-</deferred-side-panel>
-        </div>
-
-        <div class="position-absolute mt-2">
-            
-<site-header-logged-in-user-menu>
-
-</site-header-logged-in-user-menu>
-
-        </div>
-      </div>
-    </div>
-
-
-      <div class="AppHeader-localBar" >
-        <nav data-pjax="#js-repo-pjax-container" aria-label="Repository" data-view-component="true" class="js-repo-nav js-sidenav-container-pjax js-responsive-underlinenav overflow-hidden UnderlineNav">
-
-  <ul data-view-component="true" class="UnderlineNav-body list-style-none">
-      <li data-view-component="true" class="d-inline-flex">
-  <a id="code-tab" href="/MarlinFirmware/Configurations/tree/release-2.1.2.1" data-tab-item="i0code-tab" data-selected-links="repo_source repo_downloads repo_commits repo_releases repo_tags repo_branches repo_packages repo_deployments repo_attestations /MarlinFirmware/Configurations/tree/release-2.1.2.1" data-pjax="#repo-content-pjax-container" data-turbo-frame="repo-content-turbo-frame" data-hotkey="g c" data-analytics-event="{&quot;category&quot;:&quot;Underline navbar&quot;,&quot;action&quot;:&quot;Click tab&quot;,&quot;label&quot;:&quot;Code&quot;,&quot;target&quot;:&quot;UNDERLINE_NAV.TAB&quot;}" data-view-component="true" class="UnderlineNav-item no-wrap js-responsive-underlinenav-item js-selected-navigation-item">
-    
-              <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-code UnderlineNav-octicon d-none d-sm-inline">
-    <path d="m11.28 3.22 4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L13.94 8l-3.72-3.72a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215Zm-6.56 0a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L2.06 8l3.72 3.72a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L.47 8.53a.75.75 0 0 1 0-1.06Z"></path>
-</svg>
-        <span data-content="Code">Code</span>
-          <span id="code-repo-tab-count" data-pjax-replace="" data-turbo-replace="" title="Not available" data-view-component="true" class="Counter"></span>
-
-
-    
-</a></li>
-      <li data-view-component="true" class="d-inline-flex">
-  <a id="issues-tab" href="/MarlinFirmware/Configurations/issues" data-tab-item="i1issues-tab" data-selected-links="repo_issues repo_labels repo_milestones /MarlinFirmware/Configurations/issues" data-pjax="#repo-content-pjax-container" data-turbo-frame="repo-content-turbo-frame" data-hotkey="g i" data-analytics-event="{&quot;category&quot;:&quot;Underline navbar&quot;,&quot;action&quot;:&quot;Click tab&quot;,&quot;label&quot;:&quot;Issues&quot;,&quot;target&quot;:&quot;UNDERLINE_NAV.TAB&quot;}" data-view-component="true" class="UnderlineNav-item no-wrap js-responsive-underlinenav-item js-selected-navigation-item">
-    
-              <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-issue-opened UnderlineNav-octicon d-none d-sm-inline">
-    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z"></path>
-</svg>
-        <span data-content="Issues">Issues</span>
-          <span id="issues-repo-tab-count" data-pjax-replace="" data-turbo-replace="" title="6" data-view-component="true" class="Counter">6</span>
-
-
-    
-</a></li>
-      <li data-view-component="true" class="d-inline-flex">
-  <a id="pull-requests-tab" href="/MarlinFirmware/Configurations/pulls" data-tab-item="i2pull-requests-tab" data-selected-links="repo_pulls checks /MarlinFirmware/Configurations/pulls" data-pjax="#repo-content-pjax-container" data-turbo-frame="repo-content-turbo-frame" data-hotkey="g p" data-analytics-event="{&quot;category&quot;:&quot;Underline navbar&quot;,&quot;action&quot;:&quot;Click tab&quot;,&quot;label&quot;:&quot;Pull requests&quot;,&quot;target&quot;:&quot;UNDERLINE_NAV.TAB&quot;}" data-view-component="true" class="UnderlineNav-item no-wrap js-responsive-underlinenav-item js-selected-navigation-item">
-    
-              <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-git-pull-request UnderlineNav-octicon d-none d-sm-inline">
-    <path d="M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354ZM3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm0 9.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm8.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Z"></path>
-</svg>
-        <span data-content="Pull requests">Pull requests</span>
-          <span id="pull-requests-repo-tab-count" data-pjax-replace="" data-turbo-replace="" title="2" data-view-component="true" class="Counter">2</span>
-
-
-    
-</a></li>
-      <li data-view-component="true" class="d-inline-flex">
-  <a id="actions-tab" href="/MarlinFirmware/Configurations/actions" data-tab-item="i3actions-tab" data-selected-links="repo_actions /MarlinFirmware/Configurations/actions" data-pjax="#repo-content-pjax-container" data-turbo-frame="repo-content-turbo-frame" data-hotkey="g a" data-analytics-event="{&quot;category&quot;:&quot;Underline navbar&quot;,&quot;action&quot;:&quot;Click tab&quot;,&quot;label&quot;:&quot;Actions&quot;,&quot;target&quot;:&quot;UNDERLINE_NAV.TAB&quot;}" data-view-component="true" class="UnderlineNav-item no-wrap js-responsive-underlinenav-item js-selected-navigation-item">
-    
-              <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-play UnderlineNav-octicon d-none d-sm-inline">
-    <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Zm4.879-2.773 4.264 2.559a.25.25 0 0 1 0 .428l-4.264 2.559A.25.25 0 0 1 6 10.559V5.442a.25.25 0 0 1 .379-.215Z"></path>
-</svg>
-        <span data-content="Actions">Actions</span>
-          <span id="actions-repo-tab-count" data-pjax-replace="" data-turbo-replace="" title="Not available" data-view-component="true" class="Counter"></span>
-
-
-    
-</a></li>
-      <li data-view-component="true" class="d-inline-flex">
-  <a id="projects-tab" href="/MarlinFirmware/Configurations/projects" data-tab-item="i4projects-tab" data-selected-links="repo_projects new_repo_project repo_project /MarlinFirmware/Configurations/projects" data-pjax="#repo-content-pjax-container" data-turbo-frame="repo-content-turbo-frame" data-hotkey="g b" data-analytics-event="{&quot;category&quot;:&quot;Underline navbar&quot;,&quot;action&quot;:&quot;Click tab&quot;,&quot;label&quot;:&quot;Projects&quot;,&quot;target&quot;:&quot;UNDERLINE_NAV.TAB&quot;}" data-view-component="true" class="UnderlineNav-item no-wrap js-responsive-underlinenav-item js-selected-navigation-item">
-    
-              <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-table UnderlineNav-octicon d-none d-sm-inline">
-    <path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25ZM6.5 6.5v8h7.75a.25.25 0 0 0 .25-.25V6.5Zm8-1.5V1.75a.25.25 0 0 0-.25-.25H6.5V5Zm-13 1.5v7.75c0 .138.112.25.25.25H5v-8ZM5 5V1.5H1.75a.25.25 0 0 0-.25.25V5Z"></path>
-</svg>
-        <span data-content="Projects">Projects</span>
-          <span id="projects-repo-tab-count" data-pjax-replace="" data-turbo-replace="" title="0" hidden="hidden" data-view-component="true" class="Counter">0</span>
-
-
-    
-</a></li>
-      <li data-view-component="true" class="d-inline-flex">
-  <a id="security-tab" href="/MarlinFirmware/Configurations/security" data-tab-item="i5security-tab" data-selected-links="security overview alerts policy token_scanning code_scanning /MarlinFirmware/Configurations/security" data-pjax="#repo-content-pjax-container" data-turbo-frame="repo-content-turbo-frame" data-hotkey="g s" data-analytics-event="{&quot;category&quot;:&quot;Underline navbar&quot;,&quot;action&quot;:&quot;Click tab&quot;,&quot;label&quot;:&quot;Security&quot;,&quot;target&quot;:&quot;UNDERLINE_NAV.TAB&quot;}" data-view-component="true" class="UnderlineNav-item no-wrap js-responsive-underlinenav-item js-selected-navigation-item">
-    
-              <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-shield UnderlineNav-octicon d-none d-sm-inline">
-    <path d="M7.467.133a1.748 1.748 0 0 1 1.066 0l5.25 1.68A1.75 1.75 0 0 1 15 3.48V7c0 1.566-.32 3.182-1.303 4.682-.983 1.498-2.585 2.813-5.032 3.855a1.697 1.697 0 0 1-1.33 0c-2.447-1.042-4.049-2.357-5.032-3.855C1.32 10.182 1 8.566 1 7V3.48a1.75 1.75 0 0 1 1.217-1.667Zm.61 1.429a.25.25 0 0 0-.153 0l-5.25 1.68a.25.25 0 0 0-.174.238V7c0 1.358.275 2.666 1.057 3.86.784 1.194 2.121 2.34 4.366 3.297a.196.196 0 0 0 .154 0c2.245-.956 3.582-2.104 4.366-3.298C13.225 9.666 13.5 8.36 13.5 7V3.48a.251.251 0 0 0-.174-.237l-5.25-1.68ZM8.75 4.75v3a.75.75 0 0 1-1.5 0v-3a.75.75 0 0 1 1.5 0ZM9 10.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path>
-</svg>
-        <span data-content="Security">Security</span>
-          <include-fragment src="/MarlinFirmware/Configurations/security/overall-count" accept="text/fragment+html"></include-fragment>
-
-    
-</a></li>
-      <li data-view-component="true" class="d-inline-flex">
-  <a id="insights-tab" href="/MarlinFirmware/Configurations/pulse" data-tab-item="i6insights-tab" data-selected-links="repo_graphs repo_contributors dependency_graph dependabot_updates pulse people community /MarlinFirmware/Configurations/pulse" data-pjax="#repo-content-pjax-container" data-turbo-frame="repo-content-turbo-frame" data-analytics-event="{&quot;category&quot;:&quot;Underline navbar&quot;,&quot;action&quot;:&quot;Click tab&quot;,&quot;label&quot;:&quot;Insights&quot;,&quot;target&quot;:&quot;UNDERLINE_NAV.TAB&quot;}" data-view-component="true" class="UnderlineNav-item no-wrap js-responsive-underlinenav-item js-selected-navigation-item">
-    
-              <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-graph UnderlineNav-octicon d-none d-sm-inline">
-    <path d="M1.5 1.75V13.5h13.75a.75.75 0 0 1 0 1.5H.75a.75.75 0 0 1-.75-.75V1.75a.75.75 0 0 1 1.5 0Zm14.28 2.53-5.25 5.25a.75.75 0 0 1-1.06 0L7 7.06 4.28 9.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.25-3.25a.75.75 0 0 1 1.06 0L10 7.94l4.72-4.72a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042Z"></path>
-</svg>
-        <span data-content="Insights">Insights</span>
-          <span id="insights-repo-tab-count" data-pjax-replace="" data-turbo-replace="" title="Not available" data-view-component="true" class="Counter"></span>
-
-
-    
-</a></li>
-</ul>
-    <div style="visibility:hidden;" data-view-component="true" class="UnderlineNav-actions js-responsive-underlinenav-overflow position-absolute pr-3 pr-md-4 pr-lg-5 right-0">        <details data-view-component="true" class="details-overlay details-reset position-relative">
-    <summary role="button" data-view-component="true">          <div class="UnderlineNav-item mr-0 border-0">
-            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-kebab-horizontal">
-    <path d="M8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm13 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
-</svg>
-            <span class="sr-only">More</span>
-          </div>
-</summary>
-    <details-menu role="menu" data-view-component="true" class="dropdown-menu dropdown-menu-sw">
-          <ul>
-              <li data-menu-item="i0code-tab" hidden>
-                <a role="menuitem" class="js-selected-navigation-item dropdown-item" data-selected-links="repo_source repo_downloads repo_commits repo_releases repo_tags repo_branches repo_packages repo_deployments repo_attestations /MarlinFirmware/Configurations/tree/release-2.1.2.1" href="/MarlinFirmware/Configurations/tree/release-2.1.2.1">
-                  Code
-</a>              </li>
-              <li data-menu-item="i1issues-tab" hidden>
-                <a role="menuitem" class="js-selected-navigation-item dropdown-item" data-selected-links="repo_issues repo_labels repo_milestones /MarlinFirmware/Configurations/issues" href="/MarlinFirmware/Configurations/issues">
-                  Issues
-</a>              </li>
-              <li data-menu-item="i2pull-requests-tab" hidden>
-                <a role="menuitem" class="js-selected-navigation-item dropdown-item" data-selected-links="repo_pulls checks /MarlinFirmware/Configurations/pulls" href="/MarlinFirmware/Configurations/pulls">
-                  Pull requests
-</a>              </li>
-              <li data-menu-item="i3actions-tab" hidden>
-                <a role="menuitem" class="js-selected-navigation-item dropdown-item" data-selected-links="repo_actions /MarlinFirmware/Configurations/actions" href="/MarlinFirmware/Configurations/actions">
-                  Actions
-</a>              </li>
-              <li data-menu-item="i4projects-tab" hidden>
-                <a role="menuitem" class="js-selected-navigation-item dropdown-item" data-selected-links="repo_projects new_repo_project repo_project /MarlinFirmware/Configurations/projects" href="/MarlinFirmware/Configurations/projects">
-                  Projects
-</a>              </li>
-              <li data-menu-item="i5security-tab" hidden>
-                <a role="menuitem" class="js-selected-navigation-item dropdown-item" data-selected-links="security overview alerts policy token_scanning code_scanning /MarlinFirmware/Configurations/security" href="/MarlinFirmware/Configurations/security">
-                  Security
-</a>              </li>
-              <li data-menu-item="i6insights-tab" hidden>
-                <a role="menuitem" class="js-selected-navigation-item dropdown-item" data-selected-links="repo_graphs repo_contributors dependency_graph dependabot_updates pulse people community /MarlinFirmware/Configurations/pulse" href="/MarlinFirmware/Configurations/pulse">
-                  Insights
-</a>              </li>
-          </ul>
-</details-menu>
-</details></div>
-</nav>
-      </div>
-</header>
-
-
-      <div hidden="hidden" data-view-component="true" class="js-stale-session-flash stale-session-flash flash flash-warn mb-3">
-  
-        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-alert">
-    <path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path>
-</svg>
-        <span class="js-stale-session-flash-signed-in" hidden>You signed in with another tab or window. <a class="Link--inTextBlock" href="">Reload</a> to refresh your session.</span>
-        <span class="js-stale-session-flash-signed-out" hidden>You signed out in another tab or window. <a class="Link--inTextBlock" href="">Reload</a> to refresh your session.</span>
-        <span class="js-stale-session-flash-switched" hidden>You switched accounts on another tab or window. <a class="Link--inTextBlock" href="">Reload</a> to refresh your session.</span>
-
-    <div data-view-component="true" class="flash-close">
-  <button id="icon-button-20566c38-59ce-4b3c-baa4-6cd8b1af3008" aria-labelledby="tooltip-c1f2eaac-e017-43ef-93d0-f38424c8f711" type="button" data-view-component="true" class="Button Button--iconOnly Button--invisible Button--medium js-flash-close">    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-x Button-visual">
-    <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
-</svg>
-</button>  <tool-tip id="tooltip-c1f2eaac-e017-43ef-93d0-f38424c8f711" for="icon-button-20566c38-59ce-4b3c-baa4-6cd8b1af3008" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">Dismiss alert</tool-tip>
-</div>
-
-  
-</div>
-          
-    </div>
-
-  <div id="start-of-content" class="show-on-focus"></div>
-
-
-
-
-
-
-
-
-    <div id="js-flash-container" data-turbo-replace>
-
-
-
-
-
-  <template class="js-flash-template">
-    
-<div class="flash flash-full   {{ className }}">
-  <div class="px-2" >
-    <button autofocus class="flash-close js-flash-close" type="button" aria-label="Dismiss this message">
-      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-x">
-    <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
-</svg>
-    </button>
-    <div aria-atomic="true" role="alert" class="js-flash-alert">
-      
-      <div>{{ message }}</div>
-
-    </div>
-  </div>
-</div>
-  </template>
-</div>
-
-
-    
-    <notification-shelf-watcher data-base-url="https://github.com/notifications/beta/shelf" data-channel="eyJjIjoibm90aWZpY2F0aW9uLWNoYW5nZWQ6NDA2NjE5MDUiLCJ0IjoxNjk2ODgxMzg3fQ==--c14410b58c38ac183bbae6ff99a9551a84e1355335deadc652ae48dbac743ead" data-view-component="true" class="js-socket-channel"></notification-shelf-watcher>
-  <div hidden data-initial data-target="notification-shelf-watcher.placeholder"></div>
-
-
-
-
-
-
-      <details
-  class="details-reset details-overlay details-overlay-dark js-command-palette-dialog"
-  id="command-palette-pjax-container"
-  data-turbo-replace
->
-  <summary aria-label="Command palette trigger" tabindex="-1"></summary>
-  <details-dialog class="command-palette-details-dialog d-flex flex-column flex-justify-center height-fit" aria-label="Command palette">
-    <command-palette
-      class="command-palette color-bg-default rounded-3 border color-shadow-small"
-      return-to=/MarlinFirmware/Configurations/blob/release-2.1.2.1/config/examples/Creality/Ender-3%20Pro/BigTreeTech%20SKR%20Mini%20E3%201.2/Configuration.h
-      user-id="40661905"
-      activation-hotkey="Mod+k,Mod+Alt+k"
-      command-mode-hotkey="Mod+Shift+k"
-      data-action="
-        command-palette-input-ready:command-palette#inputReady
-        command-palette-page-stack-updated:command-palette#updateInputScope
-        itemsUpdated:command-palette#itemsUpdated
-        keydown:command-palette#onKeydown
-        loadingStateChanged:command-palette#loadingStateChanged
-        selectedItemChanged:command-palette#selectedItemChanged
-        pageFetchError:command-palette#pageFetchError
-      ">
-
-        <command-palette-mode
-          data-char="#"
-            data-scope-types="[&quot;&quot;]"
-            data-placeholder="Search issues and pull requests"
-        ></command-palette-mode>
-        <command-palette-mode
-          data-char="#"
-            data-scope-types="[&quot;owner&quot;,&quot;repository&quot;]"
-            data-placeholder="Search issues, pull requests, discussions, and projects"
-        ></command-palette-mode>
-        <command-palette-mode
-          data-char="!"
-            data-scope-types="[&quot;owner&quot;,&quot;repository&quot;]"
-            data-placeholder="Search projects"
-        ></command-palette-mode>
-        <command-palette-mode
-          data-char="@"
-            data-scope-types="[&quot;&quot;]"
-            data-placeholder="Search or jump to a user, organization, or repository"
-        ></command-palette-mode>
-        <command-palette-mode
-          data-char="@"
-            data-scope-types="[&quot;owner&quot;]"
-            data-placeholder="Search or jump to a repository"
-        ></command-palette-mode>
-        <command-palette-mode
-          data-char="/"
-            data-scope-types="[&quot;repository&quot;]"
-            data-placeholder="Search files"
-        ></command-palette-mode>
-        <command-palette-mode
-          data-char="?"
-        ></command-palette-mode>
-        <command-palette-mode
-          data-char="&gt;"
-            data-placeholder="Run a command"
-        ></command-palette-mode>
-        <command-palette-mode
-          data-char=""
-            data-scope-types="[&quot;&quot;]"
-            data-placeholder="Search or jump to..."
-        ></command-palette-mode>
-        <command-palette-mode
-          data-char=""
-            data-scope-types="[&quot;owner&quot;]"
-            data-placeholder="Search or jump to..."
-        ></command-palette-mode>
-      <command-palette-mode
-        class="js-command-palette-default-mode"
-        data-char=""
-        data-placeholder="Search or jump to..."
-      ></command-palette-mode>
-
-      <command-palette-input placeholder="Search or jump to..."
-
-        data-action="
-          command-palette-input:command-palette#onInput
-          command-palette-select:command-palette#onSelect
-          command-palette-descope:command-palette#onDescope
-          command-palette-cleared:command-palette#onInputClear
-        "
-      >
-        <div class="js-search-icon d-flex flex-items-center mr-2" style="height: 26px">
-          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-search color-fg-muted">
-    <path d="M10.68 11.74a6 6 0 0 1-7.922-8.982 6 6 0 0 1 8.982 7.922l3.04 3.04a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215ZM11.5 7a4.499 4.499 0 1 0-8.997 0A4.499 4.499 0 0 0 11.5 7Z"></path>
-</svg>
-        </div>
-        <div class="js-spinner d-flex flex-items-center mr-2 color-fg-muted" hidden>
-          <svg aria-label="Loading" class="anim-rotate" viewBox="0 0 16 16" fill="none" width="16" height="16">
-            <circle
-              cx="8"
-              cy="8"
-              r="7"
-              stroke="currentColor"
-              stroke-opacity="0.25"
-              stroke-width="2"
-              vector-effect="non-scaling-stroke"
-            ></circle>
-            <path
-              d="M15 8a7.002 7.002 0 00-7-7"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              vector-effect="non-scaling-stroke"
-            ></path>
-          </svg>
-        </div>
-        <command-palette-scope >
-          <div data-target="command-palette-scope.placeholder" hidden class="color-fg-subtle">/&nbsp;&nbsp;<span class="text-semibold color-fg-default">...</span>&nbsp;&nbsp;/&nbsp;&nbsp;</div>
-              <command-palette-token
-                data-text="MarlinFirmware"
-                data-id="MDEyOk9yZ2FuaXphdGlvbjEwNDE4MzY1"
-                data-type="owner"
-                data-value="MarlinFirmware"
-                data-targets="command-palette-scope.tokens"
-                class="color-fg-default text-semibold"
-                style="white-space:nowrap;line-height:20px;"
-                >MarlinFirmware<span class="color-fg-subtle text-normal">&nbsp;&nbsp;/&nbsp;&nbsp;</span></command-palette-token>
-              <command-palette-token
-                data-text="Configurations"
-                data-id="MDEwOlJlcG9zaXRvcnkyMTE3NTY5MDU="
-                data-type="repository"
-                data-value="Configurations"
-                data-targets="command-palette-scope.tokens"
-                class="color-fg-default text-semibold"
-                style="white-space:nowrap;line-height:20px;"
-                >Configurations<span class="color-fg-subtle text-normal">&nbsp;&nbsp;/&nbsp;&nbsp;</span></command-palette-token>
-        </command-palette-scope>
-        <div class="command-palette-input-group flex-1 form-control border-0 box-shadow-none" style="z-index: 0">
-          <div class="command-palette-typeahead position-absolute d-flex flex-items-center Truncate">
-            <span class="typeahead-segment input-mirror" data-target="command-palette-input.mirror"></span>
-            <span class="Truncate-text" data-target="command-palette-input.typeaheadText"></span>
-            <span class="typeahead-segment" data-target="command-palette-input.typeaheadPlaceholder"></span>
-          </div>
-          <input
-            class="js-overlay-input typeahead-input d-none"
-            disabled
-            tabindex="-1"
-            aria-label="Hidden input for typeahead"
-          >
-          <input
-            type="text"
-            autocomplete="off"
-            autocorrect="off"
-            autocapitalize="off"
-            spellcheck="false"
-            class="js-input typeahead-input form-control border-0 box-shadow-none input-block width-full no-focus-indicator"
-            aria-label="Command palette input"
-            aria-haspopup="listbox"
-            aria-expanded="false"
-            aria-autocomplete="list"
-            aria-controls="command-palette-page-stack"
-            role="combobox"
-            data-action="
-              input:command-palette-input#onInput
-              keydown:command-palette-input#onKeydown
-            "
-          >
-        </div>
-          <div data-view-component="true" class="position-relative d-inline-block">
-    <button aria-keyshortcuts="Control+Backspace" data-action="click:command-palette-input#onClear keypress:command-palette-input#onClear" data-target="command-palette-input.clearButton" id="command-palette-clear-button" hidden="hidden" type="button" data-view-component="true" class="btn-octicon command-palette-input-clear-button">      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-x-circle-fill">
-    <path d="M2.343 13.657A8 8 0 1 1 13.658 2.343 8 8 0 0 1 2.343 13.657ZM6.03 4.97a.751.751 0 0 0-1.042.018.751.751 0 0 0-.018 1.042L6.94 8 4.97 9.97a.749.749 0 0 0 .326 1.275.749.749 0 0 0 .734-.215L8 9.06l1.97 1.97a.749.749 0 0 0 1.275-.326.749.749 0 0 0-.215-.734L9.06 8l1.97-1.97a.749.749 0 0 0-.326-1.275.749.749 0 0 0-.734.215L8 6.94Z"></path>
-</svg>
-</button>    <tool-tip id="tooltip-e6a72c99-d03f-463f-8d79-097e8cc69ce4" for="command-palette-clear-button" popover="manual" data-direction="w" data-type="label" data-view-component="true" class="sr-only position-absolute">Clear Command Palette</tool-tip>
-</div>
-      </command-palette-input>
-
-      <command-palette-page-stack
-        data-default-scope-id="MDEwOlJlcG9zaXRvcnkyMTE3NTY5MDU="
-        data-default-scope-type="Repository"
-        data-action="command-palette-page-octicons-cached:command-palette-page-stack#cacheOcticons"
-      >
-          <command-palette-tip
-            class="color-fg-muted f6 px-3 py-1 my-2"
-              data-scope-types="[&quot;&quot;,&quot;owner&quot;,&quot;repository&quot;]"
-            data-mode=""
-            data-value="">
-            <div class="d-flex flex-items-start flex-justify-between">
-              <div>
-                <span class="text-bold">Tip:</span>
-                  Type <kbd class="hx_kbd">#</kbd> to search pull requests
-              </div>
-              <div class="ml-2 flex-shrink-0">
-                Type <kbd class="hx_kbd">?</kbd> for help and tips
-              </div>
-            </div>
-          </command-palette-tip>
-          <command-palette-tip
-            class="color-fg-muted f6 px-3 py-1 my-2"
-              data-scope-types="[&quot;&quot;,&quot;owner&quot;,&quot;repository&quot;]"
-            data-mode=""
-            data-value="">
-            <div class="d-flex flex-items-start flex-justify-between">
-              <div>
-                <span class="text-bold">Tip:</span>
-                  Type <kbd class="hx_kbd">#</kbd> to search issues
-              </div>
-              <div class="ml-2 flex-shrink-0">
-                Type <kbd class="hx_kbd">?</kbd> for help and tips
-              </div>
-            </div>
-          </command-palette-tip>
-          <command-palette-tip
-            class="color-fg-muted f6 px-3 py-1 my-2"
-              data-scope-types="[&quot;owner&quot;,&quot;repository&quot;]"
-            data-mode=""
-            data-value="">
-            <div class="d-flex flex-items-start flex-justify-between">
-              <div>
-                <span class="text-bold">Tip:</span>
-                  Type <kbd class="hx_kbd">#</kbd> to search discussions
-              </div>
-              <div class="ml-2 flex-shrink-0">
-                Type <kbd class="hx_kbd">?</kbd> for help and tips
-              </div>
-            </div>
-          </command-palette-tip>
-          <command-palette-tip
-            class="color-fg-muted f6 px-3 py-1 my-2"
-              data-scope-types="[&quot;owner&quot;,&quot;repository&quot;]"
-            data-mode=""
-            data-value="">
-            <div class="d-flex flex-items-start flex-justify-between">
-              <div>
-                <span class="text-bold">Tip:</span>
-                  Type <kbd class="hx_kbd">!</kbd> to search projects
-              </div>
-              <div class="ml-2 flex-shrink-0">
-                Type <kbd class="hx_kbd">?</kbd> for help and tips
-              </div>
-            </div>
-          </command-palette-tip>
-          <command-palette-tip
-            class="color-fg-muted f6 px-3 py-1 my-2"
-              data-scope-types="[&quot;owner&quot;]"
-            data-mode=""
-            data-value="">
-            <div class="d-flex flex-items-start flex-justify-between">
-              <div>
-                <span class="text-bold">Tip:</span>
-                  Type <kbd class="hx_kbd">@</kbd> to search teams
-              </div>
-              <div class="ml-2 flex-shrink-0">
-                Type <kbd class="hx_kbd">?</kbd> for help and tips
-              </div>
-            </div>
-          </command-palette-tip>
-          <command-palette-tip
-            class="color-fg-muted f6 px-3 py-1 my-2"
-              data-scope-types="[&quot;&quot;]"
-            data-mode=""
-            data-value="">
-            <div class="d-flex flex-items-start flex-justify-between">
-              <div>
-                <span class="text-bold">Tip:</span>
-                  Type <kbd class="hx_kbd">@</kbd> to search people and organizations
-              </div>
-              <div class="ml-2 flex-shrink-0">
-                Type <kbd class="hx_kbd">?</kbd> for help and tips
-              </div>
-            </div>
-          </command-palette-tip>
-          <command-palette-tip
-            class="color-fg-muted f6 px-3 py-1 my-2"
-              data-scope-types="[&quot;&quot;,&quot;owner&quot;,&quot;repository&quot;]"
-            data-mode=""
-            data-value="">
-            <div class="d-flex flex-items-start flex-justify-between">
-              <div>
-                <span class="text-bold">Tip:</span>
-                  Type <kbd class="hx_kbd">&gt;</kbd> to activate command mode
-              </div>
-              <div class="ml-2 flex-shrink-0">
-                Type <kbd class="hx_kbd">?</kbd> for help and tips
-              </div>
-            </div>
-          </command-palette-tip>
-          <command-palette-tip
-            class="color-fg-muted f6 px-3 py-1 my-2"
-              data-scope-types="[&quot;&quot;,&quot;owner&quot;,&quot;repository&quot;]"
-            data-mode=""
-            data-value="">
-            <div class="d-flex flex-items-start flex-justify-between">
-              <div>
-                <span class="text-bold">Tip:</span>
-                  Go to your accessibility settings to change your keyboard shortcuts
-              </div>
-              <div class="ml-2 flex-shrink-0">
-                Type <kbd class="hx_kbd">?</kbd> for help and tips
-              </div>
-            </div>
-          </command-palette-tip>
-          <command-palette-tip
-            class="color-fg-muted f6 px-3 py-1 my-2"
-              data-scope-types="[&quot;&quot;,&quot;owner&quot;,&quot;repository&quot;]"
-            data-mode="#"
-            data-value="">
-            <div class="d-flex flex-items-start flex-justify-between">
-              <div>
-                <span class="text-bold">Tip:</span>
-                  Type author:@me to search your content
-              </div>
-              <div class="ml-2 flex-shrink-0">
-                Type <kbd class="hx_kbd">?</kbd> for help and tips
-              </div>
-            </div>
-          </command-palette-tip>
-          <command-palette-tip
-            class="color-fg-muted f6 px-3 py-1 my-2"
-              data-scope-types="[&quot;&quot;,&quot;owner&quot;,&quot;repository&quot;]"
-            data-mode="#"
-            data-value="">
-            <div class="d-flex flex-items-start flex-justify-between">
-              <div>
-                <span class="text-bold">Tip:</span>
-                  Type is:pr to filter to pull requests
-              </div>
-              <div class="ml-2 flex-shrink-0">
-                Type <kbd class="hx_kbd">?</kbd> for help and tips
-              </div>
-            </div>
-          </command-palette-tip>
-          <command-palette-tip
-            class="color-fg-muted f6 px-3 py-1 my-2"
-              data-scope-types="[&quot;&quot;,&quot;owner&quot;,&quot;repository&quot;]"
-            data-mode="#"
-            data-value="">
-            <div class="d-flex flex-items-start flex-justify-between">
-              <div>
-                <span class="text-bold">Tip:</span>
-                  Type is:issue to filter to issues
-              </div>
-              <div class="ml-2 flex-shrink-0">
-                Type <kbd class="hx_kbd">?</kbd> for help and tips
-              </div>
-            </div>
-          </command-palette-tip>
-          <command-palette-tip
-            class="color-fg-muted f6 px-3 py-1 my-2"
-              data-scope-types="[&quot;owner&quot;,&quot;repository&quot;]"
-            data-mode="#"
-            data-value="">
-            <div class="d-flex flex-items-start flex-justify-between">
-              <div>
-                <span class="text-bold">Tip:</span>
-                  Type is:project to filter to projects
-              </div>
-              <div class="ml-2 flex-shrink-0">
-                Type <kbd class="hx_kbd">?</kbd> for help and tips
-              </div>
-            </div>
-          </command-palette-tip>
-          <command-palette-tip
-            class="color-fg-muted f6 px-3 py-1 my-2"
-              data-scope-types="[&quot;&quot;,&quot;owner&quot;,&quot;repository&quot;]"
-            data-mode="#"
-            data-value="">
-            <div class="d-flex flex-items-start flex-justify-between">
-              <div>
-                <span class="text-bold">Tip:</span>
-                  Type is:open to filter to open content
-              </div>
-              <div class="ml-2 flex-shrink-0">
-                Type <kbd class="hx_kbd">?</kbd> for help and tips
-              </div>
-            </div>
-          </command-palette-tip>
-        <command-palette-tip class="mx-3 my-2 flash flash-error d-flex flex-items-center" data-scope-types="*" data-on-error>
-          <div>
-            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-alert">
-    <path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path>
-</svg>
-          </div>
-          <div class="px-2">
-            We’ve encountered an error and some results aren't available at this time. Type a new search or try again later.
-          </div>
-        </command-palette-tip>
-        <command-palette-tip class="h4 color-fg-default pl-3 pb-2 pt-3" data-on-empty data-scope-types="*" data-match-mode="[^?]|^$">
-          No results matched your search
-        </command-palette-tip>
-
-        <div hidden>
-
-            <div data-targets="command-palette-page-stack.localOcticons" data-octicon-id="arrow-right-color-fg-muted">
-              <svg height="16" class="octicon octicon-arrow-right color-fg-muted" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l2.97-2.97H3.75a.75.75 0 0 1 0-1.5h7.44L8.22 4.03a.75.75 0 0 1 0-1.06Z"></path></svg>
-            </div>
-            <div data-targets="command-palette-page-stack.localOcticons" data-octicon-id="arrow-right-color-fg-default">
-              <svg height="16" class="octicon octicon-arrow-right color-fg-default" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l2.97-2.97H3.75a.75.75 0 0 1 0-1.5h7.44L8.22 4.03a.75.75 0 0 1 0-1.06Z"></path></svg>
-            </div>
-            <div data-targets="command-palette-page-stack.localOcticons" data-octicon-id="codespaces-color-fg-muted">
-              <svg height="16" class="octicon octicon-codespaces color-fg-muted" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M0 11.25c0-.966.784-1.75 1.75-1.75h12.5c.966 0 1.75.784 1.75 1.75v3A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25Zm2-9.5C2 .784 2.784 0 3.75 0h8.5C13.216 0 14 .784 14 1.75v5a1.75 1.75 0 0 1-1.75 1.75h-8.5A1.75 1.75 0 0 1 2 6.75Zm1.75-.25a.25.25 0 0 0-.25.25v5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-5a.25.25 0 0 0-.25-.25Zm-2 9.5a.25.25 0 0 0-.25.25v3c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25v-3a.25.25 0 0 0-.25-.25Z"></path><path d="M7 12.75a.75.75 0 0 1 .75-.75h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1-.75-.75Zm-4 0a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1-.75-.75Z"></path></svg>
-            </div>
-            <div data-targets="command-palette-page-stack.localOcticons" data-octicon-id="copy-color-fg-muted">
-              <svg height="16" class="octicon octicon-copy color-fg-muted" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
-            </div>
-            <div data-targets="command-palette-page-stack.localOcticons" data-octicon-id="dash-color-fg-muted">
-              <svg height="16" class="octicon octicon-dash color-fg-muted" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M2 7.75A.75.75 0 0 1 2.75 7h10a.75.75 0 0 1 0 1.5h-10A.75.75 0 0 1 2 7.75Z"></path></svg>
-            </div>
-            <div data-targets="command-palette-page-stack.localOcticons" data-octicon-id="file-color-fg-muted">
-              <svg height="16" class="octicon octicon-file color-fg-muted" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.75.062V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"></path></svg>
-            </div>
-            <div data-targets="command-palette-page-stack.localOcticons" data-octicon-id="gear-color-fg-muted">
-              <svg height="16" class="octicon octicon-gear color-fg-muted" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M8 0a8.2 8.2 0 0 1 .701.031C9.444.095 9.99.645 10.16 1.29l.288 1.107c.018.066.079.158.212.224.231.114.454.243.668.386.123.082.233.09.299.071l1.103-.303c.644-.176 1.392.021 1.82.63.27.385.506.792.704 1.218.315.675.111 1.422-.364 1.891l-.814.806c-.049.048-.098.147-.088.294.016.257.016.515 0 .772-.01.147.038.246.088.294l.814.806c.475.469.679 1.216.364 1.891a7.977 7.977 0 0 1-.704 1.217c-.428.61-1.176.807-1.82.63l-1.102-.302c-.067-.019-.177-.011-.3.071a5.909 5.909 0 0 1-.668.386c-.133.066-.194.158-.211.224l-.29 1.106c-.168.646-.715 1.196-1.458 1.26a8.006 8.006 0 0 1-1.402 0c-.743-.064-1.289-.614-1.458-1.26l-.289-1.106c-.018-.066-.079-.158-.212-.224a5.738 5.738 0 0 1-.668-.386c-.123-.082-.233-.09-.299-.071l-1.103.303c-.644.176-1.392-.021-1.82-.63a8.12 8.12 0 0 1-.704-1.218c-.315-.675-.111-1.422.363-1.891l.815-.806c.05-.048.098-.147.088-.294a6.214 6.214 0 0 1 0-.772c.01-.147-.038-.246-.088-.294l-.815-.806C.635 6.045.431 5.298.746 4.623a7.92 7.92 0 0 1 .704-1.217c.428-.61 1.176-.807 1.82-.63l1.102.302c.067.019.177.011.3-.071.214-.143.437-.272.668-.386.133-.066.194-.158.211-.224l.29-1.106C6.009.645 6.556.095 7.299.03 7.53.01 7.764 0 8 0Zm-.571 1.525c-.036.003-.108.036-.137.146l-.289 1.105c-.147.561-.549.967-.998 1.189-.173.086-.34.183-.5.29-.417.278-.97.423-1.529.27l-1.103-.303c-.109-.03-.175.016-.195.045-.22.312-.412.644-.573.99-.014.031-.021.11.059.19l.815.806c.411.406.562.957.53 1.456a4.709 4.709 0 0 0 0 .582c.032.499-.119 1.05-.53 1.456l-.815.806c-.081.08-.073.159-.059.19.162.346.353.677.573.989.02.03.085.076.195.046l1.102-.303c.56-.153 1.113-.008 1.53.27.161.107.328.204.501.29.447.222.85.629.997 1.189l.289 1.105c.029.109.101.143.137.146a6.6 6.6 0 0 0 1.142 0c.036-.003.108-.036.137-.146l.289-1.105c.147-.561.549-.967.998-1.189.173-.086.34-.183.5-.29.417-.278.97-.423 1.529-.27l1.103.303c.109.029.175-.016.195-.045.22-.313.411-.644.573-.99.014-.031.021-.11-.059-.19l-.815-.806c-.411-.406-.562-.957-.53-1.456a4.709 4.709 0 0 0 0-.582c-.032-.499.119-1.05.53-1.456l.815-.806c.081-.08.073-.159.059-.19a6.464 6.464 0 0 0-.573-.989c-.02-.03-.085-.076-.195-.046l-1.102.303c-.56.153-1.113.008-1.53-.27a4.44 4.44 0 0 0-.501-.29c-.447-.222-.85-.629-.997-1.189l-.289-1.105c-.029-.11-.101-.143-.137-.146a6.6 6.6 0 0 0-1.142 0ZM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM9.5 8a1.5 1.5 0 1 0-3.001.001A1.5 1.5 0 0 0 9.5 8Z"></path></svg>
-            </div>
-            <div data-targets="command-palette-page-stack.localOcticons" data-octicon-id="lock-color-fg-muted">
-              <svg height="16" class="octicon octicon-lock color-fg-muted" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M4 4a4 4 0 0 1 8 0v2h.25c.966 0 1.75.784 1.75 1.75v5.5A1.75 1.75 0 0 1 12.25 15h-8.5A1.75 1.75 0 0 1 2 13.25v-5.5C2 6.784 2.784 6 3.75 6H4Zm8.25 3.5h-8.5a.25.25 0 0 0-.25.25v5.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-5.5a.25.25 0 0 0-.25-.25ZM10.5 6V4a2.5 2.5 0 1 0-5 0v2Z"></path></svg>
-            </div>
-            <div data-targets="command-palette-page-stack.localOcticons" data-octicon-id="moon-color-fg-muted">
-              <svg height="16" class="octicon octicon-moon color-fg-muted" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M9.598 1.591a.749.749 0 0 1 .785-.175 7.001 7.001 0 1 1-8.967 8.967.75.75 0 0 1 .961-.96 5.5 5.5 0 0 0 7.046-7.046.75.75 0 0 1 .175-.786Zm1.616 1.945a7 7 0 0 1-7.678 7.678 5.499 5.499 0 1 0 7.678-7.678Z"></path></svg>
-            </div>
-            <div data-targets="command-palette-page-stack.localOcticons" data-octicon-id="person-color-fg-muted">
-              <svg height="16" class="octicon octicon-person color-fg-muted" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M10.561 8.073a6.005 6.005 0 0 1 3.432 5.142.75.75 0 1 1-1.498.07 4.5 4.5 0 0 0-8.99 0 .75.75 0 0 1-1.498-.07 6.004 6.004 0 0 1 3.431-5.142 3.999 3.999 0 1 1 5.123 0ZM10.5 5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path></svg>
-            </div>
-            <div data-targets="command-palette-page-stack.localOcticons" data-octicon-id="pencil-color-fg-muted">
-              <svg height="16" class="octicon octicon-pencil color-fg-muted" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M11.013 1.427a1.75 1.75 0 0 1 2.474 0l1.086 1.086a1.75 1.75 0 0 1 0 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 0 1-.927-.928l.929-3.25c.081-.286.235-.547.445-.758l8.61-8.61Zm.176 4.823L9.75 4.81l-6.286 6.287a.253.253 0 0 0-.064.108l-.558 1.953 1.953-.558a.253.253 0 0 0 .108-.064Zm1.238-3.763a.25.25 0 0 0-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 0 0 0-.354Z"></path></svg>
-            </div>
-            <div data-targets="command-palette-page-stack.localOcticons" data-octicon-id="issue-opened-open">
-              <svg height="16" class="octicon octicon-issue-opened open" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z"></path></svg>
-            </div>
-            <div data-targets="command-palette-page-stack.localOcticons" data-octicon-id="git-pull-request-draft-color-fg-muted">
-              <svg height="16" class="octicon octicon-git-pull-request-draft color-fg-muted" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M3.25 1A2.25 2.25 0 0 1 4 5.372v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.251 2.251 0 0 1 3.25 1Zm9.5 14a2.25 2.25 0 1 1 0-4.5 2.25 2.25 0 0 1 0 4.5ZM2.5 3.25a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0ZM3.25 12a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm9.5 0a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5ZM14 7.5a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0Zm0-4.25a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0Z"></path></svg>
-            </div>
-            <div data-targets="command-palette-page-stack.localOcticons" data-octicon-id="search-color-fg-muted">
-              <svg height="16" class="octicon octicon-search color-fg-muted" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M10.68 11.74a6 6 0 0 1-7.922-8.982 6 6 0 0 1 8.982 7.922l3.04 3.04a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215ZM11.5 7a4.499 4.499 0 1 0-8.997 0A4.499 4.499 0 0 0 11.5 7Z"></path></svg>
-            </div>
-            <div data-targets="command-palette-page-stack.localOcticons" data-octicon-id="sun-color-fg-muted">
-              <svg height="16" class="octicon octicon-sun color-fg-muted" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M8 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm0-1.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Zm5.657-8.157a.75.75 0 0 1 0 1.061l-1.061 1.06a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734l1.06-1.06a.75.75 0 0 1 1.06 0Zm-9.193 9.193a.75.75 0 0 1 0 1.06l-1.06 1.061a.75.75 0 1 1-1.061-1.06l1.06-1.061a.75.75 0 0 1 1.061 0ZM8 0a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0V.75A.75.75 0 0 1 8 0ZM3 8a.75.75 0 0 1-.75.75H.75a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 3 8Zm13 0a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 16 8Zm-8 5a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 8 13Zm3.536-1.464a.75.75 0 0 1 1.06 0l1.061 1.06a.75.75 0 0 1-1.06 1.061l-1.061-1.06a.75.75 0 0 1 0-1.061ZM2.343 2.343a.75.75 0 0 1 1.061 0l1.06 1.061a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-1.06-1.06a.75.75 0 0 1 0-1.06Z"></path></svg>
-            </div>
-            <div data-targets="command-palette-page-stack.localOcticons" data-octicon-id="sync-color-fg-muted">
-              <svg height="16" class="octicon octicon-sync color-fg-muted" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z"></path></svg>
-            </div>
-            <div data-targets="command-palette-page-stack.localOcticons" data-octicon-id="trash-color-fg-muted">
-              <svg height="16" class="octicon octicon-trash color-fg-muted" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M11 1.75V3h2.25a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1 0-1.5H5V1.75C5 .784 5.784 0 6.75 0h2.5C10.216 0 11 .784 11 1.75ZM4.496 6.675l.66 6.6a.25.25 0 0 0 .249.225h5.19a.25.25 0 0 0 .249-.225l.66-6.6a.75.75 0 0 1 1.492.149l-.66 6.6A1.748 1.748 0 0 1 10.595 15h-5.19a1.75 1.75 0 0 1-1.741-1.575l-.66-6.6a.75.75 0 1 1 1.492-.15ZM6.5 1.75V3h3V1.75a.25.25 0 0 0-.25-.25h-2.5a.25.25 0 0 0-.25.25Z"></path></svg>
-            </div>
-            <div data-targets="command-palette-page-stack.localOcticons" data-octicon-id="key-color-fg-muted">
-              <svg height="16" class="octicon octicon-key color-fg-muted" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M10.5 0a5.499 5.499 0 1 1-1.288 10.848l-.932.932a.749.749 0 0 1-.53.22H7v.75a.749.749 0 0 1-.22.53l-.5.5a.749.749 0 0 1-.53.22H5v.75a.749.749 0 0 1-.22.53l-.5.5a.749.749 0 0 1-.53.22h-2A1.75 1.75 0 0 1 0 14.25v-2c0-.199.079-.389.22-.53l4.932-4.932A5.5 5.5 0 0 1 10.5 0Zm-4 5.5c-.001.431.069.86.205 1.269a.75.75 0 0 1-.181.768L1.5 12.56v1.69c0 .138.112.25.25.25h1.69l.06-.06v-1.19a.75.75 0 0 1 .75-.75h1.19l.06-.06v-1.19a.75.75 0 0 1 .75-.75h1.19l1.023-1.025a.75.75 0 0 1 .768-.18A4 4 0 1 0 6.5 5.5ZM11 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>
-            </div>
-            <div data-targets="command-palette-page-stack.localOcticons" data-octicon-id="comment-discussion-color-fg-muted">
-              <svg height="16" class="octicon octicon-comment-discussion color-fg-muted" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M1.75 1h8.5c.966 0 1.75.784 1.75 1.75v5.5A1.75 1.75 0 0 1 10.25 10H7.061l-2.574 2.573A1.458 1.458 0 0 1 2 11.543V10h-.25A1.75 1.75 0 0 1 0 8.25v-5.5C0 1.784.784 1 1.75 1ZM1.5 2.75v5.5c0 .138.112.25.25.25h1a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h3.5a.25.25 0 0 0 .25-.25v-5.5a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25Zm13 2a.25.25 0 0 0-.25-.25h-.5a.75.75 0 0 1 0-1.5h.5c.966 0 1.75.784 1.75 1.75v5.5A1.75 1.75 0 0 1 14.25 12H14v1.543a1.458 1.458 0 0 1-2.487 1.03L9.22 12.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.22 2.22v-2.19a.75.75 0 0 1 .75-.75h1a.25.25 0 0 0 .25-.25Z"></path></svg>
-            </div>
-            <div data-targets="command-palette-page-stack.localOcticons" data-octicon-id="bell-color-fg-muted">
-              <svg height="16" class="octicon octicon-bell color-fg-muted" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M8 16a2 2 0 0 0 1.985-1.75c.017-.137-.097-.25-.235-.25h-3.5c-.138 0-.252.113-.235.25A2 2 0 0 0 8 16ZM3 5a5 5 0 0 1 10 0v2.947c0 .05.015.098.042.139l1.703 2.555A1.519 1.519 0 0 1 13.482 13H2.518a1.516 1.516 0 0 1-1.263-2.36l1.703-2.554A.255.255 0 0 0 3 7.947Zm5-3.5A3.5 3.5 0 0 0 4.5 5v2.947c0 .346-.102.683-.294.97l-1.703 2.556a.017.017 0 0 0-.003.01l.001.006c0 .002.002.004.004.006l.006.004.007.001h10.964l.007-.001.006-.004.004-.006.001-.007a.017.017 0 0 0-.003-.01l-1.703-2.554a1.745 1.745 0 0 1-.294-.97V5A3.5 3.5 0 0 0 8 1.5Z"></path></svg>
-            </div>
-            <div data-targets="command-palette-page-stack.localOcticons" data-octicon-id="bell-slash-color-fg-muted">
-              <svg height="16" class="octicon octicon-bell-slash color-fg-muted" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="m4.182 4.31.016.011 10.104 7.316.013.01 1.375.996a.75.75 0 1 1-.88 1.214L13.626 13H2.518a1.516 1.516 0 0 1-1.263-2.36l1.703-2.554A.255.255 0 0 0 3 7.947V5.305L.31 3.357a.75.75 0 1 1 .88-1.214Zm7.373 7.19L4.5 6.391v1.556c0 .346-.102.683-.294.97l-1.703 2.556a.017.017 0 0 0-.003.01c0 .005.002.009.005.012l.006.004.007.001ZM8 1.5c-.997 0-1.895.416-2.534 1.086A.75.75 0 1 1 4.38 1.55 5 5 0 0 1 13 5v2.373a.75.75 0 0 1-1.5 0V5A3.5 3.5 0 0 0 8 1.5ZM8 16a2 2 0 0 1-1.985-1.75c-.017-.137.097-.25.235-.25h3.5c.138 0 .252.113.235.25A2 2 0 0 1 8 16Z"></path></svg>
-            </div>
-            <div data-targets="command-palette-page-stack.localOcticons" data-octicon-id="paintbrush-color-fg-muted">
-              <svg height="16" class="octicon octicon-paintbrush color-fg-muted" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M11.134 1.535c.7-.509 1.416-.942 2.076-1.155.649-.21 1.463-.267 2.069.34.603.601.568 1.411.368 2.07-.202.668-.624 1.39-1.125 2.096-1.011 1.424-2.496 2.987-3.775 4.249-1.098 1.084-2.132 1.839-3.04 2.3a3.744 3.744 0 0 1-1.055 3.217c-.431.431-1.065.691-1.657.861-.614.177-1.294.287-1.914.357A21.151 21.151 0 0 1 .797 16H.743l.007-.75H.749L.742 16a.75.75 0 0 1-.743-.742l.743-.008-.742.007v-.054a21.25 21.25 0 0 1 .13-2.284c.067-.647.187-1.287.358-1.914.17-.591.43-1.226.86-1.657a3.746 3.746 0 0 1 3.227-1.054c.466-.893 1.225-1.907 2.314-2.982 1.271-1.255 2.833-2.75 4.245-3.777ZM1.62 13.089c-.051.464-.086.929-.104 1.395.466-.018.932-.053 1.396-.104a10.511 10.511 0 0 0 1.668-.309c.526-.151.856-.325 1.011-.48a2.25 2.25 0 1 0-3.182-3.182c-.155.155-.329.485-.48 1.01a10.515 10.515 0 0 0-.309 1.67Zm10.396-10.34c-1.224.89-2.605 2.189-3.822 3.384l1.718 1.718c1.21-1.205 2.51-2.597 3.387-3.833.47-.662.78-1.227.912-1.662.134-.444.032-.551.009-.575h-.001V1.78c-.014-.014-.113-.113-.548.027-.432.14-.995.462-1.655.942Zm-4.832 7.266-.001.001a9.859 9.859 0 0 0 1.63-1.142L7.155 7.216a9.7 9.7 0 0 0-1.161 1.607c.482.302.889.71 1.19 1.192Z"></path></svg>
-            </div>
-
-            <command-palette-item-group
-              data-group-id="top"
-              data-group-title="Top result"
-              data-group-hint=""
-              data-group-limits="{}"
-              data-default-priority="0"
-            >
-            </command-palette-item-group>
-            <command-palette-item-group
-              data-group-id="commands"
-              data-group-title="Commands"
-              data-group-hint="Type &gt; to filter"
-              data-group-limits="{&quot;static_items_page&quot;:50,&quot;issue&quot;:50,&quot;pull_request&quot;:50,&quot;discussion&quot;:50}"
-              data-default-priority="1"
-            >
-            </command-palette-item-group>
-            <command-palette-item-group
-              data-group-id="global_commands"
-              data-group-title="Global Commands"
-              data-group-hint="Type &gt; to filter"
-              data-group-limits="{&quot;issue&quot;:0,&quot;pull_request&quot;:0,&quot;discussion&quot;:0}"
-              data-default-priority="2"
-            >
-            </command-palette-item-group>
-            <command-palette-item-group
-              data-group-id="this_page"
-              data-group-title="This Page"
-              data-group-hint=""
-              data-group-limits="{}"
-              data-default-priority="3"
-            >
-            </command-palette-item-group>
-            <command-palette-item-group
-              data-group-id="files"
-              data-group-title="Files"
-              data-group-hint=""
-              data-group-limits="{}"
-              data-default-priority="4"
-            >
-            </command-palette-item-group>
-            <command-palette-item-group
-              data-group-id="default"
-              data-group-title="Default"
-              data-group-hint=""
-              data-group-limits="{&quot;static_items_page&quot;:50}"
-              data-default-priority="5"
-            >
-            </command-palette-item-group>
-            <command-palette-item-group
-              data-group-id="pages"
-              data-group-title="Pages"
-              data-group-hint=""
-              data-group-limits="{&quot;repository&quot;:10}"
-              data-default-priority="6"
-            >
-            </command-palette-item-group>
-            <command-palette-item-group
-              data-group-id="access_policies"
-              data-group-title="Access Policies"
-              data-group-hint=""
-              data-group-limits="{}"
-              data-default-priority="7"
-            >
-            </command-palette-item-group>
-            <command-palette-item-group
-              data-group-id="organizations"
-              data-group-title="Organizations"
-              data-group-hint=""
-              data-group-limits="{}"
-              data-default-priority="8"
-            >
-            </command-palette-item-group>
-            <command-palette-item-group
-              data-group-id="repositories"
-              data-group-title="Repositories"
-              data-group-hint=""
-              data-group-limits="{}"
-              data-default-priority="9"
-            >
-            </command-palette-item-group>
-            <command-palette-item-group
-              data-group-id="references"
-              data-group-title="Issues, pull requests, and discussions"
-              data-group-hint="Type # to filter"
-              data-group-limits="{}"
-              data-default-priority="10"
-            >
-            </command-palette-item-group>
-            <command-palette-item-group
-              data-group-id="teams"
-              data-group-title="Teams"
-              data-group-hint=""
-              data-group-limits="{}"
-              data-default-priority="11"
-            >
-            </command-palette-item-group>
-            <command-palette-item-group
-              data-group-id="users"
-              data-group-title="Users"
-              data-group-hint=""
-              data-group-limits="{}"
-              data-default-priority="12"
-            >
-            </command-palette-item-group>
-            <command-palette-item-group
-              data-group-id="memex_projects"
-              data-group-title="Projects"
-              data-group-hint=""
-              data-group-limits="{}"
-              data-default-priority="13"
-            >
-            </command-palette-item-group>
-            <command-palette-item-group
-              data-group-id="projects"
-              data-group-title="Projects (classic)"
-              data-group-hint=""
-              data-group-limits="{}"
-              data-default-priority="14"
-            >
-            </command-palette-item-group>
-            <command-palette-item-group
-              data-group-id="footer"
-              data-group-title="Footer"
-              data-group-hint=""
-              data-group-limits="{}"
-              data-default-priority="15"
-            >
-            </command-palette-item-group>
-            <command-palette-item-group
-              data-group-id="modes_help"
-              data-group-title="Modes"
-              data-group-hint=""
-              data-group-limits="{}"
-              data-default-priority="16"
-            >
-            </command-palette-item-group>
-            <command-palette-item-group
-              data-group-id="filters_help"
-              data-group-title="Use filters in issues, pull requests, discussions, and projects"
-              data-group-hint=""
-              data-group-limits="{}"
-              data-default-priority="17"
-            >
-            </command-palette-item-group>
-
-            <command-palette-page
-              data-page-title="MarlinFirmware"
-              data-scope-id="MDEyOk9yZ2FuaXphdGlvbjEwNDE4MzY1"
-              data-scope-type="owner"
-              data-targets="command-palette-page-stack.defaultPages"
-              hidden
-            >
-            </command-palette-page>
-            <command-palette-page
-              data-page-title="Configurations"
-              data-scope-id="MDEwOlJlcG9zaXRvcnkyMTE3NTY5MDU="
-              data-scope-type="repository"
-              data-targets="command-palette-page-stack.defaultPages"
-              hidden
-            >
-            </command-palette-page>
-        </div>
-
-        <command-palette-page data-is-root>
-        </command-palette-page>
-          <command-palette-page
-            data-page-title="MarlinFirmware"
-            data-scope-id="MDEyOk9yZ2FuaXphdGlvbjEwNDE4MzY1"
-            data-scope-type="owner"
-          >
-          </command-palette-page>
-          <command-palette-page
-            data-page-title="Configurations"
-            data-scope-id="MDEwOlJlcG9zaXRvcnkyMTE3NTY5MDU="
-            data-scope-type="repository"
-          >
-          </command-palette-page>
-      </command-palette-page-stack>
-
-      <server-defined-provider data-type="search-links" data-targets="command-palette.serverDefinedProviderElements"></server-defined-provider>
-      <server-defined-provider data-type="help" data-targets="command-palette.serverDefinedProviderElements">
-          <command-palette-help
-            data-group="modes_help"
-              data-prefix="#"
-              data-scope-types="[&quot;&quot;]"
-          >
-            <span data-target="command-palette-help.titleElement">Search for <strong>issues</strong> and <strong>pull requests</strong></span>
-              <span data-target="command-palette-help.hintElement">
-                <kbd class="hx_kbd">#</kbd>
-              </span>
-          </command-palette-help>
-          <command-palette-help
-            data-group="modes_help"
-              data-prefix="#"
-              data-scope-types="[&quot;owner&quot;,&quot;repository&quot;]"
-          >
-            <span data-target="command-palette-help.titleElement">Search for <strong>issues, pull requests, discussions,</strong> and <strong>projects</strong></span>
-              <span data-target="command-palette-help.hintElement">
-                <kbd class="hx_kbd">#</kbd>
-              </span>
-          </command-palette-help>
-          <command-palette-help
-            data-group="modes_help"
-              data-prefix="@"
-              data-scope-types="[&quot;&quot;]"
-          >
-            <span data-target="command-palette-help.titleElement">Search for <strong>organizations, repositories,</strong> and <strong>users</strong></span>
-              <span data-target="command-palette-help.hintElement">
-                <kbd class="hx_kbd">@</kbd>
-              </span>
-          </command-palette-help>
-          <command-palette-help
-            data-group="modes_help"
-              data-prefix="!"
-              data-scope-types="[&quot;owner&quot;,&quot;repository&quot;]"
-          >
-            <span data-target="command-palette-help.titleElement">Search for <strong>projects</strong></span>
-              <span data-target="command-palette-help.hintElement">
-                <kbd class="hx_kbd">!</kbd>
-              </span>
-          </command-palette-help>
-          <command-palette-help
-            data-group="modes_help"
-              data-prefix="/"
-              data-scope-types="[&quot;repository&quot;]"
-          >
-            <span data-target="command-palette-help.titleElement">Search for <strong>files</strong></span>
-              <span data-target="command-palette-help.hintElement">
-                <kbd class="hx_kbd">/</kbd>
-              </span>
-          </command-palette-help>
-          <command-palette-help
-            data-group="modes_help"
-              data-prefix="&gt;"
-          >
-            <span data-target="command-palette-help.titleElement">Activate <strong>command mode</strong></span>
-              <span data-target="command-palette-help.hintElement">
-                <kbd class="hx_kbd">&gt;</kbd>
-              </span>
-          </command-palette-help>
-          <command-palette-help
-            data-group="filters_help"
-              data-prefix="# author:@me"
-          >
-            <span data-target="command-palette-help.titleElement">Search your issues, pull requests, and discussions</span>
-              <span data-target="command-palette-help.hintElement">
-                <kbd class="hx_kbd"># author:@me</kbd>
-              </span>
-          </command-palette-help>
-          <command-palette-help
-            data-group="filters_help"
-              data-prefix="# author:@me"
-          >
-            <span data-target="command-palette-help.titleElement">Search your issues, pull requests, and discussions</span>
-              <span data-target="command-palette-help.hintElement">
-                <kbd class="hx_kbd"># author:@me</kbd>
-              </span>
-          </command-palette-help>
-          <command-palette-help
-            data-group="filters_help"
-              data-prefix="# is:pr"
-          >
-            <span data-target="command-palette-help.titleElement">Filter to pull requests</span>
-              <span data-target="command-palette-help.hintElement">
-                <kbd class="hx_kbd"># is:pr</kbd>
-              </span>
-          </command-palette-help>
-          <command-palette-help
-            data-group="filters_help"
-              data-prefix="# is:issue"
-          >
-            <span data-target="command-palette-help.titleElement">Filter to issues</span>
-              <span data-target="command-palette-help.hintElement">
-                <kbd class="hx_kbd"># is:issue</kbd>
-              </span>
-          </command-palette-help>
-          <command-palette-help
-            data-group="filters_help"
-              data-prefix="# is:discussion"
-              data-scope-types="[&quot;owner&quot;,&quot;repository&quot;]"
-          >
-            <span data-target="command-palette-help.titleElement">Filter to discussions</span>
-              <span data-target="command-palette-help.hintElement">
-                <kbd class="hx_kbd"># is:discussion</kbd>
-              </span>
-          </command-palette-help>
-          <command-palette-help
-            data-group="filters_help"
-              data-prefix="# is:project"
-              data-scope-types="[&quot;owner&quot;,&quot;repository&quot;]"
-          >
-            <span data-target="command-palette-help.titleElement">Filter to projects</span>
-              <span data-target="command-palette-help.hintElement">
-                <kbd class="hx_kbd"># is:project</kbd>
-              </span>
-          </command-palette-help>
-          <command-palette-help
-            data-group="filters_help"
-              data-prefix="# is:open"
-          >
-            <span data-target="command-palette-help.titleElement">Filter to open issues, pull requests, and discussions</span>
-              <span data-target="command-palette-help.hintElement">
-                <kbd class="hx_kbd"># is:open</kbd>
-              </span>
-          </command-palette-help>
-      </server-defined-provider>
-
-        <server-defined-provider
-          data-type="commands"
-          data-fetch-debounce="0"
-            data-src="/command_palette/commands"
-          data-supported-modes="[]"
-            data-supports-commands
-          
-          data-targets="command-palette.serverDefinedProviderElements"
-          ></server-defined-provider>
-        <server-defined-provider
-          data-type="prefetched"
-          data-fetch-debounce="0"
-            data-src="/command_palette/jump_to_page_navigation"
-          data-supported-modes="[&quot;&quot;]"
-            data-supported-scope-types="[&quot;&quot;,&quot;owner&quot;,&quot;repository&quot;]"
-          
-          data-targets="command-palette.serverDefinedProviderElements"
-          ></server-defined-provider>
-        <server-defined-provider
-          data-type="remote"
-          data-fetch-debounce="200"
-            data-src="/command_palette/issues"
-          data-supported-modes="[&quot;#&quot;,&quot;#&quot;]"
-            data-supported-scope-types="[&quot;owner&quot;,&quot;repository&quot;,&quot;&quot;]"
-          
-          data-targets="command-palette.serverDefinedProviderElements"
-          ></server-defined-provider>
-        <server-defined-provider
-          data-type="remote"
-          data-fetch-debounce="200"
-            data-src="/command_palette/jump_to"
-          data-supported-modes="[&quot;@&quot;,&quot;@&quot;]"
-            data-supported-scope-types="[&quot;&quot;,&quot;owner&quot;]"
-          
-          data-targets="command-palette.serverDefinedProviderElements"
-          ></server-defined-provider>
-        <server-defined-provider
-          data-type="remote"
-          data-fetch-debounce="200"
-            data-src="/command_palette/jump_to_members_only"
-          data-supported-modes="[&quot;@&quot;,&quot;@&quot;,&quot;&quot;,&quot;&quot;]"
-            data-supported-scope-types="[&quot;&quot;,&quot;owner&quot;]"
-          
-          data-targets="command-palette.serverDefinedProviderElements"
-          ></server-defined-provider>
-        <server-defined-provider
-          data-type="prefetched"
-          data-fetch-debounce="0"
-            data-src="/command_palette/jump_to_members_only_prefetched"
-          data-supported-modes="[&quot;@&quot;,&quot;@&quot;,&quot;&quot;,&quot;&quot;]"
-            data-supported-scope-types="[&quot;&quot;,&quot;owner&quot;]"
-          
-          data-targets="command-palette.serverDefinedProviderElements"
-          ></server-defined-provider>
-        <server-defined-provider
-          data-type="files"
-          data-fetch-debounce="0"
-            data-src="/command_palette/files"
-          data-supported-modes="[&quot;/&quot;]"
-            data-supported-scope-types="[&quot;repository&quot;]"
-          
-          data-targets="command-palette.serverDefinedProviderElements"
-          ></server-defined-provider>
-        <server-defined-provider
-          data-type="remote"
-          data-fetch-debounce="200"
-            data-src="/command_palette/discussions"
-          data-supported-modes="[&quot;#&quot;]"
-            data-supported-scope-types="[&quot;owner&quot;,&quot;repository&quot;]"
-          
-          data-targets="command-palette.serverDefinedProviderElements"
-          ></server-defined-provider>
-        <server-defined-provider
-          data-type="remote"
-          data-fetch-debounce="200"
-            data-src="/command_palette/projects"
-          data-supported-modes="[&quot;#&quot;,&quot;!&quot;]"
-            data-supported-scope-types="[&quot;owner&quot;,&quot;repository&quot;]"
-          
-          data-targets="command-palette.serverDefinedProviderElements"
-          ></server-defined-provider>
-        <server-defined-provider
-          data-type="prefetched"
-          data-fetch-debounce="0"
-            data-src="/command_palette/recent_issues"
-          data-supported-modes="[&quot;#&quot;,&quot;#&quot;]"
-            data-supported-scope-types="[&quot;owner&quot;,&quot;repository&quot;,&quot;&quot;]"
-          
-          data-targets="command-palette.serverDefinedProviderElements"
-          ></server-defined-provider>
-        <server-defined-provider
-          data-type="remote"
-          data-fetch-debounce="200"
-            data-src="/command_palette/teams"
-          data-supported-modes="[&quot;@&quot;,&quot;&quot;]"
-            data-supported-scope-types="[&quot;owner&quot;]"
-          
-          data-targets="command-palette.serverDefinedProviderElements"
-          ></server-defined-provider>
-        <server-defined-provider
-          data-type="remote"
-          data-fetch-debounce="200"
-            data-src="/command_palette/name_with_owner_repository"
-          data-supported-modes="[&quot;@&quot;,&quot;@&quot;,&quot;&quot;,&quot;&quot;]"
-            data-supported-scope-types="[&quot;&quot;,&quot;owner&quot;]"
-          
-          data-targets="command-palette.serverDefinedProviderElements"
-          ></server-defined-provider>
-    </command-palette>
-  </details-dialog>
-</details>
-
-<div class="position-fixed bottom-0 left-0 ml-5 mb-5 js-command-palette-toasts" style="z-index: 1000">
-  <div hidden class="Toast Toast--loading">
-    <span class="Toast-icon">
-      <svg class="Toast--spinner" viewBox="0 0 32 32" width="18" height="18" aria-hidden="true">
-        <path
-          fill="#959da5"
-          d="M16 0 A16 16 0 0 0 16 32 A16 16 0 0 0 16 0 M16 4 A12 12 0 0 1 16 28 A12 12 0 0 1 16 4"
-        />
-        <path fill="#ffffff" d="M16 0 A16 16 0 0 1 32 16 L28 16 A12 12 0 0 0 16 4z"></path>
-      </svg>
-    </span>
-    <span class="Toast-content"></span>
-  </div>
-
-  <div hidden class="anim-fade-in fast Toast Toast--error">
-    <span class="Toast-icon">
-      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-stop">
-    <path d="M4.47.22A.749.749 0 0 1 5 0h6c.199 0 .389.079.53.22l4.25 4.25c.141.14.22.331.22.53v6a.749.749 0 0 1-.22.53l-4.25 4.25A.749.749 0 0 1 11 16H5a.749.749 0 0 1-.53-.22L.22 11.53A.749.749 0 0 1 0 11V5c0-.199.079-.389.22-.53Zm.84 1.28L1.5 5.31v5.38l3.81 3.81h5.38l3.81-3.81V5.31L10.69 1.5ZM8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path>
-</svg>
-    </span>
-    <span class="Toast-content"></span>
-  </div>
-
-  <div hidden class="anim-fade-in fast Toast Toast--warning">
-    <span class="Toast-icon">
-      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-alert">
-    <path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path>
-</svg>
-    </span>
-    <span class="Toast-content"></span>
-  </div>
-
-
-  <div hidden class="anim-fade-in fast Toast Toast--success">
-    <span class="Toast-icon">
-      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check">
-    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
-</svg>
-    </span>
-    <span class="Toast-content"></span>
-  </div>
-
-  <div hidden class="anim-fade-in fast Toast">
-    <span class="Toast-icon">
-      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-info">
-    <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path>
-</svg>
-    </span>
-    <span class="Toast-content"></span>
-  </div>
-</div>
-
-
-  <div
-    class="application-main "
-    data-commit-hovercards-enabled
-    data-discussion-hovercards-enabled
-    data-issue-and-pr-hovercards-enabled
-  >
-        <div itemscope itemtype="http://schema.org/SoftwareSourceCode" class="">
-    <main id="js-repo-pjax-container" >
-      
-      
-      
-    
-
-    
-
-
-
-
-
-
-    
-  <div id="repository-container-header" data-turbo-replace hidden></div>
-
-
-
-
-<turbo-frame id="repo-content-turbo-frame" target="_top" data-turbo-action="advance" class="">
-    <div id="repo-content-pjax-container" class="repository-content " >
-      <a href="https://github.dev/" class="d-none js-github-dev-shortcut" data-hotkey=".,Alt+Meta+≥,Control+Alt+.">Open in github.dev</a>
-  <a href="https://github.dev/" class="d-none js-github-dev-new-tab-shortcut" data-hotkey="Shift+.,Shift+&gt;,&gt;" target="_blank" rel="noopener noreferrer">Open in a new github.dev tab</a>
-    <a class="d-none" data-hotkey=",,Alt+Meta+≤,Control+Alt+," target="_blank" href="/codespaces/new/MarlinFirmware/Configurations/tree/release-2.1.2.1?resume=1">Open in codespace</a>
-
-
-
-    
-      
-    
-
-
-
-
-
-<react-app
-  app-name="react-code-view"
-  initial-path="/MarlinFirmware/Configurations/blob/release-2.1.2.1/config/examples/Creality/Ender-3%20Pro/BigTreeTech%20SKR%20Mini%20E3%201.2/Configuration.h"
-  style="min-height: calc(100vh - 62px)"
-  data-ssr="false"
-  data-lazy="false"
-  data-alternate="false"
->
-  
-  <script type="application/json" data-target="react-app.embeddedData">{"payload":{"allShortcutsEnabled":true,"fileTree":{"config/examples/Creality/Ender-3 Pro/BigTreeTech SKR Mini E3 1.2":{"items":[{"name":"Configuration.h","path":"config/examples/Creality/Ender-3 Pro/BigTreeTech SKR Mini E3 1.2/Configuration.h","contentType":"file"},{"name":"Configuration_adv.h","path":"config/examples/Creality/Ender-3 Pro/BigTreeTech SKR Mini E3 1.2/Configuration_adv.h","contentType":"file"},{"name":"_Bootscreen.h","path":"config/examples/Creality/Ender-3 Pro/BigTreeTech SKR Mini E3 1.2/_Bootscreen.h","contentType":"file"},{"name":"_Statusscreen.h","path":"config/examples/Creality/Ender-3 Pro/BigTreeTech SKR Mini E3 1.2/_Statusscreen.h","contentType":"file"}],"totalCount":4},"config/examples/Creality/Ender-3 Pro":{"items":[{"name":"BigTreeTech SKR 1.4 Turbo","path":"config/examples/Creality/Ender-3 Pro/BigTreeTech SKR 1.4 Turbo","contentType":"directory"},{"name":"BigTreeTech SKR Mini E3 1.0","path":"config/examples/Creality/Ender-3 Pro/BigTreeTech SKR Mini E3 1.0","contentType":"directory"},{"name":"BigTreeTech SKR Mini E3 1.2","path":"config/examples/Creality/Ender-3 Pro/BigTreeTech SKR Mini E3 1.2","contentType":"directory"},{"name":"BigTreeTech SKR Mini E3 2.0","path":"config/examples/Creality/Ender-3 Pro/BigTreeTech SKR Mini E3 2.0","contentType":"directory"},{"name":"BigTreeTech SKR Mini E3 3.0","path":"config/examples/Creality/Ender-3 Pro/BigTreeTech SKR Mini E3 3.0","contentType":"directory"},{"name":"CrealityV1","path":"config/examples/Creality/Ender-3 Pro/CrealityV1","contentType":"directory"},{"name":"CrealityV422","path":"config/examples/Creality/Ender-3 Pro/CrealityV422","contentType":"directory"},{"name":"CrealityV427","path":"config/examples/Creality/Ender-3 Pro/CrealityV427","contentType":"directory"}],"totalCount":8},"config/examples/Creality":{"items":[{"name":"CR-10 Mini","path":"config/examples/Creality/CR-10 Mini","contentType":"directory"},{"name":"CR-10 S4","path":"config/examples/Creality/CR-10 S4","contentType":"directory"},{"name":"CR-10 S5","path":"config/examples/Creality/CR-10 S5","contentType":"directory"},{"name":"CR-10 V2","path":"config/examples/Creality/CR-10 V2","contentType":"directory"},{"name":"CR-10 V3","path":"config/examples/Creality/CR-10 V3","contentType":"directory"},{"name":"CR-10","path":"config/examples/Creality/CR-10","contentType":"directory"},{"name":"CR-10S","path":"config/examples/Creality/CR-10S","contentType":"directory"},{"name":"CR-20 Pro","path":"config/examples/Creality/CR-20 Pro","contentType":"directory"},{"name":"CR-20","path":"config/examples/Creality/CR-20","contentType":"directory"},{"name":"CR-30 PrintMill","path":"config/examples/Creality/CR-30 PrintMill","contentType":"directory"},{"name":"CR-6 SE","path":"config/examples/Creality/CR-6 SE","contentType":"directory"},{"name":"CR-8","path":"config/examples/Creality/CR-8","contentType":"directory"},{"name":"Ender-2 Pro","path":"config/examples/Creality/Ender-2 Pro","contentType":"directory"},{"name":"Ender-2","path":"config/examples/Creality/Ender-2","contentType":"directory"},{"name":"Ender-3 Max","path":"config/examples/Creality/Ender-3 Max","contentType":"directory"},{"name":"Ender-3 Pro","path":"config/examples/Creality/Ender-3 Pro","contentType":"directory"},{"name":"Ender-3 S1","path":"config/examples/Creality/Ender-3 S1","contentType":"directory"},{"name":"Ender-3 V2 Neo","path":"config/examples/Creality/Ender-3 V2 Neo","contentType":"directory"},{"name":"Ender-3 V2","path":"config/examples/Creality/Ender-3 V2","contentType":"directory"},{"name":"Ender-3","path":"config/examples/Creality/Ender-3","contentType":"directory"},{"name":"Ender-4","path":"config/examples/Creality/Ender-4","contentType":"directory"},{"name":"Ender-5 Plus","path":"config/examples/Creality/Ender-5 Plus","contentType":"directory"},{"name":"Ender-5 Pro","path":"config/examples/Creality/Ender-5 Pro","contentType":"directory"},{"name":"Ender-5","path":"config/examples/Creality/Ender-5","contentType":"directory"},{"name":"Ender-6","path":"config/examples/Creality/Ender-6","contentType":"directory"}],"totalCount":25},"config/examples":{"items":[{"name":"3DFabXYZ","path":"config/examples/3DFabXYZ","contentType":"directory"},{"name":"ADIMLab","path":"config/examples/ADIMLab","contentType":"directory"},{"name":"Alfawise","path":"config/examples/Alfawise","contentType":"directory"},{"name":"AliExpress","path":"config/examples/AliExpress","contentType":"directory"},{"name":"Anet","path":"config/examples/Anet","contentType":"directory"},{"name":"AnimationExample","path":"config/examples/AnimationExample","contentType":"directory"},{"name":"AnyCubic","path":"config/examples/AnyCubic","contentType":"directory"},{"name":"ArmEd","path":"config/examples/ArmEd","contentType":"directory"},{"name":"Artillery","path":"config/examples/Artillery","contentType":"directory"},{"name":"Azteeg","path":"config/examples/Azteeg","contentType":"directory"},{"name":"BIBO","path":"config/examples/BIBO","contentType":"directory"},{"name":"BIQU","path":"config/examples/BIQU","contentType":"directory"},{"name":"BQ","path":"config/examples/BQ","contentType":"directory"},{"name":"CTC","path":"config/examples/CTC","contentType":"directory"},{"name":"Cartesio","path":"config/examples/Cartesio","contentType":"directory"},{"name":"Copymaster3D","path":"config/examples/Copymaster3D","contentType":"directory"},{"name":"Creality","path":"config/examples/Creality","contentType":"directory"},{"name":"Dagoma","path":"config/examples/Dagoma","contentType":"directory"},{"name":"Daycom","path":"config/examples/Daycom","contentType":"directory"},{"name":"EXP3D","path":"config/examples/EXP3D","contentType":"directory"},{"name":"EasyThreeD","path":"config/examples/EasyThreeD","contentType":"directory"},{"name":"Einstart-S","path":"config/examples/Einstart-S","contentType":"directory"},{"name":"Elegoo","path":"config/examples/Elegoo","contentType":"directory"},{"name":"Eryone","path":"config/examples/Eryone","contentType":"directory"},{"name":"FYSETC","path":"config/examples/FYSETC","contentType":"directory"},{"name":"Felix","path":"config/examples/Felix","contentType":"directory"},{"name":"FlashForge","path":"config/examples/FlashForge","contentType":"directory"},{"name":"FlyingBear","path":"config/examples/FlyingBear","contentType":"directory"},{"name":"FoamCutter","path":"config/examples/FoamCutter","contentType":"directory"},{"name":"FolgerTech","path":"config/examples/FolgerTech","contentType":"directory"},{"name":"Formbot","path":"config/examples/Formbot","contentType":"directory"},{"name":"Geeetech","path":"config/examples/Geeetech","contentType":"directory"},{"name":"HMS434","path":"config/examples/HMS434","contentType":"directory"},{"name":"Infitary","path":"config/examples/Infitary","contentType":"directory"},{"name":"Intamsys","path":"config/examples/Intamsys","contentType":"directory"},{"name":"JGAurora","path":"config/examples/JGAurora","contentType":"directory"},{"name":"Kingroon","path":"config/examples/Kingroon","contentType":"directory"},{"name":"Labists","path":"config/examples/Labists","contentType":"directory"},{"name":"Longer","path":"config/examples/Longer","contentType":"directory"},{"name":"LulzBot","path":"config/examples/LulzBot","contentType":"directory"},{"name":"MBot","path":"config/examples/MBot","contentType":"directory"},{"name":"MakerFarm","path":"config/examples/MakerFarm","contentType":"directory"},{"name":"MakerParts","path":"config/examples/MakerParts","contentType":"directory"},{"name":"MakerTech3D","path":"config/examples/MakerTech3D","contentType":"directory"},{"name":"Malyan","path":"config/examples/Malyan","contentType":"directory"},{"name":"Micromake","path":"config/examples/Micromake","contentType":"directory"},{"name":"Mks","path":"config/examples/Mks","contentType":"directory"},{"name":"Modix","path":"config/examples/Modix","contentType":"directory"},{"name":"Nextion","path":"config/examples/Nextion","contentType":"directory"},{"name":"Opulo","path":"config/examples/Opulo","contentType":"directory"},{"name":"Ortur 4","path":"config/examples/Ortur 4","contentType":"directory"},{"name":"Polargraph","path":"config/examples/Polargraph","contentType":"directory"},{"name":"Printrbot","path":"config/examples/Printrbot","contentType":"directory"},{"name":"Prusa","path":"config/examples/Prusa","contentType":"directory"},{"name":"Qidi","path":"config/examples/Qidi","contentType":"directory"},{"name":"Raiscube","path":"config/examples/Raiscube","contentType":"directory"},{"name":"RapideLite","path":"config/examples/RapideLite","contentType":"directory"},{"name":"Renkforce","path":"config/examples/Renkforce","contentType":"directory"},{"name":"RepRapPro","path":"config/examples/RepRapPro","contentType":"directory"},{"name":"RepRapWorld","path":"config/examples/RepRapWorld","contentType":"directory"},{"name":"RigidBot","path":"config/examples/RigidBot","contentType":"directory"},{"name":"Robo3D","path":"config/examples/Robo3D","contentType":"directory"},{"name":"SCARA","path":"config/examples/SCARA","contentType":"directory"},{"name":"STM32","path":"config/examples/STM32","contentType":"directory"},{"name":"Sanguinololu","path":"config/examples/Sanguinololu","contentType":"directory"},{"name":"Simulator","path":"config/examples/Simulator","contentType":"directory"},{"name":"Sovol","path":"config/examples/Sovol","contentType":"directory"},{"name":"Sunlu","path":"config/examples/Sunlu","contentType":"directory"},{"name":"TPARA","path":"config/examples/TPARA","contentType":"directory"},{"name":"Tevo","path":"config/examples/Tevo","contentType":"directory"},{"name":"Tinkerine","path":"config/examples/Tinkerine","contentType":"directory"},{"name":"TinyBoy2","path":"config/examples/TinyBoy2","contentType":"directory"},{"name":"Tronxy","path":"config/examples/Tronxy","contentType":"directory"},{"name":"Two Trees","path":"config/examples/Two Trees","contentType":"directory"},{"name":"UltiMachine","path":"config/examples/UltiMachine","contentType":"directory"},{"name":"Ultimaker","path":"config/examples/Ultimaker","contentType":"directory"},{"name":"VORONDesign","path":"config/examples/VORONDesign","contentType":"directory"},{"name":"Velleman","path":"config/examples/Velleman","contentType":"directory"},{"name":"WASP","path":"config/examples/WASP","contentType":"directory"},{"name":"Wanhao","path":"config/examples/Wanhao","contentType":"directory"},{"name":"Weedo","path":"config/examples/Weedo","contentType":"directory"},{"name":"Weistek","path":"config/examples/Weistek","contentType":"directory"},{"name":"Zonestar","path":"config/examples/Zonestar","contentType":"directory"},{"name":"delta","path":"config/examples/delta","contentType":"directory"},{"name":"gCreate","path":"config/examples/gCreate","contentType":"directory"},{"name":"linear_axes","path":"config/examples/linear_axes","contentType":"directory"},{"name":"makibox","path":"config/examples/makibox","contentType":"directory"},{"name":"tvrrug","path":"config/examples/tvrrug","contentType":"directory"}],"totalCount":88},"config":{"items":[{"name":"default","path":"config/default","contentType":"directory"},{"name":"examples","path":"config/examples","contentType":"directory"}],"totalCount":2},"":{"items":[{"name":"config","path":"config","contentType":"directory"},{"name":".editorconfig","path":".editorconfig","contentType":"file"},{"name":".gitignore","path":".gitignore","contentType":"file"},{"name":"LICENSE","path":"LICENSE","contentType":"file"},{"name":"README.md","path":"README.md","contentType":"file"}],"totalCount":5}},"fileTreeProcessingTime":16.993106,"foldersToFetch":[],"reducedMotionEnabled":"system","repo":{"id":211756905,"defaultBranch":"import-2.1.x","name":"Configurations","ownerLogin":"MarlinFirmware","currentUserCanPush":false,"isFork":false,"isEmpty":false,"createdAt":"2019-09-30T04:09:56.000+02:00","ownerAvatar":"https://avatars.githubusercontent.com/u/10418365?v=4","public":true,"private":false,"isOrgOwned":true},"symbolsExpanded":false,"treeExpanded":true,"refInfo":{"name":"release-2.1.2.1","listCacheKey":"v0:1689724018.0","canEdit":true,"refType":"branch","currentOid":"39ac1bf8d879065afc00c42da2e21a80f0e2bc00"},"path":"config/examples/Creality/Ender-3 Pro/BigTreeTech SKR Mini E3 1.2/Configuration.h","currentUser":{"id":40661905,"login":"MTX-6oX","userEmail":"pacher.michael@gmail.com"},"blob":{"rawLines":["/**"," * Marlin 3D Printer Firmware"," * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]"," *"," * Based on Sprinter and grbl."," * Copyright (c) 2011 Camiel Gubbels / Erik van der Zalm"," *"," * This program is free software: you can redistribute it and/or modify"," * it under the terms of the GNU General Public License as published by"," * the Free Software Foundation, either version 3 of the License, or"," * (at your option) any later version."," *"," * This program is distributed in the hope that it will be useful,"," * but WITHOUT ANY WARRANTY; without even the implied warranty of"," * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the"," * GNU General Public License for more details."," *"," * You should have received a copy of the GNU General Public License"," * along with this program.  If not, see \u003chttps://www.gnu.org/licenses/\u003e."," *"," */","#pragma once","","#define CONFIG_EXAMPLES_DIR \"config/examples/Creality/Ender-3 Pro/BigTreeTech SKR Mini E3 1.2\"","","/**"," * Configuration.h"," *"," * Basic settings such as:"," *"," * - Type of electronics"," * - Type of temperature sensor"," * - Printer geometry"," * - Endstop configuration"," * - LCD controller"," * - Extra features"," *"," * Advanced settings can be found in Configuration_adv.h"," */","#define CONFIGURATION_H_VERSION 02010201","","//===========================================================================","//============================= Getting Started =============================","//===========================================================================","","/**"," * Here are some useful links to help get your machine configured and calibrated:"," *"," * Example Configs:     https://github.com/MarlinFirmware/Configurations/branches/all"," *"," * Průša Calculator:    https://blog.prusaprinters.org/calculator_3416/"," *"," * Calibration Guides:  https://reprap.org/wiki/Calibration"," *                      https://reprap.org/wiki/Triffid_Hunter%27s_Calibration_Guide"," *                      https://sites.google.com/site/repraplogphase/calibration-of-your-reprap"," *                      https://youtu.be/wAL9d7FgInk"," *"," * Calibration Objects: https://www.thingiverse.com/thing:5573"," *                      https://www.thingiverse.com/thing:1278865"," */","","// @section info","","// Author info of this build printed to the host during boot and M115","#define STRING_CONFIG_H_AUTHOR \"(thisiskeithb, Ender-3 Pro)\" // Who made the changes.","//#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)","","/**"," * *** VENDORS PLEASE READ ***"," *"," * Marlin allows you to add a custom boot image for Graphical LCDs."," * With this option Marlin will first show your custom screen followed"," * by the standard Marlin logo with version number and web URL."," *"," * We encourage you to take advantage of this new feature and we also"," * respectfully request that you retain the unmodified Marlin boot screen."," */","","// Show the Marlin bootscreen on startup. ** ENABLE FOR PRODUCTION **","#define SHOW_BOOTSCREEN","","// Show the bitmap in Marlin/_Bootscreen.h on startup.","#define SHOW_CUSTOM_BOOTSCREEN","","// Show the bitmap in Marlin/_Statusscreen.h on the status screen.","#define CUSTOM_STATUS_SCREEN_IMAGE","","// @section machine","","// Choose the name from boards.h that matches your setup","#ifndef MOTHERBOARD","  #define MOTHERBOARD BOARD_BTT_SKR_MINI_E3_V1_2","#endif","","/**"," * Select the serial port on the board to use for communication with the host."," * This allows the connection of wireless adapters (for instance) to non-default port pins."," * Serial port -1 is the USB emulated serial port, if available."," * Note: The first serial port (-1 or 0) will always be used by the Arduino bootloader."," *"," * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]"," */","#define SERIAL_PORT 2","","/**"," * Serial Port Baud Rate"," * This is the default communication speed for all serial ports."," * Set the baud rate defaults for additional serial ports below."," *"," * 250000 works in most cases, but you might try a lower speed if"," * you commonly experience drop-outs during host printing."," * You may try up to 1000000 to speed up SD file transfer."," *"," * :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000]"," */","#define BAUDRATE 115200","","//#define BAUD_RATE_GCODE     // Enable G-code M575 to set the baud rate","","/**"," * Select a secondary serial port on the board to use for communication with the host."," * Currently Ethernet (-2) is only supported on Teensy 4.1 boards."," * :[-2, -1, 0, 1, 2, 3, 4, 5, 6, 7]"," */","#define SERIAL_PORT_2 -1","//#define BAUDRATE_2 250000   // :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000] Enable to override BAUDRATE","","/**"," * Select a third serial port on the board to use for communication with the host."," * Currently only supported for AVR, DUE, LPC1768/9 and STM32/STM32F1"," * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]"," */","//#define SERIAL_PORT_3 1","//#define BAUDRATE_3 250000   // :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000] Enable to override BAUDRATE","","// Enable the Bluetooth serial interface on AT90USB devices","//#define BLUETOOTH","","// Name displayed in the LCD \"Ready\" message and Info menu","#define CUSTOM_MACHINE_NAME \"Ender-3 Pro\"","","// Printer's unique ID, used by some programs to differentiate between machines.","// Choose your own or use a service like https://www.uuidgenerator.net/version4","//#define MACHINE_UUID \"00000000-0000-0000-0000-000000000000\"","","// @section stepper drivers","","/**"," * Stepper Drivers"," *"," * These settings allow Marlin to tune stepper driver timing and enable advanced options for"," * stepper drivers that support them. You may also override timing options in Configuration_adv.h."," *"," * Use TMC2208/TMC2208_STANDALONE for TMC2225 drivers and TMC2209/TMC2209_STANDALONE for TMC2226 drivers."," *"," * Options: A4988, A5984, DRV8825, LV8729, TB6560, TB6600, TMC2100,"," *          TMC2130, TMC2130_STANDALONE, TMC2160, TMC2160_STANDALONE,"," *          TMC2208, TMC2208_STANDALONE, TMC2209, TMC2209_STANDALONE,"," *          TMC26X,  TMC26X_STANDALONE,  TMC2660, TMC2660_STANDALONE,"," *          TMC5130, TMC5130_STANDALONE, TMC5160, TMC5160_STANDALONE"," * :['A4988', 'A5984', 'DRV8825', 'LV8729', 'TB6560', 'TB6600', 'TMC2100', 'TMC2130', 'TMC2130_STANDALONE', 'TMC2160', 'TMC2160_STANDALONE', 'TMC2208', 'TMC2208_STANDALONE', 'TMC2209', 'TMC2209_STANDALONE', 'TMC26X', 'TMC26X_STANDALONE', 'TMC2660', 'TMC2660_STANDALONE', 'TMC5130', 'TMC5130_STANDALONE', 'TMC5160', 'TMC5160_STANDALONE']"," */","#define X_DRIVER_TYPE  TMC2209","#define Y_DRIVER_TYPE  TMC2209","#define Z_DRIVER_TYPE  TMC2209","//#define X2_DRIVER_TYPE A4988","//#define Y2_DRIVER_TYPE A4988","//#define Z2_DRIVER_TYPE A4988","//#define Z3_DRIVER_TYPE A4988","//#define Z4_DRIVER_TYPE A4988","//#define I_DRIVER_TYPE  A4988","//#define J_DRIVER_TYPE  A4988","//#define K_DRIVER_TYPE  A4988","//#define U_DRIVER_TYPE  A4988","//#define V_DRIVER_TYPE  A4988","//#define W_DRIVER_TYPE  A4988","#define E0_DRIVER_TYPE TMC2209","//#define E1_DRIVER_TYPE A4988","//#define E2_DRIVER_TYPE A4988","//#define E3_DRIVER_TYPE A4988","//#define E4_DRIVER_TYPE A4988","//#define E5_DRIVER_TYPE A4988","//#define E6_DRIVER_TYPE A4988","//#define E7_DRIVER_TYPE A4988","","/**"," * Additional Axis Settings"," *"," * Define AXISn_ROTATES for all axes that rotate or pivot."," * Rotational axis coordinates are expressed in degrees."," *"," * AXISn_NAME defines the letter used to refer to the axis in (most) G-code commands."," * By convention the names and roles are typically:"," *   'A' : Rotational axis parallel to X"," *   'B' : Rotational axis parallel to Y"," *   'C' : Rotational axis parallel to Z"," *   'U' : Secondary linear axis parallel to X"," *   'V' : Secondary linear axis parallel to Y"," *   'W' : Secondary linear axis parallel to Z"," *"," * Regardless of these settings the axes are internally named I, J, K, U, V, W."," */","#ifdef I_DRIVER_TYPE","  #define AXIS4_NAME 'A' // :['A', 'B', 'C', 'U', 'V', 'W']","  #define AXIS4_ROTATES","#endif","#ifdef J_DRIVER_TYPE","  #define AXIS5_NAME 'B' // :['B', 'C', 'U', 'V', 'W']","  #define AXIS5_ROTATES","#endif","#ifdef K_DRIVER_TYPE","  #define AXIS6_NAME 'C' // :['C', 'U', 'V', 'W']","  #define AXIS6_ROTATES","#endif","#ifdef U_DRIVER_TYPE","  #define AXIS7_NAME 'U' // :['U', 'V', 'W']","  //#define AXIS7_ROTATES","#endif","#ifdef V_DRIVER_TYPE","  #define AXIS8_NAME 'V' // :['V', 'W']","  //#define AXIS8_ROTATES","#endif","#ifdef W_DRIVER_TYPE","  #define AXIS9_NAME 'W' // :['W']","  //#define AXIS9_ROTATES","#endif","","// @section extruder","","// This defines the number of extruders","// :[0, 1, 2, 3, 4, 5, 6, 7, 8]","#define EXTRUDERS 1","","// Generally expected filament diameter (1.75, 2.85, 3.0, ...). Used for Volumetric, Filament Width Sensor, etc.","#define DEFAULT_NOMINAL_FILAMENT_DIA 1.75","","// For Cyclops or any \"multi-extruder\" that shares a single nozzle.","//#define SINGLENOZZLE","","// Save and restore temperature and fan speed on tool-change.","// Set standby for the unselected tool with M104/106/109 T...","#if ENABLED(SINGLENOZZLE)","  //#define SINGLENOZZLE_STANDBY_TEMP","  //#define SINGLENOZZLE_STANDBY_FAN","#endif","","// A dual extruder that uses a single stepper motor","//#define SWITCHING_EXTRUDER","#if ENABLED(SWITCHING_EXTRUDER)","  #define SWITCHING_EXTRUDER_SERVO_NR 0","  #define SWITCHING_EXTRUDER_SERVO_ANGLES { 0, 90 } // Angles for E0, E1[, E2, E3]","  #if EXTRUDERS \u003e 3","    #define SWITCHING_EXTRUDER_E23_SERVO_NR 1","  #endif","#endif","","// A dual-nozzle that uses a servomotor to raise/lower one (or both) of the nozzles","//#define SWITCHING_NOZZLE","#if ENABLED(SWITCHING_NOZZLE)","  #define SWITCHING_NOZZLE_SERVO_NR 0","  //#define SWITCHING_NOZZLE_E1_SERVO_NR 1          // If two servos are used, the index of the second","  #define SWITCHING_NOZZLE_SERVO_ANGLES { 0, 90 }   // Angles for E0, E1 (single servo) or lowered/raised (dual servo)","  #define SWITCHING_NOZZLE_SERVO_DWELL 2500         // Dwell time to wait for servo to make physical move","#endif","","/**"," * Two separate X-carriages with extruders that connect to a moving part"," * via a solenoid docking mechanism. Requires SOL1_PIN and SOL2_PIN."," */","//#define PARKING_EXTRUDER","","/**"," * Two separate X-carriages with extruders that connect to a moving part"," * via a magnetic docking mechanism using movements and no solenoid"," *"," * project   : https://www.thingiverse.com/thing:3080893"," * movements : https://youtu.be/0xCEiG9VS3k"," *             https://youtu.be/Bqbcs0CU2FE"," */","//#define MAGNETIC_PARKING_EXTRUDER","","#if EITHER(PARKING_EXTRUDER, MAGNETIC_PARKING_EXTRUDER)","","  #define PARKING_EXTRUDER_PARKING_X { -78, 184 }     // X positions for parking the extruders","  #define PARKING_EXTRUDER_GRAB_DISTANCE 1            // (mm) Distance to move beyond the parking point to grab the extruder","","  #if ENABLED(PARKING_EXTRUDER)","","    #define PARKING_EXTRUDER_SOLENOIDS_INVERT           // If enabled, the solenoid is NOT magnetized with applied voltage","    #define PARKING_EXTRUDER_SOLENOIDS_PINS_ACTIVE LOW  // LOW or HIGH pin signal energizes the coil","    #define PARKING_EXTRUDER_SOLENOIDS_DELAY 250        // (ms) Delay for magnetic field. No delay if 0 or not defined.","    //#define MANUAL_SOLENOID_CONTROL                   // Manual control of docking solenoids with M380 S / M381","","  #elif ENABLED(MAGNETIC_PARKING_EXTRUDER)","","    #define MPE_FAST_SPEED      9000      // (mm/min) Speed for travel before last distance point","    #define MPE_SLOW_SPEED      4500      // (mm/min) Speed for last distance travel to park and couple","    #define MPE_TRAVEL_DISTANCE   10      // (mm) Last distance point","    #define MPE_COMPENSATION       0      // Offset Compensation -1 , 0 , 1 (multiplier) only for coupling","","  #endif","","#endif","","/**"," * Switching Toolhead"," *"," * Support for swappable and dockable toolheads, such as"," * the E3D Tool Changer. Toolheads are locked with a servo."," */","//#define SWITCHING_TOOLHEAD","","/**"," * Magnetic Switching Toolhead"," *"," * Support swappable and dockable toolheads with a magnetic"," * docking mechanism using movement and no servo."," */","//#define MAGNETIC_SWITCHING_TOOLHEAD","","/**"," * Electromagnetic Switching Toolhead"," *"," * Parking for CoreXY / HBot kinematics."," * Toolheads are parked at one edge and held with an electromagnet."," * Supports more than 2 Toolheads. See https://youtu.be/JolbsAKTKf4"," */","//#define ELECTROMAGNETIC_SWITCHING_TOOLHEAD","","#if ANY(SWITCHING_TOOLHEAD, MAGNETIC_SWITCHING_TOOLHEAD, ELECTROMAGNETIC_SWITCHING_TOOLHEAD)","  #define SWITCHING_TOOLHEAD_Y_POS          235         // (mm) Y position of the toolhead dock","  #define SWITCHING_TOOLHEAD_Y_SECURITY      10         // (mm) Security distance Y axis","  #define SWITCHING_TOOLHEAD_Y_CLEAR         60         // (mm) Minimum distance from dock for unobstructed X axis","  #define SWITCHING_TOOLHEAD_X_POS          { 215, 0 }  // (mm) X positions for parking the extruders","  #if ENABLED(SWITCHING_TOOLHEAD)","    #define SWITCHING_TOOLHEAD_SERVO_NR       2         // Index of the servo connector","    #define SWITCHING_TOOLHEAD_SERVO_ANGLES { 0, 180 }  // (degrees) Angles for Lock, Unlock","  #elif ENABLED(MAGNETIC_SWITCHING_TOOLHEAD)","    #define SWITCHING_TOOLHEAD_Y_RELEASE      5         // (mm) Security distance Y axis","    #define SWITCHING_TOOLHEAD_X_SECURITY   { 90, 150 } // (mm) Security distance X axis (T0,T1)","    //#define PRIME_BEFORE_REMOVE                       // Prime the nozzle before release from the dock","    #if ENABLED(PRIME_BEFORE_REMOVE)","      #define SWITCHING_TOOLHEAD_PRIME_MM           20  // (mm)   Extruder prime length","      #define SWITCHING_TOOLHEAD_RETRACT_MM         10  // (mm)   Retract after priming length","      #define SWITCHING_TOOLHEAD_PRIME_FEEDRATE    300  // (mm/min) Extruder prime feedrate","      #define SWITCHING_TOOLHEAD_RETRACT_FEEDRATE 2400  // (mm/min) Extruder retract feedrate","    #endif","  #elif ENABLED(ELECTROMAGNETIC_SWITCHING_TOOLHEAD)","    #define SWITCHING_TOOLHEAD_Z_HOP          2         // (mm) Z raise for switching","  #endif","#endif","","/**"," * \"Mixing Extruder\""," *   - Adds G-codes M163 and M164 to set and \"commit\" the current mix factors."," *   - Extends the stepping routines to move multiple steppers in proportion to the mix."," *   - Optional support for Repetier Firmware's 'M164 S\u003cindex\u003e' supporting virtual tools."," *   - This implementation supports up to two mixing extruders."," *   - Enable DIRECT_MIXING_IN_G1 for M165 and mixing in G1 (from Pia Taubert's reference implementation)."," */","//#define MIXING_EXTRUDER","#if ENABLED(MIXING_EXTRUDER)","  #define MIXING_STEPPERS 2        // Number of steppers in your mixing extruder","  #define MIXING_VIRTUAL_TOOLS 16  // Use the Virtual Tool method with M163 and M164","  //#define DIRECT_MIXING_IN_G1    // Allow ABCDHI mix factors in G1 movement commands","  //#define GRADIENT_MIX           // Support for gradient mixing with M166 and LCD","  //#define MIXING_PRESETS         // Assign 8 default V-tool presets for 2 or 3 MIXING_STEPPERS","  #if ENABLED(GRADIENT_MIX)","    //#define GRADIENT_VTOOL       // Add M166 T to use a V-tool index as a Gradient alias","  #endif","#endif","","// Offset of the extruders (uncomment if using more than one and relying on firmware to position when changing).","// The offset has to be X=0, Y=0 for the extruder 0 hotend (default extruder).","// For the other hotends it is their distance from the extruder 0 hotend.","//#define HOTEND_OFFSET_X { 0.0, 20.00 } // (mm) relative X-offset for each nozzle","//#define HOTEND_OFFSET_Y { 0.0, 5.00 }  // (mm) relative Y-offset for each nozzle","//#define HOTEND_OFFSET_Z { 0.0, 0.00 }  // (mm) relative Z-offset for each nozzle","","// @section multi-material","","/**"," * Multi-Material Unit"," * Set to one of these predefined models:"," *"," *   PRUSA_MMU1           : Průša MMU1 (The \"multiplexer\" version)"," *   PRUSA_MMU2           : Průša MMU2"," *   PRUSA_MMU2S          : Průša MMU2S (Requires MK3S extruder with motion sensor, EXTRUDERS = 5)"," *   EXTENDABLE_EMU_MMU2  : MMU with configurable number of filaments (ERCF, SMuFF or similar with Průša MMU2 compatible firmware)"," *   EXTENDABLE_EMU_MMU2S : MMUS with configurable number of filaments (ERCF, SMuFF or similar with Průša MMU2 compatible firmware)"," *"," * Requires NOZZLE_PARK_FEATURE to park print head in case MMU unit fails."," * See additional options in Configuration_adv.h."," * :[\"PRUSA_MMU1\", \"PRUSA_MMU2\", \"PRUSA_MMU2S\", \"EXTENDABLE_EMU_MMU2\", \"EXTENDABLE_EMU_MMU2S\"]"," */","//#define MMU_MODEL PRUSA_MMU2","","// @section psu control","","/**"," * Power Supply Control"," *"," * Enable and connect the power supply to the PS_ON_PIN."," * Specify whether the power supply is active HIGH or active LOW."," */","//#define PSU_CONTROL","//#define PSU_NAME \"Power Supply\"","","#if ENABLED(PSU_CONTROL)","  //#define MKS_PWC                 // Using the MKS PWC add-on","  //#define PS_OFF_CONFIRM          // Confirm dialog when power off","  //#define PS_OFF_SOUND            // Beep 1s when power off","  #define PSU_ACTIVE_STATE LOW      // Set 'LOW' for ATX, 'HIGH' for X-Box","","  //#define PSU_DEFAULT_OFF               // Keep power off until enabled directly with M80","  //#define PSU_POWERUP_DELAY      250    // (ms) Delay for the PSU to warm up to full power","  //#define LED_POWEROFF_TIMEOUT 10000    // (ms) Turn off LEDs after power-off, with this amount of delay","","  //#define POWER_OFF_TIMER               // Enable M81 D\u003cseconds\u003e to power off after a delay","  //#define POWER_OFF_WAIT_FOR_COOLDOWN   // Enable M81 S to power off only after cooldown","","  //#define PSU_POWERUP_GCODE  \"M355 S1\"  // G-code to run after power-on (e.g., case light on)","  //#define PSU_POWEROFF_GCODE \"M355 S0\"  // G-code to run before power-off (e.g., case light off)","","  //#define AUTO_POWER_CONTROL      // Enable automatic control of the PS_ON pin","  #if ENABLED(AUTO_POWER_CONTROL)","    #define AUTO_POWER_FANS         // Turn on PSU if fans need power","    #define AUTO_POWER_E_FANS","    #define AUTO_POWER_CONTROLLERFAN","    #define AUTO_POWER_CHAMBER_FAN","    #define AUTO_POWER_COOLER_FAN","    #define POWER_TIMEOUT              30 // (s) Turn off power if the machine is idle for this duration","    //#define POWER_OFF_DELAY          60 // (s) Delay of poweroff after M81 command. Useful to let fans run for extra time.","  #endif","  #if EITHER(AUTO_POWER_CONTROL, POWER_OFF_WAIT_FOR_COOLDOWN)","    //#define AUTO_POWER_E_TEMP        50 // (°C) PSU on if any extruder is over this temperature","    //#define AUTO_POWER_CHAMBER_TEMP  30 // (°C) PSU on if the chamber is over this temperature","    //#define AUTO_POWER_COOLER_TEMP   26 // (°C) PSU on if the cooler is over this temperature","  #endif","#endif","","//===========================================================================","//============================= Thermal Settings ============================","//===========================================================================","// @section temperature","","/**"," * --NORMAL IS 4.7kΩ PULLUP!-- 1kΩ pullup can be used on hotend sensor, using correct resistor and table"," *"," * Temperature sensors available:"," *"," *  SPI RTD/Thermocouple Boards - IMPORTANT: Read the NOTE below!"," *  -------"," *    -5 : MAX31865 with Pt100/Pt1000, 2, 3, or 4-wire  (only for sensors 0-1)"," *                  NOTE: You must uncomment/set the MAX31865_*_OHMS_n defines below."," *    -3 : MAX31855 with Thermocouple, -200°C to +700°C (only for sensors 0-1)"," *    -2 : MAX6675  with Thermocouple, 0°C to +700°C    (only for sensors 0-1)"," *"," *  NOTE: Ensure TEMP_n_CS_PIN is set in your pins file for each TEMP_SENSOR_n using an SPI Thermocouple. By default,"," *        Hardware SPI on the default serial bus is used. If you have also set TEMP_n_SCK_PIN and TEMP_n_MISO_PIN,"," *        Software SPI will be used on those ports instead. You can force Hardware SPI on the default bus in the"," *        Configuration_adv.h file. At this time, separate Hardware SPI buses for sensors are not supported."," *"," *  Analog Themocouple Boards"," *  -------"," *    -4 : AD8495 with Thermocouple"," *    -1 : AD595  with Thermocouple"," *"," *  Analog Thermistors - 4.7kΩ pullup - Normal"," *  -------"," *     1 : 100kΩ  EPCOS - Best choice for EPCOS thermistors"," *   331 : 100kΩ  Same as #1, but 3.3V scaled for MEGA"," *   332 : 100kΩ  Same as #1, but 3.3V scaled for DUE"," *     2 : 200kΩ  ATC Semitec 204GT-2"," *   202 : 200kΩ  Copymaster 3D"," *     3 : ???Ω   Mendel-parts thermistor"," *     4 : 10kΩ   Generic Thermistor !! DO NOT use for a hotend - it gives bad resolution at high temp. !!"," *     5 : 100kΩ  ATC Semitec 104GT-2/104NT-4-R025H42G - Used in ParCan, J-Head, and E3D, SliceEngineering 300°C"," *   501 : 100kΩ  Zonestar - Tronxy X3A"," *   502 : 100kΩ  Zonestar - used by hot bed in Zonestar Průša P802M"," *   503 : 100kΩ  Zonestar (Z8XM2) Heated Bed thermistor"," *   504 : 100kΩ  Zonestar P802QR2 (Part# QWG-104F-B3950) Hotend Thermistor"," *   505 : 100kΩ  Zonestar P802QR2 (Part# QWG-104F-3950) Bed Thermistor"," *   512 : 100kΩ  RPW-Ultra hotend"," *     6 : 100kΩ  EPCOS - Not as accurate as table #1 (created using a fluke thermocouple)"," *     7 : 100kΩ  Honeywell 135-104LAG-J01"," *    71 : 100kΩ  Honeywell 135-104LAF-J01"," *     8 : 100kΩ  Vishay 0603 SMD NTCS0603E3104FXT"," *     9 : 100kΩ  GE Sensing AL03006-58.2K-97-G1"," *    10 : 100kΩ  RS PRO 198-961"," *    11 : 100kΩ  Keenovo AC silicone mats, most Wanhao i3 machines - beta 3950, 1%"," *    12 : 100kΩ  Vishay 0603 SMD NTCS0603E3104FXT (#8) - calibrated for Makibox hot bed"," *    13 : 100kΩ  Hisens up to 300°C - for \"Simple ONE\" \u0026 \"All In ONE\" hotend - beta 3950, 1%"," *    15 : 100kΩ  Calibrated for JGAurora A5 hotend"," *    18 : 200kΩ  ATC Semitec 204GT-2 Dagoma.Fr - MKS_Base_DKU001327"," *    22 : 100kΩ  GTM32 Pro vB - hotend - 4.7kΩ pullup to 3.3V and 220Ω to analog input"," *    23 : 100kΩ  GTM32 Pro vB - bed - 4.7kΩ pullup to 3.3v and 220Ω to analog input"," *    30 : 100kΩ  Kis3d Silicone heating mat 200W/300W with 6mm precision cast plate (EN AW 5083) NTC100K - beta 3950"," *    60 : 100kΩ  Maker's Tool Works Kapton Bed Thermistor - beta 3950"," *    61 : 100kΩ  Formbot/Vivedino 350°C Thermistor - beta 3950"," *    66 : 4.7MΩ  Dyze Design / Trianglelab T-D500 500°C High Temperature Thermistor"," *    67 : 500kΩ  SliceEngineering 450°C Thermistor"," *    68 : PT100 amplifier board from Dyze Design"," *    70 : 100kΩ  bq Hephestos 2"," *    75 : 100kΩ  Generic Silicon Heat Pad with NTC100K MGB18-104F39050L32"," *  2000 : 100kΩ  Ultimachine Rambo TDK NTCG104LH104KT1 NTC100K motherboard Thermistor"," *"," *  Analog Thermistors - 1kΩ pullup - Atypical, and requires changing out the 4.7kΩ pullup for 1kΩ."," *  -------                           (but gives greater accuracy and more stable PID)"," *    51 : 100kΩ  EPCOS (1kΩ pullup)"," *    52 : 200kΩ  ATC Semitec 204GT-2 (1kΩ pullup)"," *    55 : 100kΩ  ATC Semitec 104GT-2 - Used in ParCan \u0026 J-Head (1kΩ pullup)"," *"," *  Analog Thermistors - 10kΩ pullup - Atypical"," *  -------"," *    99 : 100kΩ  Found on some Wanhao i3 machines with a 10kΩ pull-up resistor"," *"," *  Analog RTDs (Pt100/Pt1000)"," *  -------"," *   110 : Pt100  with 1kΩ pullup (atypical)"," *   147 : Pt100  with 4.7kΩ pullup"," *  1010 : Pt1000 with 1kΩ pullup (atypical)"," *  1022 : Pt1000 with 2.2kΩ pullup"," *  1047 : Pt1000 with 4.7kΩ pullup (E3D)"," *    20 : Pt100  with circuit in the Ultimainboard V2.x with mainboard ADC reference voltage = INA826 amplifier-board supply voltage."," *                NOTE: (1) Must use an ADC input with no pullup. (2) Some INA826 amplifiers are unreliable at 3.3V so consider using sensor 147, 110, or 21."," *    21 : Pt100  with circuit in the Ultimainboard V2.x with 3.3v ADC reference voltage (STM32, LPC176x....) and 5V INA826 amplifier board supply."," *                NOTE: ADC pins are not 5V tolerant. Not recommended because it's possible to damage the CPU by going over 500°C."," *   201 : Pt100  with circuit in Overlord, similar to Ultimainboard V2.x"," *"," *  Custom/Dummy/Other Thermal Sensors"," *  ------"," *     0 : not used"," *  1000 : Custom - Specify parameters in Configuration_adv.h"," *"," *   !!! Use these for Testing or Development purposes. NEVER for production machine. !!!"," *   998 : Dummy Table that ALWAYS reads 25°C or the temperature defined below."," *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below."," *"," */","#define TEMP_SENSOR_0 1","#define TEMP_SENSOR_1 0","#define TEMP_SENSOR_2 0","#define TEMP_SENSOR_3 0","#define TEMP_SENSOR_4 0","#define TEMP_SENSOR_5 0","#define TEMP_SENSOR_6 0","#define TEMP_SENSOR_7 0","#define TEMP_SENSOR_BED 1","#define TEMP_SENSOR_PROBE 0","#define TEMP_SENSOR_CHAMBER 0","#define TEMP_SENSOR_COOLER 0","#define TEMP_SENSOR_BOARD 0","#define TEMP_SENSOR_REDUNDANT 0","","// Dummy thermistor constant temperature readings, for use with 998 and 999","#define DUMMY_THERMISTOR_998_VALUE  25","#define DUMMY_THERMISTOR_999_VALUE 100","","// Resistor values when using MAX31865 sensors (-5) on TEMP_SENSOR_0 / 1","#if TEMP_SENSOR_IS_MAX_TC(0)","  #define MAX31865_SENSOR_OHMS_0      100 // (Ω) Typically 100 or 1000 (PT100 or PT1000)","  #define MAX31865_CALIBRATION_OHMS_0 430 // (Ω) Typically 430 for Adafruit PT100; 4300 for Adafruit PT1000","#endif","#if TEMP_SENSOR_IS_MAX_TC(1)","  #define MAX31865_SENSOR_OHMS_1      100","  #define MAX31865_CALIBRATION_OHMS_1 430","#endif","#if TEMP_SENSOR_IS_MAX_TC(2)","  #define MAX31865_SENSOR_OHMS_2      100","  #define MAX31865_CALIBRATION_OHMS_2 430","#endif","","#if HAS_E_TEMP_SENSOR","  #define TEMP_RESIDENCY_TIME         10  // (seconds) Time to wait for hotend to \"settle\" in M109","  #define TEMP_WINDOW                  1  // (°C) Temperature proximity for the \"temperature reached\" timer","  #define TEMP_HYSTERESIS              3  // (°C) Temperature proximity considered \"close enough\" to the target","#endif","","#if TEMP_SENSOR_BED","  #define TEMP_BED_RESIDENCY_TIME     10  // (seconds) Time to wait for bed to \"settle\" in M190","  #define TEMP_BED_WINDOW              1  // (°C) Temperature proximity for the \"temperature reached\" timer","  #define TEMP_BED_HYSTERESIS          3  // (°C) Temperature proximity considered \"close enough\" to the target","#endif","","#if TEMP_SENSOR_CHAMBER","  #define TEMP_CHAMBER_RESIDENCY_TIME 10  // (seconds) Time to wait for chamber to \"settle\" in M191","  #define TEMP_CHAMBER_WINDOW          1  // (°C) Temperature proximity for the \"temperature reached\" timer","  #define TEMP_CHAMBER_HYSTERESIS      3  // (°C) Temperature proximity considered \"close enough\" to the target","#endif","","/**"," * Redundant Temperature Sensor (TEMP_SENSOR_REDUNDANT)"," *"," * Use a temp sensor as a redundant sensor for another reading. Select an unused temperature sensor, and another"," * sensor you'd like it to be redundant for. If the two thermistors differ by TEMP_SENSOR_REDUNDANT_MAX_DIFF (°C),"," * the print will be aborted. Whichever sensor is selected will have its normal functions disabled; i.e. selecting"," * the Bed sensor (-1) will disable bed heating/monitoring."," *"," * For selecting source/target use: COOLER, PROBE, BOARD, CHAMBER, BED, E0, E1, E2, E3, E4, E5, E6, E7"," */","#if TEMP_SENSOR_REDUNDANT","  #define TEMP_SENSOR_REDUNDANT_SOURCE    E1  // The sensor that will provide the redundant reading.","  #define TEMP_SENSOR_REDUNDANT_TARGET    E0  // The sensor that we are providing a redundant reading for.","  #define TEMP_SENSOR_REDUNDANT_MAX_DIFF  10  // (°C) Temperature difference that will trigger a print abort.","#endif","","// Below this temperature the heater will be switched off","// because it probably indicates a broken thermistor wire.","#define HEATER_0_MINTEMP   5","#define HEATER_1_MINTEMP   5","#define HEATER_2_MINTEMP   5","#define HEATER_3_MINTEMP   5","#define HEATER_4_MINTEMP   5","#define HEATER_5_MINTEMP   5","#define HEATER_6_MINTEMP   5","#define HEATER_7_MINTEMP   5","#define BED_MINTEMP        5","#define CHAMBER_MINTEMP    5","","// Above this temperature the heater will be switched off.","// This can protect components from overheating, but NOT from shorts and failures.","// (Use MINTEMP for thermistor short/failure protection.)","#define HEATER_0_MAXTEMP 275","#define HEATER_1_MAXTEMP 275","#define HEATER_2_MAXTEMP 275","#define HEATER_3_MAXTEMP 275","#define HEATER_4_MAXTEMP 275","#define HEATER_5_MAXTEMP 275","#define HEATER_6_MAXTEMP 275","#define HEATER_7_MAXTEMP 275","#define BED_MAXTEMP      125","#define CHAMBER_MAXTEMP  60","","/**"," * Thermal Overshoot"," * During heatup (and printing) the temperature can often \"overshoot\" the target by many degrees"," * (especially before PID tuning). Setting the target temperature too close to MAXTEMP guarantees"," * a MAXTEMP shutdown! Use these values to forbid temperatures being set too close to MAXTEMP."," */","#define HOTEND_OVERSHOOT 15   // (°C) Forbid temperatures over MAXTEMP - OVERSHOOT","#define BED_OVERSHOOT    10   // (°C) Forbid temperatures over MAXTEMP - OVERSHOOT","#define COOLER_OVERSHOOT  2   // (°C) Forbid temperatures closer than OVERSHOOT","","//===========================================================================","//============================= PID Settings ================================","//===========================================================================","","// @section hotend temp","","// Enable PIDTEMP for PID control or MPCTEMP for Predictive Model.","// temperature control. Disable both for bang-bang heating.","#define PIDTEMP          // See the PID Tuning Guide at https://reprap.org/wiki/PID_Tuning","//#define MPCTEMP        // ** EXPERIMENTAL **","","#define BANG_MAX 255     // Limits current to nozzle while in bang-bang mode; 255=full current","#define PID_MAX BANG_MAX // Limits current to nozzle while PID is active (see PID_FUNCTIONAL_RANGE below); 255=full current","#define PID_K1 0.95      // Smoothing factor within any PID loop","","#if ENABLED(PIDTEMP)","  //#define PID_DEBUG             // Print PID debug data to the serial port. Use 'M303 D' to toggle activation.","  //#define PID_PARAMS_PER_HOTEND // Use separate PID parameters for each extruder (useful for mismatched extruders)","                                  // Set/get with G-code: M301 E[extruder number, 0-2]","","  // Creality Ender-3 Pro","  #if ENABLED(PID_PARAMS_PER_HOTEND)","    // Specify up to one value per hotend here, according to your setup.","    // If there are fewer values, the last one applies to the remaining hotends.","    #define DEFAULT_Kp_LIST {  21.73,  21.73 }","    #define DEFAULT_Ki_LIST {   1.54,   1.54 }","    #define DEFAULT_Kd_LIST {  76.55,  76.55 }","  #else","    #define DEFAULT_Kp  21.73","    #define DEFAULT_Ki   1.54","    #define DEFAULT_Kd  76.55","  #endif","#endif","","/**"," * Model Predictive Control for hotend"," *"," * Use a physical model of the hotend to control temperature. When configured correctly"," * this gives better responsiveness and stability than PID and it also removes the need"," * for PID_EXTRUSION_SCALING and PID_FAN_SCALING. Use M306 T to autotune the model."," * @section mpctemp"," */","#if ENABLED(MPCTEMP)","  //#define MPC_EDIT_MENU                             // Add MPC editing to the \"Advanced Settings\" menu. (~1300 bytes of flash)","  //#define MPC_AUTOTUNE_MENU                         // Add MPC auto-tuning to the \"Advanced Settings\" menu. (~350 bytes of flash)","","  #define MPC_MAX BANG_MAX                            // (0..255) Current to nozzle while MPC is active.","  #define MPC_HEATER_POWER { 40.0f }                  // (W) Heat cartridge powers.","","  #define MPC_INCLUDE_FAN                             // Model the fan speed?","","  // Measured physical constants from M306","  #define MPC_BLOCK_HEAT_CAPACITY { 16.7f }           // (J/K) Heat block heat capacities.","  #define MPC_SENSOR_RESPONSIVENESS { 0.22f }         // (K/s per ∆K) Rate of change of sensor temperature from heat block.","  #define MPC_AMBIENT_XFER_COEFF { 0.068f }           // (W/K) Heat transfer coefficients from heat block to room air with fan off.","  #if ENABLED(MPC_INCLUDE_FAN)","    #define MPC_AMBIENT_XFER_COEFF_FAN255 { 0.097f }  // (W/K) Heat transfer coefficients from heat block to room air with fan on full.","  #endif","","  // For one fan and multiple hotends MPC needs to know how to apply the fan cooling effect.","  #if ENABLED(MPC_INCLUDE_FAN)","    //#define MPC_FAN_0_ALL_HOTENDS","    //#define MPC_FAN_0_ACTIVE_HOTEND","  #endif","","  #define FILAMENT_HEAT_CAPACITY_PERMM { 5.6e-3f }    // 0.0056 J/K/mm for 1.75mm PLA (0.0149 J/K/mm for 2.85mm PLA).","  //#define FILAMENT_HEAT_CAPACITY_PERMM { 3.6e-3f }  // 0.0036 J/K/mm for 1.75mm PETG (0.0094 J/K/mm for 2.85mm PETG).","","  // Advanced options","  #define MPC_SMOOTHING_FACTOR 0.5f                   // (0.0...1.0) Noisy temperature sensors may need a lower value for stabilization.","  #define MPC_MIN_AMBIENT_CHANGE 1.0f                 // (K/s) Modeled ambient temperature rate of change, when correcting model inaccuracies.","  #define MPC_STEADYSTATE 0.5f                        // (K/s) Temperature change rate for steady state logic to be enforced.","","  #define MPC_TUNING_POS { X_CENTER, Y_CENTER, 1.0f } // (mm) M306 Autotuning position, ideally bed center at first layer height.","  #define MPC_TUNING_END_Z 10.0f                      // (mm) M306 Autotuning final Z position.","#endif","","//===========================================================================","//====================== PID \u003e Bed Temperature Control ======================","//===========================================================================","","/**"," * PID Bed Heating"," *"," * If this option is enabled set PID constants below."," * If this option is disabled, bang-bang will be used and BED_LIMIT_SWITCHING will enable hysteresis."," *"," * The PID frequency will be the same as the extruder PWM."," * If PID_dT is the default, and correct for the hardware/configuration, that means 7.689Hz,"," * which is fine for driving a square wave into a resistive load and does not significantly"," * impact FET heating. This also works fine on a Fotek SSR-10DA Solid State Relay into a 250W"," * heater. If your configuration is significantly different than this and you don't understand"," * the issues involved, don't use bed PID until someone else verifies that your hardware works."," * @section bed temp"," */","//#define PIDTEMPBED","","//#define BED_LIMIT_SWITCHING","","/**"," * Max Bed Power"," * Applies to all forms of bed control (PID, bang-bang, and bang-bang with hysteresis)."," * When set to any value below 255, enables a form of PWM to the bed that acts like a divider"," * so don't use it unless you are OK with PWM on your bed. (See the comment on enabling PIDTEMPBED)"," */","#define MAX_BED_POWER 255 // limits duty cycle to bed; 255=full current","","#if ENABLED(PIDTEMPBED)","  //#define MIN_BED_POWER 0","  //#define PID_BED_DEBUG // Print Bed PID debug data to the serial port.","","  // Creality Ender-3 Pro","  #define DEFAULT_bedKp 50.71","  #define DEFAULT_bedKi 9.88","  #define DEFAULT_bedKd 173.43","","  // FIND YOUR OWN: \"M303 E-1 C8 S90\" to run autotune on the bed at 90 degreesC for 8 cycles.","#endif // PIDTEMPBED","","//===========================================================================","//==================== PID \u003e Chamber Temperature Control ====================","//===========================================================================","","/**"," * PID Chamber Heating"," *"," * If this option is enabled set PID constants below."," * If this option is disabled, bang-bang will be used and CHAMBER_LIMIT_SWITCHING will enable"," * hysteresis."," *"," * The PID frequency will be the same as the extruder PWM."," * If PID_dT is the default, and correct for the hardware/configuration, that means 7.689Hz,"," * which is fine for driving a square wave into a resistive load and does not significantly"," * impact FET heating. This also works fine on a Fotek SSR-10DA Solid State Relay into a 200W"," * heater. If your configuration is significantly different than this and you don't understand"," * the issues involved, don't use chamber PID until someone else verifies that your hardware works."," * @section chamber temp"," */","//#define PIDTEMPCHAMBER","//#define CHAMBER_LIMIT_SWITCHING","","/**"," * Max Chamber Power"," * Applies to all forms of chamber control (PID, bang-bang, and bang-bang with hysteresis)."," * When set to any value below 255, enables a form of PWM to the chamber heater that acts like a divider"," * so don't use it unless you are OK with PWM on your heater. (See the comment on enabling PIDTEMPCHAMBER)"," */","#define MAX_CHAMBER_POWER 255 // limits duty cycle to chamber heater; 255=full current","","#if ENABLED(PIDTEMPCHAMBER)","  #define MIN_CHAMBER_POWER 0","  //#define PID_CHAMBER_DEBUG // Print Chamber PID debug data to the serial port.","","  // Lasko \"MyHeat Personal Heater\" (200w) modified with a Fotek SSR-10DA to control only the heating element","  // and placed inside the small Creality printer enclosure tent.","  //","  #define DEFAULT_chamberKp 37.04","  #define DEFAULT_chamberKi 1.40","  #define DEFAULT_chamberKd 655.17","  // M309 P37.04 I1.04 D655.17","","  // FIND YOUR OWN: \"M303 E-2 C8 S50\" to run autotune on the chamber at 50 degreesC for 8 cycles.","#endif // PIDTEMPCHAMBER","","#if ANY(PIDTEMP, PIDTEMPBED, PIDTEMPCHAMBER)","  //#define PID_OPENLOOP          // Puts PID in open loop. M104/M140 sets the output power from 0 to PID_MAX","  //#define SLOW_PWM_HEATERS      // PWM with very low frequency (roughly 0.125Hz=8s) and minimum state time of approximately 1s useful for heaters driven by a relay","  #define PID_FUNCTIONAL_RANGE 10 // If the temperature difference between the target temperature and the actual temperature","                                  // is more than PID_FUNCTIONAL_RANGE then the PID will be shut off and the heater will be set to min/max.","","  //#define PID_EDIT_MENU         // Add PID editing to the \"Advanced Settings\" menu. (~700 bytes of flash)","  //#define PID_AUTOTUNE_MENU     // Add PID auto-tuning to the \"Advanced Settings\" menu. (~250 bytes of flash)","#endif","","// @section safety","","/**"," * Prevent extrusion if the temperature is below EXTRUDE_MINTEMP."," * Add M302 to set the minimum extrusion temperature and/or turn"," * cold extrusion prevention on and off."," *"," * *** IT IS HIGHLY RECOMMENDED TO LEAVE THIS OPTION ENABLED! ***"," */","#define PREVENT_COLD_EXTRUSION","#define EXTRUDE_MINTEMP 170","","/**"," * Prevent a single extrusion longer than EXTRUDE_MAXLENGTH."," * Note: For Bowden Extruders make this large enough to allow load/unload."," */","#define PREVENT_LENGTHY_EXTRUDE","#define EXTRUDE_MAXLENGTH 600","","//===========================================================================","//======================== Thermal Runaway Protection =======================","//===========================================================================","","/**"," * Thermal Protection provides additional protection to your printer from damage"," * and fire. Marlin always includes safe min and max temperature ranges which"," * protect against a broken or disconnected thermistor wire."," *"," * The issue: If a thermistor falls out, it will report the much lower"," * temperature of the air in the room, and the the firmware will keep"," * the heater on."," *"," * If you get \"Thermal Runaway\" or \"Heating failed\" errors the"," * details can be tuned in Configuration_adv.h"," */","","#define THERMAL_PROTECTION_HOTENDS // Enable thermal protection for all extruders","#define THERMAL_PROTECTION_BED     // Enable thermal protection for the heated bed","#define THERMAL_PROTECTION_CHAMBER // Enable thermal protection for the heated chamber","#define THERMAL_PROTECTION_COOLER  // Enable thermal protection for the laser cooling","","//===========================================================================","//============================= Mechanical Settings =========================","//===========================================================================","","// @section machine","","// Enable one of the options below for CoreXY, CoreXZ, or CoreYZ kinematics,","// either in the usual order or reversed","//#define COREXY","//#define COREXZ","//#define COREYZ","//#define COREYX","//#define COREZX","//#define COREZY","//#define MARKFORGED_XY  // MarkForged. See https://reprap.org/forum/read.php?152,504042","//#define MARKFORGED_YX","","// Enable for a belt style printer with endless \"Z\" motion","//#define BELTPRINTER","","// Enable for Polargraph Kinematics","//#define POLARGRAPH","#if ENABLED(POLARGRAPH)","  #define POLARGRAPH_MAX_BELT_LEN 1035.0","  #define DEFAULT_SEGMENTS_PER_SECOND 5","#endif","","// @section delta","","// Enable for DELTA kinematics and configure below","//#define DELTA","#if ENABLED(DELTA)","","  // Make delta curves from many straight lines (linear interpolation).","  // This is a trade-off between visible corners (not enough segments)","  // and processor overload (too many expensive sqrt calls).","  #define DEFAULT_SEGMENTS_PER_SECOND 200","","  // After homing move down to a height where XY movement is unconstrained","  //#define DELTA_HOME_TO_SAFE_ZONE","","  // Delta calibration menu","  // Add three-point calibration to the MarlinUI menu.","  // See http://minow.blogspot.com/index.html#4918805519571907051","  //#define DELTA_CALIBRATION_MENU","","  // G33 Delta Auto-Calibration. Enable EEPROM_SETTINGS to store results.","  //#define DELTA_AUTO_CALIBRATION","","  #if ENABLED(DELTA_AUTO_CALIBRATION)","    // Default number of probe points : n*n (1 -\u003e 7)","    #define DELTA_CALIBRATION_DEFAULT_POINTS 4","  #endif","","  #if EITHER(DELTA_AUTO_CALIBRATION, DELTA_CALIBRATION_MENU)","    // Step size for paper-test probing","    #define PROBE_MANUALLY_STEP 0.05      // (mm)","  #endif","","  // Print surface diameter/2 minus unreachable space (avoid collisions with vertical towers).","  #define DELTA_PRINTABLE_RADIUS 140.0    // (mm)","","  // Maximum reachable area","  #define DELTA_MAX_RADIUS       140.0    // (mm)","","  // Center-to-center distance of the holes in the diagonal push rods.","  #define DELTA_DIAGONAL_ROD 250.0        // (mm)","","  // Distance between bed and nozzle Z home position","  #define DELTA_HEIGHT 250.00             // (mm) Get this value from G33 auto calibrate","","  #define DELTA_ENDSTOP_ADJ { 0.0, 0.0, 0.0 } // Get these values from G33 auto calibrate","","  // Horizontal distance bridged by diagonal push rods when effector is centered.","  #define DELTA_RADIUS 124.0              // (mm) Get this value from G33 auto calibrate","","  // Trim adjustments for individual towers","  // tower angle corrections for X and Y tower / rotate XYZ so Z tower angle = 0","  // measured in degrees anticlockwise looking from above the printer","  #define DELTA_TOWER_ANGLE_TRIM { 0.0, 0.0, 0.0 } // Get these values from G33 auto calibrate","","  // Delta radius and diagonal rod adjustments (mm)","  //#define DELTA_RADIUS_TRIM_TOWER { 0.0, 0.0, 0.0 }","  //#define DELTA_DIAGONAL_ROD_TRIM_TOWER { 0.0, 0.0, 0.0 }","#endif","","// @section scara","","/**"," * MORGAN_SCARA was developed by QHARLEY in South Africa in 2012-2013."," * Implemented and slightly reworked by JCERNY in June, 2014."," *"," * Mostly Printed SCARA is an open source design by Tyler Williams. See:"," *   https://www.thingiverse.com/thing:2487048"," *   https://www.thingiverse.com/thing:1241491"," */","//#define MORGAN_SCARA","//#define MP_SCARA","#if EITHER(MORGAN_SCARA, MP_SCARA)","  // If movement is choppy try lowering this value","  #define DEFAULT_SEGMENTS_PER_SECOND 200","","  // Length of inner and outer support arms. Measure arm lengths precisely.","  #define SCARA_LINKAGE_1 150       // (mm)","  #define SCARA_LINKAGE_2 150       // (mm)","","  // SCARA tower offset (position of Tower relative to bed zero position)","  // This needs to be reasonably accurate as it defines the printbed position in the SCARA space.","  #define SCARA_OFFSET_X  100       // (mm)","  #define SCARA_OFFSET_Y  -56       // (mm)","","  #if ENABLED(MORGAN_SCARA)","","    //#define DEBUG_SCARA_KINEMATICS","    #define SCARA_FEEDRATE_SCALING  // Convert XY feedrate from mm/s to degrees/s on the fly","","    // Radius around the center where the arm cannot reach","    #define MIDDLE_DEAD_ZONE_R   0  // (mm)","","    #define THETA_HOMING_OFFSET  0  // Calculated from Calibration Guide and M360 / M114. See http://reprap.harleystudio.co.za/?page_id=1073","    #define PSI_HOMING_OFFSET    0  // Calculated from Calibration Guide and M364 / M114. See http://reprap.harleystudio.co.za/?page_id=1073","","  #elif ENABLED(MP_SCARA)","","    #define SCARA_OFFSET_THETA1  12 // degrees","    #define SCARA_OFFSET_THETA2 131 // degrees","","  #endif","","#endif","","// @section tpara","","// Enable for TPARA kinematics and configure below","//#define AXEL_TPARA","#if ENABLED(AXEL_TPARA)","  #define DEBUG_TPARA_KINEMATICS","  #define DEFAULT_SEGMENTS_PER_SECOND 200","","  // Length of inner and outer support arms. Measure arm lengths precisely.","  #define TPARA_LINKAGE_1 120       // (mm)","  #define TPARA_LINKAGE_2 120       // (mm)","","  // SCARA tower offset (position of Tower relative to bed zero position)","  // This needs to be reasonably accurate as it defines the printbed position in the SCARA space.","  #define TPARA_OFFSET_X    0       // (mm)","  #define TPARA_OFFSET_Y    0       // (mm)","  #define TPARA_OFFSET_Z    0       // (mm)","","  #define SCARA_FEEDRATE_SCALING  // Convert XY feedrate from mm/s to degrees/s on the fly","","  // Radius around the center where the arm cannot reach","  #define MIDDLE_DEAD_ZONE_R   0  // (mm)","","  // Calculated from Calibration Guide and M360 / M114. See http://reprap.harleystudio.co.za/?page_id=1073","  #define THETA_HOMING_OFFSET  0","  #define PSI_HOMING_OFFSET    0","#endif","","// @section machine","","// Articulated robot (arm). Joints are directly mapped to axes with no kinematics.","//#define ARTICULATED_ROBOT_ARM","","// For a hot wire cutter with parallel horizontal axes (X, I) where the heights of the two wire","// ends are controlled by parallel axes (Y, J). Joints are directly mapped to axes (no kinematics).","//#define FOAMCUTTER_XYUV","","//===========================================================================","//============================== Endstop Settings ===========================","//===========================================================================","","// @section endstops","","// Specify here all the endstop connectors that are connected to any endstop or probe.","// Almost all printers will be using one per axis. Probes will use one or more of the","// extra connectors. Leave undefined any used for non-endstop and non-probe purposes.","#define USE_XMIN_PLUG","#define USE_YMIN_PLUG","#define USE_ZMIN_PLUG","//#define USE_IMIN_PLUG","//#define USE_JMIN_PLUG","//#define USE_KMIN_PLUG","//#define USE_UMIN_PLUG","//#define USE_VMIN_PLUG","//#define USE_WMIN_PLUG","//#define USE_XMAX_PLUG","//#define USE_YMAX_PLUG","//#define USE_ZMAX_PLUG","//#define USE_IMAX_PLUG","//#define USE_JMAX_PLUG","//#define USE_KMAX_PLUG","//#define USE_UMAX_PLUG","//#define USE_VMAX_PLUG","//#define USE_WMAX_PLUG","","// Enable pullup for all endstops to prevent a floating state","#define ENDSTOPPULLUPS","#if DISABLED(ENDSTOPPULLUPS)","  // Disable ENDSTOPPULLUPS to set pullups individually","  //#define ENDSTOPPULLUP_XMIN","  //#define ENDSTOPPULLUP_YMIN","  //#define ENDSTOPPULLUP_ZMIN","  //#define ENDSTOPPULLUP_IMIN","  //#define ENDSTOPPULLUP_JMIN","  //#define ENDSTOPPULLUP_KMIN","  //#define ENDSTOPPULLUP_UMIN","  //#define ENDSTOPPULLUP_VMIN","  //#define ENDSTOPPULLUP_WMIN","  //#define ENDSTOPPULLUP_XMAX","  //#define ENDSTOPPULLUP_YMAX","  //#define ENDSTOPPULLUP_ZMAX","  //#define ENDSTOPPULLUP_IMAX","  //#define ENDSTOPPULLUP_JMAX","  //#define ENDSTOPPULLUP_KMAX","  //#define ENDSTOPPULLUP_UMAX","  //#define ENDSTOPPULLUP_VMAX","  //#define ENDSTOPPULLUP_WMAX","  //#define ENDSTOPPULLUP_ZMIN_PROBE","#endif","","// Enable pulldown for all endstops to prevent a floating state","//#define ENDSTOPPULLDOWNS","#if DISABLED(ENDSTOPPULLDOWNS)","  // Disable ENDSTOPPULLDOWNS to set pulldowns individually","  //#define ENDSTOPPULLDOWN_XMIN","  //#define ENDSTOPPULLDOWN_YMIN","  //#define ENDSTOPPULLDOWN_ZMIN","  //#define ENDSTOPPULLDOWN_IMIN","  //#define ENDSTOPPULLDOWN_JMIN","  //#define ENDSTOPPULLDOWN_KMIN","  //#define ENDSTOPPULLDOWN_UMIN","  //#define ENDSTOPPULLDOWN_VMIN","  //#define ENDSTOPPULLDOWN_WMIN","  //#define ENDSTOPPULLDOWN_XMAX","  //#define ENDSTOPPULLDOWN_YMAX","  //#define ENDSTOPPULLDOWN_ZMAX","  //#define ENDSTOPPULLDOWN_IMAX","  //#define ENDSTOPPULLDOWN_JMAX","  //#define ENDSTOPPULLDOWN_KMAX","  //#define ENDSTOPPULLDOWN_UMAX","  //#define ENDSTOPPULLDOWN_VMAX","  //#define ENDSTOPPULLDOWN_WMAX","  //#define ENDSTOPPULLDOWN_ZMIN_PROBE","#endif","","// Mechanical endstop with COM to ground and NC to Signal uses \"false\" here (most common setup).","#define X_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.","#define Y_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.","#define Z_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.","#define I_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.","#define J_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.","#define K_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.","#define U_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.","#define V_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.","#define W_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.","#define X_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.","#define Y_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.","#define Z_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.","#define I_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.","#define J_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.","#define K_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.","#define U_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.","#define V_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.","#define W_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.","#define Z_MIN_PROBE_ENDSTOP_INVERTING false // Set to true to invert the logic of the probe.","","// Enable this feature if all enabled endstop pins are interrupt-capable.","// This will remove the need to poll the interrupt pins, saving many CPU cycles.","//#define ENDSTOP_INTERRUPTS_FEATURE","","/**"," * Endstop Noise Threshold"," *"," * Enable if your probe or endstops falsely trigger due to noise."," *"," * - Higher values may affect repeatability or accuracy of some bed probes."," * - To fix noise install a 100nF ceramic capacitor in parallel with the switch."," * - This feature is not required for common micro-switches mounted on PCBs"," *   based on the Makerbot design, which already have the 100nF capacitor."," *"," * :[2,3,4,5,6,7]"," */","//#define ENDSTOP_NOISE_THRESHOLD 2","","// Check for stuck or disconnected endstops during homing moves.","//#define DETECT_BROKEN_ENDSTOP","","//=============================================================================","//============================== Movement Settings ============================","//=============================================================================","// @section motion","","/**"," * Default Settings"," *"," * These settings can be reset by M502"," *"," * Note that if EEPROM is enabled, saved values will override these."," */","","/**"," * With this option each E stepper can have its own factors for the"," * following movement settings. If fewer factors are given than the"," * total number of extruders, the last value applies to the rest."," */","//#define DISTINCT_E_FACTORS","","/**"," * Default Axis Steps Per Unit (linear=steps/mm, rotational=steps/°)"," * Override with M92"," *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]"," */","#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 93 }","","/**"," * Default Max Feed Rate (linear=mm/s, rotational=°/s)"," * Override with M203"," *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]"," */","#define DEFAULT_MAX_FEEDRATE          { 500, 500, 5, 25 }","","//#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2","#if ENABLED(LIMITED_MAX_FR_EDITING)","  #define MAX_FEEDRATE_EDIT_VALUES    { 600, 600, 10, 50 } // ...or, set your own edit limits","#endif","","/**"," * Default Max Acceleration (speed change with time) (linear=mm/(s^2), rotational=°/(s^2))"," * (Maximum start speed for accelerated moves)"," * Override with M201"," *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]"," */","#define DEFAULT_MAX_ACCELERATION      { 500, 500, 100, 5000 }","","//#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2","#if ENABLED(LIMITED_MAX_ACCEL_EDITING)","  #define MAX_ACCEL_EDIT_VALUES       { 6000, 6000, 200, 20000 } // ...or, set your own edit limits","#endif","","/**"," * Default Acceleration (speed change with time) (linear=mm/(s^2), rotational=°/(s^2))"," * Override with M204"," *"," *   M204 P    Acceleration"," *   M204 R    Retract Acceleration"," *   M204 T    Travel Acceleration"," */","#define DEFAULT_ACCELERATION           500    // X, Y, Z and E acceleration for printing moves","#define DEFAULT_RETRACT_ACCELERATION   500    // E acceleration for retracts","#define DEFAULT_TRAVEL_ACCELERATION    500    // X, Y, Z acceleration for travel (non printing) moves","","/**"," * Default Jerk limits (mm/s)"," * Override with M205 X Y Z . . . E"," *"," * \"Jerk\" specifies the minimum speed change that requires acceleration."," * When changing speed and direction, if the difference is less than the"," * value set here, it may happen instantaneously."," */","//#define CLASSIC_JERK","#if ENABLED(CLASSIC_JERK)","  #define DEFAULT_XJERK 10.0","  #define DEFAULT_YJERK 10.0","  #define DEFAULT_ZJERK  0.3","  //#define DEFAULT_IJERK  0.3","  //#define DEFAULT_JJERK  0.3","  //#define DEFAULT_KJERK  0.3","  //#define DEFAULT_UJERK  0.3","  //#define DEFAULT_VJERK  0.3","  //#define DEFAULT_WJERK  0.3","","  //#define TRAVEL_EXTRA_XYJERK 0.0     // Additional jerk allowance for all travel moves","","  //#define LIMITED_JERK_EDITING        // Limit edit via M205 or LCD to DEFAULT_aJERK * 2","  #if ENABLED(LIMITED_JERK_EDITING)","    #define MAX_JERK_EDIT_VALUES { 20, 20, 0.6, 10 } // ...or, set your own edit limits","  #endif","#endif","","#define DEFAULT_EJERK    5.0  // May be used by Linear Advance","","/**"," * Junction Deviation Factor"," *"," * See:"," *   https://reprap.org/forum/read.php?1,739819"," *   https://blog.kyneticcnc.com/2018/10/computing-junction-deviation-for-marlin.html"," */","#if DISABLED(CLASSIC_JERK)","  #define JUNCTION_DEVIATION_MM 0.08  // (mm) Distance from real junction edge","  #define JD_HANDLE_SMALL_SEGMENTS    // Use curvature estimation instead of just the junction angle","                                      // for small segments (\u003c 1mm) with large junction angles (\u003e 135°).","#endif","","/**"," * S-Curve Acceleration"," *"," * This option eliminates vibration during printing by fitting a Bézier"," * curve to move acceleration, producing much smoother direction changes."," *"," * See https://github.com/synthetos/TinyG/wiki/Jerk-Controlled-Motion-Explained"," */","#define S_CURVE_ACCELERATION","","//===========================================================================","//============================= Z Probe Options =============================","//===========================================================================","// @section probes","","//","// See https://marlinfw.org/docs/configuration/probes.html","//","","/**"," * Enable this option for a probe connected to the Z-MIN pin."," * The probe replaces the Z-MIN endstop and is used for Z homing."," * (Automatically enables USE_PROBE_FOR_Z_HOMING.)"," */","#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN","","// Force the use of the probe for Z-axis homing","//#define USE_PROBE_FOR_Z_HOMING","","/**"," * Z_MIN_PROBE_PIN"," *"," * Define this pin if the probe is not connected to Z_MIN_PIN."," * If not defined the default pin for the selected MOTHERBOARD"," * will be used. Most of the time the default is what you want."," *"," *  - The simplest option is to use a free endstop connector."," *  - Use 5V for powered (usually inductive) sensors."," *"," *  - RAMPS 1.3/1.4 boards may use the 5V, GND, and Aux4-\u003eD32 pin:"," *    - For simple switches connect..."," *      - normally-closed switches to GND and D32."," *      - normally-open switches to 5V and D32."," */","//#define Z_MIN_PROBE_PIN 32 // Pin 32 is the RAMPS default","","/**"," * Probe Type"," *"," * Allen Key Probes, Servo Probes, Z-Sled Probes, FIX_MOUNTED_PROBE, etc."," * Activate one of these to use Auto Bed Leveling below."," */","","/**"," * The \"Manual Probe\" provides a means to do \"Auto\" Bed Leveling without a probe."," * Use G29 repeatedly, adjusting the Z height at each point with movement commands"," * or (with LCD_BED_LEVELING) the LCD controller."," */","//#define PROBE_MANUALLY","","/**"," * A Fix-Mounted Probe either doesn't deploy or needs manual deployment."," *   (e.g., an inductive probe or a nozzle-based probe-switch.)"," */","//#define FIX_MOUNTED_PROBE","","/**"," * Use the nozzle as the probe, as with a conductive"," * nozzle system or a piezo-electric smart effector."," */","//#define NOZZLE_AS_PROBE","","/**"," * Z Servo Probe, such as an endstop switch on a rotating arm."," */","//#define Z_PROBE_SERVO_NR 0       // Defaults to SERVO 0 connector.","//#define Z_SERVO_ANGLES { 70, 0 } // Z Servo Deploy and Stow angles","","/**"," * The BLTouch probe uses a Hall effect sensor and emulates a servo."," */","//#define BLTOUCH","","/**"," * MagLev V4 probe by MDD"," *"," * This probe is deployed and activated by powering a built-in electromagnet."," */","//#define MAGLEV4","#if ENABLED(MAGLEV4)","  //#define MAGLEV_TRIGGER_PIN 11     // Set to the connected digital output","  #define MAGLEV_TRIGGER_DELAY 15     // Changing this risks overheating the coil","#endif","","/**"," * Touch-MI Probe by hotends.fr"," *"," * This probe is deployed and activated by moving the X-axis to a magnet at the edge of the bed."," * By default, the magnet is assumed to be on the left and activated by a home. If the magnet is"," * on the right, enable and set TOUCH_MI_DEPLOY_XPOS to the deploy position."," *"," * Also requires: BABYSTEPPING, BABYSTEP_ZPROBE_OFFSET, Z_SAFE_HOMING,"," *                and a minimum Z_HOMING_HEIGHT of 10."," */","//#define TOUCH_MI_PROBE","#if ENABLED(TOUCH_MI_PROBE)","  #define TOUCH_MI_RETRACT_Z 0.5                  // Height at which the probe retracts","  //#define TOUCH_MI_DEPLOY_XPOS (X_MAX_BED + 2)  // For a magnet on the right side of the bed","  //#define TOUCH_MI_MANUAL_DEPLOY                // For manual deploy (LCD menu)","#endif","","// A probe that is deployed and stowed with a solenoid pin (SOL1_PIN)","//#define SOLENOID_PROBE","","// A sled-mounted probe like those designed by Charles Bell.","//#define Z_PROBE_SLED","//#define SLED_DOCKING_OFFSET 5  // The extra distance the X axis must travel to pickup the sled. 0 should be fine but you can push it further if you'd like.","","// A probe deployed by moving the x-axis, such as the Wilson II's rack-and-pinion probe designed by Marty Rice.","//#define RACK_AND_PINION_PROBE","#if ENABLED(RACK_AND_PINION_PROBE)","  #define Z_PROBE_DEPLOY_X  X_MIN_POS","  #define Z_PROBE_RETRACT_X X_MAX_POS","#endif","","/**"," * Magnetically Mounted Probe"," * For probes such as Euclid, Klicky, Klackender, etc."," */","//#define MAG_MOUNTED_PROBE","#if ENABLED(MAG_MOUNTED_PROBE)","  #define PROBE_DEPLOY_FEEDRATE (133*60)  // (mm/min) Probe deploy speed","  #define PROBE_STOW_FEEDRATE   (133*60)  // (mm/min) Probe stow speed","","  #define MAG_MOUNTED_DEPLOY_1 { PROBE_DEPLOY_FEEDRATE, { 245, 114, 30 } }  // Move to side Dock \u0026 Attach probe","  #define MAG_MOUNTED_DEPLOY_2 { PROBE_DEPLOY_FEEDRATE, { 210, 114, 30 } }  // Move probe off dock","  #define MAG_MOUNTED_DEPLOY_3 { PROBE_DEPLOY_FEEDRATE, {   0,   0,  0 } }  // Extra move if needed","  #define MAG_MOUNTED_DEPLOY_4 { PROBE_DEPLOY_FEEDRATE, {   0,   0,  0 } }  // Extra move if needed","  #define MAG_MOUNTED_DEPLOY_5 { PROBE_DEPLOY_FEEDRATE, {   0,   0,  0 } }  // Extra move if needed","  #define MAG_MOUNTED_STOW_1   { PROBE_STOW_FEEDRATE,   { 245, 114, 20 } }  // Move to dock","  #define MAG_MOUNTED_STOW_2   { PROBE_STOW_FEEDRATE,   { 245, 114,  0 } }  // Place probe beside remover","  #define MAG_MOUNTED_STOW_3   { PROBE_STOW_FEEDRATE,   { 230, 114,  0 } }  // Side move to remove probe","  #define MAG_MOUNTED_STOW_4   { PROBE_STOW_FEEDRATE,   { 210, 114, 20 } }  // Side move to remove probe","  #define MAG_MOUNTED_STOW_5   { PROBE_STOW_FEEDRATE,   {   0,   0,  0 } }  // Extra move if needed","#endif","","// Duet Smart Effector (for delta printers) - https://bit.ly/2ul5U7J","// When the pin is defined you can use M672 to set/reset the probe sensitivity.","//#define DUET_SMART_EFFECTOR","#if ENABLED(DUET_SMART_EFFECTOR)","  #define SMART_EFFECTOR_MOD_PIN  -1  // Connect a GPIO pin to the Smart Effector MOD pin","#endif","","/**"," * Use StallGuard2 to probe the bed with the nozzle."," * Requires stallGuard-capable Trinamic stepper drivers."," * CAUTION: This can damage machines with Z lead screws."," *          Take extreme care when setting up this feature."," */","//#define SENSORLESS_PROBING","","/**"," * Allen key retractable z-probe as seen on many Kossel delta printers - https://reprap.org/wiki/Kossel#Automatic_bed_leveling_probe"," * Deploys by touching z-axis belt. Retracts by pushing the probe down."," */","//#define Z_PROBE_ALLEN_KEY","#if ENABLED(Z_PROBE_ALLEN_KEY)","  // 2 or 3 sets of coordinates for deploying and retracting the spring loaded touch probe on G29,","  // if servo actuated touch probe is not defined. Uncomment as appropriate for your printer/probe.","","  #define Z_PROBE_ALLEN_KEY_DEPLOY_1 { 30.0, DELTA_PRINTABLE_RADIUS, 100.0 }","  #define Z_PROBE_ALLEN_KEY_DEPLOY_1_FEEDRATE XY_PROBE_FEEDRATE","","  #define Z_PROBE_ALLEN_KEY_DEPLOY_2 { 0.0, DELTA_PRINTABLE_RADIUS, 100.0 }","  #define Z_PROBE_ALLEN_KEY_DEPLOY_2_FEEDRATE (XY_PROBE_FEEDRATE)/10","","  #define Z_PROBE_ALLEN_KEY_DEPLOY_3 { 0.0, (DELTA_PRINTABLE_RADIUS) * 0.75, 100.0 }","  #define Z_PROBE_ALLEN_KEY_DEPLOY_3_FEEDRATE XY_PROBE_FEEDRATE","","  #define Z_PROBE_ALLEN_KEY_STOW_1 { -64.0, 56.0, 23.0 } // Move the probe into position","  #define Z_PROBE_ALLEN_KEY_STOW_1_FEEDRATE XY_PROBE_FEEDRATE","","  #define Z_PROBE_ALLEN_KEY_STOW_2 { -64.0, 56.0, 3.0 } // Push it down","  #define Z_PROBE_ALLEN_KEY_STOW_2_FEEDRATE (XY_PROBE_FEEDRATE)/10","","  #define Z_PROBE_ALLEN_KEY_STOW_3 { -64.0, 56.0, 50.0 } // Move it up to clear","  #define Z_PROBE_ALLEN_KEY_STOW_3_FEEDRATE XY_PROBE_FEEDRATE","","  #define Z_PROBE_ALLEN_KEY_STOW_4 { 0.0, 0.0, 50.0 }","  #define Z_PROBE_ALLEN_KEY_STOW_4_FEEDRATE XY_PROBE_FEEDRATE","","#endif // Z_PROBE_ALLEN_KEY","","/**"," * Nozzle-to-Probe offsets { X, Y, Z }"," *"," * X and Y offset"," *   Use a caliper or ruler to measure the distance from the tip of"," *   the Nozzle to the center-point of the Probe in the X and Y axes."," *"," * Z offset"," * - For the Z offset use your best known value and adjust at runtime."," * - Common probes trigger below the nozzle and have negative values for Z offset."," * - Probes triggering above the nozzle height are uncommon but do exist. When using"," *   probes such as this, carefully set Z_CLEARANCE_DEPLOY_PROBE and Z_CLEARANCE_BETWEEN_PROBES"," *   to avoid collisions during probing."," *"," * Tune and Adjust"," * -  Probe Offsets can be tuned at runtime with 'M851', LCD menus, babystepping, etc."," * -  PROBE_OFFSET_WIZARD (configuration_adv.h) can be used for setting the Z offset."," *"," * Assuming the typical work area orientation:"," *  - Probe to RIGHT of the Nozzle has a Positive X offset"," *  - Probe to LEFT  of the Nozzle has a Negative X offset"," *  - Probe in BACK  of the Nozzle has a Positive Y offset"," *  - Probe in FRONT of the Nozzle has a Negative Y offset"," *"," * Some examples:"," *   #define NOZZLE_TO_PROBE_OFFSET { 10, 10, -1 }   // Example \"1\""," *   #define NOZZLE_TO_PROBE_OFFSET {-10,  5, -1 }   // Example \"2\""," *   #define NOZZLE_TO_PROBE_OFFSET {  5, -5, -1 }   // Example \"3\""," *   #define NOZZLE_TO_PROBE_OFFSET {-15,-10, -1 }   // Example \"4\""," *"," *     +-- BACK ---+"," *     |    [+]    |"," *   L |        1  | R \u003c-- Example \"1\" (right+,  back+)"," *   E |  2        | I \u003c-- Example \"2\" ( left-,  back+)"," *   F |[-]  N  [+]| G \u003c-- Nozzle"," *   T |       3   | H \u003c-- Example \"3\" (right+, front-)"," *     | 4         | T \u003c-- Example \"4\" ( left-, front-)"," *     |    [-]    |"," *     O-- FRONT --+"," */","#define NOZZLE_TO_PROBE_OFFSET { 10, 10, 0 }","","// Most probes should stay away from the edges of the bed, but","// with NOZZLE_AS_PROBE this can be negative for a wider probing area.","#define PROBING_MARGIN 10","","// X and Y axis travel speed (mm/min) between probes","#define XY_PROBE_FEEDRATE (133*60)","","// Feedrate (mm/min) for the first approach when double-probing (MULTIPLE_PROBING == 2)","#define Z_PROBE_FEEDRATE_FAST (4*60)","","// Feedrate (mm/min) for the \"accurate\" probe of each point","#define Z_PROBE_FEEDRATE_SLOW (Z_PROBE_FEEDRATE_FAST / 2)","","/**"," * Probe Activation Switch"," * A switch indicating proper deployment, or an optical"," * switch triggered when the carriage is near the bed."," */","//#define PROBE_ACTIVATION_SWITCH","#if ENABLED(PROBE_ACTIVATION_SWITCH)","  #define PROBE_ACTIVATION_SWITCH_STATE LOW // State indicating probe is active","  //#define PROBE_ACTIVATION_SWITCH_PIN PC6 // Override default pin","#endif","","/**"," * Tare Probe (determine zero-point) prior to each probe."," * Useful for a strain gauge or piezo sensor that needs to factor out"," * elements such as cables pulling on the carriage."," */","//#define PROBE_TARE","#if ENABLED(PROBE_TARE)","  #define PROBE_TARE_TIME  200    // (ms) Time to hold tare pin","  #define PROBE_TARE_DELAY 200    // (ms) Delay after tare before","  #define PROBE_TARE_STATE HIGH   // State to write pin for tare","  //#define PROBE_TARE_PIN PA5    // Override default pin","  #if ENABLED(PROBE_ACTIVATION_SWITCH)","    //#define PROBE_TARE_ONLY_WHILE_INACTIVE  // Fail to tare/probe if PROBE_ACTIVATION_SWITCH is active","  #endif","#endif","","/**"," * Probe Enable / Disable"," * The probe only provides a triggered signal when enabled."," */","//#define PROBE_ENABLE_DISABLE","#if ENABLED(PROBE_ENABLE_DISABLE)","  //#define PROBE_ENABLE_PIN -1   // Override the default pin here","#endif","","/**"," * Multiple Probing"," *"," * You may get improved results by probing 2 or more times."," * With EXTRA_PROBING the more atypical reading(s) will be disregarded."," *"," * A total of 2 does fast/slow probes with a weighted average."," * A total of 3 or more adds more slow probes, taking the average."," */","//#define MULTIPLE_PROBING 2","//#define EXTRA_PROBING    1","","/**"," * Z probes require clearance when deploying, stowing, and moving between"," * probe points to avoid hitting the bed and other hardware."," * Servo-mounted probes require extra space for the arm to rotate."," * Inductive probes need space to keep from triggering early."," *"," * Use these settings to specify the distance (mm) to raise the probe (or"," * lower the bed). The values set here apply over and above any (negative)"," * probe Z Offset set with NOZZLE_TO_PROBE_OFFSET, M851, or the LCD."," * Only integer values \u003e= 1 are valid here."," *"," * Example: `M851 Z-5` with a CLEARANCE of 4  =\u003e  9mm from bed to nozzle."," *     But: `M851 Z+1` with a CLEARANCE of 2  =\u003e  2mm from bed to nozzle."," */","#define Z_CLEARANCE_DEPLOY_PROBE   10 // Z Clearance for Deploy/Stow","#define Z_CLEARANCE_BETWEEN_PROBES  5 // Z Clearance between probe points","#define Z_CLEARANCE_MULTI_PROBE     5 // Z Clearance between multiple probes","//#define Z_AFTER_PROBING           5 // Z position after probing is done","","#define Z_PROBE_LOW_POINT          -2 // Farthest distance below the trigger-point to go before stopping","","// For M851 give a range for adjusting the Z probe offset","#define Z_PROBE_OFFSET_RANGE_MIN -20","#define Z_PROBE_OFFSET_RANGE_MAX 20","","// Enable the M48 repeatability test to test probe accuracy","//#define Z_MIN_PROBE_REPEATABILITY_TEST","","// Before deploy/stow pause for user confirmation","//#define PAUSE_BEFORE_DEPLOY_STOW","#if ENABLED(PAUSE_BEFORE_DEPLOY_STOW)","  //#define PAUSE_PROBE_DEPLOY_WHEN_TRIGGERED // For Manual Deploy Allenkey Probe","#endif","","/**"," * Enable one or more of the following if probing seems unreliable."," * Heaters and/or fans can be disabled during probing to minimize electrical"," * noise. A delay can also be added to allow noise and vibration to settle."," * These options are most useful for the BLTouch probe, but may also improve"," * readings with inductive probes and piezo sensors."," */","//#define PROBING_HEATERS_OFF       // Turn heaters off when probing","#if ENABLED(PROBING_HEATERS_OFF)","  //#define WAIT_FOR_BED_HEATER     // Wait for bed to heat back up between probes (to improve accuracy)","  //#define WAIT_FOR_HOTEND         // Wait for hotend to heat back up between probes (to improve accuracy \u0026 prevent cold extrude)","#endif","//#define PROBING_FANS_OFF          // Turn fans off when probing","//#define PROBING_ESTEPPERS_OFF     // Turn all extruder steppers off when probing","//#define PROBING_STEPPERS_OFF      // Turn all steppers off (unless needed to hold position) when probing (including extruders)","//#define DELAY_BEFORE_PROBING 200  // (ms) To prevent vibrations from triggering piezo sensors","","// Require minimum nozzle and/or bed temperature for probing","//#define PREHEAT_BEFORE_PROBING","#if ENABLED(PREHEAT_BEFORE_PROBING)","  #define PROBING_NOZZLE_TEMP 120   // (°C) Only applies to E0 at this time","  #define PROBING_BED_TEMP     50","#endif","","// For Inverting Stepper Enable Pins (Active Low) use 0, Non Inverting (Active High) use 1","// :{ 0:'Low', 1:'High' }","#define X_ENABLE_ON 0","#define Y_ENABLE_ON 0","#define Z_ENABLE_ON 0","#define E_ENABLE_ON 0 // For all extruders","//#define I_ENABLE_ON 0","//#define J_ENABLE_ON 0","//#define K_ENABLE_ON 0","//#define U_ENABLE_ON 0","//#define V_ENABLE_ON 0","//#define W_ENABLE_ON 0","","// Disable axis steppers immediately when they're not being stepped.","// WARNING: When motors turn off there is a chance of losing position accuracy!","#define DISABLE_X false","#define DISABLE_Y false","#define DISABLE_Z false","//#define DISABLE_I false","//#define DISABLE_J false","//#define DISABLE_K false","//#define DISABLE_U false","//#define DISABLE_V false","//#define DISABLE_W false","","// Turn off the display blinking that warns about possible accuracy reduction","//#define DISABLE_REDUCED_ACCURACY_WARNING","","// @section extruder","","#define DISABLE_E false             // Disable the extruder when not stepping","//#define DISABLE_INACTIVE_EXTRUDER // Keep only the active extruder enabled","","// @section motion","","// Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.","#define INVERT_X_DIR true","#define INVERT_Y_DIR true","#define INVERT_Z_DIR false","//#define INVERT_I_DIR false","//#define INVERT_J_DIR false","//#define INVERT_K_DIR false","//#define INVERT_U_DIR false","//#define INVERT_V_DIR false","//#define INVERT_W_DIR false","","// @section extruder","","// For direct drive extruder v9 set to true, for geared extruder set to false.","#define INVERT_E0_DIR true","#define INVERT_E1_DIR false","#define INVERT_E2_DIR false","#define INVERT_E3_DIR false","#define INVERT_E4_DIR false","#define INVERT_E5_DIR false","#define INVERT_E6_DIR false","#define INVERT_E7_DIR false","","// @section homing","","//#define NO_MOTION_BEFORE_HOMING // Inhibit movement until all axes have been homed. Also enable HOME_AFTER_DEACTIVATE for extra safety.","//#define HOME_AFTER_DEACTIVATE   // Require rehoming after steppers are deactivated. Also enable NO_MOTION_BEFORE_HOMING for extra safety.","","/**"," * Set Z_IDLE_HEIGHT if the Z-Axis moves on its own when steppers are disabled."," *  - Use a low value (i.e., Z_MIN_POS) if the nozzle falls down to the bed."," *  - Use a large value (i.e., Z_MAX_POS) if the bed falls down, away from the nozzle."," */","//#define Z_IDLE_HEIGHT Z_HOME_POS","","//#define Z_HOMING_HEIGHT  4      // (mm) Minimal Z height before homing (G28) for Z clearance above the bed, clamps, ...","                                  // Be sure to have this much clearance over your Z_MAX_POS to prevent grinding.","","//#define Z_AFTER_HOMING  10      // (mm) Height to move to after homing Z","","// Direction of endstops when homing; 1=MAX, -1=MIN","// :[-1,1]","#define X_HOME_DIR -1","#define Y_HOME_DIR -1","#define Z_HOME_DIR -1","//#define I_HOME_DIR -1","//#define J_HOME_DIR -1","//#define K_HOME_DIR -1","//#define U_HOME_DIR -1","//#define V_HOME_DIR -1","//#define W_HOME_DIR -1","","// @section geometry","","// The size of the printable area","#define X_BED_SIZE 235","#define Y_BED_SIZE 235","","// Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.","#define X_MIN_POS 0","#define Y_MIN_POS 0","#define Z_MIN_POS 0","#define X_MAX_POS X_BED_SIZE","#define Y_MAX_POS Y_BED_SIZE","#define Z_MAX_POS 250","//#define I_MIN_POS 0","//#define I_MAX_POS 50","//#define J_MIN_POS 0","//#define J_MAX_POS 50","//#define K_MIN_POS 0","//#define K_MAX_POS 50","//#define U_MIN_POS 0","//#define U_MAX_POS 50","//#define V_MIN_POS 0","//#define V_MAX_POS 50","//#define W_MIN_POS 0","//#define W_MAX_POS 50","","/**"," * Software Endstops"," *"," * - Prevent moves outside the set machine bounds."," * - Individual axes can be disabled, if desired."," * - X and Y only apply to Cartesian robots."," * - Use 'M211' to set software endstops on/off or report current state"," */","","// Min software endstops constrain movement within minimum coordinate bounds","#define MIN_SOFTWARE_ENDSTOPS","#if ENABLED(MIN_SOFTWARE_ENDSTOPS)","  #define MIN_SOFTWARE_ENDSTOP_X","  #define MIN_SOFTWARE_ENDSTOP_Y","  #define MIN_SOFTWARE_ENDSTOP_Z","  #define MIN_SOFTWARE_ENDSTOP_I","  #define MIN_SOFTWARE_ENDSTOP_J","  #define MIN_SOFTWARE_ENDSTOP_K","  #define MIN_SOFTWARE_ENDSTOP_U","  #define MIN_SOFTWARE_ENDSTOP_V","  #define MIN_SOFTWARE_ENDSTOP_W","#endif","","// Max software endstops constrain movement within maximum coordinate bounds","#define MAX_SOFTWARE_ENDSTOPS","#if ENABLED(MAX_SOFTWARE_ENDSTOPS)","  #define MAX_SOFTWARE_ENDSTOP_X","  #define MAX_SOFTWARE_ENDSTOP_Y","  #define MAX_SOFTWARE_ENDSTOP_Z","  #define MAX_SOFTWARE_ENDSTOP_I","  #define MAX_SOFTWARE_ENDSTOP_J","  #define MAX_SOFTWARE_ENDSTOP_K","  #define MAX_SOFTWARE_ENDSTOP_U","  #define MAX_SOFTWARE_ENDSTOP_V","  #define MAX_SOFTWARE_ENDSTOP_W","#endif","","#if EITHER(MIN_SOFTWARE_ENDSTOPS, MAX_SOFTWARE_ENDSTOPS)","  //#define SOFT_ENDSTOPS_MENU_ITEM  // Enable/Disable software endstops from the LCD","#endif","","/**"," * Filament Runout Sensors"," * Mechanical or opto endstops are used to check for the presence of filament."," *"," * IMPORTANT: Runout will only trigger if Marlin is aware that a print job is running."," * Marlin knows a print job is running when:"," *  1. Running a print job from media started with M24."," *  2. The Print Job Timer has been started with M75."," *  3. The heaters were turned on and PRINTJOB_TIMER_AUTOSTART is enabled."," *"," * RAMPS-based boards use SERVO3_PIN for the first runout sensor."," * For other boards you may need to define FIL_RUNOUT_PIN, FIL_RUNOUT2_PIN, etc."," */","//#define FILAMENT_RUNOUT_SENSOR","#if ENABLED(FILAMENT_RUNOUT_SENSOR)","  #define FIL_RUNOUT_ENABLED_DEFAULT true // Enable the sensor on startup. Override with M412 followed by M500.","  #define NUM_RUNOUT_SENSORS   1          // Number of sensors, up to one per extruder. Define a FIL_RUNOUT#_PIN for each.","","  #define FIL_RUNOUT_STATE     LOW        // Pin state indicating that filament is NOT present.","  #define FIL_RUNOUT_PULLUP               // Use internal pullup for filament runout pins.","  //#define FIL_RUNOUT_PULLDOWN           // Use internal pulldown for filament runout pins.","  //#define WATCH_ALL_RUNOUT_SENSORS      // Execute runout script on any triggering sensor, not only for the active extruder.","                                          // This is automatically enabled for MIXING_EXTRUDERs.","","  // Override individually if the runout sensors vary","  //#define FIL_RUNOUT1_STATE LOW","  //#define FIL_RUNOUT1_PULLUP","  //#define FIL_RUNOUT1_PULLDOWN","","  //#define FIL_RUNOUT2_STATE LOW","  //#define FIL_RUNOUT2_PULLUP","  //#define FIL_RUNOUT2_PULLDOWN","","  //#define FIL_RUNOUT3_STATE LOW","  //#define FIL_RUNOUT3_PULLUP","  //#define FIL_RUNOUT3_PULLDOWN","","  //#define FIL_RUNOUT4_STATE LOW","  //#define FIL_RUNOUT4_PULLUP","  //#define FIL_RUNOUT4_PULLDOWN","","  //#define FIL_RUNOUT5_STATE LOW","  //#define FIL_RUNOUT5_PULLUP","  //#define FIL_RUNOUT5_PULLDOWN","","  //#define FIL_RUNOUT6_STATE LOW","  //#define FIL_RUNOUT6_PULLUP","  //#define FIL_RUNOUT6_PULLDOWN","","  //#define FIL_RUNOUT7_STATE LOW","  //#define FIL_RUNOUT7_PULLUP","  //#define FIL_RUNOUT7_PULLDOWN","","  //#define FIL_RUNOUT8_STATE LOW","  //#define FIL_RUNOUT8_PULLUP","  //#define FIL_RUNOUT8_PULLDOWN","","  // Commands to execute on filament runout.","  // With multiple runout sensors use the %c placeholder for the current tool in commands (e.g., \"M600 T%c\")","  // NOTE: After 'M412 H1' the host handles filament runout and this script does not apply.","  #define FILAMENT_RUNOUT_SCRIPT \"M600\"","","  // After a runout is detected, continue printing this length of filament","  // before executing the runout script. Useful for a sensor at the end of","  // a feed tube. Requires 4 bytes SRAM per sensor, plus 4 bytes overhead.","  //#define FILAMENT_RUNOUT_DISTANCE_MM 25","","  #ifdef FILAMENT_RUNOUT_DISTANCE_MM","    // Enable this option to use an encoder disc that toggles the runout pin","    // as the filament moves. (Be sure to set FILAMENT_RUNOUT_DISTANCE_MM","    // large enough to avoid false positives.)","    //#define FILAMENT_MOTION_SENSOR","  #endif","#endif","","//===========================================================================","//=============================== Bed Leveling ==============================","//===========================================================================","// @section calibrate","","/**"," * Choose one of the options below to enable G29 Bed Leveling. The parameters"," * and behavior of G29 will change depending on your selection."," *"," *  If using a Probe for Z Homing, enable Z_SAFE_HOMING also!"," *"," * - AUTO_BED_LEVELING_3POINT"," *   Probe 3 arbitrary points on the bed (that aren't collinear)"," *   You specify the XY coordinates of all 3 points."," *   The result is a single tilted plane. Best for a flat bed."," *"," * - AUTO_BED_LEVELING_LINEAR"," *   Probe several points in a grid."," *   You specify the rectangle and the density of sample points."," *   The result is a single tilted plane. Best for a flat bed."," *"," * - AUTO_BED_LEVELING_BILINEAR"," *   Probe several points in a grid."," *   You specify the rectangle and the density of sample points."," *   The result is a mesh, best for large or uneven beds."," *"," * - AUTO_BED_LEVELING_UBL (Unified Bed Leveling)"," *   A comprehensive bed leveling system combining the features and benefits"," *   of other systems. UBL also includes integrated Mesh Generation, Mesh"," *   Validation and Mesh Editing systems."," *"," * - MESH_BED_LEVELING"," *   Probe a grid manually"," *   The result is a mesh, suitable for large or uneven beds. (See BILINEAR.)"," *   For machines without a probe, Mesh Bed Leveling provides a method to perform"," *   leveling in steps so you can manually adjust the Z height at each grid-point."," *   With an LCD controller the process is guided step-by-step."," */","//#define AUTO_BED_LEVELING_3POINT","//#define AUTO_BED_LEVELING_LINEAR","//#define AUTO_BED_LEVELING_BILINEAR","//#define AUTO_BED_LEVELING_UBL","#define MESH_BED_LEVELING","","/**"," * Normally G28 leaves leveling disabled on completion. Enable one of"," * these options to restore the prior leveling state or to always enable"," * leveling immediately after G28."," */","//#define RESTORE_LEVELING_AFTER_G28","//#define ENABLE_LEVELING_AFTER_G28","","/**"," * Auto-leveling needs preheating"," */","//#define PREHEAT_BEFORE_LEVELING","#if ENABLED(PREHEAT_BEFORE_LEVELING)","  #define LEVELING_NOZZLE_TEMP 120   // (°C) Only applies to E0 at this time","  #define LEVELING_BED_TEMP     50","#endif","","/**"," * Bed Distance Sensor"," *"," * Measures the distance from bed to nozzle with accuracy of 0.01mm."," * For information about this sensor https://github.com/markniu/Bed_Distance_sensor"," * Uses I2C port, so it requires I2C library markyue/Panda_SoftMasterI2C."," */","//#define BD_SENSOR","","/**"," * Enable detailed logging of G28, G29, M48, etc."," * Turn on with the command 'M111 S32'."," * NOTE: Requires a lot of PROGMEM!"," */","//#define DEBUG_LEVELING_FEATURE","","#if ANY(MESH_BED_LEVELING, AUTO_BED_LEVELING_UBL, PROBE_MANUALLY)","  // Set a height for the start of manual adjustment","  #define MANUAL_PROBE_START_Z 0.2  // (mm) Comment out to use the last-measured height","#endif","","#if ANY(MESH_BED_LEVELING, AUTO_BED_LEVELING_BILINEAR, AUTO_BED_LEVELING_UBL)","  /**","   * Gradually reduce leveling correction until a set height is reached,","   * at which point movement will be level to the machine's XY plane.","   * The height can be set with M420 Z\u003cheight\u003e","   */","  #define ENABLE_LEVELING_FADE_HEIGHT","  #if ENABLED(ENABLE_LEVELING_FADE_HEIGHT)","    #define DEFAULT_LEVELING_FADE_HEIGHT 10.0 // (mm) Default fade height.","  #endif","","  /**","   * For Cartesian machines, instead of dividing moves on mesh boundaries,","   * split up moves into short segments like a Delta. This follows the","   * contours of the bed more closely than edge-to-edge straight moves.","   */","  #define SEGMENT_LEVELED_MOVES","  #define LEVELED_SEGMENT_LENGTH 5.0 // (mm) Length of all segments (except the last one)","","  /**","   * Enable the G26 Mesh Validation Pattern tool.","   */","  //#define G26_MESH_VALIDATION","  #if ENABLED(G26_MESH_VALIDATION)","    #define MESH_TEST_NOZZLE_SIZE    0.4  // (mm) Diameter of primary nozzle.","    #define MESH_TEST_LAYER_HEIGHT   0.2  // (mm) Default layer height for G26.","    #define MESH_TEST_HOTEND_TEMP  205    // (°C) Default nozzle temperature for G26.","    #define MESH_TEST_BED_TEMP      60    // (°C) Default bed temperature for G26.","    #define G26_XY_FEEDRATE         20    // (mm/s) Feedrate for G26 XY moves.","    #define G26_XY_FEEDRATE_TRAVEL 100    // (mm/s) Feedrate for G26 XY travel moves.","    #define G26_RETRACT_MULTIPLIER   1.0  // G26 Q (retraction) used by default between mesh test elements.","  #endif","","#endif","","#if EITHER(AUTO_BED_LEVELING_LINEAR, AUTO_BED_LEVELING_BILINEAR)","","  // Set the number of grid points per dimension.","  #define GRID_MAX_POINTS_X 5","  #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X","","  // Probe along the Y axis, advancing X after each column","  //#define PROBE_Y_FIRST","","  #if ENABLED(AUTO_BED_LEVELING_BILINEAR)","","    // Beyond the probed grid, continue the implied tilt?","    // Default is to maintain the height of the nearest edge.","    #define EXTRAPOLATE_BEYOND_GRID","","    //","    // Experimental Subdivision of the grid by Catmull-Rom method.","    // Synthesizes intermediate points to produce a more detailed mesh.","    //","    //#define ABL_BILINEAR_SUBDIVISION","    #if ENABLED(ABL_BILINEAR_SUBDIVISION)","      // Number of subdivisions between probe points","      #define BILINEAR_SUBDIVISIONS 3","    #endif","","  #endif","","#elif ENABLED(AUTO_BED_LEVELING_UBL)","","  //===========================================================================","  //========================= Unified Bed Leveling ============================","  //===========================================================================","","  //#define MESH_EDIT_GFX_OVERLAY   // Display a graphics overlay while editing the mesh","","  #define MESH_INSET 1              // Set Mesh bounds as an inset region of the bed","  #define GRID_MAX_POINTS_X 10      // Don't use more than 15 points per axis, implementation limited.","  #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X","","  //#define UBL_HILBERT_CURVE       // Use Hilbert distribution for less travel when probing multiple points","","  #define UBL_MESH_EDIT_MOVES_Z     // Sophisticated users prefer no movement of nozzle","  #define UBL_SAVE_ACTIVE_ON_M500   // Save the currently active mesh in the current slot on M500","","  //#define UBL_Z_RAISE_WHEN_OFF_MESH 2.5 // When the nozzle is off the mesh, this value is used","                                          // as the Z-Height correction value.","","  //#define UBL_MESH_WIZARD         // Run several commands in a row to get a complete mesh","","#elif ENABLED(MESH_BED_LEVELING)","","  //===========================================================================","  //=================================== Mesh ==================================","  //===========================================================================","","  #define MESH_INSET 10          // Set Mesh bounds as an inset region of the bed","  #define GRID_MAX_POINTS_X 3    // Don't use more than 7 points per axis, implementation limited.","  #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X","","  //#define MESH_G28_REST_ORIGIN // After homing all axes ('G28' or 'G28 XYZ') rest Z at Z_MIN_POS","","#endif // BED_LEVELING","","/**"," * Add a bed leveling sub-menu for ABL or MBL."," * Include a guided procedure if manual probing is enabled."," */","#define LCD_BED_LEVELING","","#if ENABLED(LCD_BED_LEVELING)","  #define MESH_EDIT_Z_STEP  0.025 // (mm) Step size while manually probing Z axis.","  #define LCD_PROBE_Z_RANGE 4     // (mm) Z Range centered on Z_MIN_POS for LCD Z adjustment","  #define MESH_EDIT_MENU        // Add a menu to edit mesh points","#endif","","// Add a menu item to move between bed corners for manual bed adjustment","#define LCD_BED_TRAMMING","","#if ENABLED(LCD_BED_TRAMMING)","  #define BED_TRAMMING_INSET_LFRB { 30, 30, 30, 30 } // (mm) Left, Front, Right, Back insets","  #define BED_TRAMMING_HEIGHT      0.0        // (mm) Z height of nozzle at leveling points","  #define BED_TRAMMING_Z_HOP       4.0        // (mm) Z height of nozzle between leveling points","  //#define BED_TRAMMING_INCLUDE_CENTER       // Move to the center after the last corner","  //#define BED_TRAMMING_USE_PROBE","  #if ENABLED(BED_TRAMMING_USE_PROBE)","    #define BED_TRAMMING_PROBE_TOLERANCE 0.1  // (mm)","    #define BED_TRAMMING_VERIFY_RAISED        // After adjustment triggers the probe, re-probe to verify","    //#define BED_TRAMMING_AUDIO_FEEDBACK","  #endif","","  /**","   * Corner Leveling Order","   *","   * Set 2 or 4 points. When 2 points are given, the 3rd is the center of the opposite edge.","   *","   *  LF  Left-Front    RF  Right-Front","   *  LB  Left-Back     RB  Right-Back","   *","   * Examples:","   *","   *      Default        {LF,RB,LB,RF}         {LF,RF}           {LB,LF}","   *  LB --------- RB   LB --------- RB    LB --------- RB   LB --------- RB","   *  |  4       3  |   | 3         2 |    |     \u003c3\u003e     |   | 1           |","   *  |             |   |             |    |             |   |          \u003c3\u003e|","   *  |  1       2  |   | 1         4 |    | 1         2 |   | 2           |","   *  LF --------- RF   LF --------- RF    LF --------- RF   LF --------- RF","   */","  #define BED_TRAMMING_LEVELING_ORDER { LF, RF, RB, LB }","#endif","","/**"," * Commands to execute at the end of G29 probing."," * Useful to retract or move the Z probe out of the way."," */","//#define Z_PROBE_END_SCRIPT \"G1 Z10 F12000\\nG1 X15 Y330\\nG1 Z0.5\\nG1 Z10\"","","// @section homing","","// The center of the bed is at (X=0, Y=0)","//#define BED_CENTER_AT_0_0","","// Manually set the home position. Leave these undefined for automatic settings.","// For DELTA this is the top-center of the Cartesian print volume.","//#define MANUAL_X_HOME_POS 0","//#define MANUAL_Y_HOME_POS 0","//#define MANUAL_Z_HOME_POS 0","//#define MANUAL_I_HOME_POS 0","//#define MANUAL_J_HOME_POS 0","//#define MANUAL_K_HOME_POS 0","//#define MANUAL_U_HOME_POS 0","//#define MANUAL_V_HOME_POS 0","//#define MANUAL_W_HOME_POS 0","","/**"," * Use \"Z Safe Homing\" to avoid homing with a Z probe outside the bed area."," *"," * - Moves the Z probe (or nozzle) to a defined XY point before Z homing."," * - Allows Z homing only when XY positions are known and trusted."," * - If stepper drivers sleep, XY homing may be required again before Z homing."," */","//#define Z_SAFE_HOMING","","#if ENABLED(Z_SAFE_HOMING)","  #define Z_SAFE_HOMING_X_POINT X_CENTER  // X point for Z homing","  #define Z_SAFE_HOMING_Y_POINT Y_CENTER  // Y point for Z homing","#endif","","// Homing speeds (linear=mm/min, rotational=°/min)","#define HOMING_FEEDRATE_MM_M { (20*60), (20*60), (4*60) }","","// Validate that endstops are triggered on homing moves","#define VALIDATE_HOMING_ENDSTOPS","","// @section calibrate","","/**"," * Bed Skew Compensation"," *"," * This feature corrects for misalignment in the XYZ axes."," *"," * Take the following steps to get the bed skew in the XY plane:"," *  1. Print a test square (e.g., https://www.thingiverse.com/thing:2563185)"," *  2. For XY_DIAG_AC measure the diagonal A to C"," *  3. For XY_DIAG_BD measure the diagonal B to D"," *  4. For XY_SIDE_AD measure the edge A to D"," *"," * Marlin automatically computes skew factors from these measurements."," * Skew factors may also be computed and set manually:"," *"," *  - Compute AB     : SQRT(2*AC*AC+2*BD*BD-4*AD*AD)/2"," *  - XY_SKEW_FACTOR : TAN(PI/2-ACOS((AC*AC-AB*AB-AD*AD)/(2*AB*AD)))"," *"," * If desired, follow the same procedure for XZ and YZ."," * Use these diagrams for reference:"," *"," *    Y                     Z                     Z"," *    ^     B-------C       ^     B-------C       ^     B-------C"," *    |    /       /        |    /       /        |    /       /"," *    |   /       /         |   /       /         |   /       /"," *    |  A-------D          |  A-------D          |  A-------D"," *    +--------------\u003eX     +--------------\u003eX     +--------------\u003eY"," *     XY_SKEW_FACTOR        XZ_SKEW_FACTOR        YZ_SKEW_FACTOR"," */","//#define SKEW_CORRECTION","","#if ENABLED(SKEW_CORRECTION)","  // Input all length measurements here:","  #define XY_DIAG_AC 282.8427124746","  #define XY_DIAG_BD 282.8427124746","  #define XY_SIDE_AD 200","","  // Or, set the XY skew factor directly:","  //#define XY_SKEW_FACTOR 0.0","","  //#define SKEW_CORRECTION_FOR_Z","  #if ENABLED(SKEW_CORRECTION_FOR_Z)","    #define XZ_DIAG_AC 282.8427124746","    #define XZ_DIAG_BD 282.8427124746","    #define YZ_DIAG_AC 282.8427124746","    #define YZ_DIAG_BD 282.8427124746","    #define YZ_SIDE_AD 200","","    // Or, set the Z skew factors directly:","    //#define XZ_SKEW_FACTOR 0.0","    //#define YZ_SKEW_FACTOR 0.0","  #endif","","  // Enable this option for M852 to set skew at runtime","  //#define SKEW_CORRECTION_GCODE","#endif","","//=============================================================================","//============================= Additional Features ===========================","//=============================================================================","","// @section eeprom","","/**"," * EEPROM"," *"," * Persistent storage to preserve configurable settings across reboots."," *"," *   M500 - Store settings to EEPROM."," *   M501 - Read settings from EEPROM. (i.e., Throw away unsaved changes)"," *   M502 - Revert settings to \"factory\" defaults. (Follow with M500 to init the EEPROM.)"," */","#define EEPROM_SETTINGS       // Persistent storage with M500 and M501","//#define DISABLE_M503        // Saves ~2700 bytes of flash. Disable for release!","#define EEPROM_CHITCHAT       // Give feedback on EEPROM commands. Disable to save PROGMEM.","#define EEPROM_BOOT_SILENT    // Keep M503 quiet and only give errors during first load","#if ENABLED(EEPROM_SETTINGS)","  #define EEPROM_AUTO_INIT    // Init EEPROM automatically on any errors.","  //#define EEPROM_INIT_NOW   // Init EEPROM on first boot after a new build.","#endif","","// @section host","","//","// Host Keepalive","//","// When enabled Marlin will send a busy status message to the host","// every couple of seconds when it can't accept commands.","//","#define HOST_KEEPALIVE_FEATURE        // Disable this if your host doesn't like keepalive messages","#define DEFAULT_KEEPALIVE_INTERVAL 2  // Number of seconds between \"busy\" messages. Set with M113.","#define BUSY_WHILE_HEATING            // Some hosts require \"busy\" messages even during heating","","// @section units","","//","// G20/G21 Inch mode support","//","//#define INCH_MODE_SUPPORT","","//","// M149 Set temperature units support","//","//#define TEMPERATURE_UNITS_SUPPORT","","// @section temperature","","//","// Preheat Constants - Up to 10 are supported without changes","//","#define PREHEAT_1_LABEL       \"PLA\"","#define PREHEAT_1_TEMP_HOTEND 185","#define PREHEAT_1_TEMP_BED     45","#define PREHEAT_1_TEMP_CHAMBER 35","#define PREHEAT_1_FAN_SPEED   255 // Value from 0 to 255","","#define PREHEAT_2_LABEL       \"ABS\"","#define PREHEAT_2_TEMP_HOTEND 240","#define PREHEAT_2_TEMP_BED    110","#define PREHEAT_2_TEMP_CHAMBER 35","#define PREHEAT_2_FAN_SPEED   255 // Value from 0 to 255","","// @section motion","","/**"," * Nozzle Park"," *"," * Park the nozzle at the given XYZ position on idle or G27."," *"," * The \"P\" parameter controls the action applied to the Z axis:"," *"," *    P0  (Default) If Z is below park Z raise the nozzle."," *    P1  Raise the nozzle always to Z-park height."," *    P2  Raise the nozzle by Z-park amount, limited to Z_MAX_POS."," */","#define NOZZLE_PARK_FEATURE","","#if ENABLED(NOZZLE_PARK_FEATURE)","  // Specify a park position as { X, Y, Z_raise }","  #define NOZZLE_PARK_POINT { (X_MIN_POS + 10), (Y_MAX_POS - 10), 20 }","  #define NOZZLE_PARK_MOVE          0   // Park motion: 0 = XY Move, 1 = X Only, 2 = Y Only, 3 = X before Y, 4 = Y before X","  #define NOZZLE_PARK_Z_RAISE_MIN   2   // (mm) Always raise Z by at least this distance","  #define NOZZLE_PARK_XY_FEEDRATE 100   // (mm/s) X and Y axes feedrate (also used for delta Z axis)","  #define NOZZLE_PARK_Z_FEEDRATE    5   // (mm/s) Z axis feedrate (not used for delta printers)","#endif","","/**"," * Clean Nozzle Feature -- EXPERIMENTAL"," *"," * Adds the G12 command to perform a nozzle cleaning process."," *"," * Parameters:"," *   P  Pattern"," *   S  Strokes / Repetitions"," *   T  Triangles (P1 only)"," *"," * Patterns:"," *   P0  Straight line (default). This process requires a sponge type material"," *       at a fixed bed location. \"S\" specifies strokes (i.e. back-forth motions)"," *       between the start / end points."," *"," *   P1  Zig-zag pattern between (X0, Y0) and (X1, Y1), \"T\" specifies the"," *       number of zig-zag triangles to do. \"S\" defines the number of strokes."," *       Zig-zags are done in whichever is the narrower dimension."," *       For example, \"G12 P1 S1 T3\" will execute:"," *"," *          --"," *         |  (X0, Y1) |     /\\        /\\        /\\     | (X1, Y1)"," *         |           |    /  \\      /  \\      /  \\    |"," *       A |           |   /    \\    /    \\    /    \\   |"," *         |           |  /      \\  /      \\  /      \\  |"," *         |  (X0, Y0) | /        \\/        \\/        \\ | (X1, Y0)"," *          --         +--------------------------------+"," *                       |________|_________|_________|"," *                           T1        T2        T3"," *"," *   P2  Circular pattern with middle at NOZZLE_CLEAN_CIRCLE_MIDDLE."," *       \"R\" specifies the radius. \"S\" specifies the stroke count."," *       Before starting, the nozzle moves to NOZZLE_CLEAN_START_POINT."," *"," *   Caveats: The ending Z should be the same as starting Z."," * Attention: EXPERIMENTAL. G-code arguments may change."," */","//#define NOZZLE_CLEAN_FEATURE","","#if ENABLED(NOZZLE_CLEAN_FEATURE)","  // Default number of pattern repetitions","  #define NOZZLE_CLEAN_STROKES  12","","  // Default number of triangles","  #define NOZZLE_CLEAN_TRIANGLES  3","","  // Specify positions for each tool as { { X, Y, Z }, { X, Y, Z } }","  // Dual hotend system may use { {  -20, (Y_BED_SIZE / 2), (Z_MIN_POS + 1) },  {  420, (Y_BED_SIZE / 2), (Z_MIN_POS + 1) }}","  #define NOZZLE_CLEAN_START_POINT { {  30, 30, (Z_MIN_POS + 1) } }","  #define NOZZLE_CLEAN_END_POINT   { { 100, 60, (Z_MIN_POS + 1) } }","","  // Circular pattern radius","  #define NOZZLE_CLEAN_CIRCLE_RADIUS 6.5","  // Circular pattern circle fragments number","  #define NOZZLE_CLEAN_CIRCLE_FN 10","  // Middle point of circle","  #define NOZZLE_CLEAN_CIRCLE_MIDDLE NOZZLE_CLEAN_START_POINT","","  // Move the nozzle to the initial position after cleaning","  #define NOZZLE_CLEAN_GOBACK","","  // For a purge/clean station that's always at the gantry height (thus no Z move)","  //#define NOZZLE_CLEAN_NO_Z","","  // For a purge/clean station mounted on the X axis","  //#define NOZZLE_CLEAN_NO_Y","","  // Require a minimum hotend temperature for cleaning","  #define NOZZLE_CLEAN_MIN_TEMP 170","  //#define NOZZLE_CLEAN_HEATUP       // Heat up the nozzle instead of skipping wipe","","  // Explicit wipe G-code script applies to a G12 with no arguments.","  //#define WIPE_SEQUENCE_COMMANDS \"G1 X-17 Y25 Z10 F4000\\nG1 Z1\\nM114\\nG1 X-17 Y25\\nG1 X-17 Y95\\nG1 X-17 Y25\\nG1 X-17 Y95\\nG1 X-17 Y25\\nG1 X-17 Y95\\nG1 X-17 Y25\\nG1 X-17 Y95\\nG1 X-17 Y25\\nG1 X-17 Y95\\nG1 X-17 Y25\\nG1 X-17 Y95\\nG1 Z15\\nM400\\nG0 X-10.0 Y-9.0\"","","#endif","","// @section host","","/**"," * Print Job Timer"," *"," * Automatically start and stop the print job timer on M104/M109/M140/M190/M141/M191."," * The print job timer will only be stopped if the bed/chamber target temp is"," * below BED_MINTEMP/CHAMBER_MINTEMP."," *"," *   M104 (hotend, no wait)  - high temp = none,        low temp = stop timer"," *   M109 (hotend, wait)     - high temp = start timer, low temp = stop timer"," *   M140 (bed, no wait)     - high temp = none,        low temp = stop timer"," *   M190 (bed, wait)        - high temp = start timer, low temp = none"," *   M141 (chamber, no wait) - high temp = none,        low temp = stop timer"," *   M191 (chamber, wait)    - high temp = start timer, low temp = none"," *"," * For M104/M109, high temp is anything over EXTRUDE_MINTEMP / 2."," * For M140/M190, high temp is anything over BED_MINTEMP."," * For M141/M191, high temp is anything over CHAMBER_MINTEMP."," *"," * The timer can also be controlled with the following commands:"," *"," *   M75 - Start the print job timer"," *   M76 - Pause the print job timer"," *   M77 - Stop the print job timer"," */","#define PRINTJOB_TIMER_AUTOSTART","","// @section stats","","/**"," * Print Counter"," *"," * Track statistical data such as:"," *"," *  - Total print jobs"," *  - Total successful print jobs"," *  - Total failed print jobs"," *  - Total time printing"," *"," * View the current statistics with M78."," */","//#define PRINTCOUNTER","#if ENABLED(PRINTCOUNTER)","  #define PRINTCOUNTER_SAVE_INTERVAL 60 // (minutes) EEPROM save interval during print. A value of 0 will save stats at end of print.","#endif","","// @section security","","/**"," * Password"," *"," * Set a numerical password for the printer which can be requested:"," *"," *  - When the printer boots up"," *  - Upon opening the 'Print from Media' Menu"," *  - When SD printing is completed or aborted"," *"," * The following G-codes can be used:"," *"," *  M510 - Lock Printer. Blocks all commands except M511."," *  M511 - Unlock Printer."," *  M512 - Set, Change and Remove Password."," *"," * If you forget the password and get locked out you'll need to re-flash"," * the firmware with the feature disabled, reset EEPROM, and (optionally)"," * re-flash the firmware again with this feature enabled."," */","//#define PASSWORD_FEATURE","#if ENABLED(PASSWORD_FEATURE)","  #define PASSWORD_LENGTH 4                 // (#) Number of digits (1-9). 3 or 4 is recommended","  #define PASSWORD_ON_STARTUP","  #define PASSWORD_UNLOCK_GCODE             // Unlock with the M511 P\u003cpassword\u003e command. Disable to prevent brute-force attack.","  #define PASSWORD_CHANGE_GCODE             // Change the password with M512 P\u003cold\u003e S\u003cnew\u003e.","  //#define PASSWORD_ON_SD_PRINT_MENU       // This does not prevent gcodes from running","  //#define PASSWORD_AFTER_SD_PRINT_END","  //#define PASSWORD_AFTER_SD_PRINT_ABORT","  //#include \"Configuration_Secure.h\"       // External file with PASSWORD_DEFAULT_VALUE","#endif","","//=============================================================================","//============================= LCD and SD support ============================","//=============================================================================","","// @section interface","","/**"," * LCD LANGUAGE"," *"," * Select the language to display on the LCD. These languages are available:"," *"," *   en, an, bg, ca, cz, da, de, el, el_CY, es, eu, fi, fr, gl, hr, hu, it,"," *   jp_kana, ko_KR, nl, pl, pt, pt_br, ro, ru, sk, sv, tr, uk, vi, zh_CN, zh_TW"," *"," * :{ 'en':'English', 'an':'Aragonese', 'bg':'Bulgarian', 'ca':'Catalan', 'cz':'Czech', 'da':'Danish', 'de':'German', 'el':'Greek (Greece)', 'el_CY':'Greek (Cyprus)', 'es':'Spanish', 'eu':'Basque-Euskera', 'fi':'Finnish', 'fr':'French', 'gl':'Galician', 'hr':'Croatian', 'hu':'Hungarian', 'it':'Italian', 'jp_kana':'Japanese', 'ko_KR':'Korean (South Korea)', 'nl':'Dutch', 'pl':'Polish', 'pt':'Portuguese', 'pt_br':'Portuguese (Brazilian)', 'ro':'Romanian', 'ru':'Russian', 'sk':'Slovak', 'sv':'Swedish', 'tr':'Turkish', 'uk':'Ukrainian', 'vi':'Vietnamese', 'zh_CN':'Chinese (Simplified)', 'zh_TW':'Chinese (Traditional)' }"," */","#define LCD_LANGUAGE en","","/**"," * LCD Character Set"," *"," * Note: This option is NOT applicable to Graphical Displays."," *"," * All character-based LCDs provide ASCII plus one of these"," * language extensions:"," *"," *  - JAPANESE ... the most common"," *  - WESTERN  ... with more accented characters"," *  - CYRILLIC ... for the Russian language"," *"," * To determine the language extension installed on your controller:"," *"," *  - Compile and upload with LCD_LANGUAGE set to 'test'"," *  - Click the controller to view the LCD menu"," *  - The LCD will display Japanese, Western, or Cyrillic text"," *"," * See https://marlinfw.org/docs/development/lcd_language.html"," *"," * :['JAPANESE', 'WESTERN', 'CYRILLIC']"," */","#define DISPLAY_CHARSET_HD44780 WESTERN","","/**"," * Info Screen Style (0:Classic, 1:Průša)"," *"," * :[0:'Classic', 1:'Průša']"," */","#define LCD_INFO_SCREEN_STYLE 0","","/**"," * SD CARD"," *"," * SD Card support is disabled by default. If your controller has an SD slot,"," * you must uncomment the following option or it won't work."," */","#define SDSUPPORT","","/**"," * SD CARD: ENABLE CRC"," *"," * Use CRC checks and retries on the SD communication."," */","//#define SD_CHECK_AND_RETRY","","/**"," * LCD Menu Items"," *"," * Disable all menus and only display the Status Screen, or"," * just remove some extraneous menu items to recover space."," */","//#define NO_LCD_MENUS","//#define SLIM_LCD_MENUS","","//","// ENCODER SETTINGS","//","// This option overrides the default number of encoder pulses needed to","// produce one step. Should be increased for high-resolution encoders.","//","//#define ENCODER_PULSES_PER_STEP 4","","//","// Use this option to override the number of step signals required to","// move between next/prev menu items.","//","//#define ENCODER_STEPS_PER_MENU_ITEM 1","","/**"," * Encoder Direction Options"," *"," * Test your encoder's behavior first with both options disabled."," *"," *  Reversed Value Edit and Menu Nav? Enable REVERSE_ENCODER_DIRECTION."," *  Reversed Menu Navigation only?    Enable REVERSE_MENU_DIRECTION."," *  Reversed Value Editing only?      Enable BOTH options."," */","","//","// This option reverses the encoder direction everywhere.","//","//  Set this option if CLOCKWISE causes values to DECREASE","//","//#define REVERSE_ENCODER_DIRECTION","","//","// This option reverses the encoder direction for navigating LCD menus.","//","//  If CLOCKWISE normally moves DOWN this makes it go UP.","//  If CLOCKWISE normally moves UP this makes it go DOWN.","//","//#define REVERSE_MENU_DIRECTION","","//","// This option reverses the encoder direction for Select Screen.","//","//  If CLOCKWISE normally moves LEFT this makes it go RIGHT.","//  If CLOCKWISE normally moves RIGHT this makes it go LEFT.","//","//#define REVERSE_SELECT_DIRECTION","","//","// Encoder EMI Noise Filter","//","// This option increases encoder samples to filter out phantom encoder clicks caused by EMI noise.","//","//#define ENCODER_NOISE_FILTER","#if ENABLED(ENCODER_NOISE_FILTER)","  #define ENCODER_SAMPLES 10","#endif","","//","// Individual Axis Homing","//","// Add individual axis homing items (Home X, Home Y, and Home Z) to the LCD menu.","//","#define INDIVIDUAL_AXIS_HOMING_MENU","//#define INDIVIDUAL_AXIS_HOMING_SUBMENU","","//","// SPEAKER/BUZZER","//","// If you have a speaker that can produce tones, enable it here.","// By default Marlin assumes you have a buzzer with a fixed frequency.","//","//#define SPEAKER","","//","// The duration and frequency for the UI feedback sound.","// Set these to 0 to disable audio feedback in the LCD menus.","//","// Note: Test audio output with the G-Code:","//  M300 S\u003cfrequency Hz\u003e P\u003cduration ms\u003e","//","//#define LCD_FEEDBACK_FREQUENCY_DURATION_MS 2","//#define LCD_FEEDBACK_FREQUENCY_HZ 5000","","//=============================================================================","//======================== LCD / Controller Selection =========================","//========================   (Character-based LCDs)   =========================","//=============================================================================","// @section lcd","","//","// RepRapDiscount Smart Controller.","// https://reprap.org/wiki/RepRapDiscount_Smart_Controller","//","// Note: Usually sold with a white PCB.","//","//#define REPRAP_DISCOUNT_SMART_CONTROLLER","","//","// GT2560 (YHCB2004) LCD Display","//","// Requires Testato, Koepel softwarewire library and","// Andriy Golovnya's LiquidCrystal_AIP31068 library.","//","//#define YHCB2004","","//","// Original RADDS LCD Display+Encoder+SDCardReader","// http://doku.radds.org/dokumentation/lcd-display/","//","//#define RADDS_DISPLAY","","//","// ULTIMAKER Controller.","//","//#define ULTIMAKERCONTROLLER","","//","// ULTIPANEL as seen on Thingiverse.","//","//#define ULTIPANEL","","//","// PanelOne from T3P3 (via RAMPS 1.4 AUX2/AUX3)","// https://reprap.org/wiki/PanelOne","//","//#define PANEL_ONE","","//","// GADGETS3D G3D LCD/SD Controller","// https://reprap.org/wiki/RAMPS_1.3/1.4_GADGETS3D_Shield_with_Panel","//","// Note: Usually sold with a blue PCB.","//","//#define G3D_PANEL","","//","// RigidBot Panel V1.0","// http://www.inventapart.com/","//","//#define RIGIDBOT_PANEL","","//","// Makeboard 3D Printer Parts 3D Printer Mini Display 1602 Mini Controller","// https://www.aliexpress.com/item/32765887917.html","//","//#define MAKEBOARD_MINI_2_LINE_DISPLAY_1602","","//","// ANET and Tronxy 20x4 Controller","//","//#define ZONESTAR_LCD            // Requires ADC_KEYPAD_PIN to be assigned to an analog pin.","                                  // This LCD is known to be susceptible to electrical interference","                                  // which scrambles the display.  Pressing any button clears it up.","                                  // This is a LCD2004 display with 5 analog buttons.","","//","// Generic 16x2, 16x4, 20x2, or 20x4 character-based LCD.","//","//#define ULTRA_LCD","","//=============================================================================","//======================== LCD / Controller Selection =========================","//=====================   (I2C and Shift-Register LCDs)   =====================","//=============================================================================","","//","// CONTROLLER TYPE: I2C","//","// Note: These controllers require the installation of Arduino's LiquidCrystal_I2C","// library. For more info: https://github.com/kiyoshigawa/LiquidCrystal_I2C","//","","//","// Elefu RA Board Control Panel","// https://web.archive.org/web/20140823033947/http://www.elefu.com/index.php?route=product/product\u0026product_id=53","//","//#define RA_CONTROL_PANEL","","//","// Sainsmart (YwRobot) LCD Displays","//","// These require F.Malpartida's LiquidCrystal_I2C library","// https://bitbucket.org/fmalpartida/new-liquidcrystal/wiki/Home","//","//#define LCD_SAINSMART_I2C_1602","//#define LCD_SAINSMART_I2C_2004","","//","// Generic LCM1602 LCD adapter","//","//#define LCM1602","","//","// PANELOLU2 LCD with status LEDs,","// separate encoder and click inputs.","//","// Note: This controller requires Arduino's LiquidTWI2 library v1.2.3 or later.","// For more info: https://github.com/lincomatic/LiquidTWI2","//","// Note: The PANELOLU2 encoder click input can either be directly connected to","// a pin (if BTN_ENC defined to != -1) or read through I2C (when BTN_ENC == -1).","//","//#define LCD_I2C_PANELOLU2","","//","// Panucatt VIKI LCD with status LEDs,","// integrated click \u0026 L/R/U/D buttons, separate encoder inputs.","//","//#define LCD_I2C_VIKI","","//","// CONTROLLER TYPE: Shift register panels","//","","//","// 2-wire Non-latching LCD SR from https://goo.gl/aJJ4sH","// LCD configuration: https://reprap.org/wiki/SAV_3D_LCD","//","//#define SAV_3DLCD","","//","// 3-wire SR LCD with strobe using 74HC4094","// https://github.com/mikeshub/SailfishLCD","// Uses the code directly from Sailfish","//","//#define FF_INTERFACEBOARD","","//","// TFT GLCD Panel with Marlin UI","// Panel connected to main board by SPI or I2C interface.","// See https://github.com/Serhiy-K/TFTGLCDAdapter","//","//#define TFTGLCD_PANEL_SPI","//#define TFTGLCD_PANEL_I2C","","//=============================================================================","//=======================   LCD / Controller Selection  =======================","//=========================      (Graphical LCDs)      ========================","//=============================================================================","","//","// CONTROLLER TYPE: Graphical 128x64 (DOGM)","//","// IMPORTANT: The U8glib library is required for Graphical Display!","//            https://github.com/olikraus/U8glib_Arduino","//","// NOTE: If the LCD is unresponsive you may need to reverse the plugs.","//","","//","// RepRapDiscount FULL GRAPHIC Smart Controller","// https://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller","//","//#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER","","//","// K.3D Full Graphic Smart Controller","//","//#define K3D_FULL_GRAPHIC_SMART_CONTROLLER","","//","// ReprapWorld Graphical LCD","// https://reprapworld.com/electronics/3d-printer-modules/autonomous-printing/graphical-lcd-screen-v1-0/","//","//#define REPRAPWORLD_GRAPHICAL_LCD","","//","// Activate one of these if you have a Panucatt Devices","// Viki 2.0 or mini Viki with Graphic LCD","// https://www.panucatt.com","//","//#define VIKI2","//#define miniVIKI","","//","// Alfawise Ex8 printer LCD marked as WYH L12864 COG","//","//#define WYH_L12864","","//","// MakerLab Mini Panel with graphic","// controller and SD support - https://reprap.org/wiki/Mini_panel","//","//#define MINIPANEL","","//","// MaKr3d Makr-Panel with graphic controller and SD support.","// https://reprap.org/wiki/MaKr3d_MaKrPanel","//","//#define MAKRPANEL","","//","// Adafruit ST7565 Full Graphic Controller.","// https://github.com/eboston/Adafruit-ST7565-Full-Graphic-Controller/","//","//#define ELB_FULL_GRAPHIC_CONTROLLER","","//","// BQ LCD Smart Controller shipped by","// default with the BQ Hephestos 2 and Witbox 2.","//","//#define BQ_LCD_SMART_CONTROLLER","","//","// Cartesio UI","// http://mauk.cc/webshop/cartesio-shop/electronics/user-interface","//","//#define CARTESIO_UI","","//","// LCD for Melzi Card with Graphical LCD","//","//#define LCD_FOR_MELZI","","//","// Original Ulticontroller from Ultimaker 2 printer with SSD1309 I2C display and encoder","// https://github.com/Ultimaker/Ultimaker2/tree/master/1249_Ulticontroller_Board_(x1)","//","//#define ULTI_CONTROLLER","","//","// MKS MINI12864 with graphic controller and SD support","// https://reprap.org/wiki/MKS_MINI_12864","//","//#define MKS_MINI_12864","","//","// MKS MINI12864 V3 is an alias for FYSETC_MINI_12864_2_1. Type A/B. NeoPixel RGB Backlight.","//","//#define MKS_MINI_12864_V3","","//","// MKS LCD12864A/B with graphic controller and SD support. Follows MKS_MINI_12864 pinout.","// https://www.aliexpress.com/item/33018110072.html","//","//#define MKS_LCD12864A","//#define MKS_LCD12864B","","//","// FYSETC variant of the MINI12864 graphic controller with SD support","// https://wiki.fysetc.com/Mini12864_Panel/","//","//#define FYSETC_MINI_12864_X_X    // Type C/D/E/F. No tunable RGB Backlight by default","//#define FYSETC_MINI_12864_1_2    // Type C/D/E/F. Simple RGB Backlight (always on)","//#define FYSETC_MINI_12864_2_0    // Type A/B. Discreet RGB Backlight","//#define FYSETC_MINI_12864_2_1    // Type A/B. NeoPixel RGB Backlight","//#define FYSETC_GENERIC_12864_1_1 // Larger display with basic ON/OFF backlight.","","//","// BigTreeTech Mini 12864 V1.0 is an alias for FYSETC_MINI_12864_2_1. Type A/B. NeoPixel RGB Backlight.","//","//#define BTT_MINI_12864_V1","","//","// Factory display for Creality CR-10","// https://www.aliexpress.com/item/32833148327.html","//","// This is RAMPS-compatible using a single 10-pin connector.","// (For CR-10 owners who want to replace the Melzi Creality board but retain the display)","//","#define CR10_STOCKDISPLAY","","//","// Ender-2 OEM display, a variant of the MKS_MINI_12864","//","//#define ENDER2_STOCKDISPLAY","","//","// ANET and Tronxy Graphical Controller","//","// Anet 128x64 full graphics lcd with rotary encoder as used on Anet A6","// A clone of the RepRapDiscount full graphics display but with","// different pins/wiring (see pins_ANET_10.h). Enable one of these.","//","//#define ANET_FULL_GRAPHICS_LCD","//#define ANET_FULL_GRAPHICS_LCD_ALT_WIRING","","//","// AZSMZ 12864 LCD with SD","// https://www.aliexpress.com/item/32837222770.html","//","//#define AZSMZ_12864","","//","// Silvergate GLCD controller","// https://github.com/android444/Silvergate","//","//#define SILVER_GATE_GLCD_CONTROLLER","","//","// eMotion Tech LCD with SD","// https://www.reprap-france.com/produit/1234568748-ecran-graphique-128-x-64-points-2-1","//","//#define EMOTION_TECH_LCD","","//=============================================================================","//==============================  OLED Displays  ==============================","//=============================================================================","","//","// SSD1306 OLED full graphics generic display","//","//#define U8GLIB_SSD1306","","//","// SAV OLEd LCD module support using either SSD1306 or SH1106 based LCD modules","//","//#define SAV_3DGLCD","#if ENABLED(SAV_3DGLCD)","  #define U8GLIB_SSD1306","  //#define U8GLIB_SH1106","#endif","","//","// TinyBoy2 128x64 OLED / Encoder Panel","//","//#define OLED_PANEL_TINYBOY2","","//","// MKS OLED 1.3\" 128×64 Full Graphics Controller","// https://reprap.org/wiki/MKS_12864OLED","//","// Tiny, but very sharp OLED display","//","//#define MKS_12864OLED          // Uses the SH1106 controller (default)","//#define MKS_12864OLED_SSD1306  // Uses the SSD1306 controller","","//","// Zonestar OLED 128×64 Full Graphics Controller","//","//#define ZONESTAR_12864LCD           // Graphical (DOGM) with ST7920 controller","//#define ZONESTAR_12864OLED          // 1.3\" OLED with SH1106 controller (default)","//#define ZONESTAR_12864OLED_SSD1306  // 0.96\" OLED with SSD1306 controller","","//","// Einstart S OLED SSD1306","//","//#define U8GLIB_SH1106_EINSTART","","//","// Overlord OLED display/controller with i2c buzzer and LEDs","//","//#define OVERLORD_OLED","","//","// FYSETC OLED 2.42\" 128×64 Full Graphics Controller with WS2812 RGB","// Where to find : https://www.aliexpress.com/item/4000345255731.html","//#define FYSETC_242_OLED_12864   // Uses the SSD1309 controller","","//","// K.3D SSD1309 OLED 2.42\" 128×64 Full Graphics Controller","//","//#define K3D_242_OLED_CONTROLLER   // Software SPI","","//=============================================================================","//========================== Extensible UI Displays ===========================","//=============================================================================","","/**"," * DGUS Touch Display with DWIN OS. (Choose one.)"," * ORIGIN : https://www.aliexpress.com/item/32993409517.html"," * FYSETC : https://www.aliexpress.com/item/32961471929.html"," * MKS    : https://www.aliexpress.com/item/1005002008179262.html"," *"," * Flash display with DGUS Displays for Marlin:"," *  - Format the SD card to FAT32 with an allocation size of 4kb."," *  - Download files as specified for your type of display."," *  - Plug the microSD card into the back of the display."," *  - Boot the display and wait for the update to complete."," *"," * ORIGIN (Marlin DWIN_SET)"," *  - Download https://github.com/coldtobi/Marlin_DGUS_Resources"," *  - Copy the downloaded DWIN_SET folder to the SD card."," *"," * FYSETC (Supplier default)"," *  - Download https://github.com/FYSETC/FYSTLCD-2.0"," *  - Copy the downloaded SCREEN folder to the SD card."," *"," * HIPRECY (Supplier default)"," *  - Download https://github.com/HiPrecy/Touch-Lcd-LEO"," *  - Copy the downloaded DWIN_SET folder to the SD card."," *"," * MKS (MKS-H43) (Supplier default)"," *  - Download https://github.com/makerbase-mks/MKS-H43"," *  - Copy the downloaded DWIN_SET folder to the SD card."," *"," * RELOADED (T5UID1)"," *  - Download https://github.com/Desuuuu/DGUS-reloaded/releases"," *  - Copy the downloaded DWIN_SET folder to the SD card."," */","//#define DGUS_LCD_UI_ORIGIN","//#define DGUS_LCD_UI_FYSETC","//#define DGUS_LCD_UI_HIPRECY","//#define DGUS_LCD_UI_MKS","//#define DGUS_LCD_UI_RELOADED","#if ENABLED(DGUS_LCD_UI_MKS)","  #define USE_MKS_GREEN_UI","#endif","","//","// Touch-screen LCD for Malyan M200/M300 printers","//","//#define MALYAN_LCD","","//","// Touch UI for FTDI EVE (FT800/FT810) displays","// See Configuration_adv.h for all configuration options.","//","//#define TOUCH_UI_FTDI_EVE","","//","// Touch-screen LCD for Anycubic printers","//","//#define ANYCUBIC_LCD_I3MEGA","//#define ANYCUBIC_LCD_CHIRON","#if EITHER(ANYCUBIC_LCD_I3MEGA, ANYCUBIC_LCD_CHIRON)","  //#define ANYCUBIC_LCD_DEBUG","  //#define ANYCUBIC_LCD_GCODE_EXT  // Add \".gcode\" to menu entries for DGUS clone compatibility","#endif","","//","// 320x240 Nextion 2.8\" serial TFT Resistive Touch Screen NX3224T028","//","//#define NEXTION_TFT","","//","// Third-party or vendor-customized controller interfaces.","// Sources should be installed in 'src/lcd/extui'.","//","//#define EXTENSIBLE_UI","","#if ENABLED(EXTENSIBLE_UI)","  //#define EXTUI_LOCAL_BEEPER // Enables use of local Beeper pin with external display","#endif","","//=============================================================================","//=============================== Graphical TFTs ==============================","//=============================================================================","","/**"," * Specific TFT Model Presets. Enable one of the following options"," * or enable TFT_GENERIC and set sub-options."," */","","//","// 480x320, 3.5\", SPI Display with Rotary Encoder from MKS","// Usually paired with MKS Robin Nano V2 \u0026 V3","//","//#define MKS_TS35_V2_0","","//","// 320x240, 2.4\", FSMC Display From MKS","// Usually paired with MKS Robin Nano V1.2","//","//#define MKS_ROBIN_TFT24","","//","// 320x240, 2.8\", FSMC Display From MKS","// Usually paired with MKS Robin Nano V1.2","//","//#define MKS_ROBIN_TFT28","","//","// 320x240, 3.2\", FSMC Display From MKS","// Usually paired with MKS Robin Nano V1.2","//","//#define MKS_ROBIN_TFT32","","//","// 480x320, 3.5\", FSMC Display From MKS","// Usually paired with MKS Robin Nano V1.2","//","//#define MKS_ROBIN_TFT35","","//","// 480x272, 4.3\", FSMC Display From MKS","//","//#define MKS_ROBIN_TFT43","","//","// 320x240, 3.2\", FSMC Display From MKS","// Usually paired with MKS Robin","//","//#define MKS_ROBIN_TFT_V1_1R","","//","// 480x320, 3.5\", FSMC Stock Display from Tronxy","//","//#define TFT_TRONXY_X5SA","","//","// 480x320, 3.5\", FSMC Stock Display from AnyCubic","//","//#define ANYCUBIC_TFT35","","//","// 320x240, 2.8\", FSMC Stock Display from Longer/Alfawise","//","//#define LONGER_LK_TFT28","","//","// 320x240, 2.8\", FSMC Stock Display from ET4","//","//#define ANET_ET4_TFT28","","//","// 480x320, 3.5\", FSMC Stock Display from ET5","//","//#define ANET_ET5_TFT35","","//","// 1024x600, 7\", RGB Stock Display with Rotary Encoder from BIQU-BX","//","//#define BIQU_BX_TFT70","","//","// 480x320, 3.5\", SPI Stock Display with Rotary Encoder from BIQU B1 SE Series","//","//#define BTT_TFT35_SPI_V1_0","","//","// Generic TFT with detailed options","//","//#define TFT_GENERIC","#if ENABLED(TFT_GENERIC)","  // :[ 'AUTO', 'ST7735', 'ST7789', 'ST7796', 'R61505', 'ILI9328', 'ILI9341', 'ILI9488' ]","  #define TFT_DRIVER AUTO","","  // Interface. Enable one of the following options:","  //#define TFT_INTERFACE_FSMC","  //#define TFT_INTERFACE_SPI","","  // TFT Resolution. Enable one of the following options:","  //#define TFT_RES_320x240","  //#define TFT_RES_480x272","  //#define TFT_RES_480x320","  //#define TFT_RES_1024x600","#endif","","/**"," * TFT UI - User Interface Selection. Enable one of the following options:"," *"," *   TFT_CLASSIC_UI - Emulated DOGM - 128x64 Upscaled"," *   TFT_COLOR_UI   - Marlin Default Menus, Touch Friendly, using full TFT capabilities"," *   TFT_LVGL_UI    - A Modern UI using LVGL"," *"," *   For LVGL_UI also copy the 'assets' folder from the build directory to the"," *   root of your SD card, together with the compiled firmware."," */","//#define TFT_CLASSIC_UI","//#define TFT_COLOR_UI","//#define TFT_LVGL_UI","","#if ENABLED(TFT_COLOR_UI)","  //#define TFT_SHARED_SPI   // SPI is shared between TFT display and other devices. Disable async data transfer","#endif","","#if ENABLED(TFT_LVGL_UI)","  //#define MKS_WIFI_MODULE  // MKS WiFi module","#endif","","/**"," * TFT Rotation. Set to one of the following values:"," *"," *   TFT_ROTATE_90,  TFT_ROTATE_90_MIRROR_X,  TFT_ROTATE_90_MIRROR_Y,"," *   TFT_ROTATE_180, TFT_ROTATE_180_MIRROR_X, TFT_ROTATE_180_MIRROR_Y,"," *   TFT_ROTATE_270, TFT_ROTATE_270_MIRROR_X, TFT_ROTATE_270_MIRROR_Y,"," *   TFT_MIRROR_X, TFT_MIRROR_Y, TFT_NO_ROTATION"," */","//#define TFT_ROTATION TFT_NO_ROTATION","","//=============================================================================","//============================  Other Controllers  ============================","//=============================================================================","","//","// Ender-3 v2 OEM display. A DWIN display with Rotary Encoder.","//","//#define DWIN_CREALITY_LCD           // Creality UI","//#define DWIN_LCD_PROUI              // Pro UI by MRiscoC","//#define DWIN_CREALITY_LCD_JYERSUI   // Jyers UI by Jacob Myers","//#define DWIN_MARLINUI_PORTRAIT      // MarlinUI (portrait orientation)","//#define DWIN_MARLINUI_LANDSCAPE     // MarlinUI (landscape orientation)","","//","// Touch Screen Settings","//","//#define TOUCH_SCREEN","#if ENABLED(TOUCH_SCREEN)","  #define BUTTON_DELAY_EDIT      50 // (ms) Button repeat delay for edit screens","  #define BUTTON_DELAY_MENU     250 // (ms) Button repeat delay for menus","","  //#define DISABLE_ENCODER         // Disable the click encoder, if any","  //#define TOUCH_IDLE_SLEEP_MINS 5 // (minutes) Display Sleep after a period of inactivity. Set with M255 S.","","  #define TOUCH_SCREEN_CALIBRATION","","  //#define TOUCH_CALIBRATION_X 12316","  //#define TOUCH_CALIBRATION_Y -8981","  //#define TOUCH_OFFSET_X        -43","  //#define TOUCH_OFFSET_Y        257","  //#define TOUCH_ORIENTATION TOUCH_LANDSCAPE","","  #if BOTH(TOUCH_SCREEN_CALIBRATION, EEPROM_SETTINGS)","    #define TOUCH_CALIBRATION_AUTO_SAVE // Auto save successful calibration values to EEPROM","  #endif","","  #if ENABLED(TFT_COLOR_UI)","    //#define SINGLE_TOUCH_NAVIGATION","  #endif","#endif","","//","// RepRapWorld REPRAPWORLD_KEYPAD v1.1","// https://reprapworld.com/products/electronics/ramps/keypad_v1_0_fully_assembled/","//","//#define REPRAPWORLD_KEYPAD","//#define REPRAPWORLD_KEYPAD_MOVE_STEP 10.0 // (mm) Distance to move per key-press","","//","// EasyThreeD ET-4000+ with button input and status LED","//","//#define EASYTHREED_UI","","//=============================================================================","//=============================== Extra Features ==============================","//=============================================================================","","// @section fans","","// Set number of user-controlled fans. Disable to use all board-defined fans.","// :[1,2,3,4,5,6,7,8]","//#define NUM_M106_FANS 1","","// Use software PWM to drive the fan, as for the heaters. This uses a very low frequency","// which is not as annoying as with the hardware PWM. On the other hand, if this frequency","// is too low, you should also increment SOFT_PWM_SCALE.","//#define FAN_SOFT_PWM","","// Incrementing this by 1 will double the software PWM frequency,","// affecting heaters, and the fan if FAN_SOFT_PWM is enabled.","// However, control resolution will be halved for each increment;","// at zero value, there are 128 effective control positions.","// :[0,1,2,3,4,5,6,7]","#define SOFT_PWM_SCALE 0","","// If SOFT_PWM_SCALE is set to a value higher than 0, dithering can","// be used to mitigate the associated resolution loss. If enabled,","// some of the PWM cycles are stretched so on average the desired","// duty cycle is attained.","//#define SOFT_PWM_DITHER","","// @section extras","","// Support for the BariCUDA Paste Extruder","//#define BARICUDA","","// @section lights","","// Temperature status LEDs that display the hotend and bed temperature.","// If all hotends, bed temperature, and target temperature are under 54C","// then the BLUE led is on. Otherwise the RED led is on. (1C hysteresis)","//#define TEMP_STAT_LEDS","","// Support for BlinkM/CyzRgb","//#define BLINKM","","// Support for PCA9632 PWM LED driver","//#define PCA9632","","// Support for PCA9533 PWM LED driver","//#define PCA9533","","/**"," * RGB LED / LED Strip Control"," *"," * Enable support for an RGB LED connected to 5V digital pins, or"," * an RGB Strip connected to MOSFETs controlled by digital pins."," *"," * Adds the M150 command to set the LED (or LED strip) color."," * If pins are PWM capable (e.g., 4, 5, 6, 11) then a range of"," * luminance values can be set from 0 to 255."," * For NeoPixel LED an overall brightness parameter is also available."," *"," *  === CAUTION ==="," *  LED Strips require a MOSFET Chip between PWM lines and LEDs,"," *  as the Arduino cannot handle the current the LEDs will require."," *  Failure to follow this precaution can destroy your Arduino!"," *"," *  NOTE: A separate 5V power supply is required! The NeoPixel LED needs"," *  more current than the Arduino 5V linear regulator can produce."," *"," *  Requires PWM frequency between 50 \u003c\u003e 100Hz (Check HAL or variant)"," *  Use FAST_PWM_FAN, if possible, to reduce fan noise."," */","","// LED Type. Enable only one of the following two options:","//#define RGB_LED","//#define RGBW_LED","","#if EITHER(RGB_LED, RGBW_LED)","  //#define RGB_LED_R_PIN 34","  //#define RGB_LED_G_PIN 43","  //#define RGB_LED_B_PIN 35","  //#define RGB_LED_W_PIN -1","  //#define RGB_STARTUP_TEST              // For PWM pins, fade between all colors","  #if ENABLED(RGB_STARTUP_TEST)","    #define RGB_STARTUP_TEST_INNER_MS 10  // (ms) Reduce or increase fading speed","  #endif","#endif","","// Support for Adafruit NeoPixel LED driver","//#define NEOPIXEL_LED","#if ENABLED(NEOPIXEL_LED)","  #define NEOPIXEL_TYPE          NEO_GRBW // NEO_GRBW, NEO_RGBW, NEO_GRB, NEO_RBG, etc.","                                          // See https://github.com/adafruit/Adafruit_NeoPixel/blob/master/Adafruit_NeoPixel.h","  //#define NEOPIXEL_PIN                4 // LED driving pin","  //#define NEOPIXEL2_TYPE  NEOPIXEL_TYPE","  //#define NEOPIXEL2_PIN               5","  #define NEOPIXEL_PIXELS              30 // Number of LEDs in the strip. (Longest strip when NEOPIXEL2_SEPARATE is disabled.)","  #define NEOPIXEL_IS_SEQUENTIAL          // Sequential display for temperature change - LED by LED. Disable to change all LEDs at once.","  #define NEOPIXEL_BRIGHTNESS         127 // Initial brightness (0-255)","  //#define NEOPIXEL_STARTUP_TEST         // Cycle through colors at startup","","  // Support for second Adafruit NeoPixel LED driver controlled with M150 S1 ...","  //#define NEOPIXEL2_SEPARATE","  #if ENABLED(NEOPIXEL2_SEPARATE)","    #define NEOPIXEL2_PIXELS           15 // Number of LEDs in the second strip","    #define NEOPIXEL2_BRIGHTNESS      127 // Initial brightness (0-255)","    #define NEOPIXEL2_STARTUP_TEST        // Cycle through colors at startup","    #define NEOPIXEL_M150_DEFAULT      -1 // Default strip for M150 without 'S'. Use -1 to set all by default.","  #else","    //#define NEOPIXEL2_INSERIES          // Default behavior is NeoPixel 2 in parallel","  #endif","","  // Use some of the NeoPixel LEDs for static (background) lighting","  //#define NEOPIXEL_BKGD_INDEX_FIRST   0 // Index of the first background LED","  //#define NEOPIXEL_BKGD_INDEX_LAST    5 // Index of the last background LED","  //#define NEOPIXEL_BKGD_COLOR { 255, 255, 255, 0 }  // R, G, B, W","  //#define NEOPIXEL_BKGD_ALWAYS_ON       // Keep the backlight on when other NeoPixels are off","#endif","","/**"," * Printer Event LEDs"," *"," * During printing, the LEDs will reflect the printer status:"," *"," *  - Gradually change from blue to violet as the heated bed gets to target temp"," *  - Gradually change from violet to red as the hotend gets to temperature"," *  - Change to white to illuminate work surface"," *  - Change to green once print has finished"," *  - Turn off after the print has finished and the user has pushed a button"," */","#if ANY(BLINKM, RGB_LED, RGBW_LED, PCA9632, PCA9533, NEOPIXEL_LED)","  #define PRINTER_EVENT_LEDS","#endif","","// @section servos","","/**"," * Number of servos"," *"," * For some servo-related options NUM_SERVOS will be set automatically."," * Set this manually if there are extra servos needing manual control."," * Set to 0 to turn off servo support."," */","//#define NUM_SERVOS 3 // Note: Servo index starts with 0 for M280-M282 commands","","// (ms) Delay before the next move will start, to give the servo time to reach its target angle.","// 300ms is a good value but you can try less delay.","// If the servo can't reach the requested position, increase it.","#define SERVO_DELAY { 300 }","","// Only power servos during movement, otherwise leave off to prevent jitter","//#define DEACTIVATE_SERVOS_AFTER_MOVE","","// Edit servo angles with M281 and save to EEPROM with M500","//#define EDITABLE_SERVO_ANGLES","","// Disable servo with M282 to reduce power consumption, noise, and heat when not in use","//#define SERVO_DETACH_GCODE"],"stylingDirectives":[[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":29,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":56,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":71,"cssClass":"pl-c"}],[{"start":0,"end":71,"cssClass":"pl-c"}],[{"start":0,"end":68,"cssClass":"pl-c"}],[{"start":0,"end":38,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":66,"cssClass":"pl-c"}],[{"start":0,"end":65,"cssClass":"pl-c"}],[{"start":0,"end":64,"cssClass":"pl-c"}],[{"start":0,"end":47,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":68,"cssClass":"pl-c"}],[{"start":0,"end":73,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"}],[],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":27,"cssClass":"pl-c1"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":18,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":26,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":24,"cssClass":"pl-c"}],[{"start":0,"end":31,"cssClass":"pl-c"}],[{"start":0,"end":21,"cssClass":"pl-c"}],[{"start":0,"end":26,"cssClass":"pl-c"}],[{"start":0,"end":19,"cssClass":"pl-c"}],[{"start":0,"end":19,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":56,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":31,"cssClass":"pl-c1"}],[],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":77,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":81,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":85,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":71,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":59,"cssClass":"pl-c"}],[{"start":0,"end":84,"cssClass":"pl-c"}],[{"start":0,"end":95,"cssClass":"pl-c"}],[{"start":0,"end":52,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":62,"cssClass":"pl-c"}],[{"start":0,"end":65,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[],[{"start":0,"end":16,"cssClass":"pl-c"}],[],[{"start":0,"end":69,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":30,"cssClass":"pl-c1"}],[{"start":0,"end":83,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":67,"cssClass":"pl-c"}],[{"start":0,"end":70,"cssClass":"pl-c"}],[{"start":0,"end":63,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":69,"cssClass":"pl-c"}],[{"start":0,"end":74,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[],[{"start":0,"end":69,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":23,"cssClass":"pl-c1"}],[],[{"start":0,"end":54,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":30,"cssClass":"pl-c1"}],[],[{"start":0,"end":66,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":34,"cssClass":"pl-c1"}],[],[{"start":0,"end":19,"cssClass":"pl-c"}],[],[{"start":0,"end":56,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":19,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":21,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":78,"cssClass":"pl-c"}],[{"start":0,"end":91,"cssClass":"pl-c"}],[{"start":0,"end":64,"cssClass":"pl-c"}],[{"start":0,"end":87,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":32,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":19,"cssClass":"pl-c1"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":24,"cssClass":"pl-c"}],[{"start":0,"end":64,"cssClass":"pl-c"}],[{"start":0,"end":64,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":65,"cssClass":"pl-c"}],[{"start":0,"end":58,"cssClass":"pl-c"}],[{"start":0,"end":58,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":70,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":16,"cssClass":"pl-c1"}],[],[{"start":0,"end":72,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":86,"cssClass":"pl-c"}],[{"start":0,"end":66,"cssClass":"pl-c"}],[{"start":0,"end":36,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":21,"cssClass":"pl-c1"}],[{"start":0,"end":128,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":82,"cssClass":"pl-c"}],[{"start":0,"end":69,"cssClass":"pl-c"}],[{"start":0,"end":32,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":25,"cssClass":"pl-c"}],[{"start":0,"end":128,"cssClass":"pl-c"}],[],[{"start":0,"end":59,"cssClass":"pl-c"}],[{"start":0,"end":19,"cssClass":"pl-c"}],[],[{"start":0,"end":58,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":27,"cssClass":"pl-c1"}],[],[{"start":0,"end":80,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":61,"cssClass":"pl-c"}],[],[{"start":0,"end":27,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":18,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":92,"cssClass":"pl-c"}],[{"start":0,"end":98,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":105,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":67,"cssClass":"pl-c"}],[{"start":0,"end":69,"cssClass":"pl-c"}],[{"start":0,"end":69,"cssClass":"pl-c"}],[{"start":0,"end":69,"cssClass":"pl-c"}],[{"start":0,"end":68,"cssClass":"pl-c"}],[{"start":0,"end":336,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":21,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":21,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":21,"cssClass":"pl-c1"}],[{"start":0,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":22,"cssClass":"pl-c1"}],[{"start":0,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":27,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":58,"cssClass":"pl-c"}],[{"start":0,"end":56,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":85,"cssClass":"pl-c"}],[{"start":0,"end":51,"cssClass":"pl-c"}],[{"start":0,"end":40,"cssClass":"pl-c"}],[{"start":0,"end":40,"cssClass":"pl-c"}],[{"start":0,"end":40,"cssClass":"pl-c"}],[{"start":0,"end":46,"cssClass":"pl-c"}],[{"start":0,"end":46,"cssClass":"pl-c"}],[{"start":0,"end":46,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":6,"cssClass":"pl-k"},{"start":7,"end":20,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":20,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":23,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[{"start":0,"end":6,"cssClass":"pl-k"},{"start":7,"end":20,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":20,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":23,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[{"start":0,"end":6,"cssClass":"pl-k"},{"start":7,"end":20,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":20,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":23,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[{"start":0,"end":6,"cssClass":"pl-k"},{"start":7,"end":20,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":20,"cssClass":"pl-c1"}],[{"start":2,"end":25,"cssClass":"pl-c"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[{"start":0,"end":6,"cssClass":"pl-k"},{"start":7,"end":20,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":20,"cssClass":"pl-c1"}],[{"start":2,"end":25,"cssClass":"pl-c"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[{"start":0,"end":6,"cssClass":"pl-k"},{"start":7,"end":20,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":20,"cssClass":"pl-c1"}],[{"start":2,"end":25,"cssClass":"pl-c"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":20,"cssClass":"pl-c"}],[],[{"start":0,"end":39,"cssClass":"pl-c"}],[{"start":0,"end":31,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":17,"cssClass":"pl-c1"}],[],[{"start":0,"end":112,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":36,"cssClass":"pl-c1"}],[],[{"start":0,"end":67,"cssClass":"pl-c"}],[{"start":0,"end":22,"cssClass":"pl-c"}],[],[{"start":0,"end":61,"cssClass":"pl-c"}],[{"start":0,"end":61,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":24,"cssClass":"pl-c1"}],[{"start":2,"end":37,"cssClass":"pl-c"}],[{"start":2,"end":36,"cssClass":"pl-c"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":51,"cssClass":"pl-c"}],[{"start":0,"end":28,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":30,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":37,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":41,"cssClass":"pl-c1"}],[{"start":2,"end":5,"cssClass":"pl-k"},{"start":6,"end":15,"cssClass":"pl-c1"},{"start":16,"end":17,"cssClass":"pl-c1"},{"start":18,"end":19,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":43,"cssClass":"pl-c1"}],[{"start":2,"end":8,"cssClass":"pl-k"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":83,"cssClass":"pl-c"}],[{"start":0,"end":26,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":28,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":35,"cssClass":"pl-c1"}],[{"start":2,"end":102,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":39,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":38,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":72,"cssClass":"pl-c"}],[{"start":0,"end":68,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":26,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":72,"cssClass":"pl-c"}],[{"start":0,"end":67,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":56,"cssClass":"pl-c"}],[{"start":0,"end":43,"cssClass":"pl-c"}],[{"start":0,"end":43,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":35,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":10,"cssClass":"pl-en"},{"start":11,"end":27,"cssClass":"pl-c1"},{"start":29,"end":54,"cssClass":"pl-c1"}],[],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":36,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":40,"cssClass":"pl-c1"}],[],[{"start":2,"end":5,"cssClass":"pl-k"},{"start":6,"end":13,"cssClass":"pl-en"},{"start":14,"end":30,"cssClass":"pl-c1"}],[],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":45,"cssClass":"pl-c1"},{"start":45,"end":122,"cssClass":"pl-c"}],[],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":44,"cssClass":"pl-c1"}],[{"start":4,"end":113,"cssClass":"pl-c"}],[],[{"start":2,"end":7,"cssClass":"pl-k"},{"start":8,"end":15,"cssClass":"pl-en"},{"start":16,"end":41,"cssClass":"pl-c1"}],[],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":26,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":26,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":31,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":28,"cssClass":"pl-c1"}],[],[{"start":2,"end":8,"cssClass":"pl-k"}],[],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":21,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":56,"cssClass":"pl-c"}],[{"start":0,"end":59,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":28,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":59,"cssClass":"pl-c"}],[{"start":0,"end":49,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":37,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":37,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":40,"cssClass":"pl-c"}],[{"start":0,"end":67,"cssClass":"pl-c"}],[{"start":0,"end":67,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":44,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":7,"cssClass":"pl-en"},{"start":8,"end":26,"cssClass":"pl-c1"},{"start":28,"end":55,"cssClass":"pl-c1"},{"start":57,"end":91,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":34,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":39,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":36,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":34,"cssClass":"pl-c1"}],[{"start":2,"end":5,"cssClass":"pl-k"},{"start":6,"end":13,"cssClass":"pl-en"},{"start":14,"end":32,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":39,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":43,"cssClass":"pl-c1"}],[{"start":2,"end":7,"cssClass":"pl-k"},{"start":8,"end":15,"cssClass":"pl-en"},{"start":16,"end":43,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":40,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":41,"cssClass":"pl-c1"}],[{"start":4,"end":104,"cssClass":"pl-c"}],[{"start":4,"end":7,"cssClass":"pl-k"},{"start":8,"end":15,"cssClass":"pl-en"},{"start":16,"end":35,"cssClass":"pl-c1"}],[{"start":6,"end":13,"cssClass":"pl-k"},{"start":14,"end":41,"cssClass":"pl-c1"}],[{"start":6,"end":13,"cssClass":"pl-k"},{"start":14,"end":43,"cssClass":"pl-c1"}],[{"start":6,"end":13,"cssClass":"pl-k"},{"start":14,"end":47,"cssClass":"pl-c1"}],[{"start":6,"end":13,"cssClass":"pl-k"},{"start":14,"end":49,"cssClass":"pl-c1"}],[{"start":4,"end":10,"cssClass":"pl-k"}],[{"start":2,"end":7,"cssClass":"pl-k"},{"start":8,"end":15,"cssClass":"pl-en"},{"start":16,"end":50,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":36,"cssClass":"pl-c1"}],[{"start":2,"end":8,"cssClass":"pl-k"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":20,"cssClass":"pl-c"}],[{"start":0,"end":78,"cssClass":"pl-c"}],[{"start":0,"end":88,"cssClass":"pl-c"}],[{"start":0,"end":89,"cssClass":"pl-c"}],[{"start":0,"end":63,"cssClass":"pl-c"}],[{"start":0,"end":106,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":25,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":27,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":25,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":30,"cssClass":"pl-c1"}],[{"start":2,"end":86,"cssClass":"pl-c"}],[{"start":2,"end":83,"cssClass":"pl-c"}],[{"start":2,"end":96,"cssClass":"pl-c"}],[{"start":2,"end":5,"cssClass":"pl-k"},{"start":6,"end":13,"cssClass":"pl-en"},{"start":14,"end":26,"cssClass":"pl-c1"}],[{"start":4,"end":90,"cssClass":"pl-c"}],[{"start":2,"end":8,"cssClass":"pl-k"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":112,"cssClass":"pl-c"}],[{"start":0,"end":78,"cssClass":"pl-c"}],[{"start":0,"end":73,"cssClass":"pl-c"}],[{"start":0,"end":82,"cssClass":"pl-c"}],[{"start":0,"end":82,"cssClass":"pl-c"}],[{"start":0,"end":82,"cssClass":"pl-c"}],[],[{"start":0,"end":26,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":22,"cssClass":"pl-c"}],[{"start":0,"end":41,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":66,"cssClass":"pl-c"}],[{"start":0,"end":38,"cssClass":"pl-c"}],[{"start":0,"end":98,"cssClass":"pl-c"}],[{"start":0,"end":130,"cssClass":"pl-c"}],[{"start":0,"end":131,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":74,"cssClass":"pl-c"}],[{"start":0,"end":49,"cssClass":"pl-c"}],[{"start":0,"end":94,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"}],[],[{"start":0,"end":23,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":56,"cssClass":"pl-c"}],[{"start":0,"end":65,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":21,"cssClass":"pl-c"}],[{"start":0,"end":33,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":23,"cssClass":"pl-c1"}],[{"start":2,"end":63,"cssClass":"pl-c"}],[{"start":2,"end":68,"cssClass":"pl-c"}],[{"start":2,"end":61,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":26,"cssClass":"pl-c1"}],[],[{"start":2,"end":91,"cssClass":"pl-c"}],[{"start":2,"end":92,"cssClass":"pl-c"}],[{"start":2,"end":106,"cssClass":"pl-c"}],[],[{"start":2,"end":93,"cssClass":"pl-c"}],[{"start":2,"end":90,"cssClass":"pl-c"}],[],[{"start":2,"end":95,"cssClass":"pl-c"}],[{"start":2,"end":98,"cssClass":"pl-c"}],[],[{"start":2,"end":80,"cssClass":"pl-c"}],[{"start":2,"end":5,"cssClass":"pl-k"},{"start":6,"end":13,"cssClass":"pl-en"},{"start":14,"end":32,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":27,"cssClass":"pl-c1"},{"start":27,"end":69,"cssClass":"pl-c"}],[],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":36,"cssClass":"pl-c1"}],[],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":33,"cssClass":"pl-c1"}],[],[{"start":4,"end":124,"cssClass":"pl-c"}],[{"start":2,"end":8,"cssClass":"pl-k"}],[{"start":2,"end":5,"cssClass":"pl-k"},{"start":6,"end":12,"cssClass":"pl-en"},{"start":13,"end":31,"cssClass":"pl-c1"},{"start":33,"end":60,"cssClass":"pl-c1"}],[{"start":4,"end":97,"cssClass":"pl-c"}],[{"start":4,"end":96,"cssClass":"pl-c"}],[{"start":4,"end":95,"cssClass":"pl-c"}],[{"start":2,"end":8,"cssClass":"pl-k"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":104,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":33,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":65,"cssClass":"pl-c"}],[{"start":0,"end":11,"cssClass":"pl-c"}],[{"start":0,"end":78,"cssClass":"pl-c"}],[{"start":0,"end":85,"cssClass":"pl-c"}],[{"start":0,"end":78,"cssClass":"pl-c"}],[{"start":0,"end":78,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":117,"cssClass":"pl-c"}],[{"start":0,"end":114,"cssClass":"pl-c"}],[{"start":0,"end":112,"cssClass":"pl-c"}],[{"start":0,"end":108,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":29,"cssClass":"pl-c"}],[{"start":0,"end":11,"cssClass":"pl-c"}],[{"start":0,"end":35,"cssClass":"pl-c"}],[{"start":0,"end":35,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":46,"cssClass":"pl-c"}],[{"start":0,"end":11,"cssClass":"pl-c"}],[{"start":0,"end":59,"cssClass":"pl-c"}],[{"start":0,"end":54,"cssClass":"pl-c"}],[{"start":0,"end":53,"cssClass":"pl-c"}],[{"start":0,"end":37,"cssClass":"pl-c"}],[{"start":0,"end":31,"cssClass":"pl-c"}],[{"start":0,"end":41,"cssClass":"pl-c"}],[{"start":0,"end":106,"cssClass":"pl-c"}],[{"start":0,"end":112,"cssClass":"pl-c"}],[{"start":0,"end":39,"cssClass":"pl-c"}],[{"start":0,"end":68,"cssClass":"pl-c"}],[{"start":0,"end":56,"cssClass":"pl-c"}],[{"start":0,"end":75,"cssClass":"pl-c"}],[{"start":0,"end":71,"cssClass":"pl-c"}],[{"start":0,"end":34,"cssClass":"pl-c"}],[{"start":0,"end":90,"cssClass":"pl-c"}],[{"start":0,"end":42,"cssClass":"pl-c"}],[{"start":0,"end":42,"cssClass":"pl-c"}],[{"start":0,"end":50,"cssClass":"pl-c"}],[{"start":0,"end":48,"cssClass":"pl-c"}],[{"start":0,"end":32,"cssClass":"pl-c"}],[{"start":0,"end":83,"cssClass":"pl-c"}],[{"start":0,"end":88,"cssClass":"pl-c"}],[{"start":0,"end":93,"cssClass":"pl-c"}],[{"start":0,"end":51,"cssClass":"pl-c"}],[{"start":0,"end":68,"cssClass":"pl-c"}],[{"start":0,"end":87,"cssClass":"pl-c"}],[{"start":0,"end":84,"cssClass":"pl-c"}],[{"start":0,"end":117,"cssClass":"pl-c"}],[{"start":0,"end":70,"cssClass":"pl-c"}],[{"start":0,"end":63,"cssClass":"pl-c"}],[{"start":0,"end":84,"cssClass":"pl-c"}],[{"start":0,"end":51,"cssClass":"pl-c"}],[{"start":0,"end":49,"cssClass":"pl-c"}],[{"start":0,"end":32,"cssClass":"pl-c"}],[{"start":0,"end":74,"cssClass":"pl-c"}],[{"start":0,"end":86,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":99,"cssClass":"pl-c"}],[{"start":0,"end":86,"cssClass":"pl-c"}],[{"start":0,"end":36,"cssClass":"pl-c"}],[{"start":0,"end":50,"cssClass":"pl-c"}],[{"start":0,"end":76,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":47,"cssClass":"pl-c"}],[{"start":0,"end":11,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":11,"cssClass":"pl-c"}],[{"start":0,"end":44,"cssClass":"pl-c"}],[{"start":0,"end":35,"cssClass":"pl-c"}],[{"start":0,"end":44,"cssClass":"pl-c"}],[{"start":0,"end":35,"cssClass":"pl-c"}],[{"start":0,"end":41,"cssClass":"pl-c"}],[{"start":0,"end":134,"cssClass":"pl-c"}],[{"start":0,"end":157,"cssClass":"pl-c"}],[{"start":0,"end":147,"cssClass":"pl-c"}],[{"start":0,"end":130,"cssClass":"pl-c"}],[{"start":0,"end":73,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":38,"cssClass":"pl-c"}],[{"start":0,"end":10,"cssClass":"pl-c"}],[{"start":0,"end":19,"cssClass":"pl-c"}],[{"start":0,"end":61,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":89,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":80,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":21,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":21,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":21,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":21,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":21,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":21,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":21,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":21,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":23,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":25,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":27,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":26,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":25,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":29,"cssClass":"pl-c1"}],[],[{"start":0,"end":75,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":34,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":34,"cssClass":"pl-c1"}],[],[{"start":0,"end":72,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":25,"cssClass":"pl-en"},{"start":26,"end":27,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":32,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":37,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":25,"cssClass":"pl-en"},{"start":26,"end":27,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":32,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":37,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":25,"cssClass":"pl-en"},{"start":26,"end":27,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":32,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":37,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":21,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":29,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":21,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":25,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":19,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":33,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":25,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":29,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":23,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":37,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":29,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":33,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":55,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":112,"cssClass":"pl-c"}],[{"start":0,"end":114,"cssClass":"pl-c"}],[{"start":0,"end":114,"cssClass":"pl-c"}],[{"start":0,"end":59,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":102,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":25,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":38,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":38,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":40,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":57,"cssClass":"pl-c"}],[{"start":0,"end":58,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":24,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":24,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":24,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":24,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":24,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":24,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":24,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":24,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":19,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":23,"cssClass":"pl-c1"}],[],[{"start":0,"end":58,"cssClass":"pl-c"}],[{"start":0,"end":82,"cssClass":"pl-c"}],[{"start":0,"end":57,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":24,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":24,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":24,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":24,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":24,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":24,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":24,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":24,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":19,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":23,"cssClass":"pl-c1"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":20,"cssClass":"pl-c"}],[{"start":0,"end":96,"cssClass":"pl-c"}],[{"start":0,"end":97,"cssClass":"pl-c"}],[{"start":0,"end":94,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":24,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":21,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":24,"cssClass":"pl-c1"}],[],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":77,"cssClass":"pl-c"}],[],[{"start":0,"end":23,"cssClass":"pl-c"}],[],[{"start":0,"end":66,"cssClass":"pl-c"}],[{"start":0,"end":59,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":15,"cssClass":"pl-c1"},{"start":15,"end":90,"cssClass":"pl-c"}],[{"start":0,"end":46,"cssClass":"pl-c"}],[],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":16,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":15,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":14,"cssClass":"pl-c1"}],[],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":19,"cssClass":"pl-c1"}],[{"start":2,"end":112,"cssClass":"pl-c"}],[{"start":2,"end":116,"cssClass":"pl-c"}],[{"start":34,"end":86,"cssClass":"pl-c"}],[],[{"start":2,"end":25,"cssClass":"pl-c"}],[{"start":2,"end":5,"cssClass":"pl-k"},{"start":6,"end":13,"cssClass":"pl-en"},{"start":14,"end":35,"cssClass":"pl-c1"}],[{"start":4,"end":72,"cssClass":"pl-c"}],[{"start":4,"end":80,"cssClass":"pl-c"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":27,"cssClass":"pl-s1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":27,"cssClass":"pl-s1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":27,"cssClass":"pl-s1"}],[{"start":2,"end":7,"cssClass":"pl-k"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":22,"cssClass":"pl-s1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":22,"cssClass":"pl-s1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":22,"cssClass":"pl-s1"}],[{"start":2,"end":8,"cssClass":"pl-k"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":38,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":87,"cssClass":"pl-c"}],[{"start":0,"end":87,"cssClass":"pl-c"}],[{"start":0,"end":83,"cssClass":"pl-c"}],[{"start":0,"end":19,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":19,"cssClass":"pl-c1"}],[{"start":2,"end":128,"cssClass":"pl-c"}],[{"start":2,"end":131,"cssClass":"pl-c"}],[],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":17,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":26,"cssClass":"pl-c1"}],[],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":25,"cssClass":"pl-c1"},{"start":25,"end":77,"cssClass":"pl-c"},{"start":77,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":0,"cssClass":"pl-c"}],[{"start":0,"end":42,"cssClass":"pl-c"}],[],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":35,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":32,"cssClass":"pl-c1"}],[{"start":2,"end":5,"cssClass":"pl-k"},{"start":6,"end":13,"cssClass":"pl-en"},{"start":14,"end":29,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":41,"cssClass":"pl-c1"}],[{"start":2,"end":8,"cssClass":"pl-k"}],[],[{"start":2,"end":92,"cssClass":"pl-c"}],[{"start":2,"end":5,"cssClass":"pl-k"},{"start":6,"end":13,"cssClass":"pl-en"},{"start":14,"end":29,"cssClass":"pl-c1"}],[{"start":4,"end":35,"cssClass":"pl-c"}],[{"start":4,"end":37,"cssClass":"pl-c"}],[{"start":2,"end":8,"cssClass":"pl-k"}],[],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":38,"cssClass":"pl-c1"}],[{"start":2,"end":119,"cssClass":"pl-c"}],[],[{"start":2,"end":21,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":30,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":32,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":25,"cssClass":"pl-c1"}],[],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":24,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":26,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":77,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":18,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":53,"cssClass":"pl-c"}],[{"start":0,"end":101,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":58,"cssClass":"pl-c"}],[{"start":0,"end":92,"cssClass":"pl-c"}],[{"start":0,"end":91,"cssClass":"pl-c"}],[{"start":0,"end":93,"cssClass":"pl-c"}],[{"start":0,"end":94,"cssClass":"pl-c"}],[{"start":0,"end":95,"cssClass":"pl-c"}],[{"start":0,"end":20,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":20,"cssClass":"pl-c"}],[],[{"start":0,"end":29,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":16,"cssClass":"pl-c"}],[{"start":0,"end":87,"cssClass":"pl-c"}],[{"start":0,"end":93,"cssClass":"pl-c"}],[{"start":0,"end":99,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":21,"cssClass":"pl-c1"}],[],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":22,"cssClass":"pl-c1"}],[{"start":2,"end":27,"cssClass":"pl-c"}],[{"start":2,"end":73,"cssClass":"pl-c"}],[],[{"start":2,"end":25,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":23,"cssClass":"pl-s1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":23,"cssClass":"pl-s1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":23,"cssClass":"pl-s1"}],[],[{"start":2,"end":93,"cssClass":"pl-c"}],[{"start":0,"end":6,"cssClass":"pl-k"},{"start":7,"end":20,"cssClass":"pl-c"}],[],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":77,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":22,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":53,"cssClass":"pl-c"}],[{"start":0,"end":93,"cssClass":"pl-c"}],[{"start":0,"end":14,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":58,"cssClass":"pl-c"}],[{"start":0,"end":92,"cssClass":"pl-c"}],[{"start":0,"end":91,"cssClass":"pl-c"}],[{"start":0,"end":93,"cssClass":"pl-c"}],[{"start":0,"end":94,"cssClass":"pl-c"}],[{"start":0,"end":99,"cssClass":"pl-c"}],[{"start":0,"end":24,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":24,"cssClass":"pl-c"}],[{"start":0,"end":33,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":20,"cssClass":"pl-c"}],[{"start":0,"end":91,"cssClass":"pl-c"}],[{"start":0,"end":104,"cssClass":"pl-c"}],[{"start":0,"end":106,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":25,"cssClass":"pl-c1"}],[],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":26,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":27,"cssClass":"pl-c1"}],[{"start":2,"end":81,"cssClass":"pl-c"}],[],[{"start":2,"end":109,"cssClass":"pl-c"}],[{"start":2,"end":65,"cssClass":"pl-c"}],[{"start":2,"end":4,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":27,"cssClass":"pl-s1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":27,"cssClass":"pl-s1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":27,"cssClass":"pl-s1"}],[{"start":2,"end":30,"cssClass":"pl-c"}],[],[{"start":2,"end":97,"cssClass":"pl-c"}],[{"start":0,"end":6,"cssClass":"pl-k"},{"start":7,"end":24,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":7,"cssClass":"pl-en"},{"start":8,"end":15,"cssClass":"pl-c1"},{"start":17,"end":27,"cssClass":"pl-c1"},{"start":29,"end":43,"cssClass":"pl-c1"}],[{"start":2,"end":109,"cssClass":"pl-c"}],[{"start":2,"end":165,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":30,"cssClass":"pl-c1"}],[{"start":34,"end":139,"cssClass":"pl-c"}],[],[{"start":2,"end":107,"cssClass":"pl-c"}],[{"start":2,"end":111,"cssClass":"pl-c"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":18,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":65,"cssClass":"pl-c"}],[{"start":0,"end":64,"cssClass":"pl-c"}],[{"start":0,"end":40,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":65,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":30,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":23,"cssClass":"pl-c1"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":60,"cssClass":"pl-c"}],[{"start":0,"end":74,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":31,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":25,"cssClass":"pl-c1"}],[],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":77,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":80,"cssClass":"pl-c"}],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":60,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":70,"cssClass":"pl-c"}],[{"start":0,"end":69,"cssClass":"pl-c"}],[{"start":0,"end":17,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":62,"cssClass":"pl-c"}],[{"start":0,"end":46,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":34,"cssClass":"pl-c1"},{"start":34,"end":81,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":30,"cssClass":"pl-c1"},{"start":30,"end":82,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":34,"cssClass":"pl-c1"},{"start":34,"end":86,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":33,"cssClass":"pl-c1"},{"start":33,"end":85,"cssClass":"pl-c"}],[],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":77,"cssClass":"pl-c"}],[],[{"start":0,"end":19,"cssClass":"pl-c"}],[],[{"start":0,"end":76,"cssClass":"pl-c"}],[{"start":0,"end":40,"cssClass":"pl-c"}],[{"start":0,"end":16,"cssClass":"pl-c"}],[{"start":0,"end":16,"cssClass":"pl-c"}],[{"start":0,"end":16,"cssClass":"pl-c"}],[{"start":0,"end":16,"cssClass":"pl-c"}],[{"start":0,"end":16,"cssClass":"pl-c"}],[{"start":0,"end":16,"cssClass":"pl-c"}],[{"start":0,"end":88,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[],[{"start":0,"end":58,"cssClass":"pl-c"}],[{"start":0,"end":21,"cssClass":"pl-c"}],[],[{"start":0,"end":35,"cssClass":"pl-c"}],[{"start":0,"end":20,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":22,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":33,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":37,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":17,"cssClass":"pl-c"}],[],[{"start":0,"end":50,"cssClass":"pl-c"}],[{"start":0,"end":15,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":17,"cssClass":"pl-c1"}],[],[{"start":2,"end":71,"cssClass":"pl-c"}],[{"start":2,"end":70,"cssClass":"pl-c"}],[{"start":2,"end":60,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":37,"cssClass":"pl-c1"}],[],[{"start":2,"end":74,"cssClass":"pl-c"}],[{"start":2,"end":35,"cssClass":"pl-c"}],[],[{"start":2,"end":27,"cssClass":"pl-c"}],[{"start":2,"end":54,"cssClass":"pl-c"}],[{"start":2,"end":65,"cssClass":"pl-c"}],[{"start":2,"end":34,"cssClass":"pl-c"}],[],[{"start":2,"end":73,"cssClass":"pl-c"}],[{"start":2,"end":34,"cssClass":"pl-c"}],[],[{"start":2,"end":5,"cssClass":"pl-k"},{"start":6,"end":13,"cssClass":"pl-en"},{"start":14,"end":36,"cssClass":"pl-c1"}],[{"start":4,"end":52,"cssClass":"pl-c"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":44,"cssClass":"pl-c1"}],[{"start":2,"end":8,"cssClass":"pl-k"}],[],[{"start":2,"end":5,"cssClass":"pl-k"},{"start":6,"end":12,"cssClass":"pl-en"},{"start":13,"end":35,"cssClass":"pl-c1"},{"start":37,"end":59,"cssClass":"pl-c1"}],[{"start":4,"end":39,"cssClass":"pl-c"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":31,"cssClass":"pl-c1"}],[{"start":2,"end":8,"cssClass":"pl-k"}],[],[{"start":2,"end":94,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":32,"cssClass":"pl-c1"}],[],[{"start":2,"end":27,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":26,"cssClass":"pl-c1"}],[],[{"start":2,"end":70,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":28,"cssClass":"pl-c1"}],[],[{"start":2,"end":52,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":22,"cssClass":"pl-c1"}],[],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":27,"cssClass":"pl-c1"}],[],[{"start":2,"end":81,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":22,"cssClass":"pl-c1"}],[],[{"start":2,"end":43,"cssClass":"pl-c"}],[{"start":2,"end":80,"cssClass":"pl-c"}],[{"start":2,"end":69,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":32,"cssClass":"pl-c1"}],[],[{"start":2,"end":51,"cssClass":"pl-c"}],[{"start":2,"end":53,"cssClass":"pl-c"}],[{"start":2,"end":59,"cssClass":"pl-c"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":17,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":70,"cssClass":"pl-c"}],[{"start":0,"end":61,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":72,"cssClass":"pl-c"}],[{"start":0,"end":46,"cssClass":"pl-c"}],[{"start":0,"end":46,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":22,"cssClass":"pl-c"}],[{"start":0,"end":18,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":10,"cssClass":"pl-en"},{"start":11,"end":23,"cssClass":"pl-c1"},{"start":25,"end":33,"cssClass":"pl-c1"}],[{"start":2,"end":50,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":37,"cssClass":"pl-c1"}],[],[{"start":2,"end":75,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":25,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":25,"cssClass":"pl-c1"}],[],[{"start":2,"end":73,"cssClass":"pl-c"}],[{"start":2,"end":97,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":24,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":24,"cssClass":"pl-c1"}],[],[{"start":2,"end":5,"cssClass":"pl-k"},{"start":6,"end":13,"cssClass":"pl-en"},{"start":14,"end":26,"cssClass":"pl-c1"}],[],[{"start":4,"end":36,"cssClass":"pl-c"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":34,"cssClass":"pl-c1"},{"start":34,"end":92,"cssClass":"pl-c"},{"start":92,"end":92,"cssClass":"pl-c"}],[{"start":0,"end":0,"cssClass":"pl-c"}],[{"start":0,"end":58,"cssClass":"pl-c"}],[],[],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":31,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":29,"cssClass":"pl-c1"}],[],[{"start":2,"end":7,"cssClass":"pl-k"},{"start":8,"end":15,"cssClass":"pl-en"},{"start":16,"end":24,"cssClass":"pl-c1"}],[],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":31,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":31,"cssClass":"pl-c1"}],[],[{"start":2,"end":8,"cssClass":"pl-k"}],[],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":17,"cssClass":"pl-c"}],[],[{"start":0,"end":50,"cssClass":"pl-c"}],[{"start":0,"end":20,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":22,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":32,"cssClass":"pl-c1"}],[],[],[{"start":2,"end":75,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":25,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":25,"cssClass":"pl-c1"}],[],[{"start":2,"end":73,"cssClass":"pl-c"}],[{"start":2,"end":97,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":24,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":24,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":24,"cssClass":"pl-c1"}],[],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":32,"cssClass":"pl-c1"},{"start":32,"end":90,"cssClass":"pl-c"},{"start":90,"end":90,"cssClass":"pl-c"}],[{"start":0,"end":0,"cssClass":"pl-c"}],[{"start":0,"end":56,"cssClass":"pl-c"}],[],[],[{"start":2,"end":106,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":29,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":27,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":19,"cssClass":"pl-c"}],[],[{"start":0,"end":82,"cssClass":"pl-c"}],[{"start":0,"end":31,"cssClass":"pl-c"}],[],[{"start":0,"end":95,"cssClass":"pl-c"}],[{"start":0,"end":99,"cssClass":"pl-c"}],[{"start":0,"end":25,"cssClass":"pl-c"}],[],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":77,"cssClass":"pl-c"}],[],[{"start":0,"end":20,"cssClass":"pl-c"}],[],[{"start":0,"end":86,"cssClass":"pl-c"}],[{"start":0,"end":85,"cssClass":"pl-c"}],[{"start":0,"end":85,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":21,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":21,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":21,"cssClass":"pl-c1"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[],[{"start":0,"end":61,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":22,"cssClass":"pl-c1"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":12,"cssClass":"pl-en"},{"start":13,"end":27,"cssClass":"pl-c1"}],[{"start":2,"end":55,"cssClass":"pl-c"}],[{"start":2,"end":30,"cssClass":"pl-c"}],[{"start":2,"end":30,"cssClass":"pl-c"}],[{"start":2,"end":30,"cssClass":"pl-c"}],[{"start":2,"end":30,"cssClass":"pl-c"}],[{"start":2,"end":30,"cssClass":"pl-c"}],[{"start":2,"end":30,"cssClass":"pl-c"}],[{"start":2,"end":30,"cssClass":"pl-c"}],[{"start":2,"end":30,"cssClass":"pl-c"}],[{"start":2,"end":30,"cssClass":"pl-c"}],[{"start":2,"end":30,"cssClass":"pl-c"}],[{"start":2,"end":30,"cssClass":"pl-c"}],[{"start":2,"end":30,"cssClass":"pl-c"}],[{"start":2,"end":30,"cssClass":"pl-c"}],[{"start":2,"end":30,"cssClass":"pl-c"}],[{"start":2,"end":30,"cssClass":"pl-c"}],[{"start":2,"end":30,"cssClass":"pl-c"}],[{"start":2,"end":30,"cssClass":"pl-c"}],[{"start":2,"end":30,"cssClass":"pl-c"}],[{"start":2,"end":36,"cssClass":"pl-c"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":63,"cssClass":"pl-c"}],[{"start":0,"end":26,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":12,"cssClass":"pl-en"},{"start":13,"end":29,"cssClass":"pl-c1"}],[{"start":2,"end":59,"cssClass":"pl-c"}],[{"start":2,"end":32,"cssClass":"pl-c"}],[{"start":2,"end":32,"cssClass":"pl-c"}],[{"start":2,"end":32,"cssClass":"pl-c"}],[{"start":2,"end":32,"cssClass":"pl-c"}],[{"start":2,"end":32,"cssClass":"pl-c"}],[{"start":2,"end":32,"cssClass":"pl-c"}],[{"start":2,"end":32,"cssClass":"pl-c"}],[{"start":2,"end":32,"cssClass":"pl-c"}],[{"start":2,"end":32,"cssClass":"pl-c"}],[{"start":2,"end":32,"cssClass":"pl-c"}],[{"start":2,"end":32,"cssClass":"pl-c"}],[{"start":2,"end":32,"cssClass":"pl-c"}],[{"start":2,"end":32,"cssClass":"pl-c"}],[{"start":2,"end":32,"cssClass":"pl-c"}],[{"start":2,"end":32,"cssClass":"pl-c"}],[{"start":2,"end":32,"cssClass":"pl-c"}],[{"start":2,"end":32,"cssClass":"pl-c"}],[{"start":2,"end":32,"cssClass":"pl-c"}],[{"start":2,"end":38,"cssClass":"pl-c"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":96,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":31,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":31,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":31,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":31,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":31,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":31,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":31,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":31,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":31,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":31,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":31,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":31,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":31,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":31,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":31,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":31,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":31,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":31,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":37,"cssClass":"pl-c1"}],[],[{"start":0,"end":73,"cssClass":"pl-c"}],[{"start":0,"end":80,"cssClass":"pl-c"}],[{"start":0,"end":36,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":26,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":65,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":75,"cssClass":"pl-c"}],[{"start":0,"end":80,"cssClass":"pl-c"}],[{"start":0,"end":75,"cssClass":"pl-c"}],[{"start":0,"end":74,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":17,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":35,"cssClass":"pl-c"}],[],[{"start":0,"end":64,"cssClass":"pl-c"}],[{"start":0,"end":31,"cssClass":"pl-c"}],[],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":18,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":19,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":38,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":68,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":67,"cssClass":"pl-c"}],[{"start":0,"end":67,"cssClass":"pl-c"}],[{"start":0,"end":65,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":28,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":68,"cssClass":"pl-c"}],[{"start":0,"end":20,"cssClass":"pl-c"}],[{"start":0,"end":88,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":35,"cssClass":"pl-c1"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":54,"cssClass":"pl-c"}],[{"start":0,"end":21,"cssClass":"pl-c"}],[{"start":0,"end":88,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":28,"cssClass":"pl-c1"}],[],[{"start":0,"end":97,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":34,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":34,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":90,"cssClass":"pl-c"}],[{"start":0,"end":46,"cssClass":"pl-c"}],[{"start":0,"end":21,"cssClass":"pl-c"}],[{"start":0,"end":88,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":32,"cssClass":"pl-c1"}],[],[{"start":0,"end":101,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":37,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":31,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":86,"cssClass":"pl-c"}],[{"start":0,"end":21,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":27,"cssClass":"pl-c"}],[{"start":0,"end":35,"cssClass":"pl-c"}],[{"start":0,"end":34,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":28,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":36,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":35,"cssClass":"pl-c1"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":29,"cssClass":"pl-c"}],[{"start":0,"end":35,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":72,"cssClass":"pl-c"}],[{"start":0,"end":72,"cssClass":"pl-c"}],[{"start":0,"end":49,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":22,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":24,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":23,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":23,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":23,"cssClass":"pl-c1"}],[{"start":2,"end":30,"cssClass":"pl-c"}],[{"start":2,"end":30,"cssClass":"pl-c"}],[{"start":2,"end":30,"cssClass":"pl-c"}],[{"start":2,"end":30,"cssClass":"pl-c"}],[{"start":2,"end":30,"cssClass":"pl-c"}],[{"start":2,"end":30,"cssClass":"pl-c"}],[],[{"start":2,"end":89,"cssClass":"pl-c"}],[],[{"start":2,"end":90,"cssClass":"pl-c"}],[{"start":2,"end":5,"cssClass":"pl-k"},{"start":6,"end":13,"cssClass":"pl-en"},{"start":14,"end":34,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":32,"cssClass":"pl-c1"}],[{"start":2,"end":8,"cssClass":"pl-k"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":21,"cssClass":"pl-c1"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":28,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-c"}],[{"start":0,"end":47,"cssClass":"pl-c"}],[{"start":0,"end":85,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":12,"cssClass":"pl-en"},{"start":13,"end":25,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":31,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":34,"cssClass":"pl-c1"},{"start":34,"end":100,"cssClass":"pl-c"},{"start":100,"end":100,"cssClass":"pl-c"}],[{"start":0,"end":104,"cssClass":"pl-c"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":71,"cssClass":"pl-c"}],[{"start":0,"end":73,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":28,"cssClass":"pl-c1"}],[],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":18,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":58,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":61,"cssClass":"pl-c"}],[{"start":0,"end":65,"cssClass":"pl-c"}],[{"start":0,"end":50,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":42,"cssClass":"pl-c1"}],[],[{"start":0,"end":47,"cssClass":"pl-c"}],[{"start":0,"end":32,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":18,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":62,"cssClass":"pl-c"}],[{"start":0,"end":62,"cssClass":"pl-c"}],[{"start":0,"end":63,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":61,"cssClass":"pl-c"}],[{"start":0,"end":53,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":66,"cssClass":"pl-c"}],[{"start":0,"end":38,"cssClass":"pl-c"}],[{"start":0,"end":50,"cssClass":"pl-c"}],[{"start":0,"end":47,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":59,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":13,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":73,"cssClass":"pl-c"}],[{"start":0,"end":56,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":81,"cssClass":"pl-c"}],[{"start":0,"end":82,"cssClass":"pl-c"}],[{"start":0,"end":49,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":24,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":72,"cssClass":"pl-c"}],[{"start":0,"end":63,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":27,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":52,"cssClass":"pl-c"}],[{"start":0,"end":52,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":25,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":62,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":68,"cssClass":"pl-c"}],[{"start":0,"end":68,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":68,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":17,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":25,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":17,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":19,"cssClass":"pl-c1"}],[{"start":2,"end":76,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":30,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":31,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":96,"cssClass":"pl-c"}],[{"start":0,"end":96,"cssClass":"pl-c"}],[{"start":0,"end":76,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":70,"cssClass":"pl-c"}],[{"start":0,"end":54,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":24,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":26,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":28,"cssClass":"pl-c1"}],[{"start":2,"end":94,"cssClass":"pl-c"}],[{"start":2,"end":81,"cssClass":"pl-c"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":69,"cssClass":"pl-c"}],[{"start":0,"end":24,"cssClass":"pl-c"}],[],[{"start":0,"end":60,"cssClass":"pl-c"}],[{"start":0,"end":22,"cssClass":"pl-c"}],[{"start":0,"end":157,"cssClass":"pl-c"}],[],[{"start":0,"end":111,"cssClass":"pl-c"}],[{"start":0,"end":31,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":33,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":26,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":27,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":29,"cssClass":"pl-c"}],[{"start":0,"end":54,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":27,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":29,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":31,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":29,"cssClass":"pl-c1"}],[],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":30,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":30,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":30,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":30,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":30,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":28,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":28,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":28,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":28,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":28,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":68,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":29,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":31,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":32,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":52,"cssClass":"pl-c"}],[{"start":0,"end":56,"cssClass":"pl-c"}],[{"start":0,"end":56,"cssClass":"pl-c"}],[{"start":0,"end":59,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":28,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":132,"cssClass":"pl-c"}],[{"start":0,"end":71,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":27,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":29,"cssClass":"pl-c1"}],[{"start":2,"end":98,"cssClass":"pl-c"}],[{"start":2,"end":99,"cssClass":"pl-c"}],[],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":36,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":45,"cssClass":"pl-c1"}],[],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":36,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":45,"cssClass":"pl-c1"}],[],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":36,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":45,"cssClass":"pl-c1"}],[],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":34,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":43,"cssClass":"pl-c1"}],[],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":34,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":43,"cssClass":"pl-c1"}],[],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":34,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":43,"cssClass":"pl-c1"}],[],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":34,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":43,"cssClass":"pl-c1"}],[],[{"start":0,"end":6,"cssClass":"pl-k"},{"start":7,"end":27,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":38,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":17,"cssClass":"pl-c"}],[{"start":0,"end":67,"cssClass":"pl-c"}],[{"start":0,"end":69,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":11,"cssClass":"pl-c"}],[{"start":0,"end":70,"cssClass":"pl-c"}],[{"start":0,"end":82,"cssClass":"pl-c"}],[{"start":0,"end":84,"cssClass":"pl-c"}],[{"start":0,"end":95,"cssClass":"pl-c"}],[{"start":0,"end":40,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":18,"cssClass":"pl-c"}],[{"start":0,"end":86,"cssClass":"pl-c"}],[{"start":0,"end":85,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":46,"cssClass":"pl-c"}],[{"start":0,"end":58,"cssClass":"pl-c"}],[{"start":0,"end":58,"cssClass":"pl-c"}],[{"start":0,"end":58,"cssClass":"pl-c"}],[{"start":0,"end":58,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":17,"cssClass":"pl-c"}],[{"start":0,"end":67,"cssClass":"pl-c"}],[{"start":0,"end":67,"cssClass":"pl-c"}],[{"start":0,"end":67,"cssClass":"pl-c"}],[{"start":0,"end":67,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":20,"cssClass":"pl-c"}],[{"start":0,"end":20,"cssClass":"pl-c"}],[{"start":0,"end":55,"cssClass":"pl-c"}],[{"start":0,"end":55,"cssClass":"pl-c"}],[{"start":0,"end":33,"cssClass":"pl-c"}],[{"start":0,"end":55,"cssClass":"pl-c"}],[{"start":0,"end":55,"cssClass":"pl-c"}],[{"start":0,"end":20,"cssClass":"pl-c"}],[{"start":0,"end":20,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":30,"cssClass":"pl-c1"}],[],[{"start":0,"end":62,"cssClass":"pl-c"}],[{"start":0,"end":70,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":22,"cssClass":"pl-c1"}],[],[{"start":0,"end":52,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":25,"cssClass":"pl-c1"}],[],[{"start":0,"end":87,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":29,"cssClass":"pl-c1"}],[],[{"start":0,"end":59,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":29,"cssClass":"pl-c1"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":26,"cssClass":"pl-c"}],[{"start":0,"end":55,"cssClass":"pl-c"}],[{"start":0,"end":54,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":33,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":35,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":39,"cssClass":"pl-c1"}],[{"start":2,"end":67,"cssClass":"pl-c"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":57,"cssClass":"pl-c"}],[{"start":0,"end":69,"cssClass":"pl-c"}],[{"start":0,"end":51,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":20,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":22,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":25,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":26,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":26,"cssClass":"pl-c1"}],[{"start":2,"end":57,"cssClass":"pl-c"}],[{"start":2,"end":5,"cssClass":"pl-k"},{"start":6,"end":13,"cssClass":"pl-en"},{"start":14,"end":37,"cssClass":"pl-c1"}],[{"start":4,"end":104,"cssClass":"pl-c"}],[{"start":2,"end":8,"cssClass":"pl-k"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":25,"cssClass":"pl-c"}],[{"start":0,"end":59,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":32,"cssClass":"pl-c1"}],[{"start":2,"end":66,"cssClass":"pl-c"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":19,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":59,"cssClass":"pl-c"}],[{"start":0,"end":71,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":62,"cssClass":"pl-c"}],[{"start":0,"end":66,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":28,"cssClass":"pl-c"}],[{"start":0,"end":28,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":73,"cssClass":"pl-c"}],[{"start":0,"end":60,"cssClass":"pl-c"}],[{"start":0,"end":66,"cssClass":"pl-c"}],[{"start":0,"end":61,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":73,"cssClass":"pl-c"}],[{"start":0,"end":74,"cssClass":"pl-c"}],[{"start":0,"end":68,"cssClass":"pl-c"}],[{"start":0,"end":43,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":73,"cssClass":"pl-c"}],[{"start":0,"end":73,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":32,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":34,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":31,"cssClass":"pl-c1"}],[{"start":0,"end":73,"cssClass":"pl-c"}],[],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":25,"cssClass":"pl-c1"}],[],[{"start":0,"end":57,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":32,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":32,"cssClass":"pl-c1"}],[],[{"start":0,"end":59,"cssClass":"pl-c"}],[{"start":0,"end":40,"cssClass":"pl-c"}],[],[{"start":0,"end":49,"cssClass":"pl-c"}],[{"start":0,"end":34,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":36,"cssClass":"pl-c1"}],[{"start":2,"end":81,"cssClass":"pl-c"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":67,"cssClass":"pl-c"}],[{"start":0,"end":76,"cssClass":"pl-c"}],[{"start":0,"end":75,"cssClass":"pl-c"}],[{"start":0,"end":76,"cssClass":"pl-c"}],[{"start":0,"end":52,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":68,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":31,"cssClass":"pl-c1"}],[{"start":2,"end":104,"cssClass":"pl-c"}],[{"start":2,"end":130,"cssClass":"pl-c"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[{"start":0,"end":65,"cssClass":"pl-c"}],[{"start":0,"end":82,"cssClass":"pl-c"}],[{"start":0,"end":128,"cssClass":"pl-c"}],[{"start":0,"end":95,"cssClass":"pl-c"}],[],[{"start":0,"end":60,"cssClass":"pl-c"}],[{"start":0,"end":32,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":34,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":29,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":26,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":90,"cssClass":"pl-c"}],[{"start":0,"end":25,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":19,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":19,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":19,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":19,"cssClass":"pl-c1"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[],[{"start":0,"end":68,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":17,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":17,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":17,"cssClass":"pl-c1"}],[{"start":0,"end":25,"cssClass":"pl-c"}],[{"start":0,"end":25,"cssClass":"pl-c"}],[{"start":0,"end":25,"cssClass":"pl-c"}],[{"start":0,"end":25,"cssClass":"pl-c"}],[{"start":0,"end":25,"cssClass":"pl-c"}],[{"start":0,"end":25,"cssClass":"pl-c"}],[],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":42,"cssClass":"pl-c"}],[],[{"start":0,"end":20,"cssClass":"pl-c"}],[],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":17,"cssClass":"pl-c1"}],[{"start":0,"end":76,"cssClass":"pl-c"}],[],[{"start":0,"end":18,"cssClass":"pl-c"}],[],[{"start":0,"end":103,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":20,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":20,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":20,"cssClass":"pl-c1"}],[{"start":0,"end":28,"cssClass":"pl-c"}],[{"start":0,"end":28,"cssClass":"pl-c"}],[{"start":0,"end":28,"cssClass":"pl-c"}],[{"start":0,"end":28,"cssClass":"pl-c"}],[{"start":0,"end":28,"cssClass":"pl-c"}],[{"start":0,"end":28,"cssClass":"pl-c"}],[],[{"start":0,"end":20,"cssClass":"pl-c"}],[],[{"start":0,"end":78,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":21,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":21,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":21,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":21,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":21,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":21,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":21,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":21,"cssClass":"pl-c1"}],[],[{"start":0,"end":18,"cssClass":"pl-c"}],[],[{"start":0,"end":137,"cssClass":"pl-c"}],[{"start":0,"end":139,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":76,"cssClass":"pl-c"}],[{"start":0,"end":86,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":34,"cssClass":"pl-c"}],[],[{"start":0,"end":121,"cssClass":"pl-c"}],[{"start":34,"end":113,"cssClass":"pl-c"}],[],[{"start":0,"end":74,"cssClass":"pl-c"}],[],[{"start":0,"end":51,"cssClass":"pl-c"}],[{"start":0,"end":10,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":18,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":18,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":18,"cssClass":"pl-c1"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[],[{"start":0,"end":20,"cssClass":"pl-c"}],[],[{"start":0,"end":33,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":18,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":18,"cssClass":"pl-c1"}],[],[{"start":0,"end":92,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":17,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":17,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":17,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":17,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":17,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":17,"cssClass":"pl-c1"}],[{"start":0,"end":21,"cssClass":"pl-c"}],[{"start":0,"end":22,"cssClass":"pl-c"}],[{"start":0,"end":21,"cssClass":"pl-c"}],[{"start":0,"end":22,"cssClass":"pl-c"}],[{"start":0,"end":21,"cssClass":"pl-c"}],[{"start":0,"end":22,"cssClass":"pl-c"}],[{"start":0,"end":21,"cssClass":"pl-c"}],[{"start":0,"end":22,"cssClass":"pl-c"}],[{"start":0,"end":21,"cssClass":"pl-c"}],[{"start":0,"end":22,"cssClass":"pl-c"}],[{"start":0,"end":21,"cssClass":"pl-c"}],[{"start":0,"end":22,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":20,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":50,"cssClass":"pl-c"}],[{"start":0,"end":49,"cssClass":"pl-c"}],[{"start":0,"end":44,"cssClass":"pl-c"}],[{"start":0,"end":71,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[],[{"start":0,"end":76,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":29,"cssClass":"pl-c1"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":33,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":32,"cssClass":"pl-c1"}],[],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":32,"cssClass":"pl-c1"}],[],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":32,"cssClass":"pl-c1"}],[],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":32,"cssClass":"pl-c1"}],[],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":32,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":76,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":29,"cssClass":"pl-c1"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":33,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":32,"cssClass":"pl-c1"}],[],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":32,"cssClass":"pl-c1"}],[],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":32,"cssClass":"pl-c1"}],[],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":32,"cssClass":"pl-c1"}],[],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":32,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":10,"cssClass":"pl-en"},{"start":11,"end":32,"cssClass":"pl-c1"},{"start":34,"end":55,"cssClass":"pl-c1"}],[{"start":2,"end":85,"cssClass":"pl-c"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":26,"cssClass":"pl-c"}],[{"start":0,"end":78,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":86,"cssClass":"pl-c"}],[{"start":0,"end":44,"cssClass":"pl-c"}],[{"start":0,"end":55,"cssClass":"pl-c"}],[{"start":0,"end":53,"cssClass":"pl-c"}],[{"start":0,"end":74,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":65,"cssClass":"pl-c"}],[{"start":0,"end":80,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":32,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":34,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":36,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":28,"cssClass":"pl-c1"}],[],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":26,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":27,"cssClass":"pl-c1"},{"start":27,"end":90,"cssClass":"pl-c"},{"start":90,"end":90,"cssClass":"pl-c"}],[{"start":0,"end":92,"cssClass":"pl-c"},{"start":92,"end":92,"cssClass":"pl-c"}],[{"start":0,"end":126,"cssClass":"pl-c"},{"start":126,"end":126,"cssClass":"pl-c"}],[{"start":0,"end":96,"cssClass":"pl-c"},{"start":96,"end":96,"cssClass":"pl-c"}],[{"start":0,"end":0,"cssClass":"pl-c"}],[{"start":0,"end":53,"cssClass":"pl-c"},{"start":53,"end":53,"cssClass":"pl-c"}],[{"start":0,"end":33,"cssClass":"pl-c"},{"start":33,"end":33,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"},{"start":30,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":32,"cssClass":"pl-c"},{"start":32,"end":32,"cssClass":"pl-c"}],[{"start":0,"end":0,"cssClass":"pl-c"}],[{"start":0,"end":33,"cssClass":"pl-c"},{"start":33,"end":33,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"},{"start":30,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":32,"cssClass":"pl-c"},{"start":32,"end":32,"cssClass":"pl-c"}],[{"start":0,"end":0,"cssClass":"pl-c"}],[{"start":0,"end":33,"cssClass":"pl-c"},{"start":33,"end":33,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"},{"start":30,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":32,"cssClass":"pl-c"},{"start":32,"end":32,"cssClass":"pl-c"}],[{"start":0,"end":0,"cssClass":"pl-c"}],[{"start":0,"end":33,"cssClass":"pl-c"},{"start":33,"end":33,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"},{"start":30,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":32,"cssClass":"pl-c"},{"start":32,"end":32,"cssClass":"pl-c"}],[{"start":0,"end":0,"cssClass":"pl-c"}],[{"start":0,"end":33,"cssClass":"pl-c"},{"start":33,"end":33,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"},{"start":30,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":32,"cssClass":"pl-c"},{"start":32,"end":32,"cssClass":"pl-c"}],[{"start":0,"end":0,"cssClass":"pl-c"}],[{"start":0,"end":33,"cssClass":"pl-c"},{"start":33,"end":33,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"},{"start":30,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":32,"cssClass":"pl-c"},{"start":32,"end":32,"cssClass":"pl-c"}],[{"start":0,"end":0,"cssClass":"pl-c"}],[{"start":0,"end":33,"cssClass":"pl-c"},{"start":33,"end":33,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"},{"start":30,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":32,"cssClass":"pl-c"},{"start":32,"end":32,"cssClass":"pl-c"}],[{"start":0,"end":0,"cssClass":"pl-c"}],[{"start":0,"end":33,"cssClass":"pl-c"},{"start":33,"end":33,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"},{"start":30,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":32,"cssClass":"pl-c"},{"start":32,"end":32,"cssClass":"pl-c"}],[{"start":0,"end":0,"cssClass":"pl-c"}],[{"start":0,"end":44,"cssClass":"pl-c"},{"start":44,"end":44,"cssClass":"pl-c"}],[{"start":0,"end":108,"cssClass":"pl-c"},{"start":108,"end":108,"cssClass":"pl-c"}],[{"start":0,"end":91,"cssClass":"pl-c"}],[],[],[{"start":2,"end":74,"cssClass":"pl-c"}],[{"start":2,"end":74,"cssClass":"pl-c"}],[{"start":2,"end":74,"cssClass":"pl-c"}],[{"start":2,"end":42,"cssClass":"pl-c"}],[],[{"start":2,"end":8,"cssClass":"pl-k"},{"start":9,"end":36,"cssClass":"pl-c1"}],[{"start":4,"end":76,"cssClass":"pl-c"}],[{"start":4,"end":73,"cssClass":"pl-c"}],[{"start":4,"end":46,"cssClass":"pl-c"}],[{"start":4,"end":36,"cssClass":"pl-c"}],[{"start":2,"end":8,"cssClass":"pl-k"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":21,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":63,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":61,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":29,"cssClass":"pl-c"}],[{"start":0,"end":64,"cssClass":"pl-c"}],[{"start":0,"end":52,"cssClass":"pl-c"}],[{"start":0,"end":62,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":29,"cssClass":"pl-c"}],[{"start":0,"end":36,"cssClass":"pl-c"}],[{"start":0,"end":64,"cssClass":"pl-c"}],[{"start":0,"end":62,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":31,"cssClass":"pl-c"}],[{"start":0,"end":36,"cssClass":"pl-c"}],[{"start":0,"end":64,"cssClass":"pl-c"}],[{"start":0,"end":57,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":49,"cssClass":"pl-c"}],[{"start":0,"end":76,"cssClass":"pl-c"}],[{"start":0,"end":73,"cssClass":"pl-c"}],[{"start":0,"end":41,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":22,"cssClass":"pl-c"}],[{"start":0,"end":26,"cssClass":"pl-c"}],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":81,"cssClass":"pl-c"}],[{"start":0,"end":82,"cssClass":"pl-c"}],[{"start":0,"end":63,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":34,"cssClass":"pl-c"}],[{"start":0,"end":34,"cssClass":"pl-c"}],[{"start":0,"end":36,"cssClass":"pl-c"}],[{"start":0,"end":31,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":25,"cssClass":"pl-c1"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":69,"cssClass":"pl-c"}],[{"start":0,"end":72,"cssClass":"pl-c"}],[{"start":0,"end":34,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":36,"cssClass":"pl-c"}],[{"start":0,"end":35,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":33,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":33,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":35,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":30,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":27,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":22,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":68,"cssClass":"pl-c"}],[{"start":0,"end":83,"cssClass":"pl-c"}],[{"start":0,"end":73,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":19,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":49,"cssClass":"pl-c"}],[{"start":0,"end":39,"cssClass":"pl-c"}],[{"start":0,"end":35,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":32,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":7,"cssClass":"pl-en"},{"start":8,"end":25,"cssClass":"pl-c1"},{"start":27,"end":48,"cssClass":"pl-c1"},{"start":50,"end":64,"cssClass":"pl-c1"}],[{"start":2,"end":52,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":30,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":7,"cssClass":"pl-en"},{"start":8,"end":25,"cssClass":"pl-c1"},{"start":27,"end":53,"cssClass":"pl-c1"},{"start":55,"end":76,"cssClass":"pl-c1"}],[{"start":2,"end":5,"cssClass":"pl-c"}],[{"start":0,"end":72,"cssClass":"pl-c"}],[{"start":0,"end":69,"cssClass":"pl-c"}],[{"start":0,"end":46,"cssClass":"pl-c"}],[{"start":0,"end":5,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":37,"cssClass":"pl-c1"}],[],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":40,"cssClass":"pl-c1"}],[{"start":2,"end":8,"cssClass":"pl-k"}],[],[{"start":2,"end":5,"cssClass":"pl-c"}],[{"start":0,"end":74,"cssClass":"pl-c"}],[{"start":0,"end":70,"cssClass":"pl-c"}],[{"start":0,"end":71,"cssClass":"pl-c"}],[{"start":0,"end":5,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":31,"cssClass":"pl-c1"}],[],[],[{"start":2,"end":5,"cssClass":"pl-c"}],[{"start":0,"end":49,"cssClass":"pl-c"}],[{"start":0,"end":5,"cssClass":"pl-c"}],[{"start":2,"end":31,"cssClass":"pl-c"}],[{"start":2,"end":5,"cssClass":"pl-k"},{"start":6,"end":13,"cssClass":"pl-en"},{"start":14,"end":33,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":33,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":34,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":33,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":30,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":27,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":34,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":34,"cssClass":"pl-c1"}],[{"start":2,"end":8,"cssClass":"pl-k"}],[],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":10,"cssClass":"pl-en"},{"start":11,"end":35,"cssClass":"pl-c1"},{"start":37,"end":63,"cssClass":"pl-c1"}],[],[{"start":2,"end":49,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":27,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":27,"cssClass":"pl-c1"}],[],[{"start":2,"end":58,"cssClass":"pl-c"}],[{"start":2,"end":25,"cssClass":"pl-c"}],[],[{"start":2,"end":5,"cssClass":"pl-k"},{"start":6,"end":13,"cssClass":"pl-en"},{"start":14,"end":40,"cssClass":"pl-c1"}],[],[{"start":4,"end":57,"cssClass":"pl-c"}],[{"start":4,"end":61,"cssClass":"pl-c"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":35,"cssClass":"pl-c1"},{"start":35,"end":35,"cssClass":"pl-c"}],[{"start":0,"end":0,"cssClass":"pl-c"}],[{"start":0,"end":6,"cssClass":"pl-c"},{"start":6,"end":6,"cssClass":"pl-c"}],[{"start":0,"end":66,"cssClass":"pl-c"},{"start":66,"end":66,"cssClass":"pl-c"}],[{"start":0,"end":71,"cssClass":"pl-c"},{"start":71,"end":71,"cssClass":"pl-c"}],[{"start":0,"end":6,"cssClass":"pl-c"},{"start":6,"end":6,"cssClass":"pl-c"}],[{"start":0,"end":38,"cssClass":"pl-c"}],[],[{"start":6,"end":52,"cssClass":"pl-c"}],[{"start":6,"end":13,"cssClass":"pl-k"},{"start":14,"end":35,"cssClass":"pl-c1"}],[{"start":4,"end":10,"cssClass":"pl-k"}],[],[{"start":2,"end":8,"cssClass":"pl-k"}],[],[{"start":0,"end":5,"cssClass":"pl-k"}],[],[{"start":2,"end":79,"cssClass":"pl-c"}],[{"start":2,"end":79,"cssClass":"pl-c"}],[{"start":2,"end":79,"cssClass":"pl-c"}],[],[{"start":2,"end":88,"cssClass":"pl-c"}],[],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":20,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":27,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":27,"cssClass":"pl-c1"}],[],[{"start":2,"end":108,"cssClass":"pl-c"}],[],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":31,"cssClass":"pl-c1"},{"start":31,"end":87,"cssClass":"pl-c"}],[],[],[{"start":2,"end":96,"cssClass":"pl-c"}],[{"start":42,"end":78,"cssClass":"pl-c"}],[],[{"start":2,"end":91,"cssClass":"pl-c"}],[],[{"start":0,"end":5,"cssClass":"pl-k"}],[],[{"start":2,"end":79,"cssClass":"pl-c"}],[{"start":2,"end":79,"cssClass":"pl-c"}],[{"start":2,"end":79,"cssClass":"pl-c"}],[],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":20,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":27,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":27,"cssClass":"pl-c1"}],[],[{"start":2,"end":98,"cssClass":"pl-c"}],[],[{"start":0,"end":6,"cssClass":"pl-k"},{"start":6,"end":22,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":46,"cssClass":"pl-c"}],[{"start":0,"end":59,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":24,"cssClass":"pl-c1"}],[],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":28,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":26,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":27,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":24,"cssClass":"pl-c1"},{"start":24,"end":65,"cssClass":"pl-c"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":72,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":24,"cssClass":"pl-c1"}],[],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":28,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":33,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":29,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":28,"cssClass":"pl-c1"}],[{"start":2,"end":89,"cssClass":"pl-c"}],[{"start":2,"end":34,"cssClass":"pl-c"}],[{"start":2,"end":5,"cssClass":"pl-k"},{"start":6,"end":13,"cssClass":"pl-en"},{"start":14,"end":36,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":40,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":38,"cssClass":"pl-c1"},{"start":38,"end":104,"cssClass":"pl-c"},{"start":104,"end":104,"cssClass":"pl-c"}],[{"start":0,"end":41,"cssClass":"pl-c"}],[],[],[{"start":2,"end":5,"cssClass":"pl-c"}],[{"start":0,"end":26,"cssClass":"pl-c"}],[{"start":0,"end":4,"cssClass":"pl-c"}],[{"start":0,"end":92,"cssClass":"pl-c"}],[{"start":0,"end":4,"cssClass":"pl-c"}],[{"start":0,"end":39,"cssClass":"pl-c"}],[{"start":0,"end":38,"cssClass":"pl-c"}],[{"start":0,"end":4,"cssClass":"pl-c"}],[{"start":0,"end":14,"cssClass":"pl-c"}],[{"start":0,"end":4,"cssClass":"pl-c"}],[{"start":0,"end":72,"cssClass":"pl-c"}],[{"start":0,"end":76,"cssClass":"pl-c"}],[{"start":0,"end":76,"cssClass":"pl-c"}],[{"start":0,"end":76,"cssClass":"pl-c"}],[{"start":0,"end":76,"cssClass":"pl-c"}],[{"start":0,"end":76,"cssClass":"pl-c"}],[{"start":0,"end":5,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":37,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":49,"cssClass":"pl-c"}],[{"start":0,"end":56,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":74,"cssClass":"pl-c"}],[],[{"start":0,"end":18,"cssClass":"pl-c"}],[],[{"start":0,"end":41,"cssClass":"pl-c"}],[{"start":0,"end":27,"cssClass":"pl-c"}],[],[{"start":0,"end":80,"cssClass":"pl-c"}],[{"start":0,"end":66,"cssClass":"pl-c"}],[{"start":0,"end":29,"cssClass":"pl-c"}],[{"start":0,"end":29,"cssClass":"pl-c"}],[{"start":0,"end":29,"cssClass":"pl-c"}],[{"start":0,"end":29,"cssClass":"pl-c"}],[{"start":0,"end":29,"cssClass":"pl-c"}],[{"start":0,"end":29,"cssClass":"pl-c"}],[{"start":0,"end":29,"cssClass":"pl-c"}],[{"start":0,"end":29,"cssClass":"pl-c"}],[{"start":0,"end":29,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":75,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":73,"cssClass":"pl-c"}],[{"start":0,"end":66,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":25,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":31,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":31,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":50,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":28,"cssClass":"pl-c1"}],[],[{"start":0,"end":55,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":32,"cssClass":"pl-c1"}],[],[{"start":0,"end":21,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":24,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":58,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":64,"cssClass":"pl-c"}],[{"start":0,"end":76,"cssClass":"pl-c"}],[{"start":0,"end":49,"cssClass":"pl-c"}],[{"start":0,"end":49,"cssClass":"pl-c"}],[{"start":0,"end":45,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":70,"cssClass":"pl-c"}],[{"start":0,"end":54,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":54,"cssClass":"pl-c"}],[{"start":0,"end":68,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":55,"cssClass":"pl-c"}],[{"start":0,"end":36,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":51,"cssClass":"pl-c"}],[{"start":0,"end":65,"cssClass":"pl-c"}],[{"start":0,"end":64,"cssClass":"pl-c"}],[{"start":0,"end":63,"cssClass":"pl-c"}],[{"start":0,"end":62,"cssClass":"pl-c"}],[{"start":0,"end":67,"cssClass":"pl-c"}],[{"start":0,"end":65,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":25,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":27,"cssClass":"pl-c1"}],[{"start":2,"end":40,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":20,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":20,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":20,"cssClass":"pl-c1"}],[],[{"start":2,"end":41,"cssClass":"pl-c"}],[{"start":2,"end":30,"cssClass":"pl-c"}],[],[{"start":2,"end":33,"cssClass":"pl-c"}],[{"start":2,"end":5,"cssClass":"pl-k"},{"start":6,"end":13,"cssClass":"pl-en"},{"start":14,"end":35,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":22,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":22,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":22,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":22,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":22,"cssClass":"pl-c1"}],[],[{"start":4,"end":43,"cssClass":"pl-c"}],[{"start":4,"end":32,"cssClass":"pl-c"}],[{"start":4,"end":32,"cssClass":"pl-c"}],[{"start":2,"end":8,"cssClass":"pl-k"}],[],[{"start":2,"end":55,"cssClass":"pl-c"}],[{"start":2,"end":33,"cssClass":"pl-c"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[],[{"start":0,"end":18,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":9,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":71,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":37,"cssClass":"pl-c"}],[{"start":0,"end":73,"cssClass":"pl-c"}],[{"start":0,"end":89,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":23,"cssClass":"pl-c1"},{"start":23,"end":70,"cssClass":"pl-c"}],[{"start":0,"end":81,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":23,"cssClass":"pl-c1"},{"start":23,"end":91,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":26,"cssClass":"pl-c1"},{"start":26,"end":87,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":27,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":26,"cssClass":"pl-c1"},{"start":26,"end":73,"cssClass":"pl-c"},{"start":73,"end":73,"cssClass":"pl-c"}],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":16,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":17,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":66,"cssClass":"pl-c"}],[{"start":0,"end":57,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":30,"cssClass":"pl-c1"},{"start":30,"end":98,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":34,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":26,"cssClass":"pl-c1"},{"start":26,"end":95,"cssClass":"pl-c"}],[],[{"start":0,"end":17,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":28,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":27,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":37,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":35,"cssClass":"pl-c"}],[],[{"start":0,"end":23,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":61,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":23,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":29,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":26,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":30,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":27,"cssClass":"pl-c1"}],[],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":23,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":29,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":26,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":30,"cssClass":"pl-c1"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":27,"cssClass":"pl-c1"}],[],[{"start":0,"end":18,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":14,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":60,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":63,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":58,"cssClass":"pl-c"}],[{"start":0,"end":51,"cssClass":"pl-c"}],[{"start":0,"end":66,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":27,"cssClass":"pl-c1"}],[],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":31,"cssClass":"pl-c1"}],[{"start":2,"end":49,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":27,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":26,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":33,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":33,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":32,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":39,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":61,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":14,"cssClass":"pl-c"}],[{"start":0,"end":15,"cssClass":"pl-c"}],[{"start":0,"end":29,"cssClass":"pl-c"}],[{"start":0,"end":27,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":12,"cssClass":"pl-c"}],[{"start":0,"end":78,"cssClass":"pl-c"}],[{"start":0,"end":81,"cssClass":"pl-c"}],[{"start":0,"end":40,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":73,"cssClass":"pl-c"}],[{"start":0,"end":78,"cssClass":"pl-c"}],[{"start":0,"end":66,"cssClass":"pl-c"}],[{"start":0,"end":50,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":14,"cssClass":"pl-c"}],[{"start":0,"end":66,"cssClass":"pl-c"}],[{"start":0,"end":57,"cssClass":"pl-c"}],[{"start":0,"end":57,"cssClass":"pl-c"}],[{"start":0,"end":57,"cssClass":"pl-c"}],[{"start":0,"end":66,"cssClass":"pl-c"}],[{"start":0,"end":57,"cssClass":"pl-c"}],[{"start":0,"end":55,"cssClass":"pl-c"}],[{"start":0,"end":51,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":68,"cssClass":"pl-c"}],[{"start":0,"end":66,"cssClass":"pl-c"}],[{"start":0,"end":71,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":60,"cssClass":"pl-c"}],[{"start":0,"end":56,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":32,"cssClass":"pl-c1"}],[{"start":2,"end":42,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":30,"cssClass":"pl-c1"}],[],[{"start":2,"end":32,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":32,"cssClass":"pl-c1"}],[],[{"start":2,"end":68,"cssClass":"pl-c"}],[{"start":2,"end":124,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":34,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":32,"cssClass":"pl-c1"}],[],[{"start":2,"end":28,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":36,"cssClass":"pl-c1"}],[{"start":2,"end":45,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":32,"cssClass":"pl-c1"}],[{"start":2,"end":27,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":36,"cssClass":"pl-c1"}],[],[{"start":2,"end":59,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":29,"cssClass":"pl-c1"},{"start":29,"end":29,"cssClass":"pl-c"}],[{"start":0,"end":0,"cssClass":"pl-c"}],[{"start":0,"end":82,"cssClass":"pl-c"},{"start":82,"end":82,"cssClass":"pl-c"}],[{"start":0,"end":29,"cssClass":"pl-c"},{"start":29,"end":29,"cssClass":"pl-c"}],[{"start":0,"end":0,"cssClass":"pl-c"}],[{"start":0,"end":52,"cssClass":"pl-c"},{"start":52,"end":52,"cssClass":"pl-c"}],[{"start":0,"end":29,"cssClass":"pl-c"},{"start":29,"end":29,"cssClass":"pl-c"}],[{"start":0,"end":0,"cssClass":"pl-c"}],[{"start":0,"end":54,"cssClass":"pl-c"}],[],[{"start":2,"end":84,"cssClass":"pl-c"}],[],[{"start":2,"end":68,"cssClass":"pl-c"}],[{"start":2,"end":258,"cssClass":"pl-c"}],[],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":16,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":18,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":85,"cssClass":"pl-c"}],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":37,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":71,"cssClass":"pl-c"}],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":71,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":65,"cssClass":"pl-c"}],[{"start":0,"end":57,"cssClass":"pl-c"}],[{"start":0,"end":61,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":64,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":36,"cssClass":"pl-c"}],[{"start":0,"end":36,"cssClass":"pl-c"}],[{"start":0,"end":35,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":32,"cssClass":"pl-c1"}],[],[{"start":0,"end":17,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":16,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":34,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":22,"cssClass":"pl-c"}],[{"start":0,"end":33,"cssClass":"pl-c"}],[{"start":0,"end":29,"cssClass":"pl-c"}],[{"start":0,"end":25,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":40,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":22,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":24,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":36,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":20,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":11,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":67,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":31,"cssClass":"pl-c"}],[{"start":0,"end":46,"cssClass":"pl-c"}],[{"start":0,"end":46,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":37,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":57,"cssClass":"pl-c"}],[{"start":0,"end":26,"cssClass":"pl-c"}],[{"start":0,"end":43,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":72,"cssClass":"pl-c"}],[{"start":0,"end":73,"cssClass":"pl-c"}],[{"start":0,"end":57,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":26,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":28,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":25,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":29,"cssClass":"pl-c1"}],[],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":31,"cssClass":"pl-c1"},{"start":31,"end":91,"cssClass":"pl-c"},{"start":91,"end":91,"cssClass":"pl-c"}],[{"start":0,"end":88,"cssClass":"pl-c"},{"start":88,"end":88,"cssClass":"pl-c"}],[{"start":0,"end":39,"cssClass":"pl-c"},{"start":39,"end":39,"cssClass":"pl-c"}],[{"start":0,"end":41,"cssClass":"pl-c"},{"start":41,"end":41,"cssClass":"pl-c"}],[{"start":0,"end":88,"cssClass":"pl-c"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[],[{"start":0,"end":21,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":15,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":76,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":75,"cssClass":"pl-c"}],[{"start":0,"end":80,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":623,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":20,"cssClass":"pl-c1"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":20,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":61,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":59,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":34,"cssClass":"pl-c"}],[{"start":0,"end":48,"cssClass":"pl-c"}],[{"start":0,"end":43,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":68,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":56,"cssClass":"pl-c"}],[{"start":0,"end":47,"cssClass":"pl-c"}],[{"start":0,"end":62,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":62,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":39,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":31,"cssClass":"pl-c1"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":41,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":28,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":29,"cssClass":"pl-c1"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":10,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":60,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":17,"cssClass":"pl-c1"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":22,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":54,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":28,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":17,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":59,"cssClass":"pl-c"}],[{"start":0,"end":59,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":22,"cssClass":"pl-c"}],[{"start":0,"end":24,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":19,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":71,"cssClass":"pl-c"}],[{"start":0,"end":70,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":35,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":69,"cssClass":"pl-c"}],[{"start":0,"end":37,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":39,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":28,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":65,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":71,"cssClass":"pl-c"}],[{"start":0,"end":68,"cssClass":"pl-c"}],[{"start":0,"end":58,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":57,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":58,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":35,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":71,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":57,"cssClass":"pl-c"}],[{"start":0,"end":57,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":32,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":64,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":60,"cssClass":"pl-c"}],[{"start":0,"end":60,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":34,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":27,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":98,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":32,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":25,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":25,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":81,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":35,"cssClass":"pl-c1"}],[{"start":0,"end":40,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":17,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":64,"cssClass":"pl-c"}],[{"start":0,"end":70,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":17,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":56,"cssClass":"pl-c"}],[{"start":0,"end":61,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":43,"cssClass":"pl-c"}],[{"start":0,"end":39,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":46,"cssClass":"pl-c"}],[{"start":0,"end":40,"cssClass":"pl-c"}],[],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":15,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":35,"cssClass":"pl-c"}],[{"start":0,"end":58,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":39,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":42,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":32,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":52,"cssClass":"pl-c"}],[{"start":0,"end":52,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":18,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":50,"cssClass":"pl-c"}],[{"start":0,"end":51,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":24,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":29,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":36,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":19,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":47,"cssClass":"pl-c"}],[{"start":0,"end":35,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":19,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":34,"cssClass":"pl-c"}],[{"start":0,"end":68,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":38,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":19,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":22,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":24,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":74,"cssClass":"pl-c"}],[{"start":0,"end":51,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":44,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":34,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":93,"cssClass":"pl-c"}],[{"start":34,"end":99,"cssClass":"pl-c"}],[{"start":34,"end":100,"cssClass":"pl-c"}],[{"start":34,"end":85,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":57,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":19,"cssClass":"pl-c"}],[],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":82,"cssClass":"pl-c"}],[{"start":0,"end":75,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":31,"cssClass":"pl-c"}],[{"start":0,"end":112,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":26,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":35,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":57,"cssClass":"pl-c"}],[{"start":0,"end":64,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":32,"cssClass":"pl-c"}],[{"start":0,"end":32,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":17,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":34,"cssClass":"pl-c"}],[{"start":0,"end":37,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":58,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":78,"cssClass":"pl-c"}],[{"start":0,"end":80,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":27,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":38,"cssClass":"pl-c"}],[{"start":0,"end":63,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":22,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":41,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":56,"cssClass":"pl-c"}],[{"start":0,"end":56,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":19,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":43,"cssClass":"pl-c"}],[{"start":0,"end":42,"cssClass":"pl-c"}],[{"start":0,"end":39,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":27,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":32,"cssClass":"pl-c"}],[{"start":0,"end":57,"cssClass":"pl-c"}],[{"start":0,"end":49,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":27,"cssClass":"pl-c"}],[{"start":0,"end":27,"cssClass":"pl-c"}],[],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":43,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":67,"cssClass":"pl-c"}],[{"start":0,"end":56,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":70,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":47,"cssClass":"pl-c"}],[{"start":0,"end":71,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":55,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":37,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":43,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":28,"cssClass":"pl-c"}],[{"start":0,"end":104,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":35,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":55,"cssClass":"pl-c"}],[{"start":0,"end":41,"cssClass":"pl-c"}],[{"start":0,"end":27,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":15,"cssClass":"pl-c"}],[{"start":0,"end":18,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":52,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":20,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":35,"cssClass":"pl-c"}],[{"start":0,"end":65,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":19,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":60,"cssClass":"pl-c"}],[{"start":0,"end":43,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":19,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":43,"cssClass":"pl-c"}],[{"start":0,"end":70,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":37,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":37,"cssClass":"pl-c"}],[{"start":0,"end":48,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":33,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":14,"cssClass":"pl-c"}],[{"start":0,"end":66,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":21,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":40,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":88,"cssClass":"pl-c"}],[{"start":0,"end":85,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":25,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":55,"cssClass":"pl-c"}],[{"start":0,"end":41,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":24,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":92,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":27,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":89,"cssClass":"pl-c"}],[{"start":0,"end":51,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":69,"cssClass":"pl-c"}],[{"start":0,"end":43,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":87,"cssClass":"pl-c"}],[{"start":0,"end":84,"cssClass":"pl-c"}],[{"start":0,"end":70,"cssClass":"pl-c"}],[{"start":0,"end":70,"cssClass":"pl-c"}],[{"start":0,"end":81,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":103,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":27,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":37,"cssClass":"pl-c"}],[{"start":0,"end":51,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":60,"cssClass":"pl-c"}],[{"start":0,"end":89,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":25,"cssClass":"pl-c1"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":55,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":29,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":39,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":71,"cssClass":"pl-c"}],[{"start":0,"end":63,"cssClass":"pl-c"}],[{"start":0,"end":67,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":32,"cssClass":"pl-c"}],[{"start":0,"end":43,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":26,"cssClass":"pl-c"}],[{"start":0,"end":51,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":21,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":29,"cssClass":"pl-c"}],[{"start":0,"end":43,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":37,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":27,"cssClass":"pl-c"}],[{"start":0,"end":87,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":26,"cssClass":"pl-c"}],[],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":45,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":24,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":20,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":22,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":24,"cssClass":"pl-c1"},{"start":24,"end":24,"cssClass":"pl-c"}],[{"start":0,"end":25,"cssClass":"pl-c"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":39,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":29,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":48,"cssClass":"pl-c"}],[{"start":0,"end":40,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":36,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":72,"cssClass":"pl-c"}],[{"start":0,"end":63,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":48,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":80,"cssClass":"pl-c"}],[{"start":0,"end":83,"cssClass":"pl-c"}],[{"start":0,"end":75,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":26,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":32,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":60,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":68,"cssClass":"pl-c"}],[{"start":0,"end":69,"cssClass":"pl-c"}],[{"start":0,"end":64,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":58,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":51,"cssClass":"pl-c"}],[],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":49,"cssClass":"pl-c"}],[{"start":0,"end":60,"cssClass":"pl-c"}],[{"start":0,"end":60,"cssClass":"pl-c"}],[{"start":0,"end":65,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":47,"cssClass":"pl-c"}],[{"start":0,"end":65,"cssClass":"pl-c"}],[{"start":0,"end":59,"cssClass":"pl-c"}],[{"start":0,"end":57,"cssClass":"pl-c"}],[{"start":0,"end":59,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":27,"cssClass":"pl-c"}],[{"start":0,"end":64,"cssClass":"pl-c"}],[{"start":0,"end":57,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":28,"cssClass":"pl-c"}],[{"start":0,"end":52,"cssClass":"pl-c"}],[{"start":0,"end":55,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":29,"cssClass":"pl-c"}],[{"start":0,"end":55,"cssClass":"pl-c"}],[{"start":0,"end":57,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":35,"cssClass":"pl-c"}],[{"start":0,"end":55,"cssClass":"pl-c"}],[{"start":0,"end":57,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":20,"cssClass":"pl-c"}],[{"start":0,"end":64,"cssClass":"pl-c"}],[{"start":0,"end":57,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":28,"cssClass":"pl-c"}],[{"start":0,"end":28,"cssClass":"pl-c"}],[{"start":0,"end":29,"cssClass":"pl-c"}],[{"start":0,"end":25,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":27,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":26,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":49,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":20,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":47,"cssClass":"pl-c"}],[{"start":0,"end":57,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":27,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":41,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":29,"cssClass":"pl-c"}],[{"start":0,"end":29,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":10,"cssClass":"pl-en"},{"start":11,"end":30,"cssClass":"pl-c1"},{"start":32,"end":51,"cssClass":"pl-c1"}],[{"start":2,"end":30,"cssClass":"pl-c"}],[{"start":2,"end":96,"cssClass":"pl-c"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":68,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":21,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":58,"cssClass":"pl-c"}],[{"start":0,"end":50,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":25,"cssClass":"pl-c1"}],[{"start":2,"end":87,"cssClass":"pl-c"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":66,"cssClass":"pl-c"}],[{"start":0,"end":45,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":58,"cssClass":"pl-c"}],[{"start":0,"end":45,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":39,"cssClass":"pl-c"}],[{"start":0,"end":42,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":25,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":39,"cssClass":"pl-c"}],[{"start":0,"end":42,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":25,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":39,"cssClass":"pl-c"}],[{"start":0,"end":42,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":25,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":39,"cssClass":"pl-c"}],[{"start":0,"end":42,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":25,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":39,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":25,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":39,"cssClass":"pl-c"}],[{"start":0,"end":32,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":29,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":48,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":25,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":50,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":24,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":57,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":25,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":45,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":24,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":45,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":24,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":67,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":78,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":28,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":36,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":21,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":23,"cssClass":"pl-c1"}],[{"start":2,"end":89,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":20,"cssClass":"pl-c1"}],[],[{"start":2,"end":52,"cssClass":"pl-c"}],[{"start":2,"end":30,"cssClass":"pl-c"}],[{"start":2,"end":29,"cssClass":"pl-c"}],[],[{"start":2,"end":57,"cssClass":"pl-c"}],[{"start":2,"end":27,"cssClass":"pl-c"}],[{"start":2,"end":27,"cssClass":"pl-c"}],[{"start":2,"end":27,"cssClass":"pl-c"}],[{"start":2,"end":28,"cssClass":"pl-c"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":74,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":53,"cssClass":"pl-c"}],[{"start":0,"end":87,"cssClass":"pl-c"}],[{"start":0,"end":44,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":78,"cssClass":"pl-c"}],[{"start":0,"end":63,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":24,"cssClass":"pl-c"}],[{"start":0,"end":22,"cssClass":"pl-c"}],[{"start":0,"end":21,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":24,"cssClass":"pl-c1"}],[{"start":2,"end":112,"cssClass":"pl-c"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":23,"cssClass":"pl-c1"}],[{"start":2,"end":47,"cssClass":"pl-c"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":52,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":69,"cssClass":"pl-c"}],[{"start":0,"end":70,"cssClass":"pl-c"}],[{"start":0,"end":70,"cssClass":"pl-c"}],[{"start":0,"end":48,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":38,"cssClass":"pl-c"}],[],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":62,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":52,"cssClass":"pl-c"}],[{"start":0,"end":58,"cssClass":"pl-c"}],[{"start":0,"end":64,"cssClass":"pl-c"}],[{"start":0,"end":72,"cssClass":"pl-c"}],[{"start":0,"end":73,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":24,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":22,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":24,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":27,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":27,"cssClass":"pl-c1"}],[],[{"start":2,"end":72,"cssClass":"pl-c"}],[{"start":2,"end":109,"cssClass":"pl-c"}],[],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":34,"cssClass":"pl-c1"},{"start":34,"end":34,"cssClass":"pl-c"}],[{"start":0,"end":0,"cssClass":"pl-c"}],[{"start":0,"end":37,"cssClass":"pl-c"},{"start":37,"end":37,"cssClass":"pl-c"}],[{"start":0,"end":37,"cssClass":"pl-c"},{"start":37,"end":37,"cssClass":"pl-c"}],[{"start":0,"end":37,"cssClass":"pl-c"},{"start":37,"end":37,"cssClass":"pl-c"}],[{"start":0,"end":37,"cssClass":"pl-c"},{"start":37,"end":37,"cssClass":"pl-c"}],[{"start":0,"end":45,"cssClass":"pl-c"}],[],[],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":39,"cssClass":"pl-c1"},{"start":39,"end":92,"cssClass":"pl-c"}],[],[],[{"start":2,"end":5,"cssClass":"pl-k"},{"start":6,"end":13,"cssClass":"pl-en"},{"start":14,"end":26,"cssClass":"pl-c1"}],[{"start":4,"end":37,"cssClass":"pl-c"}],[{"start":2,"end":8,"cssClass":"pl-k"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":38,"cssClass":"pl-c"}],[{"start":0,"end":82,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":28,"cssClass":"pl-c"}],[{"start":0,"end":82,"cssClass":"pl-c"}],[],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":55,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":23,"cssClass":"pl-c"}],[],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[{"start":0,"end":79,"cssClass":"pl-c"}],[],[{"start":0,"end":16,"cssClass":"pl-c"}],[],[{"start":0,"end":77,"cssClass":"pl-c"}],[{"start":0,"end":21,"cssClass":"pl-c"}],[{"start":0,"end":25,"cssClass":"pl-c"}],[],[{"start":0,"end":88,"cssClass":"pl-c"}],[{"start":0,"end":90,"cssClass":"pl-c"}],[{"start":0,"end":56,"cssClass":"pl-c"}],[{"start":0,"end":22,"cssClass":"pl-c"}],[],[{"start":0,"end":65,"cssClass":"pl-c"}],[{"start":0,"end":61,"cssClass":"pl-c"}],[{"start":0,"end":65,"cssClass":"pl-c"}],[{"start":0,"end":60,"cssClass":"pl-c"}],[{"start":0,"end":21,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":22,"cssClass":"pl-c1"}],[],[{"start":0,"end":67,"cssClass":"pl-c"}],[{"start":0,"end":66,"cssClass":"pl-c"}],[{"start":0,"end":65,"cssClass":"pl-c"}],[{"start":0,"end":26,"cssClass":"pl-c"}],[{"start":0,"end":25,"cssClass":"pl-c"}],[],[{"start":0,"end":18,"cssClass":"pl-c"}],[],[{"start":0,"end":42,"cssClass":"pl-c"}],[{"start":0,"end":18,"cssClass":"pl-c"}],[],[{"start":0,"end":18,"cssClass":"pl-c"}],[],[{"start":0,"end":71,"cssClass":"pl-c"}],[{"start":0,"end":72,"cssClass":"pl-c"}],[{"start":0,"end":72,"cssClass":"pl-c"}],[{"start":0,"end":24,"cssClass":"pl-c"}],[],[{"start":0,"end":28,"cssClass":"pl-c"}],[{"start":0,"end":16,"cssClass":"pl-c"}],[],[{"start":0,"end":37,"cssClass":"pl-c"}],[{"start":0,"end":17,"cssClass":"pl-c"}],[],[{"start":0,"end":37,"cssClass":"pl-c"}],[{"start":0,"end":17,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":30,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":65,"cssClass":"pl-c"}],[{"start":0,"end":64,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":61,"cssClass":"pl-c"}],[{"start":0,"end":62,"cssClass":"pl-c"}],[{"start":0,"end":45,"cssClass":"pl-c"}],[{"start":0,"end":70,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":19,"cssClass":"pl-c"}],[{"start":0,"end":64,"cssClass":"pl-c"}],[{"start":0,"end":67,"cssClass":"pl-c"}],[{"start":0,"end":63,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":72,"cssClass":"pl-c"}],[{"start":0,"end":66,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":69,"cssClass":"pl-c"}],[{"start":0,"end":55,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[],[{"start":0,"end":58,"cssClass":"pl-c"}],[{"start":0,"end":17,"cssClass":"pl-c"}],[{"start":0,"end":18,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":10,"cssClass":"pl-en"},{"start":11,"end":18,"cssClass":"pl-c1"},{"start":20,"end":28,"cssClass":"pl-c1"}],[{"start":2,"end":28,"cssClass":"pl-c"}],[{"start":2,"end":28,"cssClass":"pl-c"}],[{"start":2,"end":28,"cssClass":"pl-c"}],[{"start":2,"end":28,"cssClass":"pl-c"}],[{"start":2,"end":82,"cssClass":"pl-c"}],[{"start":2,"end":5,"cssClass":"pl-k"},{"start":6,"end":13,"cssClass":"pl-en"},{"start":14,"end":30,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":37,"cssClass":"pl-c1"}],[{"start":2,"end":8,"cssClass":"pl-k"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":43,"cssClass":"pl-c"}],[{"start":0,"end":22,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":11,"cssClass":"pl-en"},{"start":12,"end":24,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":23,"cssClass":"pl-c1"}],[{"start":42,"end":126,"cssClass":"pl-c"}],[{"start":2,"end":60,"cssClass":"pl-c"}],[{"start":2,"end":41,"cssClass":"pl-c"}],[{"start":2,"end":41,"cssClass":"pl-c"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":25,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":32,"cssClass":"pl-c1"},{"start":32,"end":136,"cssClass":"pl-c"}],[],[{"start":2,"end":76,"cssClass":"pl-c"}],[],[{"start":2,"end":80,"cssClass":"pl-c"}],[{"start":2,"end":30,"cssClass":"pl-c"}],[{"start":2,"end":5,"cssClass":"pl-k"},{"start":6,"end":13,"cssClass":"pl-en"},{"start":14,"end":32,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":28,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":32,"cssClass":"pl-c1"}],[{"start":4,"end":11,"cssClass":"pl-k"},{"start":12,"end":34,"cssClass":"pl-c1"},{"start":34,"end":76,"cssClass":"pl-c"}],[],[{"start":2,"end":7,"cssClass":"pl-k"}],[{"start":4,"end":87,"cssClass":"pl-c"}],[{"start":2,"end":8,"cssClass":"pl-k"}],[],[{"start":2,"end":67,"cssClass":"pl-c"}],[{"start":2,"end":78,"cssClass":"pl-c"}],[{"start":2,"end":77,"cssClass":"pl-c"}],[{"start":2,"end":67,"cssClass":"pl-c"}],[{"start":2,"end":95,"cssClass":"pl-c"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":21,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":61,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":80,"cssClass":"pl-c"}],[{"start":0,"end":75,"cssClass":"pl-c"}],[{"start":0,"end":48,"cssClass":"pl-c"}],[{"start":0,"end":45,"cssClass":"pl-c"}],[{"start":0,"end":76,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-k"},{"start":4,"end":7,"cssClass":"pl-en"},{"start":8,"end":14,"cssClass":"pl-c1"},{"start":16,"end":23,"cssClass":"pl-c1"},{"start":25,"end":33,"cssClass":"pl-c1"},{"start":35,"end":42,"cssClass":"pl-c1"},{"start":44,"end":51,"cssClass":"pl-c1"},{"start":53,"end":65,"cssClass":"pl-c1"}],[{"start":2,"end":9,"cssClass":"pl-k"},{"start":10,"end":28,"cssClass":"pl-c1"}],[{"start":0,"end":6,"cssClass":"pl-k"}],[],[{"start":0,"end":18,"cssClass":"pl-c"}],[],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":19,"cssClass":"pl-c"}],[{"start":0,"end":2,"cssClass":"pl-c"}],[{"start":0,"end":71,"cssClass":"pl-c"}],[{"start":0,"end":70,"cssClass":"pl-c"}],[{"start":0,"end":38,"cssClass":"pl-c"}],[{"start":0,"end":3,"cssClass":"pl-c"}],[{"start":0,"end":80,"cssClass":"pl-c"}],[],[{"start":0,"end":96,"cssClass":"pl-c"}],[{"start":0,"end":52,"cssClass":"pl-c"}],[{"start":0,"end":64,"cssClass":"pl-c"}],[{"start":0,"end":7,"cssClass":"pl-k"},{"start":8,"end":19,"cssClass":"pl-c1"}],[],[{"start":0,"end":75,"cssClass":"pl-c"}],[{"start":0,"end":38,"cssClass":"pl-c"}],[],[{"start":0,"end":59,"cssClass":"pl-c"}],[{"start":0,"end":31,"cssClass":"pl-c"}],[],[{"start":0,"end":87,"cssClass":"pl-c"}],[{"start":0,"end":28,"cssClass":"pl-c"},{"start":28,"end":28,"cssClass":"pl-k"}]],"csv":null,"csvError":null,"dependabotInfo":{"showConfigurationBanner":false,"configFilePath":null,"networkDependabotPath":"/MarlinFirmware/Configurations/network/updates","dismissConfigurationNoticePath":"/settings/dismiss-notice/dependabot_configuration_notice","configurationNoticeDismissed":false,"repoAlertsPath":"/MarlinFirmware/Configurations/security/dependabot","repoSecurityAndAnalysisPath":"/MarlinFirmware/Configurations/settings/security_analysis","repoOwnerIsOrg":true,"currentUserCanAdminRepo":false},"displayName":"Configuration.h","displayUrl":"https://github.com/MarlinFirmware/Configurations/blob/release-2.1.2.1/config/examples/Creality/Ender-3%20Pro/BigTreeTech%20SKR%20Mini%20E3%201.2/Configuration.h?raw=true","headerInfo":{"blobSize":"124 KB","deleteInfo":{"deleteTooltip":"Fork this repository and delete the file"},"editInfo":{"editTooltip":"Fork this repository and edit the file"},"ghDesktopPath":"x-github-client://openRepo/https://github.com/MarlinFirmware/Configurations?branch=release-2.1.2.1\u0026filepath=config%2Fexamples%2FCreality%2FEnder-3%20Pro%2FBigTreeTech%20SKR%20Mini%20E3%201.2%2FConfiguration.h","gitLfsPath":null,"onBranch":true,"shortPath":"9e8673c","siteNavLoginPath":"/login?return_to=https%3A%2F%2Fgithub.com%2FMarlinFirmware%2FConfigurations%2Fblob%2Frelease-2.1.2.1%2Fconfig%2Fexamples%2FCreality%2FEnder-3%2520Pro%2FBigTreeTech%2520SKR%2520Mini%2520E3%25201.2%2FConfiguration.h","isCSV":false,"isRichtext":false,"toc":null,"lineInfo":{"truncatedLoc":"3364","truncatedSloc":"2891"},"mode":"file"},"image":false,"isCodeownersFile":null,"isPlain":false,"isValidLegacyIssueTemplate":false,"issueTemplateHelpUrl":"https://docs.github.com/articles/about-issue-and-pull-request-templates","issueTemplate":null,"discussionTemplate":null,"language":"C","languageID":41,"large":false,"loggedIn":true,"newDiscussionPath":"/MarlinFirmware/Configurations/discussions/new","newIssuePath":"/MarlinFirmware/Configurations/issues/new","planSupportInfo":{"repoIsFork":null,"repoOwnedByCurrentUser":null,"requestFullPath":"/MarlinFirmware/Configurations/blob/release-2.1.2.1/config/examples/Creality/Ender-3%20Pro/BigTreeTech%20SKR%20Mini%20E3%201.2/Configuration.h","showFreeOrgGatedFeatureMessage":null,"showPlanSupportBanner":null,"upgradeDataAttributes":null,"upgradePath":null},"publishBannersInfo":{"dismissActionNoticePath":"/settings/dismiss-notice/publish_action_from_dockerfile","dismissStackNoticePath":"/settings/dismiss-notice/publish_stack_from_file","releasePath":"/MarlinFirmware/Configurations/releases/new?marketplace=true","showPublishActionBanner":false,"showPublishStackBanner":false},"rawBlobUrl":"https://github.com/MarlinFirmware/Configurations/raw/release-2.1.2.1/config/examples/Creality/Ender-3%20Pro/BigTreeTech%20SKR%20Mini%20E3%201.2/Configuration.h","renderImageOrRaw":false,"richText":null,"renderedFileInfo":null,"shortPath":null,"tabSize":2,"topBannersInfo":{"overridingGlobalFundingFile":false,"globalPreferredFundingPath":null,"repoOwner":"MarlinFirmware","repoName":"Configurations","showInvalidCitationWarning":false,"citationHelpUrl":"https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-on-github/about-citation-files","showDependabotConfigurationBanner":false,"actionsOnboardingTip":null},"truncated":false,"viewable":true,"workflowRedirectUrl":null,"symbols":{"timed_out":true,"not_analyzed":false,"symbols":[{"name":"CONFIG_EXAMPLES_DIR","kind":"macro","ident_start":884,"ident_end":903,"extent_start":876,"extent_end":972,"fully_qualified_name":"CONFIG_EXAMPLES_DIR","ident_utf16":{"start":{"line_number":23,"utf16_col":8},"end":{"line_number":23,"utf16_col":27}},"extent_utf16":{"start":{"line_number":23,"utf16_col":0},"end":{"line_number":25,"utf16_col":0}}},{"name":"CONFIGURATION_H_VERSION","kind":"macro","ident_start":1246,"ident_end":1269,"extent_start":1238,"extent_end":1280,"fully_qualified_name":"CONFIGURATION_H_VERSION","ident_utf16":{"start":{"line_number":39,"utf16_col":8},"end":{"line_number":39,"utf16_col":31}},"extent_utf16":{"start":{"line_number":39,"utf16_col":0},"end":{"line_number":41,"utf16_col":0}}},{"name":"STRING_CONFIG_H_AUTHOR","kind":"macro","ident_start":2297,"ident_end":2319,"extent_start":2289,"extent_end":2375,"fully_qualified_name":"STRING_CONFIG_H_AUTHOR","ident_utf16":{"start":{"line_number":64,"utf16_col":8},"end":{"line_number":64,"utf16_col":30}},"extent_utf16":{"start":{"line_number":64,"utf16_col":0},"end":{"line_number":65,"utf16_col":0}}},{"name":"SHOW_BOOTSCREEN","kind":"macro","ident_start":2932,"ident_end":2947,"extent_start":2924,"extent_end":2949,"fully_qualified_name":"SHOW_BOOTSCREEN","ident_utf16":{"start":{"line_number":79,"utf16_col":8},"end":{"line_number":79,"utf16_col":23}},"extent_utf16":{"start":{"line_number":79,"utf16_col":0},"end":{"line_number":81,"utf16_col":0}}},{"name":"SHOW_CUSTOM_BOOTSCREEN","kind":"macro","ident_start":3012,"ident_end":3034,"extent_start":3004,"extent_end":3036,"fully_qualified_name":"SHOW_CUSTOM_BOOTSCREEN","ident_utf16":{"start":{"line_number":82,"utf16_col":8},"end":{"line_number":82,"utf16_col":30}},"extent_utf16":{"start":{"line_number":82,"utf16_col":0},"end":{"line_number":84,"utf16_col":0}}},{"name":"CUSTOM_STATUS_SCREEN_IMAGE","kind":"macro","ident_start":3111,"ident_end":3137,"extent_start":3103,"extent_end":3139,"fully_qualified_name":"CUSTOM_STATUS_SCREEN_IMAGE","ident_utf16":{"start":{"line_number":85,"utf16_col":8},"end":{"line_number":85,"utf16_col":34}},"extent_utf16":{"start":{"line_number":85,"utf16_col":0},"end":{"line_number":87,"utf16_col":0}}},{"name":"MOTHERBOARD","kind":"macro","ident_start":3247,"ident_end":3258,"extent_start":3239,"extent_end":3286,"fully_qualified_name":"MOTHERBOARD","ident_utf16":{"start":{"line_number":91,"utf16_col":10},"end":{"line_number":91,"utf16_col":21}},"extent_utf16":{"start":{"line_number":91,"utf16_col":2},"end":{"line_number":92,"utf16_col":0}}},{"name":"SERIAL_PORT","kind":"macro","ident_start":3670,"ident_end":3681,"extent_start":3662,"extent_end":3685,"fully_qualified_name":"SERIAL_PORT","ident_utf16":{"start":{"line_number":102,"utf16_col":8},"end":{"line_number":102,"utf16_col":19}},"extent_utf16":{"start":{"line_number":102,"utf16_col":0},"end":{"line_number":104,"utf16_col":0}}},{"name":"BAUDRATE","kind":"macro","ident_start":4117,"ident_end":4125,"extent_start":4109,"extent_end":4134,"fully_qualified_name":"BAUDRATE","ident_utf16":{"start":{"line_number":115,"utf16_col":8},"end":{"line_number":115,"utf16_col":16}},"extent_utf16":{"start":{"line_number":115,"utf16_col":0},"end":{"line_number":117,"utf16_col":0}}},{"name":"SERIAL_PORT_2","kind":"macro","ident_start":4415,"ident_end":4428,"extent_start":4407,"extent_end":4432,"fully_qualified_name":"SERIAL_PORT_2","ident_utf16":{"start":{"line_number":124,"utf16_col":8},"end":{"line_number":124,"utf16_col":21}},"extent_utf16":{"start":{"line_number":124,"utf16_col":0},"end":{"line_number":125,"utf16_col":0}}},{"name":"CUSTOM_MACHINE_NAME","kind":"macro","ident_start":5060,"ident_end":5079,"extent_start":5052,"extent_end":5095,"fully_qualified_name":"CUSTOM_MACHINE_NAME","ident_utf16":{"start":{"line_number":139,"utf16_col":8},"end":{"line_number":139,"utf16_col":27}},"extent_utf16":{"start":{"line_number":139,"utf16_col":0},"end":{"line_number":141,"utf16_col":0}}},{"name":"X_DRIVER_TYPE","kind":"macro","ident_start":6374,"ident_end":6387,"extent_start":6366,"extent_end":6397,"fully_qualified_name":"X_DRIVER_TYPE","ident_utf16":{"start":{"line_number":162,"utf16_col":8},"end":{"line_number":162,"utf16_col":21}},"extent_utf16":{"start":{"line_number":162,"utf16_col":0},"end":{"line_number":163,"utf16_col":0}}},{"name":"Y_DRIVER_TYPE","kind":"macro","ident_start":6405,"ident_end":6418,"extent_start":6397,"extent_end":6428,"fully_qualified_name":"Y_DRIVER_TYPE","ident_utf16":{"start":{"line_number":163,"utf16_col":8},"end":{"line_number":163,"utf16_col":21}},"extent_utf16":{"start":{"line_number":163,"utf16_col":0},"end":{"line_number":164,"utf16_col":0}}},{"name":"Z_DRIVER_TYPE","kind":"macro","ident_start":6436,"ident_end":6449,"extent_start":6428,"extent_end":6459,"fully_qualified_name":"Z_DRIVER_TYPE","ident_utf16":{"start":{"line_number":164,"utf16_col":8},"end":{"line_number":164,"utf16_col":21}},"extent_utf16":{"start":{"line_number":164,"utf16_col":0},"end":{"line_number":165,"utf16_col":0}}},{"name":"E0_DRIVER_TYPE","kind":"macro","ident_start":6808,"ident_end":6822,"extent_start":6800,"extent_end":6831,"fully_qualified_name":"E0_DRIVER_TYPE","ident_utf16":{"start":{"line_number":176,"utf16_col":8},"end":{"line_number":176,"utf16_col":22}},"extent_utf16":{"start":{"line_number":176,"utf16_col":0},"end":{"line_number":177,"utf16_col":0}}},{"name":"AXIS4_NAME","kind":"macro","ident_start":7723,"ident_end":7733,"extent_start":7715,"extent_end":7773,"fully_qualified_name":"AXIS4_NAME","ident_utf16":{"start":{"line_number":203,"utf16_col":10},"end":{"line_number":203,"utf16_col":20}},"extent_utf16":{"start":{"line_number":203,"utf16_col":2},"end":{"line_number":204,"utf16_col":0}}},{"name":"AXIS4_ROTATES","kind":"macro","ident_start":7783,"ident_end":7796,"extent_start":7775,"extent_end":7797,"fully_qualified_name":"AXIS4_ROTATES","ident_utf16":{"start":{"line_number":204,"utf16_col":10},"end":{"line_number":204,"utf16_col":23}},"extent_utf16":{"start":{"line_number":204,"utf16_col":2},"end":{"line_number":205,"utf16_col":0}}},{"name":"AXIS5_NAME","kind":"macro","ident_start":7835,"ident_end":7845,"extent_start":7827,"extent_end":7880,"fully_qualified_name":"AXIS5_NAME","ident_utf16":{"start":{"line_number":207,"utf16_col":10},"end":{"line_number":207,"utf16_col":20}},"extent_utf16":{"start":{"line_number":207,"utf16_col":2},"end":{"line_number":208,"utf16_col":0}}},{"name":"AXIS5_ROTATES","kind":"macro","ident_start":7890,"ident_end":7903,"extent_start":7882,"extent_end":7904,"fully_qualified_name":"AXIS5_ROTATES","ident_utf16":{"start":{"line_number":208,"utf16_col":10},"end":{"line_number":208,"utf16_col":23}},"extent_utf16":{"start":{"line_number":208,"utf16_col":2},"end":{"line_number":209,"utf16_col":0}}},{"name":"AXIS6_NAME","kind":"macro","ident_start":7942,"ident_end":7952,"extent_start":7934,"extent_end":7982,"fully_qualified_name":"AXIS6_NAME","ident_utf16":{"start":{"line_number":211,"utf16_col":10},"end":{"line_number":211,"utf16_col":20}},"extent_utf16":{"start":{"line_number":211,"utf16_col":2},"end":{"line_number":212,"utf16_col":0}}},{"name":"AXIS6_ROTATES","kind":"macro","ident_start":7992,"ident_end":8005,"extent_start":7984,"extent_end":8006,"fully_qualified_name":"AXIS6_ROTATES","ident_utf16":{"start":{"line_number":212,"utf16_col":10},"end":{"line_number":212,"utf16_col":23}},"extent_utf16":{"start":{"line_number":212,"utf16_col":2},"end":{"line_number":213,"utf16_col":0}}},{"name":"AXIS7_NAME","kind":"macro","ident_start":8044,"ident_end":8054,"extent_start":8036,"extent_end":8079,"fully_qualified_name":"AXIS7_NAME","ident_utf16":{"start":{"line_number":215,"utf16_col":10},"end":{"line_number":215,"utf16_col":20}},"extent_utf16":{"start":{"line_number":215,"utf16_col":2},"end":{"line_number":216,"utf16_col":0}}},{"name":"AXIS8_NAME","kind":"macro","ident_start":8143,"ident_end":8153,"extent_start":8135,"extent_end":8173,"fully_qualified_name":"AXIS8_NAME","ident_utf16":{"start":{"line_number":219,"utf16_col":10},"end":{"line_number":219,"utf16_col":20}},"extent_utf16":{"start":{"line_number":219,"utf16_col":2},"end":{"line_number":220,"utf16_col":0}}},{"name":"AXIS9_NAME","kind":"macro","ident_start":8237,"ident_end":8247,"extent_start":8229,"extent_end":8262,"fully_qualified_name":"AXIS9_NAME","ident_utf16":{"start":{"line_number":223,"utf16_col":10},"end":{"line_number":223,"utf16_col":20}},"extent_utf16":{"start":{"line_number":223,"utf16_col":2},"end":{"line_number":224,"utf16_col":0}}},{"name":"EXTRUDERS","kind":"macro","ident_start":8398,"ident_end":8407,"extent_start":8390,"extent_end":8411,"fully_qualified_name":"EXTRUDERS","ident_utf16":{"start":{"line_number":231,"utf16_col":8},"end":{"line_number":231,"utf16_col":17}},"extent_utf16":{"start":{"line_number":231,"utf16_col":0},"end":{"line_number":233,"utf16_col":0}}},{"name":"DEFAULT_NOMINAL_FILAMENT_DIA","kind":"macro","ident_start":8532,"ident_end":8560,"extent_start":8524,"extent_end":8567,"fully_qualified_name":"DEFAULT_NOMINAL_FILAMENT_DIA","ident_utf16":{"start":{"line_number":234,"utf16_col":8},"end":{"line_number":234,"utf16_col":36}},"extent_utf16":{"start":{"line_number":234,"utf16_col":0},"end":{"line_number":236,"utf16_col":0}}},{"name":"SWITCHING_EXTRUDER_SERVO_NR","kind":"macro","ident_start":9015,"ident_end":9042,"extent_start":9007,"extent_end":9045,"fully_qualified_name":"SWITCHING_EXTRUDER_SERVO_NR","ident_utf16":{"start":{"line_number":249,"utf16_col":10},"end":{"line_number":249,"utf16_col":37}},"extent_utf16":{"start":{"line_number":249,"utf16_col":2},"end":{"line_number":250,"utf16_col":0}}},{"name":"SWITCHING_EXTRUDER_SERVO_ANGLES","kind":"macro","ident_start":9055,"ident_end":9086,"extent_start":9047,"extent_end":9128,"fully_qualified_name":"SWITCHING_EXTRUDER_SERVO_ANGLES","ident_utf16":{"start":{"line_number":250,"utf16_col":10},"end":{"line_number":250,"utf16_col":41}},"extent_utf16":{"start":{"line_number":250,"utf16_col":2},"end":{"line_number":251,"utf16_col":0}}},{"name":"SWITCHING_EXTRUDER_E23_SERVO_NR","kind":"macro","ident_start":9160,"ident_end":9191,"extent_start":9152,"extent_end":9194,"fully_qualified_name":"SWITCHING_EXTRUDER_E23_SERVO_NR","ident_utf16":{"start":{"line_number":252,"utf16_col":12},"end":{"line_number":252,"utf16_col":43}},"extent_utf16":{"start":{"line_number":252,"utf16_col":4},"end":{"line_number":253,"utf16_col":0}}},{"name":"SWITCHING_NOZZLE_SERVO_NR","kind":"macro","ident_start":9362,"ident_end":9387,"extent_start":9354,"extent_end":9390,"fully_qualified_name":"SWITCHING_NOZZLE_SERVO_NR","ident_utf16":{"start":{"line_number":259,"utf16_col":10},"end":{"line_number":259,"utf16_col":35}},"extent_utf16":{"start":{"line_number":259,"utf16_col":2},"end":{"line_number":260,"utf16_col":0}}},{"name":"SWITCHING_NOZZLE_SERVO_ANGLES","kind":"macro","ident_start":9503,"ident_end":9532,"extent_start":9495,"extent_end":9612,"fully_qualified_name":"SWITCHING_NOZZLE_SERVO_ANGLES","ident_utf16":{"start":{"line_number":261,"utf16_col":10},"end":{"line_number":261,"utf16_col":39}},"extent_utf16":{"start":{"line_number":261,"utf16_col":2},"end":{"line_number":262,"utf16_col":0}}},{"name":"SWITCHING_NOZZLE_SERVO_DWELL","kind":"macro","ident_start":9622,"ident_end":9650,"extent_start":9614,"extent_end":9718,"fully_qualified_name":"SWITCHING_NOZZLE_SERVO_DWELL","ident_utf16":{"start":{"line_number":262,"utf16_col":10},"end":{"line_number":262,"utf16_col":38}},"extent_utf16":{"start":{"line_number":262,"utf16_col":2},"end":{"line_number":263,"utf16_col":0}}},{"name":"PARKING_EXTRUDER_PARKING_X","kind":"macro","ident_start":10305,"ident_end":10331,"extent_start":10297,"extent_end":10390,"fully_qualified_name":"PARKING_EXTRUDER_PARKING_X","ident_utf16":{"start":{"line_number":283,"utf16_col":10},"end":{"line_number":283,"utf16_col":36}},"extent_utf16":{"start":{"line_number":283,"utf16_col":2},"end":{"line_number":284,"utf16_col":0}}},{"name":"PARKING_EXTRUDER_GRAB_DISTANCE","kind":"macro","ident_start":10400,"ident_end":10430,"extent_start":10392,"extent_end":10516,"fully_qualified_name":"PARKING_EXTRUDER_GRAB_DISTANCE","ident_utf16":{"start":{"line_number":284,"utf16_col":10},"end":{"line_number":284,"utf16_col":40}},"extent_utf16":{"start":{"line_number":284,"utf16_col":2},"end":{"line_number":286,"utf16_col":0}}},{"name":"PARKING_EXTRUDER_SOLENOIDS_INVERT","kind":"macro","ident_start":10561,"ident_end":10594,"extent_start":10553,"extent_end":10773,"fully_qualified_name":"PARKING_EXTRUDER_SOLENOIDS_INVERT","ident_utf16":{"start":{"line_number":288,"utf16_col":12},"end":{"line_number":288,"utf16_col":45}},"extent_utf16":{"start":{"line_number":288,"utf16_col":4},"end":{"line_number":290,"utf16_col":0}}},{"name":"PARKING_EXTRUDER_SOLENOIDS_DELAY","kind":"macro","ident_start":10785,"ident_end":10817,"extent_start":10777,"extent_end":10893,"fully_qualified_name":"PARKING_EXTRUDER_SOLENOIDS_DELAY","ident_utf16":{"start":{"line_number":290,"utf16_col":12},"end":{"line_number":290,"utf16_col":44}},"extent_utf16":{"start":{"line_number":290,"utf16_col":4},"end":{"line_number":291,"utf16_col":0}}},{"name":"MPE_FAST_SPEED","kind":"macro","ident_start":11064,"ident_end":11078,"extent_start":11056,"extent_end":11150,"fully_qualified_name":"MPE_FAST_SPEED","ident_utf16":{"start":{"line_number":295,"utf16_col":12},"end":{"line_number":295,"utf16_col":26}},"extent_utf16":{"start":{"line_number":295,"utf16_col":4},"end":{"line_number":296,"utf16_col":0}}},{"name":"MPE_SLOW_SPEED","kind":"macro","ident_start":11162,"ident_end":11176,"extent_start":11154,"extent_end":11254,"fully_qualified_name":"MPE_SLOW_SPEED","ident_utf16":{"start":{"line_number":296,"utf16_col":12},"end":{"line_number":296,"utf16_col":26}},"extent_utf16":{"start":{"line_number":296,"utf16_col":4},"end":{"line_number":297,"utf16_col":0}}},{"name":"MPE_TRAVEL_DISTANCE","kind":"macro","ident_start":11266,"ident_end":11285,"extent_start":11258,"extent_end":11324,"fully_qualified_name":"MPE_TRAVEL_DISTANCE","ident_utf16":{"start":{"line_number":297,"utf16_col":12},"end":{"line_number":297,"utf16_col":31}},"extent_utf16":{"start":{"line_number":297,"utf16_col":4},"end":{"line_number":298,"utf16_col":0}}},{"name":"MPE_COMPENSATION","kind":"macro","ident_start":11336,"ident_end":11352,"extent_start":11328,"extent_end":11432,"fully_qualified_name":"MPE_COMPENSATION","ident_utf16":{"start":{"line_number":298,"utf16_col":12},"end":{"line_number":298,"utf16_col":28}},"extent_utf16":{"start":{"line_number":298,"utf16_col":4},"end":{"line_number":300,"utf16_col":0}}},{"name":"SWITCHING_TOOLHEAD_Y_POS","kind":"macro","ident_start":12196,"ident_end":12220,"extent_start":12188,"extent_end":12282,"fully_qualified_name":"SWITCHING_TOOLHEAD_Y_POS","ident_utf16":{"start":{"line_number":330,"utf16_col":10},"end":{"line_number":330,"utf16_col":34}},"extent_utf16":{"start":{"line_number":330,"utf16_col":2},"end":{"line_number":331,"utf16_col":0}}},{"name":"SWITCHING_TOOLHEAD_Y_SECURITY","kind":"macro","ident_start":12292,"ident_end":12321,"extent_start":12284,"extent_end":12371,"fully_qualified_name":"SWITCHING_TOOLHEAD_Y_SECURITY","ident_utf16":{"start":{"line_number":331,"utf16_col":10},"end":{"line_number":331,"utf16_col":39}},"extent_utf16":{"start":{"line_number":331,"utf16_col":2},"end":{"line_number":332,"utf16_col":0}}},{"name":"SWITCHING_TOOLHEAD_Y_CLEAR","kind":"macro","ident_start":12381,"ident_end":12407,"extent_start":12373,"extent_end":12486,"fully_qualified_name":"SWITCHING_TOOLHEAD_Y_CLEAR","ident_utf16":{"start":{"line_number":332,"utf16_col":10},"end":{"line_number":332,"utf16_col":36}},"extent_utf16":{"start":{"line_number":332,"utf16_col":2},"end":{"line_number":333,"utf16_col":0}}},{"name":"SWITCHING_TOOLHEAD_X_POS","kind":"macro","ident_start":12496,"ident_end":12520,"extent_start":12488,"extent_end":12588,"fully_qualified_name":"SWITCHING_TOOLHEAD_X_POS","ident_utf16":{"start":{"line_number":333,"utf16_col":10},"end":{"line_number":333,"utf16_col":34}},"extent_utf16":{"start":{"line_number":333,"utf16_col":2},"end":{"line_number":334,"utf16_col":0}}},{"name":"SWITCHING_TOOLHEAD_SERVO_NR","kind":"macro","ident_start":12634,"ident_end":12661,"extent_start":12626,"extent_end":12710,"fully_qualified_name":"SWITCHING_TOOLHEAD_SERVO_NR","ident_utf16":{"start":{"line_number":335,"utf16_col":12},"end":{"line_number":335,"utf16_col":39}},"extent_utf16":{"start":{"line_number":335,"utf16_col":4},"end":{"line_number":336,"utf16_col":0}}},{"name":"SWITCHING_TOOLHEAD_SERVO_ANGLES","kind":"macro","ident_start":12722,"ident_end":12753,"extent_start":12714,"extent_end":12803,"fully_qualified_name":"SWITCHING_TOOLHEAD_SERVO_ANGLES","ident_utf16":{"start":{"line_number":336,"utf16_col":12},"end":{"line_number":336,"utf16_col":43}},"extent_utf16":{"start":{"line_number":336,"utf16_col":4},"end":{"line_number":337,"utf16_col":0}}},{"name":"SWITCHING_TOOLHEAD_Y_RELEASE","kind":"macro","ident_start":12860,"ident_end":12888,"extent_start":12852,"extent_end":12937,"fully_qualified_name":"SWITCHING_TOOLHEAD_Y_RELEASE","ident_utf16":{"start":{"line_number":338,"utf16_col":12},"end":{"line_number":338,"utf16_col":40}},"extent_utf16":{"start":{"line_number":338,"utf16_col":4},"end":{"line_number":339,"utf16_col":0}}},{"name":"SWITCHING_TOOLHEAD_X_SECURITY","kind":"macro","ident_start":12949,"ident_end":12978,"extent_start":12941,"extent_end":13034,"fully_qualified_name":"SWITCHING_TOOLHEAD_X_SECURITY","ident_utf16":{"start":{"line_number":339,"utf16_col":12},"end":{"line_number":339,"utf16_col":41}},"extent_utf16":{"start":{"line_number":339,"utf16_col":4},"end":{"line_number":340,"utf16_col":0}}},{"name":"SWITCHING_TOOLHEAD_PRIME_MM","kind":"macro","ident_start":13190,"ident_end":13217,"extent_start":13182,"extent_end":13264,"fully_qualified_name":"SWITCHING_TOOLHEAD_PRIME_MM","ident_utf16":{"start":{"line_number":342,"utf16_col":14},"end":{"line_number":342,"utf16_col":41}},"extent_utf16":{"start":{"line_number":342,"utf16_col":6},"end":{"line_number":343,"utf16_col":0}}},{"name":"SWITCHING_TOOLHEAD_RETRACT_MM","kind":"macro","ident_start":13278,"ident_end":13307,"extent_start":13270,"extent_end":13359,"fully_qualified_name":"SWITCHING_TOOLHEAD_RETRACT_MM","ident_utf16":{"start":{"line_number":343,"utf16_col":14},"end":{"line_number":343,"utf16_col":43}},"extent_utf16":{"start":{"line_number":343,"utf16_col":6},"end":{"line_number":344,"utf16_col":0}}},{"name":"SWITCHING_TOOLHEAD_PRIME_FEEDRATE","kind":"macro","ident_start":13373,"ident_end":13406,"extent_start":13365,"extent_end":13451,"fully_qualified_name":"SWITCHING_TOOLHEAD_PRIME_FEEDRATE","ident_utf16":{"start":{"line_number":344,"utf16_col":14},"end":{"line_number":344,"utf16_col":47}},"extent_utf16":{"start":{"line_number":344,"utf16_col":6},"end":{"line_number":345,"utf16_col":0}}},{"name":"SWITCHING_TOOLHEAD_RETRACT_FEEDRATE","kind":"macro","ident_start":13465,"ident_end":13500,"extent_start":13457,"extent_end":13545,"fully_qualified_name":"SWITCHING_TOOLHEAD_RETRACT_FEEDRATE","ident_utf16":{"start":{"line_number":345,"utf16_col":14},"end":{"line_number":345,"utf16_col":49}},"extent_utf16":{"start":{"line_number":345,"utf16_col":6},"end":{"line_number":346,"utf16_col":0}}},{"name":"SWITCHING_TOOLHEAD_Z_HOP","kind":"macro","ident_start":13620,"ident_end":13644,"extent_start":13612,"extent_end":13694,"fully_qualified_name":"SWITCHING_TOOLHEAD_Z_HOP","ident_utf16":{"start":{"line_number":348,"utf16_col":12},"end":{"line_number":348,"utf16_col":36}},"extent_utf16":{"start":{"line_number":348,"utf16_col":4},"end":{"line_number":349,"utf16_col":0}}},{"name":"MIXING_STEPPERS","kind":"macro","ident_start":14234,"ident_end":14249,"extent_start":14226,"extent_end":14305,"fully_qualified_name":"MIXING_STEPPERS","ident_utf16":{"start":{"line_number":362,"utf16_col":10},"end":{"line_number":362,"utf16_col":25}},"extent_utf16":{"start":{"line_number":362,"utf16_col":2},"end":{"line_number":363,"utf16_col":0}}},{"name":"MIXING_VIRTUAL_TOOLS","kind":"macro","ident_start":14315,"ident_end":14335,"extent_start":14307,"extent_end":14390,"fully_qualified_name":"MIXING_VIRTUAL_TOOLS","ident_utf16":{"start":{"line_number":363,"utf16_col":10},"end":{"line_number":363,"utf16_col":30}},"extent_utf16":{"start":{"line_number":363,"utf16_col":2},"end":{"line_number":364,"utf16_col":0}}},{"name":"PSU_ACTIVE_STATE","kind":"macro","ident_start":16617,"ident_end":16633,"extent_start":16609,"extent_end":16683,"fully_qualified_name":"PSU_ACTIVE_STATE","ident_utf16":{"start":{"line_number":412,"utf16_col":10},"end":{"line_number":412,"utf16_col":26}},"extent_utf16":{"start":{"line_number":412,"utf16_col":2},"end":{"line_number":414,"utf16_col":0}}},{"name":"AUTO_POWER_FANS","kind":"macro","ident_start":17485,"ident_end":17500,"extent_start":17477,"extent_end":17573,"fully_qualified_name":"AUTO_POWER_FANS","ident_utf16":{"start":{"line_number":426,"utf16_col":12},"end":{"line_number":426,"utf16_col":27}},"extent_utf16":{"start":{"line_number":426,"utf16_col":4},"end":{"line_number":428,"utf16_col":0}}},{"name":"AUTO_POWER_CONTROLLERFAN","kind":"macro","ident_start":17585,"ident_end":17609,"extent_start":17577,"extent_end":17645,"fully_qualified_name":"AUTO_POWER_CONTROLLERFAN","ident_utf16":{"start":{"line_number":428,"utf16_col":12},"end":{"line_number":428,"utf16_col":36}},"extent_utf16":{"start":{"line_number":428,"utf16_col":4},"end":{"line_number":430,"utf16_col":0}}},{"name":"AUTO_POWER_COOLER_FAN","kind":"macro","ident_start":17657,"ident_end":17678,"extent_start":17649,"extent_end":17784,"fully_qualified_name":"AUTO_POWER_COOLER_FAN","ident_utf16":{"start":{"line_number":430,"utf16_col":12},"end":{"line_number":430,"utf16_col":33}},"extent_utf16":{"start":{"line_number":430,"utf16_col":4},"end":{"line_number":432,"utf16_col":0}}},{"name":"TEMP_SENSOR_0","kind":"macro","ident_start":23964,"ident_end":23977,"extent_start":23956,"extent_end":23980,"fully_qualified_name":"TEMP_SENSOR_0","ident_utf16":{"start":{"line_number":540,"utf16_col":8},"end":{"line_number":540,"utf16_col":21}},"extent_utf16":{"start":{"line_number":540,"utf16_col":0},"end":{"line_number":541,"utf16_col":0}}},{"name":"TEMP_SENSOR_1","kind":"macro","ident_start":23988,"ident_end":24001,"extent_start":23980,"extent_end":24004,"fully_qualified_name":"TEMP_SENSOR_1","ident_utf16":{"start":{"line_number":541,"utf16_col":8},"end":{"line_number":541,"utf16_col":21}},"extent_utf16":{"start":{"line_number":541,"utf16_col":0},"end":{"line_number":542,"utf16_col":0}}},{"name":"TEMP_SENSOR_2","kind":"macro","ident_start":24012,"ident_end":24025,"extent_start":24004,"extent_end":24028,"fully_qualified_name":"TEMP_SENSOR_2","ident_utf16":{"start":{"line_number":542,"utf16_col":8},"end":{"line_number":542,"utf16_col":21}},"extent_utf16":{"start":{"line_number":542,"utf16_col":0},"end":{"line_number":543,"utf16_col":0}}},{"name":"TEMP_SENSOR_3","kind":"macro","ident_start":24036,"ident_end":24049,"extent_start":24028,"extent_end":24052,"fully_qualified_name":"TEMP_SENSOR_3","ident_utf16":{"start":{"line_number":543,"utf16_col":8},"end":{"line_number":543,"utf16_col":21}},"extent_utf16":{"start":{"line_number":543,"utf16_col":0},"end":{"line_number":544,"utf16_col":0}}},{"name":"TEMP_SENSOR_4","kind":"macro","ident_start":24060,"ident_end":24073,"extent_start":24052,"extent_end":24076,"fully_qualified_name":"TEMP_SENSOR_4","ident_utf16":{"start":{"line_number":544,"utf16_col":8},"end":{"line_number":544,"utf16_col":21}},"extent_utf16":{"start":{"line_number":544,"utf16_col":0},"end":{"line_number":545,"utf16_col":0}}},{"name":"TEMP_SENSOR_5","kind":"macro","ident_start":24084,"ident_end":24097,"extent_start":24076,"extent_end":24100,"fully_qualified_name":"TEMP_SENSOR_5","ident_utf16":{"start":{"line_number":545,"utf16_col":8},"end":{"line_number":545,"utf16_col":21}},"extent_utf16":{"start":{"line_number":545,"utf16_col":0},"end":{"line_number":546,"utf16_col":0}}},{"name":"TEMP_SENSOR_6","kind":"macro","ident_start":24108,"ident_end":24121,"extent_start":24100,"extent_end":24124,"fully_qualified_name":"TEMP_SENSOR_6","ident_utf16":{"start":{"line_number":546,"utf16_col":8},"end":{"line_number":546,"utf16_col":21}},"extent_utf16":{"start":{"line_number":546,"utf16_col":0},"end":{"line_number":547,"utf16_col":0}}},{"name":"TEMP_SENSOR_7","kind":"macro","ident_start":24132,"ident_end":24145,"extent_start":24124,"extent_end":24148,"fully_qualified_name":"TEMP_SENSOR_7","ident_utf16":{"start":{"line_number":547,"utf16_col":8},"end":{"line_number":547,"utf16_col":21}},"extent_utf16":{"start":{"line_number":547,"utf16_col":0},"end":{"line_number":548,"utf16_col":0}}},{"name":"TEMP_SENSOR_BED","kind":"macro","ident_start":24156,"ident_end":24171,"extent_start":24148,"extent_end":24174,"fully_qualified_name":"TEMP_SENSOR_BED","ident_utf16":{"start":{"line_number":548,"utf16_col":8},"end":{"line_number":548,"utf16_col":23}},"extent_utf16":{"start":{"line_number":548,"utf16_col":0},"end":{"line_number":549,"utf16_col":0}}},{"name":"TEMP_SENSOR_PROBE","kind":"macro","ident_start":24182,"ident_end":24199,"extent_start":24174,"extent_end":24202,"fully_qualified_name":"TEMP_SENSOR_PROBE","ident_utf16":{"start":{"line_number":549,"utf16_col":8},"end":{"line_number":549,"utf16_col":25}},"extent_utf16":{"start":{"line_number":549,"utf16_col":0},"end":{"line_number":550,"utf16_col":0}}},{"name":"TEMP_SENSOR_CHAMBER","kind":"macro","ident_start":24210,"ident_end":24229,"extent_start":24202,"extent_end":24232,"fully_qualified_name":"TEMP_SENSOR_CHAMBER","ident_utf16":{"start":{"line_number":550,"utf16_col":8},"end":{"line_number":550,"utf16_col":27}},"extent_utf16":{"start":{"line_number":550,"utf16_col":0},"end":{"line_number":551,"utf16_col":0}}},{"name":"TEMP_SENSOR_COOLER","kind":"macro","ident_start":24240,"ident_end":24258,"extent_start":24232,"extent_end":24261,"fully_qualified_name":"TEMP_SENSOR_COOLER","ident_utf16":{"start":{"line_number":551,"utf16_col":8},"end":{"line_number":551,"utf16_col":26}},"extent_utf16":{"start":{"line_number":551,"utf16_col":0},"end":{"line_number":552,"utf16_col":0}}},{"name":"TEMP_SENSOR_BOARD","kind":"macro","ident_start":24269,"ident_end":24286,"extent_start":24261,"extent_end":24289,"fully_qualified_name":"TEMP_SENSOR_BOARD","ident_utf16":{"start":{"line_number":552,"utf16_col":8},"end":{"line_number":552,"utf16_col":25}},"extent_utf16":{"start":{"line_number":552,"utf16_col":0},"end":{"line_number":553,"utf16_col":0}}},{"name":"TEMP_SENSOR_REDUNDANT","kind":"macro","ident_start":24297,"ident_end":24318,"extent_start":24289,"extent_end":24322,"fully_qualified_name":"TEMP_SENSOR_REDUNDANT","ident_utf16":{"start":{"line_number":553,"utf16_col":8},"end":{"line_number":553,"utf16_col":29}},"extent_utf16":{"start":{"line_number":553,"utf16_col":0},"end":{"line_number":555,"utf16_col":0}}},{"name":"DUMMY_THERMISTOR_998_VALUE","kind":"macro","ident_start":24406,"ident_end":24432,"extent_start":24398,"extent_end":24437,"fully_qualified_name":"DUMMY_THERMISTOR_998_VALUE","ident_utf16":{"start":{"line_number":556,"utf16_col":8},"end":{"line_number":556,"utf16_col":34}},"extent_utf16":{"start":{"line_number":556,"utf16_col":0},"end":{"line_number":557,"utf16_col":0}}},{"name":"DUMMY_THERMISTOR_999_VALUE","kind":"macro","ident_start":24445,"ident_end":24471,"extent_start":24437,"extent_end":24477,"fully_qualified_name":"DUMMY_THERMISTOR_999_VALUE","ident_utf16":{"start":{"line_number":557,"utf16_col":8},"end":{"line_number":557,"utf16_col":34}},"extent_utf16":{"start":{"line_number":557,"utf16_col":0},"end":{"line_number":559,"utf16_col":0}}},{"name":"MAX31865_SENSOR_OHMS_0","kind":"macro","ident_start":24589,"ident_end":24611,"extent_start":24581,"extent_end":24669,"fully_qualified_name":"MAX31865_SENSOR_OHMS_0","ident_utf16":{"start":{"line_number":561,"utf16_col":10},"end":{"line_number":561,"utf16_col":32}},"extent_utf16":{"start":{"line_number":561,"utf16_col":2},"end":{"line_number":562,"utf16_col":0}}},{"name":"MAX31865_CALIBRATION_OHMS_0","kind":"macro","ident_start":24679,"ident_end":24706,"extent_start":24671,"extent_end":24778,"fully_qualified_name":"MAX31865_CALIBRATION_OHMS_0","ident_utf16":{"start":{"line_number":562,"utf16_col":10},"end":{"line_number":562,"utf16_col":37}},"extent_utf16":{"start":{"line_number":562,"utf16_col":2},"end":{"line_number":563,"utf16_col":0}}},{"name":"MAX31865_SENSOR_OHMS_1","kind":"macro","ident_start":24824,"ident_end":24846,"extent_start":24816,"extent_end":24856,"fully_qualified_name":"MAX31865_SENSOR_OHMS_1","ident_utf16":{"start":{"line_number":565,"utf16_col":10},"end":{"line_number":565,"utf16_col":32}},"extent_utf16":{"start":{"line_number":565,"utf16_col":2},"end":{"line_number":566,"utf16_col":0}}},{"name":"MAX31865_CALIBRATION_OHMS_1","kind":"macro","ident_start":24866,"ident_end":24893,"extent_start":24858,"extent_end":24898,"fully_qualified_name":"MAX31865_CALIBRATION_OHMS_1","ident_utf16":{"start":{"line_number":566,"utf16_col":10},"end":{"line_number":566,"utf16_col":37}},"extent_utf16":{"start":{"line_number":566,"utf16_col":2},"end":{"line_number":567,"utf16_col":0}}},{"name":"MAX31865_SENSOR_OHMS_2","kind":"macro","ident_start":24944,"ident_end":24966,"extent_start":24936,"extent_end":24976,"fully_qualified_name":"MAX31865_SENSOR_OHMS_2","ident_utf16":{"start":{"line_number":569,"utf16_col":10},"end":{"line_number":569,"utf16_col":32}},"extent_utf16":{"start":{"line_number":569,"utf16_col":2},"end":{"line_number":570,"utf16_col":0}}},{"name":"MAX31865_CALIBRATION_OHMS_2","kind":"macro","ident_start":24986,"ident_end":25013,"extent_start":24978,"extent_end":25018,"fully_qualified_name":"MAX31865_CALIBRATION_OHMS_2","ident_utf16":{"start":{"line_number":570,"utf16_col":10},"end":{"line_number":570,"utf16_col":37}},"extent_utf16":{"start":{"line_number":570,"utf16_col":2},"end":{"line_number":571,"utf16_col":0}}},{"name":"TEMP_RESIDENCY_TIME","kind":"macro","ident_start":25058,"ident_end":25077,"extent_start":25050,"extent_end":25147,"fully_qualified_name":"TEMP_RESIDENCY_TIME","ident_utf16":{"start":{"line_number":574,"utf16_col":10},"end":{"line_number":574,"utf16_col":29}},"extent_utf16":{"start":{"line_number":574,"utf16_col":2},"end":{"line_number":575,"utf16_col":0}}},{"name":"TEMP_WINDOW","kind":"macro","ident_start":25157,"ident_end":25168,"extent_start":25149,"extent_end":25256,"fully_qualified_name":"TEMP_WINDOW","ident_utf16":{"start":{"line_number":575,"utf16_col":10},"end":{"line_number":575,"utf16_col":21}},"extent_utf16":{"start":{"line_number":575,"utf16_col":2},"end":{"line_number":576,"utf16_col":0}}},{"name":"TEMP_HYSTERESIS","kind":"macro","ident_start":25266,"ident_end":25281,"extent_start":25258,"extent_end":25369,"fully_qualified_name":"TEMP_HYSTERESIS","ident_utf16":{"start":{"line_number":576,"utf16_col":10},"end":{"line_number":576,"utf16_col":25}},"extent_utf16":{"start":{"line_number":576,"utf16_col":2},"end":{"line_number":577,"utf16_col":0}}},{"name":"TEMP_BED_RESIDENCY_TIME","kind":"macro","ident_start":25407,"ident_end":25430,"extent_start":25399,"extent_end":25493,"fully_qualified_name":"TEMP_BED_RESIDENCY_TIME","ident_utf16":{"start":{"line_number":580,"utf16_col":10},"end":{"line_number":580,"utf16_col":33}},"extent_utf16":{"start":{"line_number":580,"utf16_col":2},"end":{"line_number":581,"utf16_col":0}}},{"name":"TEMP_BED_WINDOW","kind":"macro","ident_start":25503,"ident_end":25518,"extent_start":25495,"extent_end":25602,"fully_qualified_name":"TEMP_BED_WINDOW","ident_utf16":{"start":{"line_number":581,"utf16_col":10},"end":{"line_number":581,"utf16_col":25}},"extent_utf16":{"start":{"line_number":581,"utf16_col":2},"end":{"line_number":582,"utf16_col":0}}},{"name":"TEMP_BED_HYSTERESIS","kind":"macro","ident_start":25612,"ident_end":25631,"extent_start":25604,"extent_end":25715,"fully_qualified_name":"TEMP_BED_HYSTERESIS","ident_utf16":{"start":{"line_number":582,"utf16_col":10},"end":{"line_number":582,"utf16_col":29}},"extent_utf16":{"start":{"line_number":582,"utf16_col":2},"end":{"line_number":583,"utf16_col":0}}},{"name":"TEMP_CHAMBER_RESIDENCY_TIME","kind":"macro","ident_start":25757,"ident_end":25784,"extent_start":25749,"extent_end":25847,"fully_qualified_name":"TEMP_CHAMBER_RESIDENCY_TIME","ident_utf16":{"start":{"line_number":586,"utf16_col":10},"end":{"line_number":586,"utf16_col":37}},"extent_utf16":{"start":{"line_number":586,"utf16_col":2},"end":{"line_number":587,"utf16_col":0}}},{"name":"TEMP_CHAMBER_WINDOW","kind":"macro","ident_start":25857,"ident_end":25876,"extent_start":25849,"extent_end":25956,"fully_qualified_name":"TEMP_CHAMBER_WINDOW","ident_utf16":{"start":{"line_number":587,"utf16_col":10},"end":{"line_number":587,"utf16_col":29}},"extent_utf16":{"start":{"line_number":587,"utf16_col":2},"end":{"line_number":588,"utf16_col":0}}},{"name":"TEMP_CHAMBER_HYSTERESIS","kind":"macro","ident_start":25966,"ident_end":25989,"extent_start":25958,"extent_end":26069,"fully_qualified_name":"TEMP_CHAMBER_HYSTERESIS","ident_utf16":{"start":{"line_number":588,"utf16_col":10},"end":{"line_number":588,"utf16_col":33}},"extent_utf16":{"start":{"line_number":588,"utf16_col":2},"end":{"line_number":589,"utf16_col":0}}},{"name":"TEMP_SENSOR_REDUNDANT_SOURCE","kind":"macro","ident_start":26690,"ident_end":26718,"extent_start":26682,"extent_end":26781,"fully_qualified_name":"TEMP_SENSOR_REDUNDANT_SOURCE","ident_utf16":{"start":{"line_number":602,"utf16_col":10},"end":{"line_number":602,"utf16_col":38}},"extent_utf16":{"start":{"line_number":602,"utf16_col":2},"end":{"line_number":603,"utf16_col":0}}},{"name":"TEMP_SENSOR_REDUNDANT_TARGET","kind":"macro","ident_start":26791,"ident_end":26819,"extent_start":26783,"extent_end":26888,"fully_qualified_name":"TEMP_SENSOR_REDUNDANT_TARGET","ident_utf16":{"start":{"line_number":603,"utf16_col":10},"end":{"line_number":603,"utf16_col":38}},"extent_utf16":{"start":{"line_number":603,"utf16_col":2},"end":{"line_number":604,"utf16_col":0}}},{"name":"TEMP_SENSOR_REDUNDANT_MAX_DIFF","kind":"macro","ident_start":26898,"ident_end":26928,"extent_start":26890,"extent_end":26999,"fully_qualified_name":"TEMP_SENSOR_REDUNDANT_MAX_DIFF","ident_utf16":{"start":{"line_number":604,"utf16_col":10},"end":{"line_number":604,"utf16_col":40}},"extent_utf16":{"start":{"line_number":604,"utf16_col":2},"end":{"line_number":605,"utf16_col":0}}},{"name":"HEATER_0_MINTEMP","kind":"macro","ident_start":27132,"ident_end":27148,"extent_start":27124,"extent_end":27153,"fully_qualified_name":"HEATER_0_MINTEMP","ident_utf16":{"start":{"line_number":609,"utf16_col":8},"end":{"line_number":609,"utf16_col":24}},"extent_utf16":{"start":{"line_number":609,"utf16_col":0},"end":{"line_number":610,"utf16_col":0}}},{"name":"HEATER_1_MINTEMP","kind":"macro","ident_start":27161,"ident_end":27177,"extent_start":27153,"extent_end":27182,"fully_qualified_name":"HEATER_1_MINTEMP","ident_utf16":{"start":{"line_number":610,"utf16_col":8},"end":{"line_number":610,"utf16_col":24}},"extent_utf16":{"start":{"line_number":610,"utf16_col":0},"end":{"line_number":611,"utf16_col":0}}},{"name":"HEATER_2_MINTEMP","kind":"macro","ident_start":27190,"ident_end":27206,"extent_start":27182,"extent_end":27211,"fully_qualified_name":"HEATER_2_MINTEMP","ident_utf16":{"start":{"line_number":611,"utf16_col":8},"end":{"line_number":611,"utf16_col":24}},"extent_utf16":{"start":{"line_number":611,"utf16_col":0},"end":{"line_number":612,"utf16_col":0}}},{"name":"HEATER_3_MINTEMP","kind":"macro","ident_start":27219,"ident_end":27235,"extent_start":27211,"extent_end":27240,"fully_qualified_name":"HEATER_3_MINTEMP","ident_utf16":{"start":{"line_number":612,"utf16_col":8},"end":{"line_number":612,"utf16_col":24}},"extent_utf16":{"start":{"line_number":612,"utf16_col":0},"end":{"line_number":613,"utf16_col":0}}},{"name":"HEATER_4_MINTEMP","kind":"macro","ident_start":27248,"ident_end":27264,"extent_start":27240,"extent_end":27269,"fully_qualified_name":"HEATER_4_MINTEMP","ident_utf16":{"start":{"line_number":613,"utf16_col":8},"end":{"line_number":613,"utf16_col":24}},"extent_utf16":{"start":{"line_number":613,"utf16_col":0},"end":{"line_number":614,"utf16_col":0}}},{"name":"HEATER_5_MINTEMP","kind":"macro","ident_start":27277,"ident_end":27293,"extent_start":27269,"extent_end":27298,"fully_qualified_name":"HEATER_5_MINTEMP","ident_utf16":{"start":{"line_number":614,"utf16_col":8},"end":{"line_number":614,"utf16_col":24}},"extent_utf16":{"start":{"line_number":614,"utf16_col":0},"end":{"line_number":615,"utf16_col":0}}},{"name":"HEATER_6_MINTEMP","kind":"macro","ident_start":27306,"ident_end":27322,"extent_start":27298,"extent_end":27327,"fully_qualified_name":"HEATER_6_MINTEMP","ident_utf16":{"start":{"line_number":615,"utf16_col":8},"end":{"line_number":615,"utf16_col":24}},"extent_utf16":{"start":{"line_number":615,"utf16_col":0},"end":{"line_number":616,"utf16_col":0}}},{"name":"HEATER_7_MINTEMP","kind":"macro","ident_start":27335,"ident_end":27351,"extent_start":27327,"extent_end":27356,"fully_qualified_name":"HEATER_7_MINTEMP","ident_utf16":{"start":{"line_number":616,"utf16_col":8},"end":{"line_number":616,"utf16_col":24}},"extent_utf16":{"start":{"line_number":616,"utf16_col":0},"end":{"line_number":617,"utf16_col":0}}},{"name":"BED_MINTEMP","kind":"macro","ident_start":27364,"ident_end":27375,"extent_start":27356,"extent_end":27385,"fully_qualified_name":"BED_MINTEMP","ident_utf16":{"start":{"line_number":617,"utf16_col":8},"end":{"line_number":617,"utf16_col":19}},"extent_utf16":{"start":{"line_number":617,"utf16_col":0},"end":{"line_number":618,"utf16_col":0}}},{"name":"CHAMBER_MINTEMP","kind":"macro","ident_start":27393,"ident_end":27408,"extent_start":27385,"extent_end":27415,"fully_qualified_name":"CHAMBER_MINTEMP","ident_utf16":{"start":{"line_number":618,"utf16_col":8},"end":{"line_number":618,"utf16_col":23}},"extent_utf16":{"start":{"line_number":618,"utf16_col":0},"end":{"line_number":620,"utf16_col":0}}},{"name":"HEATER_0_MAXTEMP","kind":"macro","ident_start":27623,"ident_end":27639,"extent_start":27615,"extent_end":27644,"fully_qualified_name":"HEATER_0_MAXTEMP","ident_utf16":{"start":{"line_number":623,"utf16_col":8},"end":{"line_number":623,"utf16_col":24}},"extent_utf16":{"start":{"line_number":623,"utf16_col":0},"end":{"line_number":624,"utf16_col":0}}},{"name":"HEATER_1_MAXTEMP","kind":"macro","ident_start":27652,"ident_end":27668,"extent_start":27644,"extent_end":27673,"fully_qualified_name":"HEATER_1_MAXTEMP","ident_utf16":{"start":{"line_number":624,"utf16_col":8},"end":{"line_number":624,"utf16_col":24}},"extent_utf16":{"start":{"line_number":624,"utf16_col":0},"end":{"line_number":625,"utf16_col":0}}},{"name":"HEATER_2_MAXTEMP","kind":"macro","ident_start":27681,"ident_end":27697,"extent_start":27673,"extent_end":27702,"fully_qualified_name":"HEATER_2_MAXTEMP","ident_utf16":{"start":{"line_number":625,"utf16_col":8},"end":{"line_number":625,"utf16_col":24}},"extent_utf16":{"start":{"line_number":625,"utf16_col":0},"end":{"line_number":626,"utf16_col":0}}},{"name":"HEATER_3_MAXTEMP","kind":"macro","ident_start":27710,"ident_end":27726,"extent_start":27702,"extent_end":27731,"fully_qualified_name":"HEATER_3_MAXTEMP","ident_utf16":{"start":{"line_number":626,"utf16_col":8},"end":{"line_number":626,"utf16_col":24}},"extent_utf16":{"start":{"line_number":626,"utf16_col":0},"end":{"line_number":627,"utf16_col":0}}},{"name":"HEATER_4_MAXTEMP","kind":"macro","ident_start":27739,"ident_end":27755,"extent_start":27731,"extent_end":27760,"fully_qualified_name":"HEATER_4_MAXTEMP","ident_utf16":{"start":{"line_number":627,"utf16_col":8},"end":{"line_number":627,"utf16_col":24}},"extent_utf16":{"start":{"line_number":627,"utf16_col":0},"end":{"line_number":628,"utf16_col":0}}},{"name":"HEATER_5_MAXTEMP","kind":"macro","ident_start":27768,"ident_end":27784,"extent_start":27760,"extent_end":27789,"fully_qualified_name":"HEATER_5_MAXTEMP","ident_utf16":{"start":{"line_number":628,"utf16_col":8},"end":{"line_number":628,"utf16_col":24}},"extent_utf16":{"start":{"line_number":628,"utf16_col":0},"end":{"line_number":629,"utf16_col":0}}},{"name":"HEATER_6_MAXTEMP","kind":"macro","ident_start":27797,"ident_end":27813,"extent_start":27789,"extent_end":27818,"fully_qualified_name":"HEATER_6_MAXTEMP","ident_utf16":{"start":{"line_number":629,"utf16_col":8},"end":{"line_number":629,"utf16_col":24}},"extent_utf16":{"start":{"line_number":629,"utf16_col":0},"end":{"line_number":630,"utf16_col":0}}},{"name":"HEATER_7_MAXTEMP","kind":"macro","ident_start":27826,"ident_end":27842,"extent_start":27818,"extent_end":27847,"fully_qualified_name":"HEATER_7_MAXTEMP","ident_utf16":{"start":{"line_number":630,"utf16_col":8},"end":{"line_number":630,"utf16_col":24}},"extent_utf16":{"start":{"line_number":630,"utf16_col":0},"end":{"line_number":631,"utf16_col":0}}},{"name":"BED_MAXTEMP","kind":"macro","ident_start":27855,"ident_end":27866,"extent_start":27847,"extent_end":27876,"fully_qualified_name":"BED_MAXTEMP","ident_utf16":{"start":{"line_number":631,"utf16_col":8},"end":{"line_number":631,"utf16_col":19}},"extent_utf16":{"start":{"line_number":631,"utf16_col":0},"end":{"line_number":632,"utf16_col":0}}},{"name":"CHAMBER_MAXTEMP","kind":"macro","ident_start":27884,"ident_end":27899,"extent_start":27876,"extent_end":27905,"fully_qualified_name":"CHAMBER_MAXTEMP","ident_utf16":{"start":{"line_number":632,"utf16_col":8},"end":{"line_number":632,"utf16_col":23}},"extent_utf16":{"start":{"line_number":632,"utf16_col":0},"end":{"line_number":634,"utf16_col":0}}},{"name":"HOTEND_OVERSHOOT","kind":"macro","ident_start":28232,"ident_end":28248,"extent_start":28224,"extent_end":28308,"fully_qualified_name":"HOTEND_OVERSHOOT","ident_utf16":{"start":{"line_number":640,"utf16_col":8},"end":{"line_number":640,"utf16_col":24}},"extent_utf16":{"start":{"line_number":640,"utf16_col":0},"end":{"line_number":641,"utf16_col":0}}},{"name":"BED_OVERSHOOT","kind":"macro","ident_start":28316,"ident_end":28329,"extent_start":28308,"extent_end":28392,"fully_qualified_name":"BED_OVERSHOOT","ident_utf16":{"start":{"line_number":641,"utf16_col":8},"end":{"line_number":641,"utf16_col":21}},"extent_utf16":{"start":{"line_number":641,"utf16_col":0},"end":{"line_number":642,"utf16_col":0}}},{"name":"COOLER_OVERSHOOT","kind":"macro","ident_start":28400,"ident_end":28416,"extent_start":28392,"extent_end":28474,"fully_qualified_name":"COOLER_OVERSHOOT","ident_utf16":{"start":{"line_number":642,"utf16_col":8},"end":{"line_number":642,"utf16_col":24}},"extent_utf16":{"start":{"line_number":642,"utf16_col":0},"end":{"line_number":644,"utf16_col":0}}},{"name":"PIDTEMP","kind":"macro","ident_start":28869,"ident_end":28876,"extent_start":28861,"extent_end":28952,"fully_qualified_name":"PIDTEMP","ident_utf16":{"start":{"line_number":652,"utf16_col":8},"end":{"line_number":652,"utf16_col":15}},"extent_utf16":{"start":{"line_number":652,"utf16_col":0},"end":{"line_number":653,"utf16_col":0}}},{"name":"BANG_MAX","kind":"macro","ident_start":29008,"ident_end":29016,"extent_start":29000,"extent_end":29095,"fully_qualified_name":"BANG_MAX","ident_utf16":{"start":{"line_number":655,"utf16_col":8},"end":{"line_number":655,"utf16_col":16}},"extent_utf16":{"start":{"line_number":655,"utf16_col":0},"end":{"line_number":656,"utf16_col":0}}},{"name":"PID_MAX","kind":"macro","ident_start":29103,"ident_end":29110,"extent_start":29095,"extent_end":29219,"fully_qualified_name":"PID_MAX","ident_utf16":{"start":{"line_number":656,"utf16_col":8},"end":{"line_number":656,"utf16_col":15}},"extent_utf16":{"start":{"line_number":656,"utf16_col":0},"end":{"line_number":657,"utf16_col":0}}},{"name":"PID_K1","kind":"macro","ident_start":29227,"ident_end":29233,"extent_start":29219,"extent_end":29285,"fully_qualified_name":"PID_K1","ident_utf16":{"start":{"line_number":657,"utf16_col":8},"end":{"line_number":657,"utf16_col":14}},"extent_utf16":{"start":{"line_number":657,"utf16_col":0},"end":{"line_number":659,"utf16_col":0}}},{"name":"DEFAULT_Kp_LIST","kind":"macro","ident_start":29853,"ident_end":29868,"extent_start":29845,"extent_end":29888,"fully_qualified_name":"DEFAULT_Kp_LIST","ident_utf16":{"start":{"line_number":668,"utf16_col":12},"end":{"line_number":668,"utf16_col":27}},"extent_utf16":{"start":{"line_number":668,"utf16_col":4},"end":{"line_number":669,"utf16_col":0}}},{"name":"DEFAULT_Ki_LIST","kind":"macro","ident_start":29900,"ident_end":29915,"extent_start":29892,"extent_end":29935,"fully_qualified_name":"DEFAULT_Ki_LIST","ident_utf16":{"start":{"line_number":669,"utf16_col":12},"end":{"line_number":669,"utf16_col":27}},"extent_utf16":{"start":{"line_number":669,"utf16_col":4},"end":{"line_number":670,"utf16_col":0}}},{"name":"DEFAULT_Kd_LIST","kind":"macro","ident_start":29947,"ident_end":29962,"extent_start":29939,"extent_end":29982,"fully_qualified_name":"DEFAULT_Kd_LIST","ident_utf16":{"start":{"line_number":670,"utf16_col":12},"end":{"line_number":670,"utf16_col":27}},"extent_utf16":{"start":{"line_number":670,"utf16_col":4},"end":{"line_number":671,"utf16_col":0}}},{"name":"DEFAULT_Kp","kind":"macro","ident_start":30002,"ident_end":30012,"extent_start":29994,"extent_end":30020,"fully_qualified_name":"DEFAULT_Kp","ident_utf16":{"start":{"line_number":672,"utf16_col":12},"end":{"line_number":672,"utf16_col":22}},"extent_utf16":{"start":{"line_number":672,"utf16_col":4},"end":{"line_number":673,"utf16_col":0}}},{"name":"DEFAULT_Ki","kind":"macro","ident_start":30032,"ident_end":30042,"extent_start":30024,"extent_end":30050,"fully_qualified_name":"DEFAULT_Ki","ident_utf16":{"start":{"line_number":673,"utf16_col":12},"end":{"line_number":673,"utf16_col":22}},"extent_utf16":{"start":{"line_number":673,"utf16_col":4},"end":{"line_number":674,"utf16_col":0}}},{"name":"DEFAULT_Kd","kind":"macro","ident_start":30062,"ident_end":30072,"extent_start":30054,"extent_end":30080,"fully_qualified_name":"DEFAULT_Kd","ident_utf16":{"start":{"line_number":674,"utf16_col":12},"end":{"line_number":674,"utf16_col":22}},"extent_utf16":{"start":{"line_number":674,"utf16_col":4},"end":{"line_number":675,"utf16_col":0}}},{"name":"MPC_MAX","kind":"macro","ident_start":30720,"ident_end":30727,"extent_start":30712,"extent_end":30815,"fully_qualified_name":"MPC_MAX","ident_utf16":{"start":{"line_number":690,"utf16_col":10},"end":{"line_number":690,"utf16_col":17}},"extent_utf16":{"start":{"line_number":690,"utf16_col":2},"end":{"line_number":691,"utf16_col":0}}},{"name":"MPC_HEATER_POWER","kind":"macro","ident_start":30825,"ident_end":30841,"extent_start":30817,"extent_end":30900,"fully_qualified_name":"MPC_HEATER_POWER","ident_utf16":{"start":{"line_number":691,"utf16_col":10},"end":{"line_number":691,"utf16_col":26}},"extent_utf16":{"start":{"line_number":691,"utf16_col":2},"end":{"line_number":693,"utf16_col":0}}},{"name":"MPC_INCLUDE_FAN","kind":"macro","ident_start":30910,"ident_end":30925,"extent_start":30902,"extent_end":31113,"fully_qualified_name":"MPC_INCLUDE_FAN","ident_utf16":{"start":{"line_number":693,"utf16_col":10},"end":{"line_number":693,"utf16_col":25}},"extent_utf16":{"start":{"line_number":693,"utf16_col":2},"end":{"line_number":697,"utf16_col":0}}},{"name":"MPC_SENSOR_RESPONSIVENESS","kind":"macro","ident_start":31123,"ident_end":31148,"extent_start":31115,"extent_end":31239,"fully_qualified_name":"MPC_SENSOR_RESPONSIVENESS","ident_utf16":{"start":{"line_number":697,"utf16_col":10},"end":{"line_number":697,"utf16_col":35}},"extent_utf16":{"start":{"line_number":697,"utf16_col":2},"end":{"line_number":698,"utf16_col":0}}},{"name":"MPC_AMBIENT_XFER_COEFF","kind":"macro","ident_start":31249,"ident_end":31271,"extent_start":31241,"extent_end":31371,"fully_qualified_name":"MPC_AMBIENT_XFER_COEFF","ident_utf16":{"start":{"line_number":698,"utf16_col":10},"end":{"line_number":698,"utf16_col":32}},"extent_utf16":{"start":{"line_number":698,"utf16_col":2},"end":{"line_number":699,"utf16_col":0}}},{"name":"MPC_AMBIENT_XFER_COEFF_FAN255","kind":"macro","ident_start":31414,"ident_end":31443,"extent_start":31406,"extent_end":31538,"fully_qualified_name":"MPC_AMBIENT_XFER_COEFF_FAN255","ident_utf16":{"start":{"line_number":700,"utf16_col":12},"end":{"line_number":700,"utf16_col":41}},"extent_utf16":{"start":{"line_number":700,"utf16_col":4},"end":{"line_number":701,"utf16_col":0}}},{"name":"FILAMENT_HEAT_CAPACITY_PERMM","kind":"macro","ident_start":31766,"ident_end":31794,"extent_start":31758,"extent_end":31874,"fully_qualified_name":"FILAMENT_HEAT_CAPACITY_PERMM","ident_utf16":{"start":{"line_number":709,"utf16_col":10},"end":{"line_number":709,"utf16_col":38}},"extent_utf16":{"start":{"line_number":709,"utf16_col":2},"end":{"line_number":710,"utf16_col":0}}},{"name":"MPC_SMOOTHING_FACTOR","kind":"macro","ident_start":32027,"ident_end":32047,"extent_start":32019,"extent_end":32154,"fully_qualified_name":"MPC_SMOOTHING_FACTOR","ident_utf16":{"start":{"line_number":713,"utf16_col":10},"end":{"line_number":713,"utf16_col":30}},"extent_utf16":{"start":{"line_number":713,"utf16_col":2},"end":{"line_number":714,"utf16_col":0}}},{"name":"MPC_MIN_AMBIENT_CHANGE","kind":"macro","ident_start":32164,"ident_end":32186,"extent_start":32156,"extent_end":32297,"fully_qualified_name":"MPC_MIN_AMBIENT_CHANGE","ident_utf16":{"start":{"line_number":714,"utf16_col":10},"end":{"line_number":714,"utf16_col":32}},"extent_utf16":{"start":{"line_number":714,"utf16_col":2},"end":{"line_number":715,"utf16_col":0}}},{"name":"MPC_STEADYSTATE","kind":"macro","ident_start":32307,"ident_end":32322,"extent_start":32299,"extent_end":32424,"fully_qualified_name":"MPC_STEADYSTATE","ident_utf16":{"start":{"line_number":715,"utf16_col":10},"end":{"line_number":715,"utf16_col":25}},"extent_utf16":{"start":{"line_number":715,"utf16_col":2},"end":{"line_number":717,"utf16_col":0}}},{"name":"MPC_TUNING_POS","kind":"macro","ident_start":32434,"ident_end":32448,"extent_start":32426,"extent_end":32554,"fully_qualified_name":"MPC_TUNING_POS","ident_utf16":{"start":{"line_number":717,"utf16_col":10},"end":{"line_number":717,"utf16_col":24}},"extent_utf16":{"start":{"line_number":717,"utf16_col":2},"end":{"line_number":718,"utf16_col":0}}},{"name":"MPC_TUNING_END_Z","kind":"macro","ident_start":32564,"ident_end":32580,"extent_start":32556,"extent_end":32650,"fully_qualified_name":"MPC_TUNING_END_Z","ident_utf16":{"start":{"line_number":718,"utf16_col":10},"end":{"line_number":718,"utf16_col":26}},"extent_utf16":{"start":{"line_number":718,"utf16_col":2},"end":{"line_number":719,"utf16_col":0}}},{"name":"MAX_BED_POWER","kind":"macro","ident_start":34000,"ident_end":34013,"extent_start":33992,"extent_end":34065,"fully_qualified_name":"MAX_BED_POWER","ident_utf16":{"start":{"line_number":749,"utf16_col":8},"end":{"line_number":749,"utf16_col":21}},"extent_utf16":{"start":{"line_number":749,"utf16_col":0},"end":{"line_number":751,"utf16_col":0}}},{"name":"DEFAULT_bedKp","kind":"macro","ident_start":34228,"ident_end":34241,"extent_start":34220,"extent_end":34248,"fully_qualified_name":"DEFAULT_bedKp","ident_utf16":{"start":{"line_number":756,"utf16_col":10},"end":{"line_number":756,"utf16_col":23}},"extent_utf16":{"start":{"line_number":756,"utf16_col":2},"end":{"line_number":757,"utf16_col":0}}},{"name":"DEFAULT_bedKi","kind":"macro","ident_start":34258,"ident_end":34271,"extent_start":34250,"extent_end":34277,"fully_qualified_name":"DEFAULT_bedKi","ident_utf16":{"start":{"line_number":757,"utf16_col":10},"end":{"line_number":757,"utf16_col":23}},"extent_utf16":{"start":{"line_number":757,"utf16_col":2},"end":{"line_number":758,"utf16_col":0}}},{"name":"DEFAULT_bedKd","kind":"macro","ident_start":34287,"ident_end":34300,"extent_start":34279,"extent_end":34309,"fully_qualified_name":"DEFAULT_bedKd","ident_utf16":{"start":{"line_number":758,"utf16_col":10},"end":{"line_number":758,"utf16_col":23}},"extent_utf16":{"start":{"line_number":758,"utf16_col":2},"end":{"line_number":760,"utf16_col":0}}},{"name":"MAX_CHAMBER_POWER","kind":"macro","ident_start":35819,"ident_end":35836,"extent_start":35811,"extent_end":35899,"fully_qualified_name":"MAX_CHAMBER_POWER","ident_utf16":{"start":{"line_number":791,"utf16_col":8},"end":{"line_number":791,"utf16_col":25}},"extent_utf16":{"start":{"line_number":791,"utf16_col":0},"end":{"line_number":793,"utf16_col":0}}},{"name":"MIN_CHAMBER_POWER","kind":"macro","ident_start":35937,"ident_end":35954,"extent_start":35929,"extent_end":35957,"fully_qualified_name":"MIN_CHAMBER_POWER","ident_utf16":{"start":{"line_number":794,"utf16_col":10},"end":{"line_number":794,"utf16_col":27}},"extent_utf16":{"start":{"line_number":794,"utf16_col":2},"end":{"line_number":795,"utf16_col":0}}},{"name":"DEFAULT_chamberKp","kind":"macro","ident_start":36231,"ident_end":36248,"extent_start":36223,"extent_end":36255,"fully_qualified_name":"DEFAULT_chamberKp","ident_utf16":{"start":{"line_number":800,"utf16_col":10},"end":{"line_number":800,"utf16_col":27}},"extent_utf16":{"start":{"line_number":800,"utf16_col":2},"end":{"line_number":801,"utf16_col":0}}},{"name":"DEFAULT_chamberKi","kind":"macro","ident_start":36265,"ident_end":36282,"extent_start":36257,"extent_end":36288,"fully_qualified_name":"DEFAULT_chamberKi","ident_utf16":{"start":{"line_number":801,"utf16_col":10},"end":{"line_number":801,"utf16_col":27}},"extent_utf16":{"start":{"line_number":801,"utf16_col":2},"end":{"line_number":802,"utf16_col":0}}},{"name":"DEFAULT_chamberKd","kind":"macro","ident_start":36298,"ident_end":36315,"extent_start":36290,"extent_end":36323,"fully_qualified_name":"DEFAULT_chamberKd","ident_utf16":{"start":{"line_number":802,"utf16_col":10},"end":{"line_number":802,"utf16_col":27}},"extent_utf16":{"start":{"line_number":802,"utf16_col":2},"end":{"line_number":803,"utf16_col":0}}},{"name":"PID_FUNCTIONAL_RANGE","kind":"macro","ident_start":36810,"ident_end":36830,"extent_start":36802,"extent_end":36925,"fully_qualified_name":"PID_FUNCTIONAL_RANGE","ident_utf16":{"start":{"line_number":811,"utf16_col":10},"end":{"line_number":811,"utf16_col":30}},"extent_utf16":{"start":{"line_number":811,"utf16_col":2},"end":{"line_number":812,"utf16_col":0}}},{"name":"PREVENT_COLD_EXTRUSION","kind":"macro","ident_start":37571,"ident_end":37593,"extent_start":37563,"extent_end":37594,"fully_qualified_name":"PREVENT_COLD_EXTRUSION","ident_utf16":{"start":{"line_number":827,"utf16_col":8},"end":{"line_number":827,"utf16_col":30}},"extent_utf16":{"start":{"line_number":827,"utf16_col":0},"end":{"line_number":828,"utf16_col":0}}},{"name":"EXTRUDE_MINTEMP","kind":"macro","ident_start":37602,"ident_end":37617,"extent_start":37594,"extent_end":37623,"fully_qualified_name":"EXTRUDE_MINTEMP","ident_utf16":{"start":{"line_number":828,"utf16_col":8},"end":{"line_number":828,"utf16_col":23}},"extent_utf16":{"start":{"line_number":828,"utf16_col":0},"end":{"line_number":830,"utf16_col":0}}},{"name":"PREVENT_LENGTHY_EXTRUDE","kind":"macro","ident_start":37775,"ident_end":37798,"extent_start":37767,"extent_end":37799,"fully_qualified_name":"PREVENT_LENGTHY_EXTRUDE","ident_utf16":{"start":{"line_number":834,"utf16_col":8},"end":{"line_number":834,"utf16_col":31}},"extent_utf16":{"start":{"line_number":834,"utf16_col":0},"end":{"line_number":835,"utf16_col":0}}},{"name":"EXTRUDE_MAXLENGTH","kind":"macro","ident_start":37807,"ident_end":37824,"extent_start":37799,"extent_end":37830,"fully_qualified_name":"EXTRUDE_MAXLENGTH","ident_utf16":{"start":{"line_number":835,"utf16_col":8},"end":{"line_number":835,"utf16_col":25}},"extent_utf16":{"start":{"line_number":835,"utf16_col":0},"end":{"line_number":837,"utf16_col":0}}},{"name":"THERMAL_PROTECTION_HOTENDS","kind":"macro","ident_start":38577,"ident_end":38603,"extent_start":38569,"extent_end":38651,"fully_qualified_name":"THERMAL_PROTECTION_HOTENDS","ident_utf16":{"start":{"line_number":854,"utf16_col":8},"end":{"line_number":854,"utf16_col":34}},"extent_utf16":{"start":{"line_number":854,"utf16_col":0},"end":{"line_number":855,"utf16_col":0}}},{"name":"THERMAL_PROTECTION_BED","kind":"macro","ident_start":38659,"ident_end":38681,"extent_start":38651,"extent_end":38734,"fully_qualified_name":"THERMAL_PROTECTION_BED","ident_utf16":{"start":{"line_number":855,"utf16_col":8},"end":{"line_number":855,"utf16_col":30}},"extent_utf16":{"start":{"line_number":855,"utf16_col":0},"end":{"line_number":856,"utf16_col":0}}},{"name":"THERMAL_PROTECTION_CHAMBER","kind":"macro","ident_start":38742,"ident_end":38768,"extent_start":38734,"extent_end":38821,"fully_qualified_name":"THERMAL_PROTECTION_CHAMBER","ident_utf16":{"start":{"line_number":856,"utf16_col":8},"end":{"line_number":856,"utf16_col":34}},"extent_utf16":{"start":{"line_number":856,"utf16_col":0},"end":{"line_number":857,"utf16_col":0}}},{"name":"THERMAL_PROTECTION_COOLER","kind":"macro","ident_start":38829,"ident_end":38854,"extent_start":38821,"extent_end":38908,"fully_qualified_name":"THERMAL_PROTECTION_COOLER","ident_utf16":{"start":{"line_number":857,"utf16_col":8},"end":{"line_number":857,"utf16_col":33}},"extent_utf16":{"start":{"line_number":857,"utf16_col":0},"end":{"line_number":859,"utf16_col":0}}},{"name":"POLARGRAPH_MAX_BELT_LEN","kind":"macro","ident_start":39671,"ident_end":39694,"extent_start":39663,"extent_end":39702,"fully_qualified_name":"POLARGRAPH_MAX_BELT_LEN","ident_utf16":{"start":{"line_number":882,"utf16_col":10},"end":{"line_number":882,"utf16_col":33}},"extent_utf16":{"start":{"line_number":882,"utf16_col":2},"end":{"line_number":883,"utf16_col":0}}},{"name":"DEFAULT_SEGMENTS_PER_SECOND","kind":"macro","ident_start":39712,"ident_end":39739,"extent_start":39704,"extent_end":39742,"fully_qualified_name":"DEFAULT_SEGMENTS_PER_SECOND","ident_utf16":{"start":{"line_number":883,"utf16_col":10},"end":{"line_number":883,"utf16_col":37}},"extent_utf16":{"start":{"line_number":883,"utf16_col":2},"end":{"line_number":884,"utf16_col":0}}},{"name":"DEFAULT_SEGMENTS_PER_SECOND","kind":"macro","ident_start":40070,"ident_end":40097,"extent_start":40062,"extent_end":40103,"fully_qualified_name":"DEFAULT_SEGMENTS_PER_SECOND","ident_utf16":{"start":{"line_number":895,"utf16_col":10},"end":{"line_number":895,"utf16_col":37}},"extent_utf16":{"start":{"line_number":895,"utf16_col":2},"end":{"line_number":897,"utf16_col":0}}},{"name":"DELTA_CALIBRATION_DEFAULT_POINTS","kind":"macro","ident_start":40613,"ident_end":40645,"extent_start":40605,"extent_end":40648,"fully_qualified_name":"DELTA_CALIBRATION_DEFAULT_POINTS","ident_utf16":{"start":{"line_number":910,"utf16_col":12},"end":{"line_number":910,"utf16_col":44}},"extent_utf16":{"start":{"line_number":910,"utf16_col":4},"end":{"line_number":911,"utf16_col":0}}},{"name":"PROBE_MANUALLY_STEP","kind":"macro","ident_start":40771,"ident_end":40790,"extent_start":40763,"extent_end":40809,"fully_qualified_name":"PROBE_MANUALLY_STEP","ident_utf16":{"start":{"line_number":915,"utf16_col":12},"end":{"line_number":915,"utf16_col":31}},"extent_utf16":{"start":{"line_number":915,"utf16_col":4},"end":{"line_number":916,"utf16_col":0}}},{"name":"DELTA_PRINTABLE_RADIUS","kind":"macro","ident_start":40924,"ident_end":40946,"extent_start":40916,"extent_end":40965,"fully_qualified_name":"DELTA_PRINTABLE_RADIUS","ident_utf16":{"start":{"line_number":919,"utf16_col":10},"end":{"line_number":919,"utf16_col":32}},"extent_utf16":{"start":{"line_number":919,"utf16_col":2},"end":{"line_number":921,"utf16_col":0}}},{"name":"DELTA_MAX_RADIUS","kind":"macro","ident_start":41003,"ident_end":41019,"extent_start":40995,"extent_end":41044,"fully_qualified_name":"DELTA_MAX_RADIUS","ident_utf16":{"start":{"line_number":922,"utf16_col":10},"end":{"line_number":922,"utf16_col":26}},"extent_utf16":{"start":{"line_number":922,"utf16_col":2},"end":{"line_number":924,"utf16_col":0}}},{"name":"DELTA_DIAGONAL_ROD","kind":"macro","ident_start":41125,"ident_end":41143,"extent_start":41117,"extent_end":41166,"fully_qualified_name":"DELTA_DIAGONAL_ROD","ident_utf16":{"start":{"line_number":925,"utf16_col":10},"end":{"line_number":925,"utf16_col":28}},"extent_utf16":{"start":{"line_number":925,"utf16_col":2},"end":{"line_number":927,"utf16_col":0}}},{"name":"DELTA_HEIGHT","kind":"macro","ident_start":41229,"ident_end":41241,"extent_start":41221,"extent_end":41309,"fully_qualified_name":"DELTA_HEIGHT","ident_utf16":{"start":{"line_number":928,"utf16_col":10},"end":{"line_number":928,"utf16_col":22}},"extent_utf16":{"start":{"line_number":928,"utf16_col":2},"end":{"line_number":930,"utf16_col":0}}},{"name":"DELTA_ENDSTOP_ADJ","kind":"macro","ident_start":41319,"ident_end":41336,"extent_start":41311,"extent_end":41400,"fully_qualified_name":"DELTA_ENDSTOP_ADJ","ident_utf16":{"start":{"line_number":930,"utf16_col":10},"end":{"line_number":930,"utf16_col":27}},"extent_utf16":{"start":{"line_number":930,"utf16_col":2},"end":{"line_number":932,"utf16_col":0}}},{"name":"DELTA_RADIUS","kind":"macro","ident_start":41492,"ident_end":41504,"extent_start":41484,"extent_end":41572,"fully_qualified_name":"DELTA_RADIUS","ident_utf16":{"start":{"line_number":933,"utf16_col":10},"end":{"line_number":933,"utf16_col":22}},"extent_utf16":{"start":{"line_number":933,"utf16_col":2},"end":{"line_number":935,"utf16_col":0}}},{"name":"DELTA_TOWER_ANGLE_TRIM","kind":"macro","ident_start":41777,"ident_end":41799,"extent_start":41769,"extent_end":41863,"fully_qualified_name":"DELTA_TOWER_ANGLE_TRIM","ident_utf16":{"start":{"line_number":938,"utf16_col":10},"end":{"line_number":938,"utf16_col":32}},"extent_utf16":{"start":{"line_number":938,"utf16_col":2},"end":{"line_number":940,"utf16_col":0}}},{"name":"DEFAULT_SEGMENTS_PER_SECOND","kind":"macro","ident_start":42505,"ident_end":42532,"extent_start":42497,"extent_end":42538,"fully_qualified_name":"DEFAULT_SEGMENTS_PER_SECOND","ident_utf16":{"start":{"line_number":959,"utf16_col":10},"end":{"line_number":959,"utf16_col":37}},"extent_utf16":{"start":{"line_number":959,"utf16_col":2},"end":{"line_number":961,"utf16_col":0}}},{"name":"SCARA_LINKAGE_1","kind":"macro","ident_start":42624,"ident_end":42639,"extent_start":42616,"extent_end":42658,"fully_qualified_name":"SCARA_LINKAGE_1","ident_utf16":{"start":{"line_number":962,"utf16_col":10},"end":{"line_number":962,"utf16_col":25}},"extent_utf16":{"start":{"line_number":962,"utf16_col":2},"end":{"line_number":963,"utf16_col":0}}},{"name":"SCARA_LINKAGE_2","kind":"macro","ident_start":42668,"ident_end":42683,"extent_start":42660,"extent_end":42703,"fully_qualified_name":"SCARA_LINKAGE_2","ident_utf16":{"start":{"line_number":963,"utf16_col":10},"end":{"line_number":963,"utf16_col":25}},"extent_utf16":{"start":{"line_number":963,"utf16_col":2},"end":{"line_number":965,"utf16_col":0}}},{"name":"SCARA_OFFSET_X","kind":"macro","ident_start":42885,"ident_end":42899,"extent_start":42877,"extent_end":42919,"fully_qualified_name":"SCARA_OFFSET_X","ident_utf16":{"start":{"line_number":967,"utf16_col":10},"end":{"line_number":967,"utf16_col":24}},"extent_utf16":{"start":{"line_number":967,"utf16_col":2},"end":{"line_number":968,"utf16_col":0}}},{"name":"SCARA_OFFSET_Y","kind":"macro","ident_start":42929,"ident_end":42943,"extent_start":42921,"extent_end":42964,"fully_qualified_name":"SCARA_OFFSET_Y","ident_utf16":{"start":{"line_number":968,"utf16_col":10},"end":{"line_number":968,"utf16_col":24}},"extent_utf16":{"start":{"line_number":968,"utf16_col":2},"end":{"line_number":970,"utf16_col":0}}},{"name":"SCARA_FEEDRATE_SCALING","kind":"macro","ident_start":43042,"ident_end":43064,"extent_start":43034,"extent_end":43228,"fully_qualified_name":"SCARA_FEEDRATE_SCALING","ident_utf16":{"start":{"line_number":973,"utf16_col":12},"end":{"line_number":973,"utf16_col":34}},"extent_utf16":{"start":{"line_number":973,"utf16_col":4},"end":{"line_number":978,"utf16_col":0}}},{"name":"THETA_HOMING_OFFSET","kind":"macro","ident_start":43240,"ident_end":43259,"extent_start":43232,"extent_end":43369,"fully_qualified_name":"THETA_HOMING_OFFSET","ident_utf16":{"start":{"line_number":978,"utf16_col":12},"end":{"line_number":978,"utf16_col":31}},"extent_utf16":{"start":{"line_number":978,"utf16_col":4},"end":{"line_number":979,"utf16_col":0}}},{"name":"PSI_HOMING_OFFSET","kind":"macro","ident_start":43381,"ident_end":43398,"extent_start":43373,"extent_end":43511,"fully_qualified_name":"PSI_HOMING_OFFSET","ident_utf16":{"start":{"line_number":979,"utf16_col":12},"end":{"line_number":979,"utf16_col":29}},"extent_utf16":{"start":{"line_number":979,"utf16_col":4},"end":{"line_number":981,"utf16_col":0}}},{"name":"SCARA_OFFSET_THETA1","kind":"macro","ident_start":43550,"ident_end":43569,"extent_start":43542,"extent_end":43585,"fully_qualified_name":"SCARA_OFFSET_THETA1","ident_utf16":{"start":{"line_number":983,"utf16_col":12},"end":{"line_number":983,"utf16_col":31}},"extent_utf16":{"start":{"line_number":983,"utf16_col":4},"end":{"line_number":984,"utf16_col":0}}},{"name":"SCARA_OFFSET_THETA2","kind":"macro","ident_start":43597,"ident_end":43616,"extent_start":43589,"extent_end":43633,"fully_qualified_name":"SCARA_OFFSET_THETA2","ident_utf16":{"start":{"line_number":984,"utf16_col":12},"end":{"line_number":984,"utf16_col":31}},"extent_utf16":{"start":{"line_number":984,"utf16_col":4},"end":{"line_number":986,"utf16_col":0}}},{"name":"DEBUG_TPARA_KINEMATICS","kind":"macro","ident_start":43776,"ident_end":43798,"extent_start":43768,"extent_end":43842,"fully_qualified_name":"DEBUG_TPARA_KINEMATICS","ident_utf16":{"start":{"line_number":995,"utf16_col":10},"end":{"line_number":995,"utf16_col":32}},"extent_utf16":{"start":{"line_number":995,"utf16_col":2},"end":{"line_number":998,"utf16_col":0}}},{"name":"TPARA_LINKAGE_1","kind":"macro","ident_start":43928,"ident_end":43943,"extent_start":43920,"extent_end":43962,"fully_qualified_name":"TPARA_LINKAGE_1","ident_utf16":{"start":{"line_number":999,"utf16_col":10},"end":{"line_number":999,"utf16_col":25}},"extent_utf16":{"start":{"line_number":999,"utf16_col":2},"end":{"line_number":1000,"utf16_col":0}}},{"name":"TPARA_LINKAGE_2","kind":"macro","ident_start":43972,"ident_end":43987,"extent_start":43964,"extent_end":44007,"fully_qualified_name":"TPARA_LINKAGE_2","ident_utf16":{"start":{"line_number":1000,"utf16_col":10},"end":{"line_number":1000,"utf16_col":25}},"extent_utf16":{"start":{"line_number":1000,"utf16_col":2},"end":{"line_number":1002,"utf16_col":0}}},{"name":"TPARA_OFFSET_X","kind":"macro","ident_start":44189,"ident_end":44203,"extent_start":44181,"extent_end":44223,"fully_qualified_name":"TPARA_OFFSET_X","ident_utf16":{"start":{"line_number":1004,"utf16_col":10},"end":{"line_number":1004,"utf16_col":24}},"extent_utf16":{"start":{"line_number":1004,"utf16_col":2},"end":{"line_number":1005,"utf16_col":0}}},{"name":"TPARA_OFFSET_Y","kind":"macro","ident_start":44233,"ident_end":44247,"extent_start":44225,"extent_end":44267,"fully_qualified_name":"TPARA_OFFSET_Y","ident_utf16":{"start":{"line_number":1005,"utf16_col":10},"end":{"line_number":1005,"utf16_col":24}},"extent_utf16":{"start":{"line_number":1005,"utf16_col":2},"end":{"line_number":1006,"utf16_col":0}}},{"name":"TPARA_OFFSET_Z","kind":"macro","ident_start":44277,"ident_end":44291,"extent_start":44269,"extent_end":44312,"fully_qualified_name":"TPARA_OFFSET_Z","ident_utf16":{"start":{"line_number":1006,"utf16_col":10},"end":{"line_number":1006,"utf16_col":24}},"extent_utf16":{"start":{"line_number":1006,"utf16_col":2},"end":{"line_number":1008,"utf16_col":0}}},{"name":"SCARA_FEEDRATE_SCALING","kind":"macro","ident_start":44322,"ident_end":44344,"extent_start":44314,"extent_end":44504,"fully_qualified_name":"SCARA_FEEDRATE_SCALING","ident_utf16":{"start":{"line_number":1008,"utf16_col":10},"end":{"line_number":1008,"utf16_col":32}},"extent_utf16":{"start":{"line_number":1008,"utf16_col":2},"end":{"line_number":1013,"utf16_col":0}}},{"name":"THETA_HOMING_OFFSET","kind":"macro","ident_start":44621,"ident_end":44640,"extent_start":44613,"extent_end":44644,"fully_qualified_name":"THETA_HOMING_OFFSET","ident_utf16":{"start":{"line_number":1014,"utf16_col":10},"end":{"line_number":1014,"utf16_col":29}},"extent_utf16":{"start":{"line_number":1014,"utf16_col":2},"end":{"line_number":1015,"utf16_col":0}}},{"name":"PSI_HOMING_OFFSET","kind":"macro","ident_start":44654,"ident_end":44671,"extent_start":44646,"extent_end":44677,"fully_qualified_name":"PSI_HOMING_OFFSET","ident_utf16":{"start":{"line_number":1015,"utf16_col":10},"end":{"line_number":1015,"utf16_col":27}},"extent_utf16":{"start":{"line_number":1015,"utf16_col":2},"end":{"line_number":1016,"utf16_col":0}}},{"name":"USE_XMIN_PLUG","kind":"macro","ident_start":45569,"ident_end":45582,"extent_start":45561,"extent_end":45583,"fully_qualified_name":"USE_XMIN_PLUG","ident_utf16":{"start":{"line_number":1036,"utf16_col":8},"end":{"line_number":1036,"utf16_col":21}},"extent_utf16":{"start":{"line_number":1036,"utf16_col":0},"end":{"line_number":1037,"utf16_col":0}}},{"name":"USE_YMIN_PLUG","kind":"macro","ident_start":45591,"ident_end":45604,"extent_start":45583,"extent_end":45605,"fully_qualified_name":"USE_YMIN_PLUG","ident_utf16":{"start":{"line_number":1037,"utf16_col":8},"end":{"line_number":1037,"utf16_col":21}},"extent_utf16":{"start":{"line_number":1037,"utf16_col":0},"end":{"line_number":1038,"utf16_col":0}}},{"name":"USE_ZMIN_PLUG","kind":"macro","ident_start":45613,"ident_end":45626,"extent_start":45605,"extent_end":45627,"fully_qualified_name":"USE_ZMIN_PLUG","ident_utf16":{"start":{"line_number":1038,"utf16_col":8},"end":{"line_number":1038,"utf16_col":21}},"extent_utf16":{"start":{"line_number":1038,"utf16_col":0},"end":{"line_number":1039,"utf16_col":0}}},{"name":"ENDSTOPPULLUPS","kind":"macro","ident_start":46058,"ident_end":46072,"extent_start":46050,"extent_end":46073,"fully_qualified_name":"ENDSTOPPULLUPS","ident_utf16":{"start":{"line_number":1056,"utf16_col":8},"end":{"line_number":1056,"utf16_col":22}},"extent_utf16":{"start":{"line_number":1056,"utf16_col":0},"end":{"line_number":1057,"utf16_col":0}}},{"name":"X_MIN_ENDSTOP_INVERTING","kind":"macro","ident_start":47689,"ident_end":47712,"extent_start":47681,"extent_end":47770,"fully_qualified_name":"X_MIN_ENDSTOP_INVERTING","ident_utf16":{"start":{"line_number":1106,"utf16_col":8},"end":{"line_number":1106,"utf16_col":31}},"extent_utf16":{"start":{"line_number":1106,"utf16_col":0},"end":{"line_number":1107,"utf16_col":0}}},{"name":"Y_MIN_ENDSTOP_INVERTING","kind":"macro","ident_start":47778,"ident_end":47801,"extent_start":47770,"extent_end":47859,"fully_qualified_name":"Y_MIN_ENDSTOP_INVERTING","ident_utf16":{"start":{"line_number":1107,"utf16_col":8},"end":{"line_number":1107,"utf16_col":31}},"extent_utf16":{"start":{"line_number":1107,"utf16_col":0},"end":{"line_number":1108,"utf16_col":0}}},{"name":"Z_MIN_ENDSTOP_INVERTING","kind":"macro","ident_start":47867,"ident_end":47890,"extent_start":47859,"extent_end":47948,"fully_qualified_name":"Z_MIN_ENDSTOP_INVERTING","ident_utf16":{"start":{"line_number":1108,"utf16_col":8},"end":{"line_number":1108,"utf16_col":31}},"extent_utf16":{"start":{"line_number":1108,"utf16_col":0},"end":{"line_number":1109,"utf16_col":0}}},{"name":"I_MIN_ENDSTOP_INVERTING","kind":"macro","ident_start":47956,"ident_end":47979,"extent_start":47948,"extent_end":48037,"fully_qualified_name":"I_MIN_ENDSTOP_INVERTING","ident_utf16":{"start":{"line_number":1109,"utf16_col":8},"end":{"line_number":1109,"utf16_col":31}},"extent_utf16":{"start":{"line_number":1109,"utf16_col":0},"end":{"line_number":1110,"utf16_col":0}}},{"name":"J_MIN_ENDSTOP_INVERTING","kind":"macro","ident_start":48045,"ident_end":48068,"extent_start":48037,"extent_end":48126,"fully_qualified_name":"J_MIN_ENDSTOP_INVERTING","ident_utf16":{"start":{"line_number":1110,"utf16_col":8},"end":{"line_number":1110,"utf16_col":31}},"extent_utf16":{"start":{"line_number":1110,"utf16_col":0},"end":{"line_number":1111,"utf16_col":0}}},{"name":"K_MIN_ENDSTOP_INVERTING","kind":"macro","ident_start":48134,"ident_end":48157,"extent_start":48126,"extent_end":48215,"fully_qualified_name":"K_MIN_ENDSTOP_INVERTING","ident_utf16":{"start":{"line_number":1111,"utf16_col":8},"end":{"line_number":1111,"utf16_col":31}},"extent_utf16":{"start":{"line_number":1111,"utf16_col":0},"end":{"line_number":1112,"utf16_col":0}}},{"name":"U_MIN_ENDSTOP_INVERTING","kind":"macro","ident_start":48223,"ident_end":48246,"extent_start":48215,"extent_end":48304,"fully_qualified_name":"U_MIN_ENDSTOP_INVERTING","ident_utf16":{"start":{"line_number":1112,"utf16_col":8},"end":{"line_number":1112,"utf16_col":31}},"extent_utf16":{"start":{"line_number":1112,"utf16_col":0},"end":{"line_number":1113,"utf16_col":0}}},{"name":"V_MIN_ENDSTOP_INVERTING","kind":"macro","ident_start":48312,"ident_end":48335,"extent_start":48304,"extent_end":48393,"fully_qualified_name":"V_MIN_ENDSTOP_INVERTING","ident_utf16":{"start":{"line_number":1113,"utf16_col":8},"end":{"line_number":1113,"utf16_col":31}},"extent_utf16":{"start":{"line_number":1113,"utf16_col":0},"end":{"line_number":1114,"utf16_col":0}}},{"name":"W_MIN_ENDSTOP_INVERTING","kind":"macro","ident_start":48401,"ident_end":48424,"extent_start":48393,"extent_end":48482,"fully_qualified_name":"W_MIN_ENDSTOP_INVERTING","ident_utf16":{"start":{"line_number":1114,"utf16_col":8},"end":{"line_number":1114,"utf16_col":31}},"extent_utf16":{"start":{"line_number":1114,"utf16_col":0},"end":{"line_number":1115,"utf16_col":0}}},{"name":"X_MAX_ENDSTOP_INVERTING","kind":"macro","ident_start":48490,"ident_end":48513,"extent_start":48482,"extent_end":48571,"fully_qualified_name":"X_MAX_ENDSTOP_INVERTING","ident_utf16":{"start":{"line_number":1115,"utf16_col":8},"end":{"line_number":1115,"utf16_col":31}},"extent_utf16":{"start":{"line_number":1115,"utf16_col":0},"end":{"line_number":1116,"utf16_col":0}}},{"name":"Y_MAX_ENDSTOP_INVERTING","kind":"macro","ident_start":48579,"ident_end":48602,"extent_start":48571,"extent_end":48660,"fully_qualified_name":"Y_MAX_ENDSTOP_INVERTING","ident_utf16":{"start":{"line_number":1116,"utf16_col":8},"end":{"line_number":1116,"utf16_col":31}},"extent_utf16":{"start":{"line_number":1116,"utf16_col":0},"end":{"line_number":1117,"utf16_col":0}}},{"name":"Z_MAX_ENDSTOP_INVERTING","kind":"macro","ident_start":48668,"ident_end":48691,"extent_start":48660,"extent_end":48749,"fully_qualified_name":"Z_MAX_ENDSTOP_INVERTING","ident_utf16":{"start":{"line_number":1117,"utf16_col":8},"end":{"line_number":1117,"utf16_col":31}},"extent_utf16":{"start":{"line_number":1117,"utf16_col":0},"end":{"line_number":1118,"utf16_col":0}}},{"name":"I_MAX_ENDSTOP_INVERTING","kind":"macro","ident_start":48757,"ident_end":48780,"extent_start":48749,"extent_end":48838,"fully_qualified_name":"I_MAX_ENDSTOP_INVERTING","ident_utf16":{"start":{"line_number":1118,"utf16_col":8},"end":{"line_number":1118,"utf16_col":31}},"extent_utf16":{"start":{"line_number":1118,"utf16_col":0},"end":{"line_number":1119,"utf16_col":0}}},{"name":"J_MAX_ENDSTOP_INVERTING","kind":"macro","ident_start":48846,"ident_end":48869,"extent_start":48838,"extent_end":48927,"fully_qualified_name":"J_MAX_ENDSTOP_INVERTING","ident_utf16":{"start":{"line_number":1119,"utf16_col":8},"end":{"line_number":1119,"utf16_col":31}},"extent_utf16":{"start":{"line_number":1119,"utf16_col":0},"end":{"line_number":1120,"utf16_col":0}}},{"name":"K_MAX_ENDSTOP_INVERTING","kind":"macro","ident_start":48935,"ident_end":48958,"extent_start":48927,"extent_end":49016,"fully_qualified_name":"K_MAX_ENDSTOP_INVERTING","ident_utf16":{"start":{"line_number":1120,"utf16_col":8},"end":{"line_number":1120,"utf16_col":31}},"extent_utf16":{"start":{"line_number":1120,"utf16_col":0},"end":{"line_number":1121,"utf16_col":0}}},{"name":"U_MAX_ENDSTOP_INVERTING","kind":"macro","ident_start":49024,"ident_end":49047,"extent_start":49016,"extent_end":49105,"fully_qualified_name":"U_MAX_ENDSTOP_INVERTING","ident_utf16":{"start":{"line_number":1121,"utf16_col":8},"end":{"line_number":1121,"utf16_col":31}},"extent_utf16":{"start":{"line_number":1121,"utf16_col":0},"end":{"line_number":1122,"utf16_col":0}}},{"name":"V_MAX_ENDSTOP_INVERTING","kind":"macro","ident_start":49113,"ident_end":49136,"extent_start":49105,"extent_end":49194,"fully_qualified_name":"V_MAX_ENDSTOP_INVERTING","ident_utf16":{"start":{"line_number":1122,"utf16_col":8},"end":{"line_number":1122,"utf16_col":31}},"extent_utf16":{"start":{"line_number":1122,"utf16_col":0},"end":{"line_number":1123,"utf16_col":0}}},{"name":"W_MAX_ENDSTOP_INVERTING","kind":"macro","ident_start":49202,"ident_end":49225,"extent_start":49194,"extent_end":49283,"fully_qualified_name":"W_MAX_ENDSTOP_INVERTING","ident_utf16":{"start":{"line_number":1123,"utf16_col":8},"end":{"line_number":1123,"utf16_col":31}},"extent_utf16":{"start":{"line_number":1123,"utf16_col":0},"end":{"line_number":1124,"utf16_col":0}}},{"name":"Z_MIN_PROBE_ENDSTOP_INVERTING","kind":"macro","ident_start":49291,"ident_end":49320,"extent_start":49283,"extent_end":49377,"fully_qualified_name":"Z_MIN_PROBE_ENDSTOP_INVERTING","ident_utf16":{"start":{"line_number":1124,"utf16_col":8},"end":{"line_number":1124,"utf16_col":37}},"extent_utf16":{"start":{"line_number":1124,"utf16_col":0},"end":{"line_number":1126,"utf16_col":0}}},{"name":"DEFAULT_AXIS_STEPS_PER_UNIT","kind":"macro","ident_start":50980,"ident_end":51007,"extent_start":50972,"extent_end":51031,"fully_qualified_name":"DEFAULT_AXIS_STEPS_PER_UNIT","ident_utf16":{"start":{"line_number":1172,"utf16_col":8},"end":{"line_number":1172,"utf16_col":35}},"extent_utf16":{"start":{"line_number":1172,"utf16_col":0},"end":{"line_number":1174,"utf16_col":0}}},{"name":"DEFAULT_MAX_FEEDRATE","kind":"macro","ident_start":51214,"ident_end":51234,"extent_start":51206,"extent_end":51265,"fully_qualified_name":"DEFAULT_MAX_FEEDRATE","ident_utf16":{"start":{"line_number":1179,"utf16_col":8},"end":{"line_number":1179,"utf16_col":28}},"extent_utf16":{"start":{"line_number":1179,"utf16_col":0},"end":{"line_number":1181,"utf16_col":0}}},{"name":"MAX_FEEDRATE_EDIT_VALUES","kind":"macro","ident_start":51409,"ident_end":51433,"extent_start":51401,"extent_end":51493,"fully_qualified_name":"MAX_FEEDRATE_EDIT_VALUES","ident_utf16":{"start":{"line_number":1183,"utf16_col":10},"end":{"line_number":1183,"utf16_col":34}},"extent_utf16":{"start":{"line_number":1183,"utf16_col":2},"end":{"line_number":1184,"utf16_col":0}}},{"name":"DEFAULT_MAX_ACCELERATION","kind":"macro","ident_start":51767,"ident_end":51791,"extent_start":51759,"extent_end":51822,"fully_qualified_name":"DEFAULT_MAX_ACCELERATION","ident_utf16":{"start":{"line_number":1192,"utf16_col":8},"end":{"line_number":1192,"utf16_col":32}},"extent_utf16":{"start":{"line_number":1192,"utf16_col":0},"end":{"line_number":1194,"utf16_col":0}}},{"name":"MAX_ACCEL_EDIT_VALUES","kind":"macro","ident_start":51973,"ident_end":51994,"extent_start":51965,"extent_end":52063,"fully_qualified_name":"MAX_ACCEL_EDIT_VALUES","ident_utf16":{"start":{"line_number":1196,"utf16_col":10},"end":{"line_number":1196,"utf16_col":31}},"extent_utf16":{"start":{"line_number":1196,"utf16_col":2},"end":{"line_number":1197,"utf16_col":0}}},{"name":"DEFAULT_ACCELERATION","kind":"macro","ident_start":52299,"ident_end":52319,"extent_start":52291,"extent_end":52386,"fully_qualified_name":"DEFAULT_ACCELERATION","ident_utf16":{"start":{"line_number":1207,"utf16_col":8},"end":{"line_number":1207,"utf16_col":28}},"extent_utf16":{"start":{"line_number":1207,"utf16_col":0},"end":{"line_number":1208,"utf16_col":0}}},{"name":"DEFAULT_RETRACT_ACCELERATION","kind":"macro","ident_start":52394,"ident_end":52422,"extent_start":52386,"extent_end":52463,"fully_qualified_name":"DEFAULT_RETRACT_ACCELERATION","ident_utf16":{"start":{"line_number":1208,"utf16_col":8},"end":{"line_number":1208,"utf16_col":36}},"extent_utf16":{"start":{"line_number":1208,"utf16_col":0},"end":{"line_number":1209,"utf16_col":0}}},{"name":"DEFAULT_TRAVEL_ACCELERATION","kind":"macro","ident_start":52471,"ident_end":52498,"extent_start":52463,"extent_end":52566,"fully_qualified_name":"DEFAULT_TRAVEL_ACCELERATION","ident_utf16":{"start":{"line_number":1209,"utf16_col":8},"end":{"line_number":1209,"utf16_col":35}},"extent_utf16":{"start":{"line_number":1209,"utf16_col":0},"end":{"line_number":1211,"utf16_col":0}}},{"name":"DEFAULT_XJERK","kind":"macro","ident_start":52898,"ident_end":52911,"extent_start":52890,"extent_end":52917,"fully_qualified_name":"DEFAULT_XJERK","ident_utf16":{"start":{"line_number":1221,"utf16_col":10},"end":{"line_number":1221,"utf16_col":23}},"extent_utf16":{"start":{"line_number":1221,"utf16_col":2},"end":{"line_number":1222,"utf16_col":0}}},{"name":"DEFAULT_YJERK","kind":"macro","ident_start":52927,"ident_end":52940,"extent_start":52919,"extent_end":52946,"fully_qualified_name":"DEFAULT_YJERK","ident_utf16":{"start":{"line_number":1222,"utf16_col":10},"end":{"line_number":1222,"utf16_col":23}},"extent_utf16":{"start":{"line_number":1222,"utf16_col":2},"end":{"line_number":1223,"utf16_col":0}}},{"name":"DEFAULT_ZJERK","kind":"macro","ident_start":52956,"ident_end":52969,"extent_start":52948,"extent_end":52975,"fully_qualified_name":"DEFAULT_ZJERK","ident_utf16":{"start":{"line_number":1223,"utf16_col":10},"end":{"line_number":1223,"utf16_col":23}},"extent_utf16":{"start":{"line_number":1223,"utf16_col":2},"end":{"line_number":1224,"utf16_col":0}}},{"name":"MAX_JERK_EDIT_VALUES","kind":"macro","ident_start":53392,"ident_end":53412,"extent_start":53384,"extent_end":53468,"fully_qualified_name":"MAX_JERK_EDIT_VALUES","ident_utf16":{"start":{"line_number":1235,"utf16_col":12},"end":{"line_number":1235,"utf16_col":32}},"extent_utf16":{"start":{"line_number":1235,"utf16_col":4},"end":{"line_number":1236,"utf16_col":0}}},{"name":"DEFAULT_EJERK","kind":"macro","ident_start":53493,"ident_end":53506,"extent_start":53485,"extent_end":53549,"fully_qualified_name":"DEFAULT_EJERK","ident_utf16":{"start":{"line_number":1239,"utf16_col":8},"end":{"line_number":1239,"utf16_col":21}},"extent_utf16":{"start":{"line_number":1239,"utf16_col":0},"end":{"line_number":1241,"utf16_col":0}}},{"name":"JUNCTION_DEVIATION_MM","kind":"macro","ident_start":53768,"ident_end":53789,"extent_start":53760,"extent_end":53837,"fully_qualified_name":"JUNCTION_DEVIATION_MM","ident_utf16":{"start":{"line_number":1249,"utf16_col":10},"end":{"line_number":1249,"utf16_col":31}},"extent_utf16":{"start":{"line_number":1249,"utf16_col":2},"end":{"line_number":1250,"utf16_col":0}}},{"name":"JD_HANDLE_SMALL_SEGMENTS","kind":"macro","ident_start":53847,"ident_end":53871,"extent_start":53839,"extent_end":54044,"fully_qualified_name":"JD_HANDLE_SMALL_SEGMENTS","ident_utf16":{"start":{"line_number":1250,"utf16_col":10},"end":{"line_number":1250,"utf16_col":34}},"extent_utf16":{"start":{"line_number":1250,"utf16_col":2},"end":{"line_number":1252,"utf16_col":0}}},{"name":"S_CURVE_ACCELERATION","kind":"macro","ident_start":54325,"ident_end":54345,"extent_start":54317,"extent_end":54347,"fully_qualified_name":"S_CURVE_ACCELERATION","ident_utf16":{"start":{"line_number":1262,"utf16_col":8},"end":{"line_number":1262,"utf16_col":28}},"extent_utf16":{"start":{"line_number":1262,"utf16_col":0},"end":{"line_number":1264,"utf16_col":0}}},{"name":"Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN","kind":"macro","ident_start":54862,"ident_end":54896,"extent_start":54854,"extent_end":54898,"fully_qualified_name":"Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN","ident_utf16":{"start":{"line_number":1278,"utf16_col":8},"end":{"line_number":1278,"utf16_col":42}},"extent_utf16":{"start":{"line_number":1278,"utf16_col":0},"end":{"line_number":1280,"utf16_col":0}}},{"name":"MAGLEV_TRIGGER_DELAY","kind":"macro","ident_start":56856,"ident_end":56876,"extent_start":56848,"extent_end":56928,"fully_qualified_name":"MAGLEV_TRIGGER_DELAY","ident_utf16":{"start":{"line_number":1345,"utf16_col":10},"end":{"line_number":1345,"utf16_col":30}},"extent_utf16":{"start":{"line_number":1345,"utf16_col":2},"end":{"line_number":1346,"utf16_col":0}}},{"name":"TOUCH_MI_RETRACT_Z","kind":"macro","ident_start":57442,"ident_end":57460,"extent_start":57434,"extent_end":57520,"fully_qualified_name":"TOUCH_MI_RETRACT_Z","ident_utf16":{"start":{"line_number":1360,"utf16_col":10},"end":{"line_number":1360,"utf16_col":28}},"extent_utf16":{"start":{"line_number":1360,"utf16_col":2},"end":{"line_number":1361,"utf16_col":0}}},{"name":"Z_PROBE_DEPLOY_X","kind":"macro","ident_start":58233,"ident_end":58249,"extent_start":58225,"extent_end":58261,"fully_qualified_name":"Z_PROBE_DEPLOY_X","ident_utf16":{"start":{"line_number":1375,"utf16_col":10},"end":{"line_number":1375,"utf16_col":26}},"extent_utf16":{"start":{"line_number":1375,"utf16_col":2},"end":{"line_number":1376,"utf16_col":0}}},{"name":"Z_PROBE_RETRACT_X","kind":"macro","ident_start":58271,"ident_end":58288,"extent_start":58263,"extent_end":58299,"fully_qualified_name":"Z_PROBE_RETRACT_X","ident_utf16":{"start":{"line_number":1376,"utf16_col":10},"end":{"line_number":1376,"utf16_col":27}},"extent_utf16":{"start":{"line_number":1376,"utf16_col":2},"end":{"line_number":1377,"utf16_col":0}}},{"name":"PROBE_DEPLOY_FEEDRATE","kind":"macro","ident_start":58469,"ident_end":58490,"extent_start":58461,"extent_end":58532,"fully_qualified_name":"PROBE_DEPLOY_FEEDRATE","ident_utf16":{"start":{"line_number":1385,"utf16_col":10},"end":{"line_number":1385,"utf16_col":31}},"extent_utf16":{"start":{"line_number":1385,"utf16_col":2},"end":{"line_number":1386,"utf16_col":0}}},{"name":"PROBE_STOW_FEEDRATE","kind":"macro","ident_start":58542,"ident_end":58561,"extent_start":58534,"extent_end":58604,"fully_qualified_name":"PROBE_STOW_FEEDRATE","ident_utf16":{"start":{"line_number":1386,"utf16_col":10},"end":{"line_number":1386,"utf16_col":29}},"extent_utf16":{"start":{"line_number":1386,"utf16_col":2},"end":{"line_number":1388,"utf16_col":0}}},{"name":"MAG_MOUNTED_DEPLOY_1","kind":"macro","ident_start":58614,"ident_end":58634,"extent_start":58606,"extent_end":58716,"fully_qualified_name":"MAG_MOUNTED_DEPLOY_1","ident_utf16":{"start":{"line_number":1388,"utf16_col":10},"end":{"line_number":1388,"utf16_col":30}},"extent_utf16":{"start":{"line_number":1388,"utf16_col":2},"end":{"line_number":1389,"utf16_col":0}}},{"name":"MAG_MOUNTED_DEPLOY_2","kind":"macro","ident_start":58726,"ident_end":58746,"extent_start":58718,"extent_end":58815,"fully_qualified_name":"MAG_MOUNTED_DEPLOY_2","ident_utf16":{"start":{"line_number":1389,"utf16_col":10},"end":{"line_number":1389,"utf16_col":30}},"extent_utf16":{"start":{"line_number":1389,"utf16_col":2},"end":{"line_number":1390,"utf16_col":0}}},{"name":"MAG_MOUNTED_DEPLOY_3","kind":"macro","ident_start":58825,"ident_end":58845,"extent_start":58817,"extent_end":58915,"fully_qualified_name":"MAG_MOUNTED_DEPLOY_3","ident_utf16":{"start":{"line_number":1390,"utf16_col":10},"end":{"line_number":1390,"utf16_col":30}},"extent_utf16":{"start":{"line_number":1390,"utf16_col":2},"end":{"line_number":1391,"utf16_col":0}}},{"name":"MAG_MOUNTED_DEPLOY_4","kind":"macro","ident_start":58925,"ident_end":58945,"extent_start":58917,"extent_end":59015,"fully_qualified_name":"MAG_MOUNTED_DEPLOY_4","ident_utf16":{"start":{"line_number":1391,"utf16_col":10},"end":{"line_number":1391,"utf16_col":30}},"extent_utf16":{"start":{"line_number":1391,"utf16_col":2},"end":{"line_number":1392,"utf16_col":0}}},{"name":"MAG_MOUNTED_DEPLOY_5","kind":"macro","ident_start":59025,"ident_end":59045,"extent_start":59017,"extent_end":59115,"fully_qualified_name":"MAG_MOUNTED_DEPLOY_5","ident_utf16":{"start":{"line_number":1392,"utf16_col":10},"end":{"line_number":1392,"utf16_col":30}},"extent_utf16":{"start":{"line_number":1392,"utf16_col":2},"end":{"line_number":1393,"utf16_col":0}}},{"name":"MAG_MOUNTED_STOW_1","kind":"macro","ident_start":59125,"ident_end":59143,"extent_start":59117,"extent_end":59207,"fully_qualified_name":"MAG_MOUNTED_STOW_1","ident_utf16":{"start":{"line_number":1393,"utf16_col":10},"end":{"line_number":1393,"utf16_col":28}},"extent_utf16":{"start":{"line_number":1393,"utf16_col":2},"end":{"line_number":1394,"utf16_col":0}}},{"name":"MAG_MOUNTED_STOW_2","kind":"macro","ident_start":59217,"ident_end":59235,"extent_start":59209,"extent_end":59313,"fully_qualified_name":"MAG_MOUNTED_STOW_2","ident_utf16":{"start":{"line_number":1394,"utf16_col":10},"end":{"line_number":1394,"utf16_col":28}},"extent_utf16":{"start":{"line_number":1394,"utf16_col":2},"end":{"line_number":1395,"utf16_col":0}}},{"name":"MAG_MOUNTED_STOW_3","kind":"macro","ident_start":59323,"ident_end":59341,"extent_start":59315,"extent_end":59418,"fully_qualified_name":"MAG_MOUNTED_STOW_3","ident_utf16":{"start":{"line_number":1395,"utf16_col":10},"end":{"line_number":1395,"utf16_col":28}},"extent_utf16":{"start":{"line_number":1395,"utf16_col":2},"end":{"line_number":1396,"utf16_col":0}}},{"name":"MAG_MOUNTED_STOW_4","kind":"macro","ident_start":59428,"ident_end":59446,"extent_start":59420,"extent_end":59523,"fully_qualified_name":"MAG_MOUNTED_STOW_4","ident_utf16":{"start":{"line_number":1396,"utf16_col":10},"end":{"line_number":1396,"utf16_col":28}},"extent_utf16":{"start":{"line_number":1396,"utf16_col":2},"end":{"line_number":1397,"utf16_col":0}}},{"name":"MAG_MOUNTED_STOW_5","kind":"macro","ident_start":59533,"ident_end":59551,"extent_start":59525,"extent_end":59623,"fully_qualified_name":"MAG_MOUNTED_STOW_5","ident_utf16":{"start":{"line_number":1397,"utf16_col":10},"end":{"line_number":1397,"utf16_col":28}},"extent_utf16":{"start":{"line_number":1397,"utf16_col":2},"end":{"line_number":1398,"utf16_col":0}}},{"name":"SMART_EFFECTOR_MOD_PIN","kind":"macro","ident_start":59853,"ident_end":59875,"extent_start":59845,"extent_end":59933,"fully_qualified_name":"SMART_EFFECTOR_MOD_PIN","ident_utf16":{"start":{"line_number":1404,"utf16_col":10},"end":{"line_number":1404,"utf16_col":32}},"extent_utf16":{"start":{"line_number":1404,"utf16_col":2},"end":{"line_number":1405,"utf16_col":0}}},{"name":"Z_PROBE_ALLEN_KEY_DEPLOY_1","kind":"macro","ident_start":60688,"ident_end":60714,"extent_start":60680,"extent_end":60755,"fully_qualified_name":"Z_PROBE_ALLEN_KEY_DEPLOY_1","ident_utf16":{"start":{"line_number":1424,"utf16_col":10},"end":{"line_number":1424,"utf16_col":36}},"extent_utf16":{"start":{"line_number":1424,"utf16_col":2},"end":{"line_number":1425,"utf16_col":0}}},{"name":"Z_PROBE_ALLEN_KEY_DEPLOY_1_FEEDRATE","kind":"macro","ident_start":60765,"ident_end":60800,"extent_start":60757,"extent_end":60820,"fully_qualified_name":"Z_PROBE_ALLEN_KEY_DEPLOY_1_FEEDRATE","ident_utf16":{"start":{"line_number":1425,"utf16_col":10},"end":{"line_number":1425,"utf16_col":45}},"extent_utf16":{"start":{"line_number":1425,"utf16_col":2},"end":{"line_number":1427,"utf16_col":0}}},{"name":"Z_PROBE_ALLEN_KEY_DEPLOY_2","kind":"macro","ident_start":60830,"ident_end":60856,"extent_start":60822,"extent_end":60896,"fully_qualified_name":"Z_PROBE_ALLEN_KEY_DEPLOY_2","ident_utf16":{"start":{"line_number":1427,"utf16_col":10},"end":{"line_number":1427,"utf16_col":36}},"extent_utf16":{"start":{"line_number":1427,"utf16_col":2},"end":{"line_number":1428,"utf16_col":0}}},{"name":"Z_PROBE_ALLEN_KEY_DEPLOY_2_FEEDRATE","kind":"macro","ident_start":60906,"ident_end":60941,"extent_start":60898,"extent_end":60966,"fully_qualified_name":"Z_PROBE_ALLEN_KEY_DEPLOY_2_FEEDRATE","ident_utf16":{"start":{"line_number":1428,"utf16_col":10},"end":{"line_number":1428,"utf16_col":45}},"extent_utf16":{"start":{"line_number":1428,"utf16_col":2},"end":{"line_number":1430,"utf16_col":0}}},{"name":"Z_PROBE_ALLEN_KEY_DEPLOY_3","kind":"macro","ident_start":60976,"ident_end":61002,"extent_start":60968,"extent_end":61051,"fully_qualified_name":"Z_PROBE_ALLEN_KEY_DEPLOY_3","ident_utf16":{"start":{"line_number":1430,"utf16_col":10},"end":{"line_number":1430,"utf16_col":36}},"extent_utf16":{"start":{"line_number":1430,"utf16_col":2},"end":{"line_number":1431,"utf16_col":0}}},{"name":"Z_PROBE_ALLEN_KEY_DEPLOY_3_FEEDRATE","kind":"macro","ident_start":61061,"ident_end":61096,"extent_start":61053,"extent_end":61116,"fully_qualified_name":"Z_PROBE_ALLEN_KEY_DEPLOY_3_FEEDRATE","ident_utf16":{"start":{"line_number":1431,"utf16_col":10},"end":{"line_number":1431,"utf16_col":45}},"extent_utf16":{"start":{"line_number":1431,"utf16_col":2},"end":{"line_number":1433,"utf16_col":0}}},{"name":"Z_PROBE_ALLEN_KEY_STOW_1","kind":"macro","ident_start":61126,"ident_end":61150,"extent_start":61118,"extent_end":61205,"fully_qualified_name":"Z_PROBE_ALLEN_KEY_STOW_1","ident_utf16":{"start":{"line_number":1433,"utf16_col":10},"end":{"line_number":1433,"utf16_col":34}},"extent_utf16":{"start":{"line_number":1433,"utf16_col":2},"end":{"line_number":1434,"utf16_col":0}}},{"name":"Z_PROBE_ALLEN_KEY_STOW_1_FEEDRATE","kind":"macro","ident_start":61215,"ident_end":61248,"extent_start":61207,"extent_end":61268,"fully_qualified_name":"Z_PROBE_ALLEN_KEY_STOW_1_FEEDRATE","ident_utf16":{"start":{"line_number":1434,"utf16_col":10},"end":{"line_number":1434,"utf16_col":43}},"extent_utf16":{"start":{"line_number":1434,"utf16_col":2},"end":{"line_number":1436,"utf16_col":0}}},{"name":"Z_PROBE_ALLEN_KEY_STOW_2","kind":"macro","ident_start":61278,"ident_end":61302,"extent_start":61270,"extent_end":61340,"fully_qualified_name":"Z_PROBE_ALLEN_KEY_STOW_2","ident_utf16":{"start":{"line_number":1436,"utf16_col":10},"end":{"line_number":1436,"utf16_col":34}},"extent_utf16":{"start":{"line_number":1436,"utf16_col":2},"end":{"line_number":1437,"utf16_col":0}}},{"name":"Z_PROBE_ALLEN_KEY_STOW_2_FEEDRATE","kind":"macro","ident_start":61350,"ident_end":61383,"extent_start":61342,"extent_end":61408,"fully_qualified_name":"Z_PROBE_ALLEN_KEY_STOW_2_FEEDRATE","ident_utf16":{"start":{"line_number":1437,"utf16_col":10},"end":{"line_number":1437,"utf16_col":43}},"extent_utf16":{"start":{"line_number":1437,"utf16_col":2},"end":{"line_number":1439,"utf16_col":0}}},{"name":"Z_PROBE_ALLEN_KEY_STOW_3","kind":"macro","ident_start":61418,"ident_end":61442,"extent_start":61410,"extent_end":61488,"fully_qualified_name":"Z_PROBE_ALLEN_KEY_STOW_3","ident_utf16":{"start":{"line_number":1439,"utf16_col":10},"end":{"line_number":1439,"utf16_col":34}},"extent_utf16":{"start":{"line_number":1439,"utf16_col":2},"end":{"line_number":1440,"utf16_col":0}}},{"name":"Z_PROBE_ALLEN_KEY_STOW_3_FEEDRATE","kind":"macro","ident_start":61498,"ident_end":61531,"extent_start":61490,"extent_end":61551,"fully_qualified_name":"Z_PROBE_ALLEN_KEY_STOW_3_FEEDRATE","ident_utf16":{"start":{"line_number":1440,"utf16_col":10},"end":{"line_number":1440,"utf16_col":43}},"extent_utf16":{"start":{"line_number":1440,"utf16_col":2},"end":{"line_number":1442,"utf16_col":0}}},{"name":"Z_PROBE_ALLEN_KEY_STOW_4","kind":"macro","ident_start":61561,"ident_end":61585,"extent_start":61553,"extent_end":61605,"fully_qualified_name":"Z_PROBE_ALLEN_KEY_STOW_4","ident_utf16":{"start":{"line_number":1442,"utf16_col":10},"end":{"line_number":1442,"utf16_col":34}},"extent_utf16":{"start":{"line_number":1442,"utf16_col":2},"end":{"line_number":1443,"utf16_col":0}}},{"name":"Z_PROBE_ALLEN_KEY_STOW_4_FEEDRATE","kind":"macro","ident_start":61615,"ident_end":61648,"extent_start":61607,"extent_end":61668,"fully_qualified_name":"Z_PROBE_ALLEN_KEY_STOW_4_FEEDRATE","ident_utf16":{"start":{"line_number":1443,"utf16_col":10},"end":{"line_number":1443,"utf16_col":43}},"extent_utf16":{"start":{"line_number":1443,"utf16_col":2},"end":{"line_number":1445,"utf16_col":0}}},{"name":"NOZZLE_TO_PROBE_OFFSET","kind":"macro","ident_start":63421,"ident_end":63443,"extent_start":63413,"extent_end":63459,"fully_qualified_name":"NOZZLE_TO_PROBE_OFFSET","ident_utf16":{"start":{"line_number":1487,"utf16_col":8},"end":{"line_number":1487,"utf16_col":30}},"extent_utf16":{"start":{"line_number":1487,"utf16_col":0},"end":{"line_number":1489,"utf16_col":0}}},{"name":"PROBING_MARGIN","kind":"macro","ident_start":63601,"ident_end":63615,"extent_start":63593,"extent_end":63620,"fully_qualified_name":"PROBING_MARGIN","ident_utf16":{"start":{"line_number":1491,"utf16_col":8},"end":{"line_number":1491,"utf16_col":22}},"extent_utf16":{"start":{"line_number":1491,"utf16_col":0},"end":{"line_number":1493,"utf16_col":0}}},{"name":"XY_PROBE_FEEDRATE","kind":"macro","ident_start":63681,"ident_end":63698,"extent_start":63673,"extent_end":63709,"fully_qualified_name":"XY_PROBE_FEEDRATE","ident_utf16":{"start":{"line_number":1494,"utf16_col":8},"end":{"line_number":1494,"utf16_col":25}},"extent_utf16":{"start":{"line_number":1494,"utf16_col":0},"end":{"line_number":1496,"utf16_col":0}}},{"name":"Z_PROBE_FEEDRATE_FAST","kind":"macro","ident_start":63805,"ident_end":63826,"extent_start":63797,"extent_end":63835,"fully_qualified_name":"Z_PROBE_FEEDRATE_FAST","ident_utf16":{"start":{"line_number":1497,"utf16_col":8},"end":{"line_number":1497,"utf16_col":29}},"extent_utf16":{"start":{"line_number":1497,"utf16_col":0},"end":{"line_number":1499,"utf16_col":0}}},{"name":"Z_PROBE_FEEDRATE_SLOW","kind":"macro","ident_start":63903,"ident_end":63924,"extent_start":63895,"extent_end":63954,"fully_qualified_name":"Z_PROBE_FEEDRATE_SLOW","ident_utf16":{"start":{"line_number":1500,"utf16_col":8},"end":{"line_number":1500,"utf16_col":29}},"extent_utf16":{"start":{"line_number":1500,"utf16_col":0},"end":{"line_number":1502,"utf16_col":0}}},{"name":"PROBE_ACTIVATION_SWITCH_STATE","kind":"macro","ident_start":64181,"ident_end":64210,"extent_start":64173,"extent_end":64251,"fully_qualified_name":"PROBE_ACTIVATION_SWITCH_STATE","ident_utf16":{"start":{"line_number":1509,"utf16_col":10},"end":{"line_number":1509,"utf16_col":39}},"extent_utf16":{"start":{"line_number":1509,"utf16_col":2},"end":{"line_number":1510,"utf16_col":0}}},{"name":"PROBE_TARE_TIME","kind":"macro","ident_start":64570,"ident_end":64585,"extent_start":64562,"extent_end":64624,"fully_qualified_name":"PROBE_TARE_TIME","ident_utf16":{"start":{"line_number":1520,"utf16_col":10},"end":{"line_number":1520,"utf16_col":25}},"extent_utf16":{"start":{"line_number":1520,"utf16_col":2},"end":{"line_number":1521,"utf16_col":0}}},{"name":"PROBE_TARE_DELAY","kind":"macro","ident_start":64634,"ident_end":64650,"extent_start":64626,"extent_end":64690,"fully_qualified_name":"PROBE_TARE_DELAY","ident_utf16":{"start":{"line_number":1521,"utf16_col":10},"end":{"line_number":1521,"utf16_col":26}},"extent_utf16":{"start":{"line_number":1521,"utf16_col":2},"end":{"line_number":1522,"utf16_col":0}}},{"name":"PROBE_TARE_STATE","kind":"macro","ident_start":64700,"ident_end":64716,"extent_start":64692,"extent_end":64755,"fully_qualified_name":"PROBE_TARE_STATE","ident_utf16":{"start":{"line_number":1522,"utf16_col":10},"end":{"line_number":1522,"utf16_col":26}},"extent_utf16":{"start":{"line_number":1522,"utf16_col":2},"end":{"line_number":1523,"utf16_col":0}}},{"name":"Z_CLEARANCE_DEPLOY_PROBE","kind":"macro","ident_start":66259,"ident_end":66283,"extent_start":66251,"extent_end":66320,"fully_qualified_name":"Z_CLEARANCE_DEPLOY_PROBE","ident_utf16":{"start":{"line_number":1564,"utf16_col":8},"end":{"line_number":1564,"utf16_col":32}},"extent_utf16":{"start":{"line_number":1564,"utf16_col":0},"end":{"line_number":1565,"utf16_col":0}}},{"name":"Z_CLEARANCE_BETWEEN_PROBES","kind":"macro","ident_start":66328,"ident_end":66354,"extent_start":66320,"extent_end":66394,"fully_qualified_name":"Z_CLEARANCE_BETWEEN_PROBES","ident_utf16":{"start":{"line_number":1565,"utf16_col":8},"end":{"line_number":1565,"utf16_col":34}},"extent_utf16":{"start":{"line_number":1565,"utf16_col":0},"end":{"line_number":1566,"utf16_col":0}}},{"name":"Z_CLEARANCE_MULTI_PROBE","kind":"macro","ident_start":66402,"ident_end":66425,"extent_start":66394,"extent_end":66471,"fully_qualified_name":"Z_CLEARANCE_MULTI_PROBE","ident_utf16":{"start":{"line_number":1566,"utf16_col":8},"end":{"line_number":1566,"utf16_col":31}},"extent_utf16":{"start":{"line_number":1566,"utf16_col":0},"end":{"line_number":1567,"utf16_col":0}}},{"name":"Z_PROBE_LOW_POINT","kind":"macro","ident_start":66554,"ident_end":66571,"extent_start":66546,"extent_end":66652,"fully_qualified_name":"Z_PROBE_LOW_POINT","ident_utf16":{"start":{"line_number":1569,"utf16_col":8},"end":{"line_number":1569,"utf16_col":25}},"extent_utf16":{"start":{"line_number":1569,"utf16_col":0},"end":{"line_number":1571,"utf16_col":0}}},{"name":"Z_PROBE_OFFSET_RANGE_MIN","kind":"macro","ident_start":66718,"ident_end":66742,"extent_start":66710,"extent_end":66747,"fully_qualified_name":"Z_PROBE_OFFSET_RANGE_MIN","ident_utf16":{"start":{"line_number":1572,"utf16_col":8},"end":{"line_number":1572,"utf16_col":32}},"extent_utf16":{"start":{"line_number":1572,"utf16_col":0},"end":{"line_number":1573,"utf16_col":0}}},{"name":"Z_PROBE_OFFSET_RANGE_MAX","kind":"macro","ident_start":66755,"ident_end":66779,"extent_start":66747,"extent_end":66784,"fully_qualified_name":"Z_PROBE_OFFSET_RANGE_MAX","ident_utf16":{"start":{"line_number":1573,"utf16_col":8},"end":{"line_number":1573,"utf16_col":32}},"extent_utf16":{"start":{"line_number":1573,"utf16_col":0},"end":{"line_number":1575,"utf16_col":0}}},{"name":"PROBING_NOZZLE_TEMP","kind":"macro","ident_start":68318,"ident_end":68337,"extent_start":68310,"extent_end":68385,"fully_qualified_name":"PROBING_NOZZLE_TEMP","ident_utf16":{"start":{"line_number":1604,"utf16_col":10},"end":{"line_number":1604,"utf16_col":29}},"extent_utf16":{"start":{"line_number":1604,"utf16_col":2},"end":{"line_number":1605,"utf16_col":0}}},{"name":"PROBING_BED_TEMP","kind":"macro","ident_start":68395,"ident_end":68411,"extent_start":68387,"extent_end":68419,"fully_qualified_name":"PROBING_BED_TEMP","ident_utf16":{"start":{"line_number":1605,"utf16_col":10},"end":{"line_number":1605,"utf16_col":26}},"extent_utf16":{"start":{"line_number":1605,"utf16_col":2},"end":{"line_number":1606,"utf16_col":0}}},{"name":"X_ENABLE_ON","kind":"macro","ident_start":68552,"ident_end":68563,"extent_start":68544,"extent_end":68566,"fully_qualified_name":"X_ENABLE_ON","ident_utf16":{"start":{"line_number":1610,"utf16_col":8},"end":{"line_number":1610,"utf16_col":19}},"extent_utf16":{"start":{"line_number":1610,"utf16_col":0},"end":{"line_number":1611,"utf16_col":0}}},{"name":"Y_ENABLE_ON","kind":"macro","ident_start":68574,"ident_end":68585,"extent_start":68566,"extent_end":68588,"fully_qualified_name":"Y_ENABLE_ON","ident_utf16":{"start":{"line_number":1611,"utf16_col":8},"end":{"line_number":1611,"utf16_col":19}},"extent_utf16":{"start":{"line_number":1611,"utf16_col":0},"end":{"line_number":1612,"utf16_col":0}}},{"name":"Z_ENABLE_ON","kind":"macro","ident_start":68596,"ident_end":68607,"extent_start":68588,"extent_end":68610,"fully_qualified_name":"Z_ENABLE_ON","ident_utf16":{"start":{"line_number":1612,"utf16_col":8},"end":{"line_number":1612,"utf16_col":19}},"extent_utf16":{"start":{"line_number":1612,"utf16_col":0},"end":{"line_number":1613,"utf16_col":0}}},{"name":"E_ENABLE_ON","kind":"macro","ident_start":68618,"ident_end":68629,"extent_start":68610,"extent_end":68653,"fully_qualified_name":"E_ENABLE_ON","ident_utf16":{"start":{"line_number":1613,"utf16_col":8},"end":{"line_number":1613,"utf16_col":19}},"extent_utf16":{"start":{"line_number":1613,"utf16_col":0},"end":{"line_number":1614,"utf16_col":0}}},{"name":"DISABLE_X","kind":"macro","ident_start":68955,"ident_end":68964,"extent_start":68947,"extent_end":68971,"fully_qualified_name":"DISABLE_X","ident_utf16":{"start":{"line_number":1623,"utf16_col":8},"end":{"line_number":1623,"utf16_col":17}},"extent_utf16":{"start":{"line_number":1623,"utf16_col":0},"end":{"line_number":1624,"utf16_col":0}}},{"name":"DISABLE_Y","kind":"macro","ident_start":68979,"ident_end":68988,"extent_start":68971,"extent_end":68995,"fully_qualified_name":"DISABLE_Y","ident_utf16":{"start":{"line_number":1624,"utf16_col":8},"end":{"line_number":1624,"utf16_col":17}},"extent_utf16":{"start":{"line_number":1624,"utf16_col":0},"end":{"line_number":1625,"utf16_col":0}}},{"name":"DISABLE_Z","kind":"macro","ident_start":69003,"ident_end":69012,"extent_start":68995,"extent_end":69019,"fully_qualified_name":"DISABLE_Z","ident_utf16":{"start":{"line_number":1625,"utf16_col":8},"end":{"line_number":1625,"utf16_col":17}},"extent_utf16":{"start":{"line_number":1625,"utf16_col":0},"end":{"line_number":1626,"utf16_col":0}}},{"name":"DISABLE_E","kind":"macro","ident_start":69328,"ident_end":69337,"extent_start":69320,"extent_end":69398,"fully_qualified_name":"DISABLE_E","ident_utf16":{"start":{"line_number":1638,"utf16_col":8},"end":{"line_number":1638,"utf16_col":17}},"extent_utf16":{"start":{"line_number":1638,"utf16_col":0},"end":{"line_number":1639,"utf16_col":0}}},{"name":"INVERT_X_DIR","kind":"macro","ident_start":69608,"ident_end":69620,"extent_start":69600,"extent_end":69626,"fully_qualified_name":"INVERT_X_DIR","ident_utf16":{"start":{"line_number":1644,"utf16_col":8},"end":{"line_number":1644,"utf16_col":20}},"extent_utf16":{"start":{"line_number":1644,"utf16_col":0},"end":{"line_number":1645,"utf16_col":0}}},{"name":"INVERT_Y_DIR","kind":"macro","ident_start":69634,"ident_end":69646,"extent_start":69626,"extent_end":69652,"fully_qualified_name":"INVERT_Y_DIR","ident_utf16":{"start":{"line_number":1645,"utf16_col":8},"end":{"line_number":1645,"utf16_col":20}},"extent_utf16":{"start":{"line_number":1645,"utf16_col":0},"end":{"line_number":1646,"utf16_col":0}}},{"name":"INVERT_Z_DIR","kind":"macro","ident_start":69660,"ident_end":69672,"extent_start":69652,"extent_end":69679,"fully_qualified_name":"INVERT_Z_DIR","ident_utf16":{"start":{"line_number":1646,"utf16_col":8},"end":{"line_number":1646,"utf16_col":20}},"extent_utf16":{"start":{"line_number":1646,"utf16_col":0},"end":{"line_number":1647,"utf16_col":0}}},{"name":"INVERT_E0_DIR","kind":"macro","ident_start":69963,"ident_end":69976,"extent_start":69955,"extent_end":69982,"fully_qualified_name":"INVERT_E0_DIR","ident_utf16":{"start":{"line_number":1657,"utf16_col":8},"end":{"line_number":1657,"utf16_col":21}},"extent_utf16":{"start":{"line_number":1657,"utf16_col":0},"end":{"line_number":1658,"utf16_col":0}}},{"name":"INVERT_E1_DIR","kind":"macro","ident_start":69990,"ident_end":70003,"extent_start":69982,"extent_end":70010,"fully_qualified_name":"INVERT_E1_DIR","ident_utf16":{"start":{"line_number":1658,"utf16_col":8},"end":{"line_number":1658,"utf16_col":21}},"extent_utf16":{"start":{"line_number":1658,"utf16_col":0},"end":{"line_number":1659,"utf16_col":0}}},{"name":"INVERT_E2_DIR","kind":"macro","ident_start":70018,"ident_end":70031,"extent_start":70010,"extent_end":70038,"fully_qualified_name":"INVERT_E2_DIR","ident_utf16":{"start":{"line_number":1659,"utf16_col":8},"end":{"line_number":1659,"utf16_col":21}},"extent_utf16":{"start":{"line_number":1659,"utf16_col":0},"end":{"line_number":1660,"utf16_col":0}}},{"name":"INVERT_E3_DIR","kind":"macro","ident_start":70046,"ident_end":70059,"extent_start":70038,"extent_end":70066,"fully_qualified_name":"INVERT_E3_DIR","ident_utf16":{"start":{"line_number":1660,"utf16_col":8},"end":{"line_number":1660,"utf16_col":21}},"extent_utf16":{"start":{"line_number":1660,"utf16_col":0},"end":{"line_number":1661,"utf16_col":0}}},{"name":"INVERT_E4_DIR","kind":"macro","ident_start":70074,"ident_end":70087,"extent_start":70066,"extent_end":70094,"fully_qualified_name":"INVERT_E4_DIR","ident_utf16":{"start":{"line_number":1661,"utf16_col":8},"end":{"line_number":1661,"utf16_col":21}},"extent_utf16":{"start":{"line_number":1661,"utf16_col":0},"end":{"line_number":1662,"utf16_col":0}}},{"name":"INVERT_E5_DIR","kind":"macro","ident_start":70102,"ident_end":70115,"extent_start":70094,"extent_end":70122,"fully_qualified_name":"INVERT_E5_DIR","ident_utf16":{"start":{"line_number":1662,"utf16_col":8},"end":{"line_number":1662,"utf16_col":21}},"extent_utf16":{"start":{"line_number":1662,"utf16_col":0},"end":{"line_number":1663,"utf16_col":0}}},{"name":"INVERT_E6_DIR","kind":"macro","ident_start":70130,"ident_end":70143,"extent_start":70122,"extent_end":70150,"fully_qualified_name":"INVERT_E6_DIR","ident_utf16":{"start":{"line_number":1663,"utf16_col":8},"end":{"line_number":1663,"utf16_col":21}},"extent_utf16":{"start":{"line_number":1663,"utf16_col":0},"end":{"line_number":1664,"utf16_col":0}}},{"name":"INVERT_E7_DIR","kind":"macro","ident_start":70158,"ident_end":70171,"extent_start":70150,"extent_end":70179,"fully_qualified_name":"INVERT_E7_DIR","ident_utf16":{"start":{"line_number":1664,"utf16_col":8},"end":{"line_number":1664,"utf16_col":21}},"extent_utf16":{"start":{"line_number":1664,"utf16_col":0},"end":{"line_number":1666,"utf16_col":0}}},{"name":"X_HOME_DIR","kind":"macro","ident_start":71150,"ident_end":71160,"extent_start":71142,"extent_end":71164,"fully_qualified_name":"X_HOME_DIR","ident_utf16":{"start":{"line_number":1685,"utf16_col":8},"end":{"line_number":1685,"utf16_col":18}},"extent_utf16":{"start":{"line_number":1685,"utf16_col":0},"end":{"line_number":1686,"utf16_col":0}}},{"name":"Y_HOME_DIR","kind":"macro","ident_start":71172,"ident_end":71182,"extent_start":71164,"extent_end":71186,"fully_qualified_name":"Y_HOME_DIR","ident_utf16":{"start":{"line_number":1686,"utf16_col":8},"end":{"line_number":1686,"utf16_col":18}},"extent_utf16":{"start":{"line_number":1686,"utf16_col":0},"end":{"line_number":1687,"utf16_col":0}}},{"name":"Z_HOME_DIR","kind":"macro","ident_start":71194,"ident_end":71204,"extent_start":71186,"extent_end":71208,"fully_qualified_name":"Z_HOME_DIR","ident_utf16":{"start":{"line_number":1687,"utf16_col":8},"end":{"line_number":1687,"utf16_col":18}},"extent_utf16":{"start":{"line_number":1687,"utf16_col":0},"end":{"line_number":1688,"utf16_col":0}}},{"name":"X_BED_SIZE","kind":"macro","ident_start":71417,"ident_end":71427,"extent_start":71409,"extent_end":71432,"fully_qualified_name":"X_BED_SIZE","ident_utf16":{"start":{"line_number":1698,"utf16_col":8},"end":{"line_number":1698,"utf16_col":18}},"extent_utf16":{"start":{"line_number":1698,"utf16_col":0},"end":{"line_number":1699,"utf16_col":0}}},{"name":"Y_BED_SIZE","kind":"macro","ident_start":71440,"ident_end":71450,"extent_start":71432,"extent_end":71456,"fully_qualified_name":"Y_BED_SIZE","ident_utf16":{"start":{"line_number":1699,"utf16_col":8},"end":{"line_number":1699,"utf16_col":18}},"extent_utf16":{"start":{"line_number":1699,"utf16_col":0},"end":{"line_number":1701,"utf16_col":0}}},{"name":"X_MIN_POS","kind":"macro","ident_start":71558,"ident_end":71567,"extent_start":71550,"extent_end":71570,"fully_qualified_name":"X_MIN_POS","ident_utf16":{"start":{"line_number":1702,"utf16_col":8},"end":{"line_number":1702,"utf16_col":17}},"extent_utf16":{"start":{"line_number":1702,"utf16_col":0},"end":{"line_number":1703,"utf16_col":0}}},{"name":"Y_MIN_POS","kind":"macro","ident_start":71578,"ident_end":71587,"extent_start":71570,"extent_end":71590,"fully_qualified_name":"Y_MIN_POS","ident_utf16":{"start":{"line_number":1703,"utf16_col":8},"end":{"line_number":1703,"utf16_col":17}},"extent_utf16":{"start":{"line_number":1703,"utf16_col":0},"end":{"line_number":1704,"utf16_col":0}}},{"name":"Z_MIN_POS","kind":"macro","ident_start":71598,"ident_end":71607,"extent_start":71590,"extent_end":71610,"fully_qualified_name":"Z_MIN_POS","ident_utf16":{"start":{"line_number":1704,"utf16_col":8},"end":{"line_number":1704,"utf16_col":17}},"extent_utf16":{"start":{"line_number":1704,"utf16_col":0},"end":{"line_number":1705,"utf16_col":0}}},{"name":"X_MAX_POS","kind":"macro","ident_start":71618,"ident_end":71627,"extent_start":71610,"extent_end":71639,"fully_qualified_name":"X_MAX_POS","ident_utf16":{"start":{"line_number":1705,"utf16_col":8},"end":{"line_number":1705,"utf16_col":17}},"extent_utf16":{"start":{"line_number":1705,"utf16_col":0},"end":{"line_number":1706,"utf16_col":0}}},{"name":"Y_MAX_POS","kind":"macro","ident_start":71647,"ident_end":71656,"extent_start":71639,"extent_end":71668,"fully_qualified_name":"Y_MAX_POS","ident_utf16":{"start":{"line_number":1706,"utf16_col":8},"end":{"line_number":1706,"utf16_col":17}},"extent_utf16":{"start":{"line_number":1706,"utf16_col":0},"end":{"line_number":1707,"utf16_col":0}}},{"name":"Z_MAX_POS","kind":"macro","ident_start":71676,"ident_end":71685,"extent_start":71668,"extent_end":71690,"fully_qualified_name":"Z_MAX_POS","ident_utf16":{"start":{"line_number":1707,"utf16_col":8},"end":{"line_number":1707,"utf16_col":17}},"extent_utf16":{"start":{"line_number":1707,"utf16_col":0},"end":{"line_number":1708,"utf16_col":0}}},{"name":"MIN_SOFTWARE_ENDSTOPS","kind":"macro","ident_start":72297,"ident_end":72318,"extent_start":72289,"extent_end":72319,"fully_qualified_name":"MIN_SOFTWARE_ENDSTOPS","ident_utf16":{"start":{"line_number":1731,"utf16_col":8},"end":{"line_number":1731,"utf16_col":29}},"extent_utf16":{"start":{"line_number":1731,"utf16_col":0},"end":{"line_number":1732,"utf16_col":0}}},{"name":"MIN_SOFTWARE_ENDSTOP_X","kind":"macro","ident_start":72364,"ident_end":72386,"extent_start":72356,"extent_end":72420,"fully_qualified_name":"MIN_SOFTWARE_ENDSTOP_X","ident_utf16":{"start":{"line_number":1733,"utf16_col":10},"end":{"line_number":1733,"utf16_col":32}},"extent_utf16":{"start":{"line_number":1733,"utf16_col":2},"end":{"line_number":1735,"utf16_col":0}}},{"name":"MIN_SOFTWARE_ENDSTOP_Z","kind":"macro","ident_start":72430,"ident_end":72452,"extent_start":72422,"extent_end":72486,"fully_qualified_name":"MIN_SOFTWARE_ENDSTOP_Z","ident_utf16":{"start":{"line_number":1735,"utf16_col":10},"end":{"line_number":1735,"utf16_col":32}},"extent_utf16":{"start":{"line_number":1735,"utf16_col":2},"end":{"line_number":1737,"utf16_col":0}}},{"name":"MIN_SOFTWARE_ENDSTOP_J","kind":"macro","ident_start":72496,"ident_end":72518,"extent_start":72488,"extent_end":72552,"fully_qualified_name":"MIN_SOFTWARE_ENDSTOP_J","ident_utf16":{"start":{"line_number":1737,"utf16_col":10},"end":{"line_number":1737,"utf16_col":32}},"extent_utf16":{"start":{"line_number":1737,"utf16_col":2},"end":{"line_number":1739,"utf16_col":0}}},{"name":"MIN_SOFTWARE_ENDSTOP_U","kind":"macro","ident_start":72562,"ident_end":72584,"extent_start":72554,"extent_end":72618,"fully_qualified_name":"MIN_SOFTWARE_ENDSTOP_U","ident_utf16":{"start":{"line_number":1739,"utf16_col":10},"end":{"line_number":1739,"utf16_col":32}},"extent_utf16":{"start":{"line_number":1739,"utf16_col":2},"end":{"line_number":1741,"utf16_col":0}}},{"name":"MIN_SOFTWARE_ENDSTOP_W","kind":"macro","ident_start":72628,"ident_end":72650,"extent_start":72620,"extent_end":72651,"fully_qualified_name":"MIN_SOFTWARE_ENDSTOP_W","ident_utf16":{"start":{"line_number":1741,"utf16_col":10},"end":{"line_number":1741,"utf16_col":32}},"extent_utf16":{"start":{"line_number":1741,"utf16_col":2},"end":{"line_number":1742,"utf16_col":0}}},{"name":"MAX_SOFTWARE_ENDSTOPS","kind":"macro","ident_start":72744,"ident_end":72765,"extent_start":72736,"extent_end":72766,"fully_qualified_name":"MAX_SOFTWARE_ENDSTOPS","ident_utf16":{"start":{"line_number":1745,"utf16_col":8},"end":{"line_number":1745,"utf16_col":29}},"extent_utf16":{"start":{"line_number":1745,"utf16_col":0},"end":{"line_number":1746,"utf16_col":0}}},{"name":"MAX_SOFTWARE_ENDSTOP_X","kind":"macro","ident_start":72811,"ident_end":72833,"extent_start":72803,"extent_end":72867,"fully_qualified_name":"MAX_SOFTWARE_ENDSTOP_X","ident_utf16":{"start":{"line_number":1747,"utf16_col":10},"end":{"line_number":1747,"utf16_col":32}},"extent_utf16":{"start":{"line_number":1747,"utf16_col":2},"end":{"line_number":1749,"utf16_col":0}}},{"name":"MAX_SOFTWARE_ENDSTOP_Z","kind":"macro","ident_start":72877,"ident_end":72899,"extent_start":72869,"extent_end":72933,"fully_qualified_name":"MAX_SOFTWARE_ENDSTOP_Z","ident_utf16":{"start":{"line_number":1749,"utf16_col":10},"end":{"line_number":1749,"utf16_col":32}},"extent_utf16":{"start":{"line_number":1749,"utf16_col":2},"end":{"line_number":1751,"utf16_col":0}}},{"name":"MAX_SOFTWARE_ENDSTOP_J","kind":"macro","ident_start":72943,"ident_end":72965,"extent_start":72935,"extent_end":72999,"fully_qualified_name":"MAX_SOFTWARE_ENDSTOP_J","ident_utf16":{"start":{"line_number":1751,"utf16_col":10},"end":{"line_number":1751,"utf16_col":32}},"extent_utf16":{"start":{"line_number":1751,"utf16_col":2},"end":{"line_number":1753,"utf16_col":0}}},{"name":"MAX_SOFTWARE_ENDSTOP_U","kind":"macro","ident_start":73009,"ident_end":73031,"extent_start":73001,"extent_end":73065,"fully_qualified_name":"MAX_SOFTWARE_ENDSTOP_U","ident_utf16":{"start":{"line_number":1753,"utf16_col":10},"end":{"line_number":1753,"utf16_col":32}},"extent_utf16":{"start":{"line_number":1753,"utf16_col":2},"end":{"line_number":1755,"utf16_col":0}}},{"name":"MAX_SOFTWARE_ENDSTOP_W","kind":"macro","ident_start":73075,"ident_end":73097,"extent_start":73067,"extent_end":73098,"fully_qualified_name":"MAX_SOFTWARE_ENDSTOP_W","ident_utf16":{"start":{"line_number":1755,"utf16_col":10},"end":{"line_number":1755,"utf16_col":32}},"extent_utf16":{"start":{"line_number":1755,"utf16_col":2},"end":{"line_number":1756,"utf16_col":0}}},{"name":"FIL_RUNOUT_ENABLED_DEFAULT","kind":"macro","ident_start":73920,"ident_end":73946,"extent_start":73912,"extent_end":74022,"fully_qualified_name":"FIL_RUNOUT_ENABLED_DEFAULT","ident_utf16":{"start":{"line_number":1777,"utf16_col":10},"end":{"line_number":1777,"utf16_col":36}},"extent_utf16":{"start":{"line_number":1777,"utf16_col":2},"end":{"line_number":1778,"utf16_col":0}}},{"name":"NUM_RUNOUT_SENSORS","kind":"macro","ident_start":74032,"ident_end":74050,"extent_start":74024,"extent_end":74146,"fully_qualified_name":"NUM_RUNOUT_SENSORS","ident_utf16":{"start":{"line_number":1778,"utf16_col":10},"end":{"line_number":1778,"utf16_col":28}},"extent_utf16":{"start":{"line_number":1778,"utf16_col":2},"end":{"line_number":1780,"utf16_col":0}}},{"name":"FIL_RUNOUT_STATE","kind":"macro","ident_start":74156,"ident_end":74172,"extent_start":74148,"extent_end":74242,"fully_qualified_name":"FIL_RUNOUT_STATE","ident_utf16":{"start":{"line_number":1780,"utf16_col":10},"end":{"line_number":1780,"utf16_col":26}},"extent_utf16":{"start":{"line_number":1780,"utf16_col":2},"end":{"line_number":1781,"utf16_col":0}}},{"name":"FIL_RUNOUT_PULLUP","kind":"macro","ident_start":74252,"ident_end":74269,"extent_start":74244,"extent_end":75784,"fully_qualified_name":"FIL_RUNOUT_PULLUP","ident_utf16":{"start":{"line_number":1781,"utf16_col":10},"end":{"line_number":1781,"utf16_col":27}},"extent_utf16":{"start":{"line_number":1781,"utf16_col":2},"end":{"line_number":1824,"utf16_col":0}}},{"name":"MESH_BED_LEVELING","kind":"macro","ident_start":78174,"ident_end":78191,"extent_start":78166,"extent_end":78193,"fully_qualified_name":"MESH_BED_LEVELING","ident_utf16":{"start":{"line_number":1879,"utf16_col":8},"end":{"line_number":1879,"utf16_col":25}},"extent_utf16":{"start":{"line_number":1879,"utf16_col":0},"end":{"line_number":1881,"utf16_col":0}}},{"name":"LEVELING_NOZZLE_TEMP","kind":"macro","ident_start":78576,"ident_end":78596,"extent_start":78568,"extent_end":78644,"fully_qualified_name":"LEVELING_NOZZLE_TEMP","ident_utf16":{"start":{"line_number":1894,"utf16_col":10},"end":{"line_number":1894,"utf16_col":30}},"extent_utf16":{"start":{"line_number":1894,"utf16_col":2},"end":{"line_number":1895,"utf16_col":0}}},{"name":"LEVELING_BED_TEMP","kind":"macro","ident_start":78654,"ident_end":78671,"extent_start":78646,"extent_end":78679,"fully_qualified_name":"LEVELING_BED_TEMP","ident_utf16":{"start":{"line_number":1895,"utf16_col":10},"end":{"line_number":1895,"utf16_col":27}},"extent_utf16":{"start":{"line_number":1895,"utf16_col":2},"end":{"line_number":1896,"utf16_col":0}}},{"name":"MANUAL_PROBE_START_Z","kind":"macro","ident_start":79266,"ident_end":79286,"extent_start":79258,"extent_end":79344,"fully_qualified_name":"MANUAL_PROBE_START_Z","ident_utf16":{"start":{"line_number":1916,"utf16_col":10},"end":{"line_number":1916,"utf16_col":30}},"extent_utf16":{"start":{"line_number":1916,"utf16_col":2},"end":{"line_number":1917,"utf16_col":0}}},{"name":"ENABLE_LEVELING_FADE_HEIGHT","kind":"macro","ident_start":79642,"ident_end":79669,"extent_start":79634,"extent_end":79713,"fully_qualified_name":"ENABLE_LEVELING_FADE_HEIGHT","ident_utf16":{"start":{"line_number":1925,"utf16_col":10},"end":{"line_number":1925,"utf16_col":37}},"extent_utf16":{"start":{"line_number":1925,"utf16_col":2},"end":{"line_number":1927,"utf16_col":0}}},{"name":"DEFAULT_LEVELING_FADE_HEIGHT","kind":"macro","ident_start":79725,"ident_end":79753,"extent_start":79717,"extent_end":79788,"fully_qualified_name":"DEFAULT_LEVELING_FADE_HEIGHT","ident_utf16":{"start":{"line_number":1927,"utf16_col":12},"end":{"line_number":1927,"utf16_col":40}},"extent_utf16":{"start":{"line_number":1927,"utf16_col":4},"end":{"line_number":1928,"utf16_col":0}}},{"name":"SEGMENT_LEVELED_MOVES","kind":"macro","ident_start":80038,"ident_end":80059,"extent_start":80030,"extent_end":80151,"fully_qualified_name":"SEGMENT_LEVELED_MOVES","ident_utf16":{"start":{"line_number":1935,"utf16_col":10},"end":{"line_number":1935,"utf16_col":31}},"extent_utf16":{"start":{"line_number":1935,"utf16_col":2},"end":{"line_number":1938,"utf16_col":0}}},{"name":"MESH_TEST_NOZZLE_SIZE","kind":"macro","ident_start":80292,"ident_end":80313,"extent_start":80284,"extent_end":80358,"fully_qualified_name":"MESH_TEST_NOZZLE_SIZE","ident_utf16":{"start":{"line_number":1943,"utf16_col":12},"end":{"line_number":1943,"utf16_col":33}},"extent_utf16":{"start":{"line_number":1943,"utf16_col":4},"end":{"line_number":1944,"utf16_col":0}}},{"name":"MESH_TEST_LAYER_HEIGHT","kind":"macro","ident_start":80370,"ident_end":80392,"extent_start":80362,"extent_end":80438,"fully_qualified_name":"MESH_TEST_LAYER_HEIGHT","ident_utf16":{"start":{"line_number":1944,"utf16_col":12},"end":{"line_number":1944,"utf16_col":34}},"extent_utf16":{"start":{"line_number":1944,"utf16_col":4},"end":{"line_number":1945,"utf16_col":0}}},{"name":"MESH_TEST_HOTEND_TEMP","kind":"macro","ident_start":80450,"ident_end":80471,"extent_start":80442,"extent_end":80525,"fully_qualified_name":"MESH_TEST_HOTEND_TEMP","ident_utf16":{"start":{"line_number":1945,"utf16_col":12},"end":{"line_number":1945,"utf16_col":33}},"extent_utf16":{"start":{"line_number":1945,"utf16_col":4},"end":{"line_number":1946,"utf16_col":0}}},{"name":"MESH_TEST_BED_TEMP","kind":"macro","ident_start":80537,"ident_end":80555,"extent_start":80529,"extent_end":80609,"fully_qualified_name":"MESH_TEST_BED_TEMP","ident_utf16":{"start":{"line_number":1946,"utf16_col":12},"end":{"line_number":1946,"utf16_col":30}},"extent_utf16":{"start":{"line_number":1946,"utf16_col":4},"end":{"line_number":1947,"utf16_col":0}}},{"name":"G26_XY_FEEDRATE","kind":"macro","ident_start":80621,"ident_end":80636,"extent_start":80613,"extent_end":80688,"fully_qualified_name":"G26_XY_FEEDRATE","ident_utf16":{"start":{"line_number":1947,"utf16_col":12},"end":{"line_number":1947,"utf16_col":27}},"extent_utf16":{"start":{"line_number":1947,"utf16_col":4},"end":{"line_number":1948,"utf16_col":0}}},{"name":"G26_XY_FEEDRATE_TRAVEL","kind":"macro","ident_start":80700,"ident_end":80722,"extent_start":80692,"extent_end":80774,"fully_qualified_name":"G26_XY_FEEDRATE_TRAVEL","ident_utf16":{"start":{"line_number":1948,"utf16_col":12},"end":{"line_number":1948,"utf16_col":34}},"extent_utf16":{"start":{"line_number":1948,"utf16_col":4},"end":{"line_number":1949,"utf16_col":0}}},{"name":"G26_RETRACT_MULTIPLIER","kind":"macro","ident_start":80786,"ident_end":80808,"extent_start":80778,"extent_end":80882,"fully_qualified_name":"G26_RETRACT_MULTIPLIER","ident_utf16":{"start":{"line_number":1949,"utf16_col":12},"end":{"line_number":1949,"utf16_col":34}},"extent_utf16":{"start":{"line_number":1949,"utf16_col":4},"end":{"line_number":1950,"utf16_col":0}}},{"name":"GRID_MAX_POINTS_X","kind":"macro","ident_start":81026,"ident_end":81043,"extent_start":81018,"extent_end":81046,"fully_qualified_name":"GRID_MAX_POINTS_X","ident_utf16":{"start":{"line_number":1957,"utf16_col":10},"end":{"line_number":1957,"utf16_col":27}},"extent_utf16":{"start":{"line_number":1957,"utf16_col":2},"end":{"line_number":1958,"utf16_col":0}}},{"name":"GRID_MAX_POINTS_Y","kind":"macro","ident_start":81056,"ident_end":81073,"extent_start":81048,"extent_end":81093,"fully_qualified_name":"GRID_MAX_POINTS_Y","ident_utf16":{"start":{"line_number":1958,"utf16_col":10},"end":{"line_number":1958,"utf16_col":27}},"extent_utf16":{"start":{"line_number":1958,"utf16_col":2},"end":{"line_number":1960,"utf16_col":0}}},{"name":"EXTRAPOLATE_BEYOND_GRID","kind":"macro","ident_start":81354,"ident_end":81377,"extent_start":81346,"extent_end":81613,"fully_qualified_name":"EXTRAPOLATE_BEYOND_GRID","ident_utf16":{"start":{"line_number":1967,"utf16_col":12},"end":{"line_number":1967,"utf16_col":35}},"extent_utf16":{"start":{"line_number":1967,"utf16_col":4},"end":{"line_number":1975,"utf16_col":0}}},{"name":"BILINEAR_SUBDIVISIONS","kind":"macro","ident_start":81680,"ident_end":81701,"extent_start":81672,"extent_end":81704,"fully_qualified_name":"BILINEAR_SUBDIVISIONS","ident_utf16":{"start":{"line_number":1976,"utf16_col":14},"end":{"line_number":1976,"utf16_col":35}},"extent_utf16":{"start":{"line_number":1976,"utf16_col":6},"end":{"line_number":1977,"utf16_col":0}}},{"name":"MESH_INSET","kind":"macro","ident_start":82105,"ident_end":82115,"extent_start":82097,"extent_end":82180,"fully_qualified_name":"MESH_INSET","ident_utf16":{"start":{"line_number":1989,"utf16_col":10},"end":{"line_number":1989,"utf16_col":20}},"extent_utf16":{"start":{"line_number":1989,"utf16_col":2},"end":{"line_number":1990,"utf16_col":0}}},{"name":"GRID_MAX_POINTS_X","kind":"macro","ident_start":82190,"ident_end":82207,"extent_start":82182,"extent_end":82283,"fully_qualified_name":"GRID_MAX_POINTS_X","ident_utf16":{"start":{"line_number":1990,"utf16_col":10},"end":{"line_number":1990,"utf16_col":27}},"extent_utf16":{"start":{"line_number":1990,"utf16_col":2},"end":{"line_number":1991,"utf16_col":0}}},{"name":"GRID_MAX_POINTS_Y","kind":"macro","ident_start":82293,"ident_end":82310,"extent_start":82285,"extent_end":82330,"fully_qualified_name":"GRID_MAX_POINTS_Y","ident_utf16":{"start":{"line_number":1991,"utf16_col":10},"end":{"line_number":1991,"utf16_col":27}},"extent_utf16":{"start":{"line_number":1991,"utf16_col":2},"end":{"line_number":1993,"utf16_col":0}}},{"name":"UBL_MESH_EDIT_MOVES_Z","kind":"macro","ident_start":82450,"ident_end":82471,"extent_start":82442,"extent_end":82627,"fully_qualified_name":"UBL_MESH_EDIT_MOVES_Z","ident_utf16":{"start":{"line_number":1995,"utf16_col":10},"end":{"line_number":1995,"utf16_col":31}},"extent_utf16":{"start":{"line_number":1995,"utf16_col":2},"end":{"line_number":1998,"utf16_col":0}}},{"name":"MESH_INSET","kind":"macro","ident_start":83182,"ident_end":83192,"extent_start":83174,"extent_end":83254,"fully_qualified_name":"MESH_INSET","ident_utf16":{"start":{"line_number":2009,"utf16_col":10},"end":{"line_number":2009,"utf16_col":20}},"extent_utf16":{"start":{"line_number":2009,"utf16_col":2},"end":{"line_number":2010,"utf16_col":0}}},{"name":"GRID_MAX_POINTS_X","kind":"macro","ident_start":83264,"ident_end":83281,"extent_start":83256,"extent_end":83353,"fully_qualified_name":"GRID_MAX_POINTS_X","ident_utf16":{"start":{"line_number":2010,"utf16_col":10},"end":{"line_number":2010,"utf16_col":27}},"extent_utf16":{"start":{"line_number":2010,"utf16_col":2},"end":{"line_number":2011,"utf16_col":0}}},{"name":"GRID_MAX_POINTS_Y","kind":"macro","ident_start":83363,"ident_end":83380,"extent_start":83355,"extent_end":83400,"fully_qualified_name":"GRID_MAX_POINTS_Y","ident_utf16":{"start":{"line_number":2011,"utf16_col":10},"end":{"line_number":2011,"utf16_col":27}},"extent_utf16":{"start":{"line_number":2011,"utf16_col":2},"end":{"line_number":2013,"utf16_col":0}}},{"name":"LCD_BED_LEVELING","kind":"macro","ident_start":83647,"ident_end":83663,"extent_start":83639,"extent_end":83665,"fully_qualified_name":"LCD_BED_LEVELING","ident_utf16":{"start":{"line_number":2021,"utf16_col":8},"end":{"line_number":2021,"utf16_col":24}},"extent_utf16":{"start":{"line_number":2021,"utf16_col":0},"end":{"line_number":2023,"utf16_col":0}}},{"name":"MESH_EDIT_Z_STEP","kind":"macro","ident_start":83705,"ident_end":83721,"extent_start":83697,"extent_end":83778,"fully_qualified_name":"MESH_EDIT_Z_STEP","ident_utf16":{"start":{"line_number":2024,"utf16_col":10},"end":{"line_number":2024,"utf16_col":26}},"extent_utf16":{"start":{"line_number":2024,"utf16_col":2},"end":{"line_number":2025,"utf16_col":0}}},{"name":"LCD_PROBE_Z_RANGE","kind":"macro","ident_start":83788,"ident_end":83805,"extent_start":83780,"extent_end":83871,"fully_qualified_name":"LCD_PROBE_Z_RANGE","ident_utf16":{"start":{"line_number":2025,"utf16_col":10},"end":{"line_number":2025,"utf16_col":27}},"extent_utf16":{"start":{"line_number":2025,"utf16_col":2},"end":{"line_number":2026,"utf16_col":0}}},{"name":"MESH_EDIT_MENU","kind":"macro","ident_start":83881,"ident_end":83895,"extent_start":83873,"extent_end":83937,"fully_qualified_name":"MESH_EDIT_MENU","ident_utf16":{"start":{"line_number":2026,"utf16_col":10},"end":{"line_number":2026,"utf16_col":24}},"extent_utf16":{"start":{"line_number":2026,"utf16_col":2},"end":{"line_number":2027,"utf16_col":0}}},{"name":"LCD_BED_TRAMMING","kind":"macro","ident_start":84026,"ident_end":84042,"extent_start":84018,"extent_end":84044,"fully_qualified_name":"LCD_BED_TRAMMING","ident_utf16":{"start":{"line_number":2030,"utf16_col":8},"end":{"line_number":2030,"utf16_col":24}},"extent_utf16":{"start":{"line_number":2030,"utf16_col":0},"end":{"line_number":2032,"utf16_col":0}}},{"name":"BED_TRAMMING_INSET_LFRB","kind":"macro","ident_start":84084,"ident_end":84107,"extent_start":84076,"extent_end":84167,"fully_qualified_name":"BED_TRAMMING_INSET_LFRB","ident_utf16":{"start":{"line_number":2033,"utf16_col":10},"end":{"line_number":2033,"utf16_col":33}},"extent_utf16":{"start":{"line_number":2033,"utf16_col":2},"end":{"line_number":2034,"utf16_col":0}}},{"name":"BED_TRAMMING_HEIGHT","kind":"macro","ident_start":84177,"ident_end":84196,"extent_start":84169,"extent_end":84259,"fully_qualified_name":"BED_TRAMMING_HEIGHT","ident_utf16":{"start":{"line_number":2034,"utf16_col":10},"end":{"line_number":2034,"utf16_col":29}},"extent_utf16":{"start":{"line_number":2034,"utf16_col":2},"end":{"line_number":2035,"utf16_col":0}}},{"name":"BED_TRAMMING_Z_HOP","kind":"macro","ident_start":84269,"ident_end":84287,"extent_start":84261,"extent_end":84356,"fully_qualified_name":"BED_TRAMMING_Z_HOP","ident_utf16":{"start":{"line_number":2035,"utf16_col":10},"end":{"line_number":2035,"utf16_col":28}},"extent_utf16":{"start":{"line_number":2035,"utf16_col":2},"end":{"line_number":2036,"utf16_col":0}}},{"name":"BED_TRAMMING_PROBE_TOLERANCE","kind":"macro","ident_start":84531,"ident_end":84559,"extent_start":84523,"extent_end":84573,"fully_qualified_name":"BED_TRAMMING_PROBE_TOLERANCE","ident_utf16":{"start":{"line_number":2039,"utf16_col":12},"end":{"line_number":2039,"utf16_col":40}},"extent_utf16":{"start":{"line_number":2039,"utf16_col":4},"end":{"line_number":2040,"utf16_col":0}}},{"name":"BED_TRAMMING_VERIFY_RAISED","kind":"macro","ident_start":84585,"ident_end":84611,"extent_start":84577,"extent_end":84730,"fully_qualified_name":"BED_TRAMMING_VERIFY_RAISED","ident_utf16":{"start":{"line_number":2040,"utf16_col":12},"end":{"line_number":2040,"utf16_col":38}},"extent_utf16":{"start":{"line_number":2040,"utf16_col":4},"end":{"line_number":2044,"utf16_col":0}}},{"name":"BED_TRAMMING_LEVELING_ORDER","kind":"macro","ident_start":85444,"ident_end":85471,"extent_start":85436,"extent_end":85491,"fully_qualified_name":"BED_TRAMMING_LEVELING_ORDER","ident_utf16":{"start":{"line_number":2061,"utf16_col":10},"end":{"line_number":2061,"utf16_col":37}},"extent_utf16":{"start":{"line_number":2061,"utf16_col":2},"end":{"line_number":2062,"utf16_col":0}}},{"name":"Z_SAFE_HOMING_X_POINT","kind":"macro","ident_start":86570,"ident_end":86591,"extent_start":86562,"extent_end":86626,"fully_qualified_name":"Z_SAFE_HOMING_X_POINT","ident_utf16":{"start":{"line_number":2097,"utf16_col":10},"end":{"line_number":2097,"utf16_col":31}},"extent_utf16":{"start":{"line_number":2097,"utf16_col":2},"end":{"line_number":2098,"utf16_col":0}}},{"name":"Z_SAFE_HOMING_Y_POINT","kind":"macro","ident_start":86636,"ident_end":86657,"extent_start":86628,"extent_end":86692,"fully_qualified_name":"Z_SAFE_HOMING_Y_POINT","ident_utf16":{"start":{"line_number":2098,"utf16_col":10},"end":{"line_number":2098,"utf16_col":31}},"extent_utf16":{"start":{"line_number":2098,"utf16_col":2},"end":{"line_number":2099,"utf16_col":0}}},{"name":"HOMING_FEEDRATE_MM_M","kind":"macro","ident_start":86760,"ident_end":86780,"extent_start":86752,"extent_end":86811,"fully_qualified_name":"HOMING_FEEDRATE_MM_M","ident_utf16":{"start":{"line_number":2102,"utf16_col":8},"end":{"line_number":2102,"utf16_col":28}},"extent_utf16":{"start":{"line_number":2102,"utf16_col":0},"end":{"line_number":2104,"utf16_col":0}}},{"name":"VALIDATE_HOMING_ENDSTOPS","kind":"macro","ident_start":86875,"ident_end":86899,"extent_start":86867,"extent_end":86901,"fully_qualified_name":"VALIDATE_HOMING_ENDSTOPS","ident_utf16":{"start":{"line_number":2105,"utf16_col":8},"end":{"line_number":2105,"utf16_col":32}},"extent_utf16":{"start":{"line_number":2105,"utf16_col":0},"end":{"line_number":2107,"utf16_col":0}}},{"name":"XY_DIAG_AC","kind":"macro","ident_start":88216,"ident_end":88226,"extent_start":88208,"extent_end":88242,"fully_qualified_name":"XY_DIAG_AC","ident_utf16":{"start":{"line_number":2141,"utf16_col":10},"end":{"line_number":2141,"utf16_col":20}},"extent_utf16":{"start":{"line_number":2141,"utf16_col":2},"end":{"line_number":2142,"utf16_col":0}}},{"name":"XY_DIAG_BD","kind":"macro","ident_start":88252,"ident_end":88262,"extent_start":88244,"extent_end":88278,"fully_qualified_name":"XY_DIAG_BD","ident_utf16":{"start":{"line_number":2142,"utf16_col":10},"end":{"line_number":2142,"utf16_col":20}},"extent_utf16":{"start":{"line_number":2142,"utf16_col":2},"end":{"line_number":2143,"utf16_col":0}}},{"name":"XY_SIDE_AD","kind":"macro","ident_start":88288,"ident_end":88298,"extent_start":88280,"extent_end":88304,"fully_qualified_name":"XY_SIDE_AD","ident_utf16":{"start":{"line_number":2143,"utf16_col":10},"end":{"line_number":2143,"utf16_col":20}},"extent_utf16":{"start":{"line_number":2143,"utf16_col":2},"end":{"line_number":2145,"utf16_col":0}}},{"name":"XZ_DIAG_AC","kind":"macro","ident_start":88461,"ident_end":88471,"extent_start":88453,"extent_end":88487,"fully_qualified_name":"XZ_DIAG_AC","ident_utf16":{"start":{"line_number":2150,"utf16_col":12},"end":{"line_number":2150,"utf16_col":22}},"extent_utf16":{"start":{"line_number":2150,"utf16_col":4},"end":{"line_number":2151,"utf16_col":0}}},{"name":"XZ_DIAG_BD","kind":"macro","ident_start":88499,"ident_end":88509,"extent_start":88491,"extent_end":88525,"fully_qualified_name":"XZ_DIAG_BD","ident_utf16":{"start":{"line_number":2151,"utf16_col":12},"end":{"line_number":2151,"utf16_col":22}},"extent_utf16":{"start":{"line_number":2151,"utf16_col":4},"end":{"line_number":2152,"utf16_col":0}}},{"name":"YZ_DIAG_AC","kind":"macro","ident_start":88537,"ident_end":88547,"extent_start":88529,"extent_end":88563,"fully_qualified_name":"YZ_DIAG_AC","ident_utf16":{"start":{"line_number":2152,"utf16_col":12},"end":{"line_number":2152,"utf16_col":22}},"extent_utf16":{"start":{"line_number":2152,"utf16_col":4},"end":{"line_number":2153,"utf16_col":0}}},{"name":"YZ_DIAG_BD","kind":"macro","ident_start":88575,"ident_end":88585,"extent_start":88567,"extent_end":88601,"fully_qualified_name":"YZ_DIAG_BD","ident_utf16":{"start":{"line_number":2153,"utf16_col":12},"end":{"line_number":2153,"utf16_col":22}},"extent_utf16":{"start":{"line_number":2153,"utf16_col":4},"end":{"line_number":2154,"utf16_col":0}}},{"name":"YZ_SIDE_AD","kind":"macro","ident_start":88613,"ident_end":88623,"extent_start":88605,"extent_end":88629,"fully_qualified_name":"YZ_SIDE_AD","ident_utf16":{"start":{"line_number":2154,"utf16_col":12},"end":{"line_number":2154,"utf16_col":22}},"extent_utf16":{"start":{"line_number":2154,"utf16_col":4},"end":{"line_number":2156,"utf16_col":0}}},{"name":"EEPROM_SETTINGS","kind":"macro","ident_start":89414,"ident_end":89429,"extent_start":89406,"extent_end":89477,"fully_qualified_name":"EEPROM_SETTINGS","ident_utf16":{"start":{"line_number":2180,"utf16_col":8},"end":{"line_number":2180,"utf16_col":23}},"extent_utf16":{"start":{"line_number":2180,"utf16_col":0},"end":{"line_number":2181,"utf16_col":0}}},{"name":"EEPROM_CHITCHAT","kind":"macro","ident_start":89567,"ident_end":89582,"extent_start":89559,"extent_end":89651,"fully_qualified_name":"EEPROM_CHITCHAT","ident_utf16":{"start":{"line_number":2182,"utf16_col":8},"end":{"line_number":2182,"utf16_col":23}},"extent_utf16":{"start":{"line_number":2182,"utf16_col":0},"end":{"line_number":2183,"utf16_col":0}}},{"name":"EEPROM_BOOT_SILENT","kind":"macro","ident_start":89659,"ident_end":89677,"extent_start":89651,"extent_end":89739,"fully_qualified_name":"EEPROM_BOOT_SILENT","ident_utf16":{"start":{"line_number":2183,"utf16_col":8},"end":{"line_number":2183,"utf16_col":26}},"extent_utf16":{"start":{"line_number":2183,"utf16_col":0},"end":{"line_number":2184,"utf16_col":0}}},{"name":"EEPROM_AUTO_INIT","kind":"macro","ident_start":89778,"ident_end":89794,"extent_start":89770,"extent_end":89920,"fully_qualified_name":"EEPROM_AUTO_INIT","ident_utf16":{"start":{"line_number":2185,"utf16_col":10},"end":{"line_number":2185,"utf16_col":26}},"extent_utf16":{"start":{"line_number":2185,"utf16_col":2},"end":{"line_number":2187,"utf16_col":0}}},{"name":"HOST_KEEPALIVE_FEATURE","kind":"macro","ident_start":90106,"ident_end":90128,"extent_start":90098,"extent_end":90197,"fully_qualified_name":"HOST_KEEPALIVE_FEATURE","ident_utf16":{"start":{"line_number":2197,"utf16_col":8},"end":{"line_number":2197,"utf16_col":30}},"extent_utf16":{"start":{"line_number":2197,"utf16_col":0},"end":{"line_number":2198,"utf16_col":0}}},{"name":"DEFAULT_KEEPALIVE_INTERVAL","kind":"macro","ident_start":90205,"ident_end":90231,"extent_start":90197,"extent_end":90296,"fully_qualified_name":"DEFAULT_KEEPALIVE_INTERVAL","ident_utf16":{"start":{"line_number":2198,"utf16_col":8},"end":{"line_number":2198,"utf16_col":34}},"extent_utf16":{"start":{"line_number":2198,"utf16_col":0},"end":{"line_number":2199,"utf16_col":0}}},{"name":"BUSY_WHILE_HEATING","kind":"macro","ident_start":90304,"ident_end":90322,"extent_start":90296,"extent_end":90393,"fully_qualified_name":"BUSY_WHILE_HEATING","ident_utf16":{"start":{"line_number":2199,"utf16_col":8},"end":{"line_number":2199,"utf16_col":26}},"extent_utf16":{"start":{"line_number":2199,"utf16_col":0},"end":{"line_number":2201,"utf16_col":0}}},{"name":"PREHEAT_1_LABEL","kind":"macro","ident_start":90658,"ident_end":90673,"extent_start":90650,"extent_end":90686,"fully_qualified_name":"PREHEAT_1_LABEL","ident_utf16":{"start":{"line_number":2218,"utf16_col":8},"end":{"line_number":2218,"utf16_col":23}},"extent_utf16":{"start":{"line_number":2218,"utf16_col":0},"end":{"line_number":2219,"utf16_col":0}}},{"name":"PREHEAT_1_TEMP_HOTEND","kind":"macro","ident_start":90694,"ident_end":90715,"extent_start":90686,"extent_end":90720,"fully_qualified_name":"PREHEAT_1_TEMP_HOTEND","ident_utf16":{"start":{"line_number":2219,"utf16_col":8},"end":{"line_number":2219,"utf16_col":29}},"extent_utf16":{"start":{"line_number":2219,"utf16_col":0},"end":{"line_number":2220,"utf16_col":0}}},{"name":"PREHEAT_1_TEMP_BED","kind":"macro","ident_start":90728,"ident_end":90746,"extent_start":90720,"extent_end":90754,"fully_qualified_name":"PREHEAT_1_TEMP_BED","ident_utf16":{"start":{"line_number":2220,"utf16_col":8},"end":{"line_number":2220,"utf16_col":26}},"extent_utf16":{"start":{"line_number":2220,"utf16_col":0},"end":{"line_number":2221,"utf16_col":0}}},{"name":"PREHEAT_1_TEMP_CHAMBER","kind":"macro","ident_start":90762,"ident_end":90784,"extent_start":90754,"extent_end":90788,"fully_qualified_name":"PREHEAT_1_TEMP_CHAMBER","ident_utf16":{"start":{"line_number":2221,"utf16_col":8},"end":{"line_number":2221,"utf16_col":30}},"extent_utf16":{"start":{"line_number":2221,"utf16_col":0},"end":{"line_number":2222,"utf16_col":0}}},{"name":"PREHEAT_1_FAN_SPEED","kind":"macro","ident_start":90796,"ident_end":90815,"extent_start":90788,"extent_end":90846,"fully_qualified_name":"PREHEAT_1_FAN_SPEED","ident_utf16":{"start":{"line_number":2222,"utf16_col":8},"end":{"line_number":2222,"utf16_col":27}},"extent_utf16":{"start":{"line_number":2222,"utf16_col":0},"end":{"line_number":2224,"utf16_col":0}}},{"name":"PREHEAT_2_LABEL","kind":"macro","ident_start":90854,"ident_end":90869,"extent_start":90846,"extent_end":90882,"fully_qualified_name":"PREHEAT_2_LABEL","ident_utf16":{"start":{"line_number":2224,"utf16_col":8},"end":{"line_number":2224,"utf16_col":23}},"extent_utf16":{"start":{"line_number":2224,"utf16_col":0},"end":{"line_number":2225,"utf16_col":0}}},{"name":"PREHEAT_2_TEMP_HOTEND","kind":"macro","ident_start":90890,"ident_end":90911,"extent_start":90882,"extent_end":90916,"fully_qualified_name":"PREHEAT_2_TEMP_HOTEND","ident_utf16":{"start":{"line_number":2225,"utf16_col":8},"end":{"line_number":2225,"utf16_col":29}},"extent_utf16":{"start":{"line_number":2225,"utf16_col":0},"end":{"line_number":2226,"utf16_col":0}}},{"name":"PREHEAT_2_TEMP_BED","kind":"macro","ident_start":90924,"ident_end":90942,"extent_start":90916,"extent_end":90950,"fully_qualified_name":"PREHEAT_2_TEMP_BED","ident_utf16":{"start":{"line_number":2226,"utf16_col":8},"end":{"line_number":2226,"utf16_col":26}},"extent_utf16":{"start":{"line_number":2226,"utf16_col":0},"end":{"line_number":2227,"utf16_col":0}}},{"name":"PREHEAT_2_TEMP_CHAMBER","kind":"macro","ident_start":90958,"ident_end":90980,"extent_start":90950,"extent_end":90984,"fully_qualified_name":"PREHEAT_2_TEMP_CHAMBER","ident_utf16":{"start":{"line_number":2227,"utf16_col":8},"end":{"line_number":2227,"utf16_col":30}},"extent_utf16":{"start":{"line_number":2227,"utf16_col":0},"end":{"line_number":2228,"utf16_col":0}}},{"name":"PREHEAT_2_FAN_SPEED","kind":"macro","ident_start":90992,"ident_end":91011,"extent_start":90984,"extent_end":91042,"fully_qualified_name":"PREHEAT_2_FAN_SPEED","ident_utf16":{"start":{"line_number":2228,"utf16_col":8},"end":{"line_number":2228,"utf16_col":27}},"extent_utf16":{"start":{"line_number":2228,"utf16_col":0},"end":{"line_number":2230,"utf16_col":0}}},{"name":"NOZZLE_PARK_FEATURE","kind":"macro","ident_start":91405,"ident_end":91424,"extent_start":91397,"extent_end":91426,"fully_qualified_name":"NOZZLE_PARK_FEATURE","ident_utf16":{"start":{"line_number":2243,"utf16_col":8},"end":{"line_number":2243,"utf16_col":27}},"extent_utf16":{"start":{"line_number":2243,"utf16_col":0},"end":{"line_number":2245,"utf16_col":0}}},{"name":"NOZZLE_PARK_POINT","kind":"macro","ident_start":91519,"ident_end":91536,"extent_start":91511,"extent_end":91580,"fully_qualified_name":"NOZZLE_PARK_POINT","ident_utf16":{"start":{"line_number":2247,"utf16_col":10},"end":{"line_number":2247,"utf16_col":27}},"extent_utf16":{"start":{"line_number":2247,"utf16_col":2},"end":{"line_number":2248,"utf16_col":0}}},{"name":"NOZZLE_PARK_MOVE","kind":"macro","ident_start":91590,"ident_end":91606,"extent_start":91582,"extent_end":91704,"fully_qualified_name":"NOZZLE_PARK_MOVE","ident_utf16":{"start":{"line_number":2248,"utf16_col":10},"end":{"line_number":2248,"utf16_col":26}},"extent_utf16":{"start":{"line_number":2248,"utf16_col":2},"end":{"line_number":2249,"utf16_col":0}}},{"name":"NOZZLE_PARK_Z_RAISE_MIN","kind":"macro","ident_start":91714,"ident_end":91737,"extent_start":91706,"extent_end":91793,"fully_qualified_name":"NOZZLE_PARK_Z_RAISE_MIN","ident_utf16":{"start":{"line_number":2249,"utf16_col":10},"end":{"line_number":2249,"utf16_col":33}},"extent_utf16":{"start":{"line_number":2249,"utf16_col":2},"end":{"line_number":2250,"utf16_col":0}}},{"name":"NOZZLE_PARK_XY_FEEDRATE","kind":"macro","ident_start":91803,"ident_end":91826,"extent_start":91795,"extent_end":91894,"fully_qualified_name":"NOZZLE_PARK_XY_FEEDRATE","ident_utf16":{"start":{"line_number":2250,"utf16_col":10},"end":{"line_number":2250,"utf16_col":33}},"extent_utf16":{"start":{"line_number":2250,"utf16_col":2},"end":{"line_number":2251,"utf16_col":0}}},{"name":"NOZZLE_PARK_Z_FEEDRATE","kind":"macro","ident_start":91904,"ident_end":91926,"extent_start":91896,"extent_end":91990,"fully_qualified_name":"NOZZLE_PARK_Z_FEEDRATE","ident_utf16":{"start":{"line_number":2251,"utf16_col":10},"end":{"line_number":2251,"utf16_col":32}},"extent_utf16":{"start":{"line_number":2251,"utf16_col":2},"end":{"line_number":2252,"utf16_col":0}}},{"name":"NOZZLE_CLEAN_STROKES","kind":"macro","ident_start":93638,"ident_end":93658,"extent_start":93630,"extent_end":93664,"fully_qualified_name":"NOZZLE_CLEAN_STROKES","ident_utf16":{"start":{"line_number":2295,"utf16_col":10},"end":{"line_number":2295,"utf16_col":30}},"extent_utf16":{"start":{"line_number":2295,"utf16_col":2},"end":{"line_number":2297,"utf16_col":0}}},{"name":"NOZZLE_CLEAN_TRIANGLES","kind":"macro","ident_start":93707,"ident_end":93729,"extent_start":93699,"extent_end":93734,"fully_qualified_name":"NOZZLE_CLEAN_TRIANGLES","ident_utf16":{"start":{"line_number":2298,"utf16_col":10},"end":{"line_number":2298,"utf16_col":32}},"extent_utf16":{"start":{"line_number":2298,"utf16_col":2},"end":{"line_number":2300,"utf16_col":0}}},{"name":"NOZZLE_CLEAN_START_POINT","kind":"macro","ident_start":93938,"ident_end":93962,"extent_start":93930,"extent_end":93996,"fully_qualified_name":"NOZZLE_CLEAN_START_POINT","ident_utf16":{"start":{"line_number":2302,"utf16_col":10},"end":{"line_number":2302,"utf16_col":34}},"extent_utf16":{"start":{"line_number":2302,"utf16_col":2},"end":{"line_number":2303,"utf16_col":0}}},{"name":"NOZZLE_CLEAN_END_POINT","kind":"macro","ident_start":94006,"ident_end":94028,"extent_start":93998,"extent_end":94065,"fully_qualified_name":"NOZZLE_CLEAN_END_POINT","ident_utf16":{"start":{"line_number":2303,"utf16_col":10},"end":{"line_number":2303,"utf16_col":32}},"extent_utf16":{"start":{"line_number":2303,"utf16_col":2},"end":{"line_number":2305,"utf16_col":0}}},{"name":"NOZZLE_CLEAN_CIRCLE_RADIUS","kind":"macro","ident_start":94104,"ident_end":94130,"extent_start":94096,"extent_end":94135,"fully_qualified_name":"NOZZLE_CLEAN_CIRCLE_RADIUS","ident_utf16":{"start":{"line_number":2306,"utf16_col":10},"end":{"line_number":2306,"utf16_col":36}},"extent_utf16":{"start":{"line_number":2306,"utf16_col":2},"end":{"line_number":2307,"utf16_col":0}}},{"name":"NOZZLE_CLEAN_CIRCLE_FN","kind":"macro","ident_start":94191,"ident_end":94213,"extent_start":94183,"extent_end":94217,"fully_qualified_name":"NOZZLE_CLEAN_CIRCLE_FN","ident_utf16":{"start":{"line_number":2308,"utf16_col":10},"end":{"line_number":2308,"utf16_col":32}},"extent_utf16":{"start":{"line_number":2308,"utf16_col":2},"end":{"line_number":2309,"utf16_col":0}}},{"name":"NOZZLE_CLEAN_CIRCLE_MIDDLE","kind":"macro","ident_start":94255,"ident_end":94281,"extent_start":94247,"extent_end":94308,"fully_qualified_name":"NOZZLE_CLEAN_CIRCLE_MIDDLE","ident_utf16":{"start":{"line_number":2310,"utf16_col":10},"end":{"line_number":2310,"utf16_col":36}},"extent_utf16":{"start":{"line_number":2310,"utf16_col":2},"end":{"line_number":2312,"utf16_col":0}}},{"name":"NOZZLE_CLEAN_GOBACK","kind":"macro","ident_start":94378,"ident_end":94397,"extent_start":94370,"extent_end":94688,"fully_qualified_name":"NOZZLE_CLEAN_GOBACK","ident_utf16":{"start":{"line_number":2313,"utf16_col":10},"end":{"line_number":2313,"utf16_col":29}},"extent_utf16":{"start":{"line_number":2313,"utf16_col":2},"end":{"line_number":2323,"utf16_col":0}}},{"name":"PRINTJOB_TIMER_AUTOSTART","kind":"macro","ident_start":96198,"ident_end":96222,"extent_start":96190,"extent_end":96224,"fully_qualified_name":"PRINTJOB_TIMER_AUTOSTART","ident_utf16":{"start":{"line_number":2356,"utf16_col":8},"end":{"line_number":2356,"utf16_col":32}},"extent_utf16":{"start":{"line_number":2356,"utf16_col":0},"end":{"line_number":2358,"utf16_col":0}}},{"name":"PRINTCOUNTER_SAVE_INTERVAL","kind":"macro","ident_start":96525,"ident_end":96551,"extent_start":96517,"extent_end":96649,"fully_qualified_name":"PRINTCOUNTER_SAVE_INTERVAL","ident_utf16":{"start":{"line_number":2374,"utf16_col":10},"end":{"line_number":2374,"utf16_col":36}},"extent_utf16":{"start":{"line_number":2374,"utf16_col":2},"end":{"line_number":2375,"utf16_col":0}}},{"name":"PASSWORD_LENGTH","kind":"macro","ident_start":97347,"ident_end":97362,"extent_start":97339,"extent_end":97434,"fully_qualified_name":"PASSWORD_LENGTH","ident_utf16":{"start":{"line_number":2400,"utf16_col":10},"end":{"line_number":2400,"utf16_col":25}},"extent_utf16":{"start":{"line_number":2400,"utf16_col":2},"end":{"line_number":2401,"utf16_col":0}}},{"name":"PASSWORD_ON_STARTUP","kind":"macro","ident_start":97444,"ident_end":97463,"extent_start":97436,"extent_end":97592,"fully_qualified_name":"PASSWORD_ON_STARTUP","ident_utf16":{"start":{"line_number":2401,"utf16_col":10},"end":{"line_number":2401,"utf16_col":29}},"extent_utf16":{"start":{"line_number":2401,"utf16_col":2},"end":{"line_number":2403,"utf16_col":0}}},{"name":"PASSWORD_CHANGE_GCODE","kind":"macro","ident_start":97602,"ident_end":97623,"extent_start":97594,"extent_end":97944,"fully_qualified_name":"PASSWORD_CHANGE_GCODE","ident_utf16":{"start":{"line_number":2403,"utf16_col":10},"end":{"line_number":2403,"utf16_col":31}},"extent_utf16":{"start":{"line_number":2403,"utf16_col":2},"end":{"line_number":2408,"utf16_col":0}}},{"name":"LCD_LANGUAGE","kind":"macro","ident_start":99115,"ident_end":99127,"extent_start":99107,"extent_end":99132,"fully_qualified_name":"LCD_LANGUAGE","ident_utf16":{"start":{"line_number":2426,"utf16_col":8},"end":{"line_number":2426,"utf16_col":20}},"extent_utf16":{"start":{"line_number":2426,"utf16_col":0},"end":{"line_number":2428,"utf16_col":0}}},{"name":"DISPLAY_CHARSET_HD44780","kind":"macro","ident_start":99804,"ident_end":99827,"extent_start":99796,"extent_end":99837,"fully_qualified_name":"DISPLAY_CHARSET_HD44780","ident_utf16":{"start":{"line_number":2450,"utf16_col":8},"end":{"line_number":2450,"utf16_col":31}},"extent_utf16":{"start":{"line_number":2450,"utf16_col":0},"end":{"line_number":2452,"utf16_col":0}}},{"name":"LCD_INFO_SCREEN_STYLE","kind":"macro","ident_start":99931,"ident_end":99952,"extent_start":99923,"extent_end":99956,"fully_qualified_name":"LCD_INFO_SCREEN_STYLE","ident_utf16":{"start":{"line_number":2457,"utf16_col":8},"end":{"line_number":2457,"utf16_col":29}},"extent_utf16":{"start":{"line_number":2457,"utf16_col":0},"end":{"line_number":2459,"utf16_col":0}}},{"name":"SDSUPPORT","kind":"macro","ident_start":100125,"ident_end":100134,"extent_start":100117,"extent_end":100136,"fully_qualified_name":"SDSUPPORT","ident_utf16":{"start":{"line_number":2465,"utf16_col":8},"end":{"line_number":2465,"utf16_col":17}},"extent_utf16":{"start":{"line_number":2465,"utf16_col":0},"end":{"line_number":2467,"utf16_col":0}}},{"name":"ENCODER_SAMPLES","kind":"macro","ident_start":101964,"ident_end":101979,"extent_start":101956,"extent_end":101983,"fully_qualified_name":"ENCODER_SAMPLES","ident_utf16":{"start":{"line_number":2537,"utf16_col":10},"end":{"line_number":2537,"utf16_col":25}},"extent_utf16":{"start":{"line_number":2537,"utf16_col":2},"end":{"line_number":2538,"utf16_col":0}}},{"name":"INDIVIDUAL_AXIS_HOMING_MENU","kind":"macro","ident_start":102116,"ident_end":102143,"extent_start":102108,"extent_end":102144,"fully_qualified_name":"INDIVIDUAL_AXIS_HOMING_MENU","ident_utf16":{"start":{"line_number":2545,"utf16_col":8},"end":{"line_number":2545,"utf16_col":35}},"extent_utf16":{"start":{"line_number":2545,"utf16_col":0},"end":{"line_number":2546,"utf16_col":0}}},{"name":"CR10_STOCKDISPLAY","kind":"macro","ident_start":110347,"ident_end":110364,"extent_start":110339,"extent_end":110366,"fully_qualified_name":"CR10_STOCKDISPLAY","ident_utf16":{"start":{"line_number":2843,"utf16_col":8},"end":{"line_number":2843,"utf16_col":25}},"extent_utf16":{"start":{"line_number":2843,"utf16_col":0},"end":{"line_number":2845,"utf16_col":0}}},{"name":"U8GLIB_SSD1306","kind":"macro","ident_start":111627,"ident_end":111641,"extent_start":111619,"extent_end":111668,"fully_qualified_name":"U8GLIB_SSD1306","ident_utf16":{"start":{"line_number":2892,"utf16_col":10},"end":{"line_number":2892,"utf16_col":24}},"extent_utf16":{"start":{"line_number":2892,"utf16_col":2},"end":{"line_number":2894,"utf16_col":0}}},{"name":"USE_MKS_GREEN_UI","kind":"macro","ident_start":114521,"ident_end":114537,"extent_start":114513,"extent_end":114538,"fully_qualified_name":"USE_MKS_GREEN_UI","ident_utf16":{"start":{"line_number":2979,"utf16_col":10},"end":{"line_number":2979,"utf16_col":26}},"extent_utf16":{"start":{"line_number":2979,"utf16_col":2},"end":{"line_number":2980,"utf16_col":0}}},{"name":"TFT_DRIVER","kind":"macro","ident_start":117386,"ident_end":117396,"extent_start":117378,"extent_end":117403,"fully_qualified_name":"TFT_DRIVER","ident_utf16":{"start":{"line_number":3109,"utf16_col":10},"end":{"line_number":3109,"utf16_col":20}},"extent_utf16":{"start":{"line_number":3109,"utf16_col":2},"end":{"line_number":3111,"utf16_col":0}}},{"name":"BUTTON_DELAY_EDIT","kind":"macro","ident_start":119505,"ident_end":119522,"extent_start":119497,"extent_end":119576,"fully_qualified_name":"BUTTON_DELAY_EDIT","ident_utf16":{"start":{"line_number":3172,"utf16_col":10},"end":{"line_number":3172,"utf16_col":27}},"extent_utf16":{"start":{"line_number":3172,"utf16_col":2},"end":{"line_number":3173,"utf16_col":0}}},{"name":"BUTTON_DELAY_MENU","kind":"macro","ident_start":119586,"ident_end":119603,"extent_start":119578,"extent_end":119651,"fully_qualified_name":"BUTTON_DELAY_MENU","ident_utf16":{"start":{"line_number":3173,"utf16_col":10},"end":{"line_number":3173,"utf16_col":27}},"extent_utf16":{"start":{"line_number":3173,"utf16_col":2},"end":{"line_number":3175,"utf16_col":0}}},{"name":"TOUCH_SCREEN_CALIBRATION","kind":"macro","ident_start":119845,"ident_end":119869,"extent_start":119837,"extent_end":120124,"fully_qualified_name":"TOUCH_SCREEN_CALIBRATION","ident_utf16":{"start":{"line_number":3178,"utf16_col":10},"end":{"line_number":3178,"utf16_col":34}},"extent_utf16":{"start":{"line_number":3178,"utf16_col":2},"end":{"line_number":3187,"utf16_col":0}}},{"name":"TOUCH_CALIBRATION_AUTO_SAVE","kind":"macro","ident_start":120136,"ident_end":120163,"extent_start":120128,"extent_end":120227,"fully_qualified_name":"TOUCH_CALIBRATION_AUTO_SAVE","ident_utf16":{"start":{"line_number":3187,"utf16_col":12},"end":{"line_number":3187,"utf16_col":39}},"extent_utf16":{"start":{"line_number":3187,"utf16_col":4},"end":{"line_number":3190,"utf16_col":0}}},{"name":"SOFT_PWM_SCALE","kind":"macro","ident_start":121570,"ident_end":121584,"extent_start":121562,"extent_end":121588,"fully_qualified_name":"SOFT_PWM_SCALE","ident_utf16":{"start":{"line_number":3227,"utf16_col":8},"end":{"line_number":3227,"utf16_col":22}},"extent_utf16":{"start":{"line_number":3227,"utf16_col":0},"end":{"line_number":3229,"utf16_col":0}}},{"name":"RGB_STARTUP_TEST_INNER_MS","kind":"macro","ident_start":123632,"ident_end":123657,"extent_start":123624,"extent_end":123702,"fully_qualified_name":"RGB_STARTUP_TEST_INNER_MS","ident_utf16":{"start":{"line_number":3290,"utf16_col":12},"end":{"line_number":3290,"utf16_col":37}},"extent_utf16":{"start":{"line_number":3290,"utf16_col":4},"end":{"line_number":3291,"utf16_col":0}}},{"name":"NEOPIXEL_TYPE","kind":"macro","ident_start":123822,"ident_end":123835,"extent_start":123814,"extent_end":123900,"fully_qualified_name":"NEOPIXEL_TYPE","ident_utf16":{"start":{"line_number":3297,"utf16_col":10},"end":{"line_number":3297,"utf16_col":23}},"extent_utf16":{"start":{"line_number":3297,"utf16_col":2},"end":{"line_number":3298,"utf16_col":0}}},{"name":"NEOPIXEL_PIXELS","kind":"macro","ident_start":124182,"ident_end":124197,"extent_start":124174,"extent_end":124299,"fully_qualified_name":"NEOPIXEL_PIXELS","ident_utf16":{"start":{"line_number":3302,"utf16_col":10},"end":{"line_number":3302,"utf16_col":25}},"extent_utf16":{"start":{"line_number":3302,"utf16_col":2},"end":{"line_number":3303,"utf16_col":0}}},{"name":"NEOPIXEL_IS_SEQUENTIAL","kind":"macro","ident_start":124309,"ident_end":124331,"extent_start":124301,"extent_end":124508,"fully_qualified_name":"NEOPIXEL_IS_SEQUENTIAL","ident_utf16":{"start":{"line_number":3303,"utf16_col":10},"end":{"line_number":3303,"utf16_col":32}},"extent_utf16":{"start":{"line_number":3303,"utf16_col":2},"end":{"line_number":3305,"utf16_col":0}}},{"name":"NEOPIXEL2_PIXELS","kind":"macro","ident_start":124744,"ident_end":124760,"extent_start":124736,"extent_end":124812,"fully_qualified_name":"NEOPIXEL2_PIXELS","ident_utf16":{"start":{"line_number":3310,"utf16_col":12},"end":{"line_number":3310,"utf16_col":28}},"extent_utf16":{"start":{"line_number":3310,"utf16_col":4},"end":{"line_number":3311,"utf16_col":0}}},{"name":"NEOPIXEL2_BRIGHTNESS","kind":"macro","ident_start":124824,"ident_end":124844,"extent_start":124816,"extent_end":124884,"fully_qualified_name":"NEOPIXEL2_BRIGHTNESS","ident_utf16":{"start":{"line_number":3311,"utf16_col":12},"end":{"line_number":3311,"utf16_col":32}},"extent_utf16":{"start":{"line_number":3311,"utf16_col":4},"end":{"line_number":3312,"utf16_col":0}}},{"name":"NEOPIXEL2_STARTUP_TEST","kind":"macro","ident_start":124896,"ident_end":124918,"extent_start":124888,"extent_end":125072,"fully_qualified_name":"NEOPIXEL2_STARTUP_TEST","ident_utf16":{"start":{"line_number":3312,"utf16_col":12},"end":{"line_number":3312,"utf16_col":34}},"extent_utf16":{"start":{"line_number":3312,"utf16_col":4},"end":{"line_number":3314,"utf16_col":0}}},{"name":"PRINTER_EVENT_LEDS","kind":"macro","ident_start":126079,"ident_end":126097,"extent_start":126071,"extent_end":126098,"fully_qualified_name":"PRINTER_EVENT_LEDS","ident_utf16":{"start":{"line_number":3337,"utf16_col":10},"end":{"line_number":3337,"utf16_col":28}},"extent_utf16":{"start":{"line_number":3337,"utf16_col":2},"end":{"line_number":3338,"utf16_col":0}}},{"name":"SERVO_DELAY","kind":"macro","ident_start":126644,"ident_end":126655,"extent_start":126636,"extent_end":126665,"fully_qualified_name":"SERVO_DELAY","ident_utf16":{"start":{"line_number":3354,"utf16_col":8},"end":{"line_number":3354,"utf16_col":19}},"extent_utf16":{"start":{"line_number":3354,"utf16_col":0},"end":{"line_number":3356,"utf16_col":0}}}]}},"copilotInfo":null,"csrf_tokens":{"/MarlinFirmware/Configurations/branches":{"post":"L_sVcV2hayZ_RzxZ2cj5pimD_7-JKF9PTlFaKBmXEO4JKQarBn6QUaGdT91qu8ADVfRNoVMmIxIMyemm7t0-Fw"},"/repos/preferences":{"post":"Tl3aK8NgAa1Wxbbn_daW5tgPkdM6XzvxfbsyyA94QbWOUDGMqKJRLSTbB7e54LoSw9Z7Y9RF4IDttFlvf2p8Rw"}}},"title":"Configurations/config/examples/Creality/Ender-3 Pro/BigTreeTech SKR Mini E3 1.2/Configuration.h at release-2.1.2.1 · MarlinFirmware/Configurations","appPayload":{"helpUrl":"https://docs.github.com","findFileWorkerPath":"/assets-cdn/worker/find-file-worker-83d4418b406d.js","findInFileWorkerPath":"/assets-cdn/worker/find-in-file-worker-bcc43f789400.js","githubDevUrl":"https://github.dev/","enabled_features":{"code_nav_ui_events":false,"copilot_conversational_ux":false,"copilot_conversational_ux_symbols":false,"copilot_conversational_ux_direct_connection":true,"copilot_conversational_ux_streaming":false,"copilot_popover_file_editor_header":true,"copilot_smell_icebreaker_ux":false}}}</script>
-  <div data-target="react-app.reactRoot"></div>
-</react-app>
-</turbo-frame>
-
-
-
-  </div>
-
-</turbo-frame>
-
-    </main>
-  </div>
-
-  </div>
-
-          <footer class="footer width-full container-xl p-responsive" role="contentinfo">
-  <h2 class='sr-only'>Footer</h2>
-
-  <div class="position-relative d-flex flex-items-center pb-2 f6 color-fg-muted border-top color-border-muted flex-column-reverse flex-lg-row flex-wrap flex-lg-nowrap mt-6 pt-6">
-    <div class="list-style-none d-flex flex-wrap col-0 col-lg-2 flex-justify-start flex-lg-justify-between mb-2 mb-lg-0">
-      <div class="mt-2 mt-lg-0 d-flex flex-items-center">
-        <a aria-label="Homepage" title="GitHub" class="footer-octicon mr-2" href="https://github.com">
-          <svg aria-hidden="true" height="24" viewBox="0 0 16 16" version="1.1" width="24" data-view-component="true" class="octicon octicon-mark-github">
-    <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
-</svg>
-</a>        <span>
-        &copy; 2023 GitHub, Inc.
-        </span>
-      </div>
-    </div>
-
-    <nav aria-label='Footer' class="col-12 col-lg-8">
-      <h3 class='sr-only' id='sr-footer-heading'>Footer navigation</h3>
-      <ul class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0" aria-labelledby='sr-footer-heading'>
-          <li class="mr-3 mr-lg-0"><a href="https://docs.github.com/site-policy/github-terms/github-terms-of-service" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to terms&quot;,&quot;label&quot;:&quot;text:terms&quot;}">Terms</a></li>
-          <li class="mr-3 mr-lg-0"><a href="https://docs.github.com/site-policy/privacy-policies/github-privacy-statement" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to privacy&quot;,&quot;label&quot;:&quot;text:privacy&quot;}">Privacy</a></li>
-          <li class="mr-3 mr-lg-0"><a data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to security&quot;,&quot;label&quot;:&quot;text:security&quot;}" href="https://github.com/security">Security</a></li>
-          <li class="mr-3 mr-lg-0"><a href="https://www.githubstatus.com/" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to status&quot;,&quot;label&quot;:&quot;text:status&quot;}">Status</a></li>
-          <li class="mr-3 mr-lg-0"><a data-ga-click="Footer, go to help, text:Docs" href="https://docs.github.com">Docs</a></li>
-          <li class="mr-3 mr-lg-0"><a href="https://support.github.com?tags=dotcom-footer" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to contact&quot;,&quot;label&quot;:&quot;text:contact&quot;}">Contact GitHub</a></li>
-          <li class="mr-3 mr-lg-0"><a href="https://github.com/pricing" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to Pricing&quot;,&quot;label&quot;:&quot;text:Pricing&quot;}">Pricing</a></li>
-        <li class="mr-3 mr-lg-0"><a href="https://docs.github.com" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to api&quot;,&quot;label&quot;:&quot;text:api&quot;}">API</a></li>
-        <li class="mr-3 mr-lg-0"><a href="https://services.github.com" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to training&quot;,&quot;label&quot;:&quot;text:training&quot;}">Training</a></li>
-          <li class="mr-3 mr-lg-0"><a href="https://github.blog" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to blog&quot;,&quot;label&quot;:&quot;text:blog&quot;}">Blog</a></li>
-          <li><a data-ga-click="Footer, go to about, text:about" href="https://github.com/about">About</a></li>
-      </ul>
-    </nav>
-  </div>
-
-  <div class="d-flex flex-justify-center pb-6">
-    <span class="f6 color-fg-muted"></span>
-  </div>
-</footer>
-
-
-
-
-  <div id="ajax-error-message" class="ajax-error-message flash flash-error" hidden>
-    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-alert">
-    <path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path>
-</svg>
-    <button type="button" class="flash-close js-ajax-error-dismiss" aria-label="Dismiss error">
-      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-x">
-    <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
-</svg>
-    </button>
-    You can’t perform that action at this time.
-  </div>
-
-    <template id="site-details-dialog">
-  <details class="details-reset details-overlay details-overlay-dark lh-default color-fg-default hx_rsm" open>
-    <summary role="button" aria-label="Close dialog"></summary>
-    <details-dialog class="Box Box--overlay d-flex flex-column anim-fade-in fast hx_rsm-dialog hx_rsm-modal">
-      <button class="Box-btn-octicon m-0 btn-octicon position-absolute right-0 top-0" type="button" aria-label="Close dialog" data-close-dialog>
-        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-x">
-    <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
-</svg>
-      </button>
-      <div class="octocat-spinner my-6 js-details-dialog-spinner"></div>
-    </details-dialog>
-  </details>
-</template>
-
-    <div class="Popover js-hovercard-content position-absolute" style="display: none; outline: none;" tabindex="0">
-  <div class="Popover-message Popover-message--bottom-left Popover-message--large Box color-shadow-large" style="width:360px;">
-  </div>
-</div>
-
-    <template id="snippet-clipboard-copy-button">
-  <div class="zeroclipboard-container position-absolute right-0 top-0">
-    <clipboard-copy aria-label="Copy" class="ClipboardButton btn js-clipboard-copy m-2 p-0 tooltipped-no-delay" data-copy-feedback="Copied!" data-tooltip-direction="w">
-      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon m-2">
-    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
-</svg>
-      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none m-2">
-    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
-</svg>
-    </clipboard-copy>
-  </div>
-</template>
-<template id="snippet-clipboard-copy-button-unpositioned">
-  <div class="zeroclipboard-container">
-    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w">
-      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
-    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
-</svg>
-      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
-    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
-</svg>
-    </clipboard-copy>
-  </div>
-</template>
-
-
-    <style>
-      .user-mention[href$="/MTX-6oX"] {
-        color: var(--color-user-mention-fg);
-        background-color: var(--color-user-mention-bg);
-        border-radius: 2px;
-        margin-left: -2px;
-        margin-right: -2px;
-        padding: 0 2px;
-      }
-    </style>
-
-
-    </div>
-
-    <div id="js-global-screen-reader-notice" class="sr-only" aria-live="polite" ></div>
-  </body>
-</html>
-
+/**
+ * Marlin 3D Printer Firmware
+ * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
+ *
+ * Based on Sprinter and grbl.
+ * Copyright (c) 2011 Camiel Gubbels / Erik van der Zalm
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ */
+#pragma once
+
+#define CONFIG_EXAMPLES_DIR "config/examples/Creality/Ender-3 Pro/BigTreeTech SKR Mini E3 1.2"
+
+/**
+ * Configuration.h
+ *
+ * Basic settings such as:
+ *
+ * - Type of electronics
+ * - Type of temperature sensor
+ * - Printer geometry
+ * - Endstop configuration
+ * - LCD controller
+ * - Extra features
+ *
+ * Advanced settings can be found in Configuration_adv.h
+ */
+#define CONFIGURATION_H_VERSION 02010201
+
+//===========================================================================
+//============================= Getting Started =============================
+//===========================================================================
+
+/**
+ * Here are some useful links to help get your machine configured and calibrated:
+ *
+ * Example Configs:     https://github.com/MarlinFirmware/Configurations/branches/all
+ *
+ * Průša Calculator:    https://blog.prusaprinters.org/calculator_3416/
+ *
+ * Calibration Guides:  https://reprap.org/wiki/Calibration
+ *                      https://reprap.org/wiki/Triffid_Hunter%27s_Calibration_Guide
+ *                      https://sites.google.com/site/repraplogphase/calibration-of-your-reprap
+ *                      https://youtu.be/wAL9d7FgInk
+ *
+ * Calibration Objects: https://www.thingiverse.com/thing:5573
+ *                      https://www.thingiverse.com/thing:1278865
+ */
+
+// @section info
+
+// Author info of this build printed to the host during boot and M115
+#define STRING_CONFIG_H_AUTHOR "(thisiskeithb, Ender-3 Pro)" // Who made the changes.
+//#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
+
+/**
+ * *** VENDORS PLEASE READ ***
+ *
+ * Marlin allows you to add a custom boot image for Graphical LCDs.
+ * With this option Marlin will first show your custom screen followed
+ * by the standard Marlin logo with version number and web URL.
+ *
+ * We encourage you to take advantage of this new feature and we also
+ * respectfully request that you retain the unmodified Marlin boot screen.
+ */
+
+// Show the Marlin bootscreen on startup. ** ENABLE FOR PRODUCTION **
+#define SHOW_BOOTSCREEN
+
+// Show the bitmap in Marlin/_Bootscreen.h on startup.
+#define SHOW_CUSTOM_BOOTSCREEN
+
+// Show the bitmap in Marlin/_Statusscreen.h on the status screen.
+#define CUSTOM_STATUS_SCREEN_IMAGE
+
+// @section machine
+
+// Choose the name from boards.h that matches your setup
+#ifndef MOTHERBOARD
+  #define MOTHERBOARD BOARD_BTT_SKR_MINI_E3_V1_2
+#endif
+
+/**
+ * Select the serial port on the board to use for communication with the host.
+ * This allows the connection of wireless adapters (for instance) to non-default port pins.
+ * Serial port -1 is the USB emulated serial port, if available.
+ * Note: The first serial port (-1 or 0) will always be used by the Arduino bootloader.
+ *
+ * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]
+ */
+#define SERIAL_PORT 2
+
+/**
+ * Serial Port Baud Rate
+ * This is the default communication speed for all serial ports.
+ * Set the baud rate defaults for additional serial ports below.
+ *
+ * 250000 works in most cases, but you might try a lower speed if
+ * you commonly experience drop-outs during host printing.
+ * You may try up to 1000000 to speed up SD file transfer.
+ *
+ * :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000]
+ */
+#define BAUDRATE 115200
+
+//#define BAUD_RATE_GCODE     // Enable G-code M575 to set the baud rate
+
+/**
+ * Select a secondary serial port on the board to use for communication with the host.
+ * Currently Ethernet (-2) is only supported on Teensy 4.1 boards.
+ * :[-2, -1, 0, 1, 2, 3, 4, 5, 6, 7]
+ */
+#define SERIAL_PORT_2 -1
+//#define BAUDRATE_2 250000   // :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000] Enable to override BAUDRATE
+
+/**
+ * Select a third serial port on the board to use for communication with the host.
+ * Currently only supported for AVR, DUE, LPC1768/9 and STM32/STM32F1
+ * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]
+ */
+//#define SERIAL_PORT_3 1
+//#define BAUDRATE_3 250000   // :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000] Enable to override BAUDRATE
+
+// Enable the Bluetooth serial interface on AT90USB devices
+//#define BLUETOOTH
+
+// Name displayed in the LCD "Ready" message and Info menu
+#define CUSTOM_MACHINE_NAME "Ender-3 Pro"
+
+// Printer's unique ID, used by some programs to differentiate between machines.
+// Choose your own or use a service like https://www.uuidgenerator.net/version4
+//#define MACHINE_UUID "00000000-0000-0000-0000-000000000000"
+
+// @section stepper drivers
+
+/**
+ * Stepper Drivers
+ *
+ * These settings allow Marlin to tune stepper driver timing and enable advanced options for
+ * stepper drivers that support them. You may also override timing options in Configuration_adv.h.
+ *
+ * Use TMC2208/TMC2208_STANDALONE for TMC2225 drivers and TMC2209/TMC2209_STANDALONE for TMC2226 drivers.
+ *
+ * Options: A4988, A5984, DRV8825, LV8729, TB6560, TB6600, TMC2100,
+ *          TMC2130, TMC2130_STANDALONE, TMC2160, TMC2160_STANDALONE,
+ *          TMC2208, TMC2208_STANDALONE, TMC2209, TMC2209_STANDALONE,
+ *          TMC26X,  TMC26X_STANDALONE,  TMC2660, TMC2660_STANDALONE,
+ *          TMC5130, TMC5130_STANDALONE, TMC5160, TMC5160_STANDALONE
+ * :['A4988', 'A5984', 'DRV8825', 'LV8729', 'TB6560', 'TB6600', 'TMC2100', 'TMC2130', 'TMC2130_STANDALONE', 'TMC2160', 'TMC2160_STANDALONE', 'TMC2208', 'TMC2208_STANDALONE', 'TMC2209', 'TMC2209_STANDALONE', 'TMC26X', 'TMC26X_STANDALONE', 'TMC2660', 'TMC2660_STANDALONE', 'TMC5130', 'TMC5130_STANDALONE', 'TMC5160', 'TMC5160_STANDALONE']
+ */
+#define X_DRIVER_TYPE  TMC2209
+#define Y_DRIVER_TYPE  TMC2209
+#define Z_DRIVER_TYPE  TMC2209
+//#define X2_DRIVER_TYPE A4988
+//#define Y2_DRIVER_TYPE A4988
+//#define Z2_DRIVER_TYPE A4988
+//#define Z3_DRIVER_TYPE A4988
+//#define Z4_DRIVER_TYPE A4988
+//#define I_DRIVER_TYPE  A4988
+//#define J_DRIVER_TYPE  A4988
+//#define K_DRIVER_TYPE  A4988
+//#define U_DRIVER_TYPE  A4988
+//#define V_DRIVER_TYPE  A4988
+//#define W_DRIVER_TYPE  A4988
+#define E0_DRIVER_TYPE TMC2209
+//#define E1_DRIVER_TYPE A4988
+//#define E2_DRIVER_TYPE A4988
+//#define E3_DRIVER_TYPE A4988
+//#define E4_DRIVER_TYPE A4988
+//#define E5_DRIVER_TYPE A4988
+//#define E6_DRIVER_TYPE A4988
+//#define E7_DRIVER_TYPE A4988
+
+/**
+ * Additional Axis Settings
+ *
+ * Define AXISn_ROTATES for all axes that rotate or pivot.
+ * Rotational axis coordinates are expressed in degrees.
+ *
+ * AXISn_NAME defines the letter used to refer to the axis in (most) G-code commands.
+ * By convention the names and roles are typically:
+ *   'A' : Rotational axis parallel to X
+ *   'B' : Rotational axis parallel to Y
+ *   'C' : Rotational axis parallel to Z
+ *   'U' : Secondary linear axis parallel to X
+ *   'V' : Secondary linear axis parallel to Y
+ *   'W' : Secondary linear axis parallel to Z
+ *
+ * Regardless of these settings the axes are internally named I, J, K, U, V, W.
+ */
+#ifdef I_DRIVER_TYPE
+  #define AXIS4_NAME 'A' // :['A', 'B', 'C', 'U', 'V', 'W']
+  #define AXIS4_ROTATES
+#endif
+#ifdef J_DRIVER_TYPE
+  #define AXIS5_NAME 'B' // :['B', 'C', 'U', 'V', 'W']
+  #define AXIS5_ROTATES
+#endif
+#ifdef K_DRIVER_TYPE
+  #define AXIS6_NAME 'C' // :['C', 'U', 'V', 'W']
+  #define AXIS6_ROTATES
+#endif
+#ifdef U_DRIVER_TYPE
+  #define AXIS7_NAME 'U' // :['U', 'V', 'W']
+  //#define AXIS7_ROTATES
+#endif
+#ifdef V_DRIVER_TYPE
+  #define AXIS8_NAME 'V' // :['V', 'W']
+  //#define AXIS8_ROTATES
+#endif
+#ifdef W_DRIVER_TYPE
+  #define AXIS9_NAME 'W' // :['W']
+  //#define AXIS9_ROTATES
+#endif
+
+// @section extruder
+
+// This defines the number of extruders
+// :[0, 1, 2, 3, 4, 5, 6, 7, 8]
+#define EXTRUDERS 1
+
+// Generally expected filament diameter (1.75, 2.85, 3.0, ...). Used for Volumetric, Filament Width Sensor, etc.
+#define DEFAULT_NOMINAL_FILAMENT_DIA 1.75
+
+// For Cyclops or any "multi-extruder" that shares a single nozzle.
+//#define SINGLENOZZLE
+
+// Save and restore temperature and fan speed on tool-change.
+// Set standby for the unselected tool with M104/106/109 T...
+#if ENABLED(SINGLENOZZLE)
+  //#define SINGLENOZZLE_STANDBY_TEMP
+  //#define SINGLENOZZLE_STANDBY_FAN
+#endif
+
+// A dual extruder that uses a single stepper motor
+//#define SWITCHING_EXTRUDER
+#if ENABLED(SWITCHING_EXTRUDER)
+  #define SWITCHING_EXTRUDER_SERVO_NR 0
+  #define SWITCHING_EXTRUDER_SERVO_ANGLES { 0, 90 } // Angles for E0, E1[, E2, E3]
+  #if EXTRUDERS > 3
+    #define SWITCHING_EXTRUDER_E23_SERVO_NR 1
+  #endif
+#endif
+
+// A dual-nozzle that uses a servomotor to raise/lower one (or both) of the nozzles
+//#define SWITCHING_NOZZLE
+#if ENABLED(SWITCHING_NOZZLE)
+  #define SWITCHING_NOZZLE_SERVO_NR 0
+  //#define SWITCHING_NOZZLE_E1_SERVO_NR 1          // If two servos are used, the index of the second
+  #define SWITCHING_NOZZLE_SERVO_ANGLES { 0, 90 }   // Angles for E0, E1 (single servo) or lowered/raised (dual servo)
+  #define SWITCHING_NOZZLE_SERVO_DWELL 2500         // Dwell time to wait for servo to make physical move
+#endif
+
+/**
+ * Two separate X-carriages with extruders that connect to a moving part
+ * via a solenoid docking mechanism. Requires SOL1_PIN and SOL2_PIN.
+ */
+//#define PARKING_EXTRUDER
+
+/**
+ * Two separate X-carriages with extruders that connect to a moving part
+ * via a magnetic docking mechanism using movements and no solenoid
+ *
+ * project   : https://www.thingiverse.com/thing:3080893
+ * movements : https://youtu.be/0xCEiG9VS3k
+ *             https://youtu.be/Bqbcs0CU2FE
+ */
+//#define MAGNETIC_PARKING_EXTRUDER
+
+#if EITHER(PARKING_EXTRUDER, MAGNETIC_PARKING_EXTRUDER)
+
+  #define PARKING_EXTRUDER_PARKING_X { -78, 184 }     // X positions for parking the extruders
+  #define PARKING_EXTRUDER_GRAB_DISTANCE 1            // (mm) Distance to move beyond the parking point to grab the extruder
+
+  #if ENABLED(PARKING_EXTRUDER)
+
+    #define PARKING_EXTRUDER_SOLENOIDS_INVERT           // If enabled, the solenoid is NOT magnetized with applied voltage
+    #define PARKING_EXTRUDER_SOLENOIDS_PINS_ACTIVE LOW  // LOW or HIGH pin signal energizes the coil
+    #define PARKING_EXTRUDER_SOLENOIDS_DELAY 250        // (ms) Delay for magnetic field. No delay if 0 or not defined.
+    //#define MANUAL_SOLENOID_CONTROL                   // Manual control of docking solenoids with M380 S / M381
+
+  #elif ENABLED(MAGNETIC_PARKING_EXTRUDER)
+
+    #define MPE_FAST_SPEED      9000      // (mm/min) Speed for travel before last distance point
+    #define MPE_SLOW_SPEED      4500      // (mm/min) Speed for last distance travel to park and couple
+    #define MPE_TRAVEL_DISTANCE   10      // (mm) Last distance point
+    #define MPE_COMPENSATION       0      // Offset Compensation -1 , 0 , 1 (multiplier) only for coupling
+
+  #endif
+
+#endif
+
+/**
+ * Switching Toolhead
+ *
+ * Support for swappable and dockable toolheads, such as
+ * the E3D Tool Changer. Toolheads are locked with a servo.
+ */
+//#define SWITCHING_TOOLHEAD
+
+/**
+ * Magnetic Switching Toolhead
+ *
+ * Support swappable and dockable toolheads with a magnetic
+ * docking mechanism using movement and no servo.
+ */
+//#define MAGNETIC_SWITCHING_TOOLHEAD
+
+/**
+ * Electromagnetic Switching Toolhead
+ *
+ * Parking for CoreXY / HBot kinematics.
+ * Toolheads are parked at one edge and held with an electromagnet.
+ * Supports more than 2 Toolheads. See https://youtu.be/JolbsAKTKf4
+ */
+//#define ELECTROMAGNETIC_SWITCHING_TOOLHEAD
+
+#if ANY(SWITCHING_TOOLHEAD, MAGNETIC_SWITCHING_TOOLHEAD, ELECTROMAGNETIC_SWITCHING_TOOLHEAD)
+  #define SWITCHING_TOOLHEAD_Y_POS          235         // (mm) Y position of the toolhead dock
+  #define SWITCHING_TOOLHEAD_Y_SECURITY      10         // (mm) Security distance Y axis
+  #define SWITCHING_TOOLHEAD_Y_CLEAR         60         // (mm) Minimum distance from dock for unobstructed X axis
+  #define SWITCHING_TOOLHEAD_X_POS          { 215, 0 }  // (mm) X positions for parking the extruders
+  #if ENABLED(SWITCHING_TOOLHEAD)
+    #define SWITCHING_TOOLHEAD_SERVO_NR       2         // Index of the servo connector
+    #define SWITCHING_TOOLHEAD_SERVO_ANGLES { 0, 180 }  // (degrees) Angles for Lock, Unlock
+  #elif ENABLED(MAGNETIC_SWITCHING_TOOLHEAD)
+    #define SWITCHING_TOOLHEAD_Y_RELEASE      5         // (mm) Security distance Y axis
+    #define SWITCHING_TOOLHEAD_X_SECURITY   { 90, 150 } // (mm) Security distance X axis (T0,T1)
+    //#define PRIME_BEFORE_REMOVE                       // Prime the nozzle before release from the dock
+    #if ENABLED(PRIME_BEFORE_REMOVE)
+      #define SWITCHING_TOOLHEAD_PRIME_MM           20  // (mm)   Extruder prime length
+      #define SWITCHING_TOOLHEAD_RETRACT_MM         10  // (mm)   Retract after priming length
+      #define SWITCHING_TOOLHEAD_PRIME_FEEDRATE    300  // (mm/min) Extruder prime feedrate
+      #define SWITCHING_TOOLHEAD_RETRACT_FEEDRATE 2400  // (mm/min) Extruder retract feedrate
+    #endif
+  #elif ENABLED(ELECTROMAGNETIC_SWITCHING_TOOLHEAD)
+    #define SWITCHING_TOOLHEAD_Z_HOP          2         // (mm) Z raise for switching
+  #endif
+#endif
+
+/**
+ * "Mixing Extruder"
+ *   - Adds G-codes M163 and M164 to set and "commit" the current mix factors.
+ *   - Extends the stepping routines to move multiple steppers in proportion to the mix.
+ *   - Optional support for Repetier Firmware's 'M164 S<index>' supporting virtual tools.
+ *   - This implementation supports up to two mixing extruders.
+ *   - Enable DIRECT_MIXING_IN_G1 for M165 and mixing in G1 (from Pia Taubert's reference implementation).
+ */
+//#define MIXING_EXTRUDER
+#if ENABLED(MIXING_EXTRUDER)
+  #define MIXING_STEPPERS 2        // Number of steppers in your mixing extruder
+  #define MIXING_VIRTUAL_TOOLS 16  // Use the Virtual Tool method with M163 and M164
+  //#define DIRECT_MIXING_IN_G1    // Allow ABCDHI mix factors in G1 movement commands
+  //#define GRADIENT_MIX           // Support for gradient mixing with M166 and LCD
+  //#define MIXING_PRESETS         // Assign 8 default V-tool presets for 2 or 3 MIXING_STEPPERS
+  #if ENABLED(GRADIENT_MIX)
+    //#define GRADIENT_VTOOL       // Add M166 T to use a V-tool index as a Gradient alias
+  #endif
+#endif
+
+// Offset of the extruders (uncomment if using more than one and relying on firmware to position when changing).
+// The offset has to be X=0, Y=0 for the extruder 0 hotend (default extruder).
+// For the other hotends it is their distance from the extruder 0 hotend.
+//#define HOTEND_OFFSET_X { 0.0, 20.00 } // (mm) relative X-offset for each nozzle
+//#define HOTEND_OFFSET_Y { 0.0, 5.00 }  // (mm) relative Y-offset for each nozzle
+//#define HOTEND_OFFSET_Z { 0.0, 0.00 }  // (mm) relative Z-offset for each nozzle
+
+// @section multi-material
+
+/**
+ * Multi-Material Unit
+ * Set to one of these predefined models:
+ *
+ *   PRUSA_MMU1           : Průša MMU1 (The "multiplexer" version)
+ *   PRUSA_MMU2           : Průša MMU2
+ *   PRUSA_MMU2S          : Průša MMU2S (Requires MK3S extruder with motion sensor, EXTRUDERS = 5)
+ *   EXTENDABLE_EMU_MMU2  : MMU with configurable number of filaments (ERCF, SMuFF or similar with Průša MMU2 compatible firmware)
+ *   EXTENDABLE_EMU_MMU2S : MMUS with configurable number of filaments (ERCF, SMuFF or similar with Průša MMU2 compatible firmware)
+ *
+ * Requires NOZZLE_PARK_FEATURE to park print head in case MMU unit fails.
+ * See additional options in Configuration_adv.h.
+ * :["PRUSA_MMU1", "PRUSA_MMU2", "PRUSA_MMU2S", "EXTENDABLE_EMU_MMU2", "EXTENDABLE_EMU_MMU2S"]
+ */
+//#define MMU_MODEL PRUSA_MMU2
+
+// @section psu control
+
+/**
+ * Power Supply Control
+ *
+ * Enable and connect the power supply to the PS_ON_PIN.
+ * Specify whether the power supply is active HIGH or active LOW.
+ */
+//#define PSU_CONTROL
+//#define PSU_NAME "Power Supply"
+
+#if ENABLED(PSU_CONTROL)
+  //#define MKS_PWC                 // Using the MKS PWC add-on
+  //#define PS_OFF_CONFIRM          // Confirm dialog when power off
+  //#define PS_OFF_SOUND            // Beep 1s when power off
+  #define PSU_ACTIVE_STATE LOW      // Set 'LOW' for ATX, 'HIGH' for X-Box
+
+  //#define PSU_DEFAULT_OFF               // Keep power off until enabled directly with M80
+  //#define PSU_POWERUP_DELAY      250    // (ms) Delay for the PSU to warm up to full power
+  //#define LED_POWEROFF_TIMEOUT 10000    // (ms) Turn off LEDs after power-off, with this amount of delay
+
+  //#define POWER_OFF_TIMER               // Enable M81 D<seconds> to power off after a delay
+  //#define POWER_OFF_WAIT_FOR_COOLDOWN   // Enable M81 S to power off only after cooldown
+
+  //#define PSU_POWERUP_GCODE  "M355 S1"  // G-code to run after power-on (e.g., case light on)
+  //#define PSU_POWEROFF_GCODE "M355 S0"  // G-code to run before power-off (e.g., case light off)
+
+  //#define AUTO_POWER_CONTROL      // Enable automatic control of the PS_ON pin
+  #if ENABLED(AUTO_POWER_CONTROL)
+    #define AUTO_POWER_FANS         // Turn on PSU if fans need power
+    #define AUTO_POWER_E_FANS
+    #define AUTO_POWER_CONTROLLERFAN
+    #define AUTO_POWER_CHAMBER_FAN
+    #define AUTO_POWER_COOLER_FAN
+    #define POWER_TIMEOUT              30 // (s) Turn off power if the machine is idle for this duration
+    //#define POWER_OFF_DELAY          60 // (s) Delay of poweroff after M81 command. Useful to let fans run for extra time.
+  #endif
+  #if EITHER(AUTO_POWER_CONTROL, POWER_OFF_WAIT_FOR_COOLDOWN)
+    //#define AUTO_POWER_E_TEMP        50 // (°C) PSU on if any extruder is over this temperature
+    //#define AUTO_POWER_CHAMBER_TEMP  30 // (°C) PSU on if the chamber is over this temperature
+    //#define AUTO_POWER_COOLER_TEMP   26 // (°C) PSU on if the cooler is over this temperature
+  #endif
+#endif
+
+//===========================================================================
+//============================= Thermal Settings ============================
+//===========================================================================
+// @section temperature
+
+/**
+ * --NORMAL IS 4.7kΩ PULLUP!-- 1kΩ pullup can be used on hotend sensor, using correct resistor and table
+ *
+ * Temperature sensors available:
+ *
+ *  SPI RTD/Thermocouple Boards - IMPORTANT: Read the NOTE below!
+ *  -------
+ *    -5 : MAX31865 with Pt100/Pt1000, 2, 3, or 4-wire  (only for sensors 0-1)
+ *                  NOTE: You must uncomment/set the MAX31865_*_OHMS_n defines below.
+ *    -3 : MAX31855 with Thermocouple, -200°C to +700°C (only for sensors 0-1)
+ *    -2 : MAX6675  with Thermocouple, 0°C to +700°C    (only for sensors 0-1)
+ *
+ *  NOTE: Ensure TEMP_n_CS_PIN is set in your pins file for each TEMP_SENSOR_n using an SPI Thermocouple. By default,
+ *        Hardware SPI on the default serial bus is used. If you have also set TEMP_n_SCK_PIN and TEMP_n_MISO_PIN,
+ *        Software SPI will be used on those ports instead. You can force Hardware SPI on the default bus in the
+ *        Configuration_adv.h file. At this time, separate Hardware SPI buses for sensors are not supported.
+ *
+ *  Analog Themocouple Boards
+ *  -------
+ *    -4 : AD8495 with Thermocouple
+ *    -1 : AD595  with Thermocouple
+ *
+ *  Analog Thermistors - 4.7kΩ pullup - Normal
+ *  -------
+ *     1 : 100kΩ  EPCOS - Best choice for EPCOS thermistors
+ *   331 : 100kΩ  Same as #1, but 3.3V scaled for MEGA
+ *   332 : 100kΩ  Same as #1, but 3.3V scaled for DUE
+ *     2 : 200kΩ  ATC Semitec 204GT-2
+ *   202 : 200kΩ  Copymaster 3D
+ *     3 : ???Ω   Mendel-parts thermistor
+ *     4 : 10kΩ   Generic Thermistor !! DO NOT use for a hotend - it gives bad resolution at high temp. !!
+ *     5 : 100kΩ  ATC Semitec 104GT-2/104NT-4-R025H42G - Used in ParCan, J-Head, and E3D, SliceEngineering 300°C
+ *   501 : 100kΩ  Zonestar - Tronxy X3A
+ *   502 : 100kΩ  Zonestar - used by hot bed in Zonestar Průša P802M
+ *   503 : 100kΩ  Zonestar (Z8XM2) Heated Bed thermistor
+ *   504 : 100kΩ  Zonestar P802QR2 (Part# QWG-104F-B3950) Hotend Thermistor
+ *   505 : 100kΩ  Zonestar P802QR2 (Part# QWG-104F-3950) Bed Thermistor
+ *   512 : 100kΩ  RPW-Ultra hotend
+ *     6 : 100kΩ  EPCOS - Not as accurate as table #1 (created using a fluke thermocouple)
+ *     7 : 100kΩ  Honeywell 135-104LAG-J01
+ *    71 : 100kΩ  Honeywell 135-104LAF-J01
+ *     8 : 100kΩ  Vishay 0603 SMD NTCS0603E3104FXT
+ *     9 : 100kΩ  GE Sensing AL03006-58.2K-97-G1
+ *    10 : 100kΩ  RS PRO 198-961
+ *    11 : 100kΩ  Keenovo AC silicone mats, most Wanhao i3 machines - beta 3950, 1%
+ *    12 : 100kΩ  Vishay 0603 SMD NTCS0603E3104FXT (#8) - calibrated for Makibox hot bed
+ *    13 : 100kΩ  Hisens up to 300°C - for "Simple ONE" & "All In ONE" hotend - beta 3950, 1%
+ *    15 : 100kΩ  Calibrated for JGAurora A5 hotend
+ *    18 : 200kΩ  ATC Semitec 204GT-2 Dagoma.Fr - MKS_Base_DKU001327
+ *    22 : 100kΩ  GTM32 Pro vB - hotend - 4.7kΩ pullup to 3.3V and 220Ω to analog input
+ *    23 : 100kΩ  GTM32 Pro vB - bed - 4.7kΩ pullup to 3.3v and 220Ω to analog input
+ *    30 : 100kΩ  Kis3d Silicone heating mat 200W/300W with 6mm precision cast plate (EN AW 5083) NTC100K - beta 3950
+ *    60 : 100kΩ  Maker's Tool Works Kapton Bed Thermistor - beta 3950
+ *    61 : 100kΩ  Formbot/Vivedino 350°C Thermistor - beta 3950
+ *    66 : 4.7MΩ  Dyze Design / Trianglelab T-D500 500°C High Temperature Thermistor
+ *    67 : 500kΩ  SliceEngineering 450°C Thermistor
+ *    68 : PT100 amplifier board from Dyze Design
+ *    70 : 100kΩ  bq Hephestos 2
+ *    75 : 100kΩ  Generic Silicon Heat Pad with NTC100K MGB18-104F39050L32
+ *  2000 : 100kΩ  Ultimachine Rambo TDK NTCG104LH104KT1 NTC100K motherboard Thermistor
+ *
+ *  Analog Thermistors - 1kΩ pullup - Atypical, and requires changing out the 4.7kΩ pullup for 1kΩ.
+ *  -------                           (but gives greater accuracy and more stable PID)
+ *    51 : 100kΩ  EPCOS (1kΩ pullup)
+ *    52 : 200kΩ  ATC Semitec 204GT-2 (1kΩ pullup)
+ *    55 : 100kΩ  ATC Semitec 104GT-2 - Used in ParCan & J-Head (1kΩ pullup)
+ *
+ *  Analog Thermistors - 10kΩ pullup - Atypical
+ *  -------
+ *    99 : 100kΩ  Found on some Wanhao i3 machines with a 10kΩ pull-up resistor
+ *
+ *  Analog RTDs (Pt100/Pt1000)
+ *  -------
+ *   110 : Pt100  with 1kΩ pullup (atypical)
+ *   147 : Pt100  with 4.7kΩ pullup
+ *  1010 : Pt1000 with 1kΩ pullup (atypical)
+ *  1022 : Pt1000 with 2.2kΩ pullup
+ *  1047 : Pt1000 with 4.7kΩ pullup (E3D)
+ *    20 : Pt100  with circuit in the Ultimainboard V2.x with mainboard ADC reference voltage = INA826 amplifier-board supply voltage.
+ *                NOTE: (1) Must use an ADC input with no pullup. (2) Some INA826 amplifiers are unreliable at 3.3V so consider using sensor 147, 110, or 21.
+ *    21 : Pt100  with circuit in the Ultimainboard V2.x with 3.3v ADC reference voltage (STM32, LPC176x....) and 5V INA826 amplifier board supply.
+ *                NOTE: ADC pins are not 5V tolerant. Not recommended because it's possible to damage the CPU by going over 500°C.
+ *   201 : Pt100  with circuit in Overlord, similar to Ultimainboard V2.x
+ *
+ *  Custom/Dummy/Other Thermal Sensors
+ *  ------
+ *     0 : not used
+ *  1000 : Custom - Specify parameters in Configuration_adv.h
+ *
+ *   !!! Use these for Testing or Development purposes. NEVER for production machine. !!!
+ *   998 : Dummy Table that ALWAYS reads 25°C or the temperature defined below.
+ *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
+ *
+ */
+#define TEMP_SENSOR_0 1
+#define TEMP_SENSOR_1 0
+#define TEMP_SENSOR_2 0
+#define TEMP_SENSOR_3 0
+#define TEMP_SENSOR_4 0
+#define TEMP_SENSOR_5 0
+#define TEMP_SENSOR_6 0
+#define TEMP_SENSOR_7 0
+#define TEMP_SENSOR_BED 1
+#define TEMP_SENSOR_PROBE 0
+#define TEMP_SENSOR_CHAMBER 0
+#define TEMP_SENSOR_COOLER 0
+#define TEMP_SENSOR_BOARD 0
+#define TEMP_SENSOR_REDUNDANT 0
+
+// Dummy thermistor constant temperature readings, for use with 998 and 999
+#define DUMMY_THERMISTOR_998_VALUE  25
+#define DUMMY_THERMISTOR_999_VALUE 100
+
+// Resistor values when using MAX31865 sensors (-5) on TEMP_SENSOR_0 / 1
+#if TEMP_SENSOR_IS_MAX_TC(0)
+  #define MAX31865_SENSOR_OHMS_0      100 // (Ω) Typically 100 or 1000 (PT100 or PT1000)
+  #define MAX31865_CALIBRATION_OHMS_0 430 // (Ω) Typically 430 for Adafruit PT100; 4300 for Adafruit PT1000
+#endif
+#if TEMP_SENSOR_IS_MAX_TC(1)
+  #define MAX31865_SENSOR_OHMS_1      100
+  #define MAX31865_CALIBRATION_OHMS_1 430
+#endif
+#if TEMP_SENSOR_IS_MAX_TC(2)
+  #define MAX31865_SENSOR_OHMS_2      100
+  #define MAX31865_CALIBRATION_OHMS_2 430
+#endif
+
+#if HAS_E_TEMP_SENSOR
+  #define TEMP_RESIDENCY_TIME         10  // (seconds) Time to wait for hotend to "settle" in M109
+  #define TEMP_WINDOW                  1  // (°C) Temperature proximity for the "temperature reached" timer
+  #define TEMP_HYSTERESIS              3  // (°C) Temperature proximity considered "close enough" to the target
+#endif
+
+#if TEMP_SENSOR_BED
+  #define TEMP_BED_RESIDENCY_TIME     10  // (seconds) Time to wait for bed to "settle" in M190
+  #define TEMP_BED_WINDOW              1  // (°C) Temperature proximity for the "temperature reached" timer
+  #define TEMP_BED_HYSTERESIS          3  // (°C) Temperature proximity considered "close enough" to the target
+#endif
+
+#if TEMP_SENSOR_CHAMBER
+  #define TEMP_CHAMBER_RESIDENCY_TIME 10  // (seconds) Time to wait for chamber to "settle" in M191
+  #define TEMP_CHAMBER_WINDOW          1  // (°C) Temperature proximity for the "temperature reached" timer
+  #define TEMP_CHAMBER_HYSTERESIS      3  // (°C) Temperature proximity considered "close enough" to the target
+#endif
+
+/**
+ * Redundant Temperature Sensor (TEMP_SENSOR_REDUNDANT)
+ *
+ * Use a temp sensor as a redundant sensor for another reading. Select an unused temperature sensor, and another
+ * sensor you'd like it to be redundant for. If the two thermistors differ by TEMP_SENSOR_REDUNDANT_MAX_DIFF (°C),
+ * the print will be aborted. Whichever sensor is selected will have its normal functions disabled; i.e. selecting
+ * the Bed sensor (-1) will disable bed heating/monitoring.
+ *
+ * For selecting source/target use: COOLER, PROBE, BOARD, CHAMBER, BED, E0, E1, E2, E3, E4, E5, E6, E7
+ */
+#if TEMP_SENSOR_REDUNDANT
+  #define TEMP_SENSOR_REDUNDANT_SOURCE    E1  // The sensor that will provide the redundant reading.
+  #define TEMP_SENSOR_REDUNDANT_TARGET    E0  // The sensor that we are providing a redundant reading for.
+  #define TEMP_SENSOR_REDUNDANT_MAX_DIFF  10  // (°C) Temperature difference that will trigger a print abort.
+#endif
+
+// Below this temperature the heater will be switched off
+// because it probably indicates a broken thermistor wire.
+#define HEATER_0_MINTEMP   5
+#define HEATER_1_MINTEMP   5
+#define HEATER_2_MINTEMP   5
+#define HEATER_3_MINTEMP   5
+#define HEATER_4_MINTEMP   5
+#define HEATER_5_MINTEMP   5
+#define HEATER_6_MINTEMP   5
+#define HEATER_7_MINTEMP   5
+#define BED_MINTEMP        5
+#define CHAMBER_MINTEMP    5
+
+// Above this temperature the heater will be switched off.
+// This can protect components from overheating, but NOT from shorts and failures.
+// (Use MINTEMP for thermistor short/failure protection.)
+#define HEATER_0_MAXTEMP 275
+#define HEATER_1_MAXTEMP 275
+#define HEATER_2_MAXTEMP 275
+#define HEATER_3_MAXTEMP 275
+#define HEATER_4_MAXTEMP 275
+#define HEATER_5_MAXTEMP 275
+#define HEATER_6_MAXTEMP 275
+#define HEATER_7_MAXTEMP 275
+#define BED_MAXTEMP      125
+#define CHAMBER_MAXTEMP  60
+
+/**
+ * Thermal Overshoot
+ * During heatup (and printing) the temperature can often "overshoot" the target by many degrees
+ * (especially before PID tuning). Setting the target temperature too close to MAXTEMP guarantees
+ * a MAXTEMP shutdown! Use these values to forbid temperatures being set too close to MAXTEMP.
+ */
+#define HOTEND_OVERSHOOT 15   // (°C) Forbid temperatures over MAXTEMP - OVERSHOOT
+#define BED_OVERSHOOT    10   // (°C) Forbid temperatures over MAXTEMP - OVERSHOOT
+#define COOLER_OVERSHOOT  2   // (°C) Forbid temperatures closer than OVERSHOOT
+
+//===========================================================================
+//============================= PID Settings ================================
+//===========================================================================
+
+// @section hotend temp
+
+// Enable PIDTEMP for PID control or MPCTEMP for Predictive Model.
+// temperature control. Disable both for bang-bang heating.
+#define PIDTEMP          // See the PID Tuning Guide at https://reprap.org/wiki/PID_Tuning
+//#define MPCTEMP        // ** EXPERIMENTAL **
+
+#define BANG_MAX 255     // Limits current to nozzle while in bang-bang mode; 255=full current
+#define PID_MAX BANG_MAX // Limits current to nozzle while PID is active (see PID_FUNCTIONAL_RANGE below); 255=full current
+#define PID_K1 0.95      // Smoothing factor within any PID loop
+
+#if ENABLED(PIDTEMP)
+  //#define PID_DEBUG             // Print PID debug data to the serial port. Use 'M303 D' to toggle activation.
+  //#define PID_PARAMS_PER_HOTEND // Use separate PID parameters for each extruder (useful for mismatched extruders)
+                                  // Set/get with G-code: M301 E[extruder number, 0-2]
+
+  // Creality Ender-3 Pro
+  #if ENABLED(PID_PARAMS_PER_HOTEND)
+    // Specify up to one value per hotend here, according to your setup.
+    // If there are fewer values, the last one applies to the remaining hotends.
+    #define DEFAULT_Kp_LIST {  21.73,  21.73 }
+    #define DEFAULT_Ki_LIST {   1.54,   1.54 }
+    #define DEFAULT_Kd_LIST {  76.55,  76.55 }
+  #else
+    #define DEFAULT_Kp  21.73
+    #define DEFAULT_Ki   1.54
+    #define DEFAULT_Kd  76.55
+  #endif
+#endif
+
+/**
+ * Model Predictive Control for hotend
+ *
+ * Use a physical model of the hotend to control temperature. When configured correctly
+ * this gives better responsiveness and stability than PID and it also removes the need
+ * for PID_EXTRUSION_SCALING and PID_FAN_SCALING. Use M306 T to autotune the model.
+ * @section mpctemp
+ */
+#if ENABLED(MPCTEMP)
+  //#define MPC_EDIT_MENU                             // Add MPC editing to the "Advanced Settings" menu. (~1300 bytes of flash)
+  //#define MPC_AUTOTUNE_MENU                         // Add MPC auto-tuning to the "Advanced Settings" menu. (~350 bytes of flash)
+
+  #define MPC_MAX BANG_MAX                            // (0..255) Current to nozzle while MPC is active.
+  #define MPC_HEATER_POWER { 40.0f }                  // (W) Heat cartridge powers.
+
+  #define MPC_INCLUDE_FAN                             // Model the fan speed?
+
+  // Measured physical constants from M306
+  #define MPC_BLOCK_HEAT_CAPACITY { 16.7f }           // (J/K) Heat block heat capacities.
+  #define MPC_SENSOR_RESPONSIVENESS { 0.22f }         // (K/s per ∆K) Rate of change of sensor temperature from heat block.
+  #define MPC_AMBIENT_XFER_COEFF { 0.068f }           // (W/K) Heat transfer coefficients from heat block to room air with fan off.
+  #if ENABLED(MPC_INCLUDE_FAN)
+    #define MPC_AMBIENT_XFER_COEFF_FAN255 { 0.097f }  // (W/K) Heat transfer coefficients from heat block to room air with fan on full.
+  #endif
+
+  // For one fan and multiple hotends MPC needs to know how to apply the fan cooling effect.
+  #if ENABLED(MPC_INCLUDE_FAN)
+    //#define MPC_FAN_0_ALL_HOTENDS
+    //#define MPC_FAN_0_ACTIVE_HOTEND
+  #endif
+
+  #define FILAMENT_HEAT_CAPACITY_PERMM { 5.6e-3f }    // 0.0056 J/K/mm for 1.75mm PLA (0.0149 J/K/mm for 2.85mm PLA).
+  //#define FILAMENT_HEAT_CAPACITY_PERMM { 3.6e-3f }  // 0.0036 J/K/mm for 1.75mm PETG (0.0094 J/K/mm for 2.85mm PETG).
+
+  // Advanced options
+  #define MPC_SMOOTHING_FACTOR 0.5f                   // (0.0...1.0) Noisy temperature sensors may need a lower value for stabilization.
+  #define MPC_MIN_AMBIENT_CHANGE 1.0f                 // (K/s) Modeled ambient temperature rate of change, when correcting model inaccuracies.
+  #define MPC_STEADYSTATE 0.5f                        // (K/s) Temperature change rate for steady state logic to be enforced.
+
+  #define MPC_TUNING_POS { X_CENTER, Y_CENTER, 1.0f } // (mm) M306 Autotuning position, ideally bed center at first layer height.
+  #define MPC_TUNING_END_Z 10.0f                      // (mm) M306 Autotuning final Z position.
+#endif
+
+//===========================================================================
+//====================== PID > Bed Temperature Control ======================
+//===========================================================================
+
+/**
+ * PID Bed Heating
+ *
+ * If this option is enabled set PID constants below.
+ * If this option is disabled, bang-bang will be used and BED_LIMIT_SWITCHING will enable hysteresis.
+ *
+ * The PID frequency will be the same as the extruder PWM.
+ * If PID_dT is the default, and correct for the hardware/configuration, that means 7.689Hz,
+ * which is fine for driving a square wave into a resistive load and does not significantly
+ * impact FET heating. This also works fine on a Fotek SSR-10DA Solid State Relay into a 250W
+ * heater. If your configuration is significantly different than this and you don't understand
+ * the issues involved, don't use bed PID until someone else verifies that your hardware works.
+ * @section bed temp
+ */
+//#define PIDTEMPBED
+
+//#define BED_LIMIT_SWITCHING
+
+/**
+ * Max Bed Power
+ * Applies to all forms of bed control (PID, bang-bang, and bang-bang with hysteresis).
+ * When set to any value below 255, enables a form of PWM to the bed that acts like a divider
+ * so don't use it unless you are OK with PWM on your bed. (See the comment on enabling PIDTEMPBED)
+ */
+#define MAX_BED_POWER 255 // limits duty cycle to bed; 255=full current
+
+#if ENABLED(PIDTEMPBED)
+  //#define MIN_BED_POWER 0
+  //#define PID_BED_DEBUG // Print Bed PID debug data to the serial port.
+
+  // Creality Ender-3 Pro
+  #define DEFAULT_bedKp 50.71
+  #define DEFAULT_bedKi 9.88
+  #define DEFAULT_bedKd 173.43
+
+  // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
+#endif // PIDTEMPBED
+
+//===========================================================================
+//==================== PID > Chamber Temperature Control ====================
+//===========================================================================
+
+/**
+ * PID Chamber Heating
+ *
+ * If this option is enabled set PID constants below.
+ * If this option is disabled, bang-bang will be used and CHAMBER_LIMIT_SWITCHING will enable
+ * hysteresis.
+ *
+ * The PID frequency will be the same as the extruder PWM.
+ * If PID_dT is the default, and correct for the hardware/configuration, that means 7.689Hz,
+ * which is fine for driving a square wave into a resistive load and does not significantly
+ * impact FET heating. This also works fine on a Fotek SSR-10DA Solid State Relay into a 200W
+ * heater. If your configuration is significantly different than this and you don't understand
+ * the issues involved, don't use chamber PID until someone else verifies that your hardware works.
+ * @section chamber temp
+ */
+//#define PIDTEMPCHAMBER
+//#define CHAMBER_LIMIT_SWITCHING
+
+/**
+ * Max Chamber Power
+ * Applies to all forms of chamber control (PID, bang-bang, and bang-bang with hysteresis).
+ * When set to any value below 255, enables a form of PWM to the chamber heater that acts like a divider
+ * so don't use it unless you are OK with PWM on your heater. (See the comment on enabling PIDTEMPCHAMBER)
+ */
+#define MAX_CHAMBER_POWER 255 // limits duty cycle to chamber heater; 255=full current
+
+#if ENABLED(PIDTEMPCHAMBER)
+  #define MIN_CHAMBER_POWER 0
+  //#define PID_CHAMBER_DEBUG // Print Chamber PID debug data to the serial port.
+
+  // Lasko "MyHeat Personal Heater" (200w) modified with a Fotek SSR-10DA to control only the heating element
+  // and placed inside the small Creality printer enclosure tent.
+  //
+  #define DEFAULT_chamberKp 37.04
+  #define DEFAULT_chamberKi 1.40
+  #define DEFAULT_chamberKd 655.17
+  // M309 P37.04 I1.04 D655.17
+
+  // FIND YOUR OWN: "M303 E-2 C8 S50" to run autotune on the chamber at 50 degreesC for 8 cycles.
+#endif // PIDTEMPCHAMBER
+
+#if ANY(PIDTEMP, PIDTEMPBED, PIDTEMPCHAMBER)
+  //#define PID_OPENLOOP          // Puts PID in open loop. M104/M140 sets the output power from 0 to PID_MAX
+  //#define SLOW_PWM_HEATERS      // PWM with very low frequency (roughly 0.125Hz=8s) and minimum state time of approximately 1s useful for heaters driven by a relay
+  #define PID_FUNCTIONAL_RANGE 10 // If the temperature difference between the target temperature and the actual temperature
+                                  // is more than PID_FUNCTIONAL_RANGE then the PID will be shut off and the heater will be set to min/max.
+
+  //#define PID_EDIT_MENU         // Add PID editing to the "Advanced Settings" menu. (~700 bytes of flash)
+  //#define PID_AUTOTUNE_MENU     // Add PID auto-tuning to the "Advanced Settings" menu. (~250 bytes of flash)
+#endif
+
+// @section safety
+
+/**
+ * Prevent extrusion if the temperature is below EXTRUDE_MINTEMP.
+ * Add M302 to set the minimum extrusion temperature and/or turn
+ * cold extrusion prevention on and off.
+ *
+ * *** IT IS HIGHLY RECOMMENDED TO LEAVE THIS OPTION ENABLED! ***
+ */
+#define PREVENT_COLD_EXTRUSION
+#define EXTRUDE_MINTEMP 170
+
+/**
+ * Prevent a single extrusion longer than EXTRUDE_MAXLENGTH.
+ * Note: For Bowden Extruders make this large enough to allow load/unload.
+ */
+#define PREVENT_LENGTHY_EXTRUDE
+#define EXTRUDE_MAXLENGTH 600
+
+//===========================================================================
+//======================== Thermal Runaway Protection =======================
+//===========================================================================
+
+/**
+ * Thermal Protection provides additional protection to your printer from damage
+ * and fire. Marlin always includes safe min and max temperature ranges which
+ * protect against a broken or disconnected thermistor wire.
+ *
+ * The issue: If a thermistor falls out, it will report the much lower
+ * temperature of the air in the room, and the the firmware will keep
+ * the heater on.
+ *
+ * If you get "Thermal Runaway" or "Heating failed" errors the
+ * details can be tuned in Configuration_adv.h
+ */
+
+#define THERMAL_PROTECTION_HOTENDS // Enable thermal protection for all extruders
+#define THERMAL_PROTECTION_BED     // Enable thermal protection for the heated bed
+#define THERMAL_PROTECTION_CHAMBER // Enable thermal protection for the heated chamber
+#define THERMAL_PROTECTION_COOLER  // Enable thermal protection for the laser cooling
+
+//===========================================================================
+//============================= Mechanical Settings =========================
+//===========================================================================
+
+// @section machine
+
+// Enable one of the options below for CoreXY, CoreXZ, or CoreYZ kinematics,
+// either in the usual order or reversed
+//#define COREXY
+//#define COREXZ
+//#define COREYZ
+//#define COREYX
+//#define COREZX
+//#define COREZY
+//#define MARKFORGED_XY  // MarkForged. See https://reprap.org/forum/read.php?152,504042
+//#define MARKFORGED_YX
+
+// Enable for a belt style printer with endless "Z" motion
+//#define BELTPRINTER
+
+// Enable for Polargraph Kinematics
+//#define POLARGRAPH
+#if ENABLED(POLARGRAPH)
+  #define POLARGRAPH_MAX_BELT_LEN 1035.0
+  #define DEFAULT_SEGMENTS_PER_SECOND 5
+#endif
+
+// @section delta
+
+// Enable for DELTA kinematics and configure below
+//#define DELTA
+#if ENABLED(DELTA)
+
+  // Make delta curves from many straight lines (linear interpolation).
+  // This is a trade-off between visible corners (not enough segments)
+  // and processor overload (too many expensive sqrt calls).
+  #define DEFAULT_SEGMENTS_PER_SECOND 200
+
+  // After homing move down to a height where XY movement is unconstrained
+  //#define DELTA_HOME_TO_SAFE_ZONE
+
+  // Delta calibration menu
+  // Add three-point calibration to the MarlinUI menu.
+  // See http://minow.blogspot.com/index.html#4918805519571907051
+  //#define DELTA_CALIBRATION_MENU
+
+  // G33 Delta Auto-Calibration. Enable EEPROM_SETTINGS to store results.
+  //#define DELTA_AUTO_CALIBRATION
+
+  #if ENABLED(DELTA_AUTO_CALIBRATION)
+    // Default number of probe points : n*n (1 -> 7)
+    #define DELTA_CALIBRATION_DEFAULT_POINTS 4
+  #endif
+
+  #if EITHER(DELTA_AUTO_CALIBRATION, DELTA_CALIBRATION_MENU)
+    // Step size for paper-test probing
+    #define PROBE_MANUALLY_STEP 0.05      // (mm)
+  #endif
+
+  // Print surface diameter/2 minus unreachable space (avoid collisions with vertical towers).
+  #define DELTA_PRINTABLE_RADIUS 140.0    // (mm)
+
+  // Maximum reachable area
+  #define DELTA_MAX_RADIUS       140.0    // (mm)
+
+  // Center-to-center distance of the holes in the diagonal push rods.
+  #define DELTA_DIAGONAL_ROD 250.0        // (mm)
+
+  // Distance between bed and nozzle Z home position
+  #define DELTA_HEIGHT 250.00             // (mm) Get this value from G33 auto calibrate
+
+  #define DELTA_ENDSTOP_ADJ { 0.0, 0.0, 0.0 } // Get these values from G33 auto calibrate
+
+  // Horizontal distance bridged by diagonal push rods when effector is centered.
+  #define DELTA_RADIUS 124.0              // (mm) Get this value from G33 auto calibrate
+
+  // Trim adjustments for individual towers
+  // tower angle corrections for X and Y tower / rotate XYZ so Z tower angle = 0
+  // measured in degrees anticlockwise looking from above the printer
+  #define DELTA_TOWER_ANGLE_TRIM { 0.0, 0.0, 0.0 } // Get these values from G33 auto calibrate
+
+  // Delta radius and diagonal rod adjustments (mm)
+  //#define DELTA_RADIUS_TRIM_TOWER { 0.0, 0.0, 0.0 }
+  //#define DELTA_DIAGONAL_ROD_TRIM_TOWER { 0.0, 0.0, 0.0 }
+#endif
+
+// @section scara
+
+/**
+ * MORGAN_SCARA was developed by QHARLEY in South Africa in 2012-2013.
+ * Implemented and slightly reworked by JCERNY in June, 2014.
+ *
+ * Mostly Printed SCARA is an open source design by Tyler Williams. See:
+ *   https://www.thingiverse.com/thing:2487048
+ *   https://www.thingiverse.com/thing:1241491
+ */
+//#define MORGAN_SCARA
+//#define MP_SCARA
+#if EITHER(MORGAN_SCARA, MP_SCARA)
+  // If movement is choppy try lowering this value
+  #define DEFAULT_SEGMENTS_PER_SECOND 200
+
+  // Length of inner and outer support arms. Measure arm lengths precisely.
+  #define SCARA_LINKAGE_1 150       // (mm)
+  #define SCARA_LINKAGE_2 150       // (mm)
+
+  // SCARA tower offset (position of Tower relative to bed zero position)
+  // This needs to be reasonably accurate as it defines the printbed position in the SCARA space.
+  #define SCARA_OFFSET_X  100       // (mm)
+  #define SCARA_OFFSET_Y  -56       // (mm)
+
+  #if ENABLED(MORGAN_SCARA)
+
+    //#define DEBUG_SCARA_KINEMATICS
+    #define SCARA_FEEDRATE_SCALING  // Convert XY feedrate from mm/s to degrees/s on the fly
+
+    // Radius around the center where the arm cannot reach
+    #define MIDDLE_DEAD_ZONE_R   0  // (mm)
+
+    #define THETA_HOMING_OFFSET  0  // Calculated from Calibration Guide and M360 / M114. See http://reprap.harleystudio.co.za/?page_id=1073
+    #define PSI_HOMING_OFFSET    0  // Calculated from Calibration Guide and M364 / M114. See http://reprap.harleystudio.co.za/?page_id=1073
+
+  #elif ENABLED(MP_SCARA)
+
+    #define SCARA_OFFSET_THETA1  12 // degrees
+    #define SCARA_OFFSET_THETA2 131 // degrees
+
+  #endif
+
+#endif
+
+// @section tpara
+
+// Enable for TPARA kinematics and configure below
+//#define AXEL_TPARA
+#if ENABLED(AXEL_TPARA)
+  #define DEBUG_TPARA_KINEMATICS
+  #define DEFAULT_SEGMENTS_PER_SECOND 200
+
+  // Length of inner and outer support arms. Measure arm lengths precisely.
+  #define TPARA_LINKAGE_1 120       // (mm)
+  #define TPARA_LINKAGE_2 120       // (mm)
+
+  // SCARA tower offset (position of Tower relative to bed zero position)
+  // This needs to be reasonably accurate as it defines the printbed position in the SCARA space.
+  #define TPARA_OFFSET_X    0       // (mm)
+  #define TPARA_OFFSET_Y    0       // (mm)
+  #define TPARA_OFFSET_Z    0       // (mm)
+
+  #define SCARA_FEEDRATE_SCALING  // Convert XY feedrate from mm/s to degrees/s on the fly
+
+  // Radius around the center where the arm cannot reach
+  #define MIDDLE_DEAD_ZONE_R   0  // (mm)
+
+  // Calculated from Calibration Guide and M360 / M114. See http://reprap.harleystudio.co.za/?page_id=1073
+  #define THETA_HOMING_OFFSET  0
+  #define PSI_HOMING_OFFSET    0
+#endif
+
+// @section machine
+
+// Articulated robot (arm). Joints are directly mapped to axes with no kinematics.
+//#define ARTICULATED_ROBOT_ARM
+
+// For a hot wire cutter with parallel horizontal axes (X, I) where the heights of the two wire
+// ends are controlled by parallel axes (Y, J). Joints are directly mapped to axes (no kinematics).
+//#define FOAMCUTTER_XYUV
+
+//===========================================================================
+//============================== Endstop Settings ===========================
+//===========================================================================
+
+// @section endstops
+
+// Specify here all the endstop connectors that are connected to any endstop or probe.
+// Almost all printers will be using one per axis. Probes will use one or more of the
+// extra connectors. Leave undefined any used for non-endstop and non-probe purposes.
+#define USE_XMIN_PLUG
+#define USE_YMIN_PLUG
+#define USE_ZMIN_PLUG
+//#define USE_IMIN_PLUG
+//#define USE_JMIN_PLUG
+//#define USE_KMIN_PLUG
+//#define USE_UMIN_PLUG
+//#define USE_VMIN_PLUG
+//#define USE_WMIN_PLUG
+//#define USE_XMAX_PLUG
+//#define USE_YMAX_PLUG
+//#define USE_ZMAX_PLUG
+//#define USE_IMAX_PLUG
+//#define USE_JMAX_PLUG
+//#define USE_KMAX_PLUG
+//#define USE_UMAX_PLUG
+//#define USE_VMAX_PLUG
+//#define USE_WMAX_PLUG
+
+// Enable pullup for all endstops to prevent a floating state
+#define ENDSTOPPULLUPS
+#if DISABLED(ENDSTOPPULLUPS)
+  // Disable ENDSTOPPULLUPS to set pullups individually
+  //#define ENDSTOPPULLUP_XMIN
+  //#define ENDSTOPPULLUP_YMIN
+  //#define ENDSTOPPULLUP_ZMIN
+  //#define ENDSTOPPULLUP_IMIN
+  //#define ENDSTOPPULLUP_JMIN
+  //#define ENDSTOPPULLUP_KMIN
+  //#define ENDSTOPPULLUP_UMIN
+  //#define ENDSTOPPULLUP_VMIN
+  //#define ENDSTOPPULLUP_WMIN
+  //#define ENDSTOPPULLUP_XMAX
+  //#define ENDSTOPPULLUP_YMAX
+  //#define ENDSTOPPULLUP_ZMAX
+  //#define ENDSTOPPULLUP_IMAX
+  //#define ENDSTOPPULLUP_JMAX
+  //#define ENDSTOPPULLUP_KMAX
+  //#define ENDSTOPPULLUP_UMAX
+  //#define ENDSTOPPULLUP_VMAX
+  //#define ENDSTOPPULLUP_WMAX
+  //#define ENDSTOPPULLUP_ZMIN_PROBE
+#endif
+
+// Enable pulldown for all endstops to prevent a floating state
+//#define ENDSTOPPULLDOWNS
+#if DISABLED(ENDSTOPPULLDOWNS)
+  // Disable ENDSTOPPULLDOWNS to set pulldowns individually
+  //#define ENDSTOPPULLDOWN_XMIN
+  //#define ENDSTOPPULLDOWN_YMIN
+  //#define ENDSTOPPULLDOWN_ZMIN
+  //#define ENDSTOPPULLDOWN_IMIN
+  //#define ENDSTOPPULLDOWN_JMIN
+  //#define ENDSTOPPULLDOWN_KMIN
+  //#define ENDSTOPPULLDOWN_UMIN
+  //#define ENDSTOPPULLDOWN_VMIN
+  //#define ENDSTOPPULLDOWN_WMIN
+  //#define ENDSTOPPULLDOWN_XMAX
+  //#define ENDSTOPPULLDOWN_YMAX
+  //#define ENDSTOPPULLDOWN_ZMAX
+  //#define ENDSTOPPULLDOWN_IMAX
+  //#define ENDSTOPPULLDOWN_JMAX
+  //#define ENDSTOPPULLDOWN_KMAX
+  //#define ENDSTOPPULLDOWN_UMAX
+  //#define ENDSTOPPULLDOWN_VMAX
+  //#define ENDSTOPPULLDOWN_WMAX
+  //#define ENDSTOPPULLDOWN_ZMIN_PROBE
+#endif
+
+// Mechanical endstop with COM to ground and NC to Signal uses "false" here (most common setup).
+#define X_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
+#define Y_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
+#define Z_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
+#define I_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
+#define J_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
+#define K_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
+#define U_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
+#define V_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
+#define W_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
+#define X_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
+#define Y_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
+#define Z_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
+#define I_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
+#define J_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
+#define K_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
+#define U_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
+#define V_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
+#define W_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
+#define Z_MIN_PROBE_ENDSTOP_INVERTING false // Set to true to invert the logic of the probe.
+
+// Enable this feature if all enabled endstop pins are interrupt-capable.
+// This will remove the need to poll the interrupt pins, saving many CPU cycles.
+//#define ENDSTOP_INTERRUPTS_FEATURE
+
+/**
+ * Endstop Noise Threshold
+ *
+ * Enable if your probe or endstops falsely trigger due to noise.
+ *
+ * - Higher values may affect repeatability or accuracy of some bed probes.
+ * - To fix noise install a 100nF ceramic capacitor in parallel with the switch.
+ * - This feature is not required for common micro-switches mounted on PCBs
+ *   based on the Makerbot design, which already have the 100nF capacitor.
+ *
+ * :[2,3,4,5,6,7]
+ */
+//#define ENDSTOP_NOISE_THRESHOLD 2
+
+// Check for stuck or disconnected endstops during homing moves.
+//#define DETECT_BROKEN_ENDSTOP
+
+//=============================================================================
+//============================== Movement Settings ============================
+//=============================================================================
+// @section motion
+
+/**
+ * Default Settings
+ *
+ * These settings can be reset by M502
+ *
+ * Note that if EEPROM is enabled, saved values will override these.
+ */
+
+/**
+ * With this option each E stepper can have its own factors for the
+ * following movement settings. If fewer factors are given than the
+ * total number of extruders, the last value applies to the rest.
+ */
+//#define DISTINCT_E_FACTORS
+
+/**
+ * Default Axis Steps Per Unit (linear=steps/mm, rotational=steps/°)
+ * Override with M92
+ *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
+ */
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 93 }
+
+/**
+ * Default Max Feed Rate (linear=mm/s, rotational=°/s)
+ * Override with M203
+ *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
+ */
+#define DEFAULT_MAX_FEEDRATE          { 500, 500, 5, 25 }
+
+//#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
+#if ENABLED(LIMITED_MAX_FR_EDITING)
+  #define MAX_FEEDRATE_EDIT_VALUES    { 600, 600, 10, 50 } // ...or, set your own edit limits
+#endif
+
+/**
+ * Default Max Acceleration (speed change with time) (linear=mm/(s^2), rotational=°/(s^2))
+ * (Maximum start speed for accelerated moves)
+ * Override with M201
+ *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
+ */
+#define DEFAULT_MAX_ACCELERATION      { 500, 500, 100, 5000 }
+
+//#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
+#if ENABLED(LIMITED_MAX_ACCEL_EDITING)
+  #define MAX_ACCEL_EDIT_VALUES       { 6000, 6000, 200, 20000 } // ...or, set your own edit limits
+#endif
+
+/**
+ * Default Acceleration (speed change with time) (linear=mm/(s^2), rotational=°/(s^2))
+ * Override with M204
+ *
+ *   M204 P    Acceleration
+ *   M204 R    Retract Acceleration
+ *   M204 T    Travel Acceleration
+ */
+#define DEFAULT_ACCELERATION           500    // X, Y, Z and E acceleration for printing moves
+#define DEFAULT_RETRACT_ACCELERATION   500    // E acceleration for retracts
+#define DEFAULT_TRAVEL_ACCELERATION    500    // X, Y, Z acceleration for travel (non printing) moves
+
+/**
+ * Default Jerk limits (mm/s)
+ * Override with M205 X Y Z . . . E
+ *
+ * "Jerk" specifies the minimum speed change that requires acceleration.
+ * When changing speed and direction, if the difference is less than the
+ * value set here, it may happen instantaneously.
+ */
+//#define CLASSIC_JERK
+#if ENABLED(CLASSIC_JERK)
+  #define DEFAULT_XJERK 10.0
+  #define DEFAULT_YJERK 10.0
+  #define DEFAULT_ZJERK  0.3
+  //#define DEFAULT_IJERK  0.3
+  //#define DEFAULT_JJERK  0.3
+  //#define DEFAULT_KJERK  0.3
+  //#define DEFAULT_UJERK  0.3
+  //#define DEFAULT_VJERK  0.3
+  //#define DEFAULT_WJERK  0.3
+
+  //#define TRAVEL_EXTRA_XYJERK 0.0     // Additional jerk allowance for all travel moves
+
+  //#define LIMITED_JERK_EDITING        // Limit edit via M205 or LCD to DEFAULT_aJERK * 2
+  #if ENABLED(LIMITED_JERK_EDITING)
+    #define MAX_JERK_EDIT_VALUES { 20, 20, 0.6, 10 } // ...or, set your own edit limits
+  #endif
+#endif
+
+#define DEFAULT_EJERK    5.0  // May be used by Linear Advance
+
+/**
+ * Junction Deviation Factor
+ *
+ * See:
+ *   https://reprap.org/forum/read.php?1,739819
+ *   https://blog.kyneticcnc.com/2018/10/computing-junction-deviation-for-marlin.html
+ */
+#if DISABLED(CLASSIC_JERK)
+  #define JUNCTION_DEVIATION_MM 0.08  // (mm) Distance from real junction edge
+  #define JD_HANDLE_SMALL_SEGMENTS    // Use curvature estimation instead of just the junction angle
+                                      // for small segments (< 1mm) with large junction angles (> 135°).
+#endif
+
+/**
+ * S-Curve Acceleration
+ *
+ * This option eliminates vibration during printing by fitting a Bézier
+ * curve to move acceleration, producing much smoother direction changes.
+ *
+ * See https://github.com/synthetos/TinyG/wiki/Jerk-Controlled-Motion-Explained
+ */
+#define S_CURVE_ACCELERATION
+
+//===========================================================================
+//============================= Z Probe Options =============================
+//===========================================================================
+// @section probes
+
+//
+// See https://marlinfw.org/docs/configuration/probes.html
+//
+
+/**
+ * Enable this option for a probe connected to the Z-MIN pin.
+ * The probe replaces the Z-MIN endstop and is used for Z homing.
+ * (Automatically enables USE_PROBE_FOR_Z_HOMING.)
+ */
+#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
+
+// Force the use of the probe for Z-axis homing
+//#define USE_PROBE_FOR_Z_HOMING
+
+/**
+ * Z_MIN_PROBE_PIN
+ *
+ * Define this pin if the probe is not connected to Z_MIN_PIN.
+ * If not defined the default pin for the selected MOTHERBOARD
+ * will be used. Most of the time the default is what you want.
+ *
+ *  - The simplest option is to use a free endstop connector.
+ *  - Use 5V for powered (usually inductive) sensors.
+ *
+ *  - RAMPS 1.3/1.4 boards may use the 5V, GND, and Aux4->D32 pin:
+ *    - For simple switches connect...
+ *      - normally-closed switches to GND and D32.
+ *      - normally-open switches to 5V and D32.
+ */
+//#define Z_MIN_PROBE_PIN 32 // Pin 32 is the RAMPS default
+
+/**
+ * Probe Type
+ *
+ * Allen Key Probes, Servo Probes, Z-Sled Probes, FIX_MOUNTED_PROBE, etc.
+ * Activate one of these to use Auto Bed Leveling below.
+ */
+
+/**
+ * The "Manual Probe" provides a means to do "Auto" Bed Leveling without a probe.
+ * Use G29 repeatedly, adjusting the Z height at each point with movement commands
+ * or (with LCD_BED_LEVELING) the LCD controller.
+ */
+//#define PROBE_MANUALLY
+
+/**
+ * A Fix-Mounted Probe either doesn't deploy or needs manual deployment.
+ *   (e.g., an inductive probe or a nozzle-based probe-switch.)
+ */
+//#define FIX_MOUNTED_PROBE
+
+/**
+ * Use the nozzle as the probe, as with a conductive
+ * nozzle system or a piezo-electric smart effector.
+ */
+//#define NOZZLE_AS_PROBE
+
+/**
+ * Z Servo Probe, such as an endstop switch on a rotating arm.
+ */
+//#define Z_PROBE_SERVO_NR 0       // Defaults to SERVO 0 connector.
+//#define Z_SERVO_ANGLES { 70, 0 } // Z Servo Deploy and Stow angles
+
+/**
+ * The BLTouch probe uses a Hall effect sensor and emulates a servo.
+ */
+//#define BLTOUCH
+
+/**
+ * MagLev V4 probe by MDD
+ *
+ * This probe is deployed and activated by powering a built-in electromagnet.
+ */
+//#define MAGLEV4
+#if ENABLED(MAGLEV4)
+  //#define MAGLEV_TRIGGER_PIN 11     // Set to the connected digital output
+  #define MAGLEV_TRIGGER_DELAY 15     // Changing this risks overheating the coil
+#endif
+
+/**
+ * Touch-MI Probe by hotends.fr
+ *
+ * This probe is deployed and activated by moving the X-axis to a magnet at the edge of the bed.
+ * By default, the magnet is assumed to be on the left and activated by a home. If the magnet is
+ * on the right, enable and set TOUCH_MI_DEPLOY_XPOS to the deploy position.
+ *
+ * Also requires: BABYSTEPPING, BABYSTEP_ZPROBE_OFFSET, Z_SAFE_HOMING,
+ *                and a minimum Z_HOMING_HEIGHT of 10.
+ */
+//#define TOUCH_MI_PROBE
+#if ENABLED(TOUCH_MI_PROBE)
+  #define TOUCH_MI_RETRACT_Z 0.5                  // Height at which the probe retracts
+  //#define TOUCH_MI_DEPLOY_XPOS (X_MAX_BED + 2)  // For a magnet on the right side of the bed
+  //#define TOUCH_MI_MANUAL_DEPLOY                // For manual deploy (LCD menu)
+#endif
+
+// A probe that is deployed and stowed with a solenoid pin (SOL1_PIN)
+//#define SOLENOID_PROBE
+
+// A sled-mounted probe like those designed by Charles Bell.
+//#define Z_PROBE_SLED
+//#define SLED_DOCKING_OFFSET 5  // The extra distance the X axis must travel to pickup the sled. 0 should be fine but you can push it further if you'd like.
+
+// A probe deployed by moving the x-axis, such as the Wilson II's rack-and-pinion probe designed by Marty Rice.
+//#define RACK_AND_PINION_PROBE
+#if ENABLED(RACK_AND_PINION_PROBE)
+  #define Z_PROBE_DEPLOY_X  X_MIN_POS
+  #define Z_PROBE_RETRACT_X X_MAX_POS
+#endif
+
+/**
+ * Magnetically Mounted Probe
+ * For probes such as Euclid, Klicky, Klackender, etc.
+ */
+//#define MAG_MOUNTED_PROBE
+#if ENABLED(MAG_MOUNTED_PROBE)
+  #define PROBE_DEPLOY_FEEDRATE (133*60)  // (mm/min) Probe deploy speed
+  #define PROBE_STOW_FEEDRATE   (133*60)  // (mm/min) Probe stow speed
+
+  #define MAG_MOUNTED_DEPLOY_1 { PROBE_DEPLOY_FEEDRATE, { 245, 114, 30 } }  // Move to side Dock & Attach probe
+  #define MAG_MOUNTED_DEPLOY_2 { PROBE_DEPLOY_FEEDRATE, { 210, 114, 30 } }  // Move probe off dock
+  #define MAG_MOUNTED_DEPLOY_3 { PROBE_DEPLOY_FEEDRATE, {   0,   0,  0 } }  // Extra move if needed
+  #define MAG_MOUNTED_DEPLOY_4 { PROBE_DEPLOY_FEEDRATE, {   0,   0,  0 } }  // Extra move if needed
+  #define MAG_MOUNTED_DEPLOY_5 { PROBE_DEPLOY_FEEDRATE, {   0,   0,  0 } }  // Extra move if needed
+  #define MAG_MOUNTED_STOW_1   { PROBE_STOW_FEEDRATE,   { 245, 114, 20 } }  // Move to dock
+  #define MAG_MOUNTED_STOW_2   { PROBE_STOW_FEEDRATE,   { 245, 114,  0 } }  // Place probe beside remover
+  #define MAG_MOUNTED_STOW_3   { PROBE_STOW_FEEDRATE,   { 230, 114,  0 } }  // Side move to remove probe
+  #define MAG_MOUNTED_STOW_4   { PROBE_STOW_FEEDRATE,   { 210, 114, 20 } }  // Side move to remove probe
+  #define MAG_MOUNTED_STOW_5   { PROBE_STOW_FEEDRATE,   {   0,   0,  0 } }  // Extra move if needed
+#endif
+
+// Duet Smart Effector (for delta printers) - https://bit.ly/2ul5U7J
+// When the pin is defined you can use M672 to set/reset the probe sensitivity.
+//#define DUET_SMART_EFFECTOR
+#if ENABLED(DUET_SMART_EFFECTOR)
+  #define SMART_EFFECTOR_MOD_PIN  -1  // Connect a GPIO pin to the Smart Effector MOD pin
+#endif
+
+/**
+ * Use StallGuard2 to probe the bed with the nozzle.
+ * Requires stallGuard-capable Trinamic stepper drivers.
+ * CAUTION: This can damage machines with Z lead screws.
+ *          Take extreme care when setting up this feature.
+ */
+//#define SENSORLESS_PROBING
+
+/**
+ * Allen key retractable z-probe as seen on many Kossel delta printers - https://reprap.org/wiki/Kossel#Automatic_bed_leveling_probe
+ * Deploys by touching z-axis belt. Retracts by pushing the probe down.
+ */
+//#define Z_PROBE_ALLEN_KEY
+#if ENABLED(Z_PROBE_ALLEN_KEY)
+  // 2 or 3 sets of coordinates for deploying and retracting the spring loaded touch probe on G29,
+  // if servo actuated touch probe is not defined. Uncomment as appropriate for your printer/probe.
+
+  #define Z_PROBE_ALLEN_KEY_DEPLOY_1 { 30.0, DELTA_PRINTABLE_RADIUS, 100.0 }
+  #define Z_PROBE_ALLEN_KEY_DEPLOY_1_FEEDRATE XY_PROBE_FEEDRATE
+
+  #define Z_PROBE_ALLEN_KEY_DEPLOY_2 { 0.0, DELTA_PRINTABLE_RADIUS, 100.0 }
+  #define Z_PROBE_ALLEN_KEY_DEPLOY_2_FEEDRATE (XY_PROBE_FEEDRATE)/10
+
+  #define Z_PROBE_ALLEN_KEY_DEPLOY_3 { 0.0, (DELTA_PRINTABLE_RADIUS) * 0.75, 100.0 }
+  #define Z_PROBE_ALLEN_KEY_DEPLOY_3_FEEDRATE XY_PROBE_FEEDRATE
+
+  #define Z_PROBE_ALLEN_KEY_STOW_1 { -64.0, 56.0, 23.0 } // Move the probe into position
+  #define Z_PROBE_ALLEN_KEY_STOW_1_FEEDRATE XY_PROBE_FEEDRATE
+
+  #define Z_PROBE_ALLEN_KEY_STOW_2 { -64.0, 56.0, 3.0 } // Push it down
+  #define Z_PROBE_ALLEN_KEY_STOW_2_FEEDRATE (XY_PROBE_FEEDRATE)/10
+
+  #define Z_PROBE_ALLEN_KEY_STOW_3 { -64.0, 56.0, 50.0 } // Move it up to clear
+  #define Z_PROBE_ALLEN_KEY_STOW_3_FEEDRATE XY_PROBE_FEEDRATE
+
+  #define Z_PROBE_ALLEN_KEY_STOW_4 { 0.0, 0.0, 50.0 }
+  #define Z_PROBE_ALLEN_KEY_STOW_4_FEEDRATE XY_PROBE_FEEDRATE
+
+#endif // Z_PROBE_ALLEN_KEY
+
+/**
+ * Nozzle-to-Probe offsets { X, Y, Z }
+ *
+ * X and Y offset
+ *   Use a caliper or ruler to measure the distance from the tip of
+ *   the Nozzle to the center-point of the Probe in the X and Y axes.
+ *
+ * Z offset
+ * - For the Z offset use your best known value and adjust at runtime.
+ * - Common probes trigger below the nozzle and have negative values for Z offset.
+ * - Probes triggering above the nozzle height are uncommon but do exist. When using
+ *   probes such as this, carefully set Z_CLEARANCE_DEPLOY_PROBE and Z_CLEARANCE_BETWEEN_PROBES
+ *   to avoid collisions during probing.
+ *
+ * Tune and Adjust
+ * -  Probe Offsets can be tuned at runtime with 'M851', LCD menus, babystepping, etc.
+ * -  PROBE_OFFSET_WIZARD (configuration_adv.h) can be used for setting the Z offset.
+ *
+ * Assuming the typical work area orientation:
+ *  - Probe to RIGHT of the Nozzle has a Positive X offset
+ *  - Probe to LEFT  of the Nozzle has a Negative X offset
+ *  - Probe in BACK  of the Nozzle has a Positive Y offset
+ *  - Probe in FRONT of the Nozzle has a Negative Y offset
+ *
+ * Some examples:
+ *   #define NOZZLE_TO_PROBE_OFFSET { 10, 10, -1 }   // Example "1"
+ *   #define NOZZLE_TO_PROBE_OFFSET {-10,  5, -1 }   // Example "2"
+ *   #define NOZZLE_TO_PROBE_OFFSET {  5, -5, -1 }   // Example "3"
+ *   #define NOZZLE_TO_PROBE_OFFSET {-15,-10, -1 }   // Example "4"
+ *
+ *     +-- BACK ---+
+ *     |    [+]    |
+ *   L |        1  | R <-- Example "1" (right+,  back+)
+ *   E |  2        | I <-- Example "2" ( left-,  back+)
+ *   F |[-]  N  [+]| G <-- Nozzle
+ *   T |       3   | H <-- Example "3" (right+, front-)
+ *     | 4         | T <-- Example "4" ( left-, front-)
+ *     |    [-]    |
+ *     O-- FRONT --+
+ */
+#define NOZZLE_TO_PROBE_OFFSET { 10, 10, 0 }
+
+// Most probes should stay away from the edges of the bed, but
+// with NOZZLE_AS_PROBE this can be negative for a wider probing area.
+#define PROBING_MARGIN 10
+
+// X and Y axis travel speed (mm/min) between probes
+#define XY_PROBE_FEEDRATE (133*60)
+
+// Feedrate (mm/min) for the first approach when double-probing (MULTIPLE_PROBING == 2)
+#define Z_PROBE_FEEDRATE_FAST (4*60)
+
+// Feedrate (mm/min) for the "accurate" probe of each point
+#define Z_PROBE_FEEDRATE_SLOW (Z_PROBE_FEEDRATE_FAST / 2)
+
+/**
+ * Probe Activation Switch
+ * A switch indicating proper deployment, or an optical
+ * switch triggered when the carriage is near the bed.
+ */
+//#define PROBE_ACTIVATION_SWITCH
+#if ENABLED(PROBE_ACTIVATION_SWITCH)
+  #define PROBE_ACTIVATION_SWITCH_STATE LOW // State indicating probe is active
+  //#define PROBE_ACTIVATION_SWITCH_PIN PC6 // Override default pin
+#endif
+
+/**
+ * Tare Probe (determine zero-point) prior to each probe.
+ * Useful for a strain gauge or piezo sensor that needs to factor out
+ * elements such as cables pulling on the carriage.
+ */
+//#define PROBE_TARE
+#if ENABLED(PROBE_TARE)
+  #define PROBE_TARE_TIME  200    // (ms) Time to hold tare pin
+  #define PROBE_TARE_DELAY 200    // (ms) Delay after tare before
+  #define PROBE_TARE_STATE HIGH   // State to write pin for tare
+  //#define PROBE_TARE_PIN PA5    // Override default pin
+  #if ENABLED(PROBE_ACTIVATION_SWITCH)
+    //#define PROBE_TARE_ONLY_WHILE_INACTIVE  // Fail to tare/probe if PROBE_ACTIVATION_SWITCH is active
+  #endif
+#endif
+
+/**
+ * Probe Enable / Disable
+ * The probe only provides a triggered signal when enabled.
+ */
+//#define PROBE_ENABLE_DISABLE
+#if ENABLED(PROBE_ENABLE_DISABLE)
+  //#define PROBE_ENABLE_PIN -1   // Override the default pin here
+#endif
+
+/**
+ * Multiple Probing
+ *
+ * You may get improved results by probing 2 or more times.
+ * With EXTRA_PROBING the more atypical reading(s) will be disregarded.
+ *
+ * A total of 2 does fast/slow probes with a weighted average.
+ * A total of 3 or more adds more slow probes, taking the average.
+ */
+//#define MULTIPLE_PROBING 2
+//#define EXTRA_PROBING    1
+
+/**
+ * Z probes require clearance when deploying, stowing, and moving between
+ * probe points to avoid hitting the bed and other hardware.
+ * Servo-mounted probes require extra space for the arm to rotate.
+ * Inductive probes need space to keep from triggering early.
+ *
+ * Use these settings to specify the distance (mm) to raise the probe (or
+ * lower the bed). The values set here apply over and above any (negative)
+ * probe Z Offset set with NOZZLE_TO_PROBE_OFFSET, M851, or the LCD.
+ * Only integer values >= 1 are valid here.
+ *
+ * Example: `M851 Z-5` with a CLEARANCE of 4  =>  9mm from bed to nozzle.
+ *     But: `M851 Z+1` with a CLEARANCE of 2  =>  2mm from bed to nozzle.
+ */
+#define Z_CLEARANCE_DEPLOY_PROBE   10 // Z Clearance for Deploy/Stow
+#define Z_CLEARANCE_BETWEEN_PROBES  5 // Z Clearance between probe points
+#define Z_CLEARANCE_MULTI_PROBE     5 // Z Clearance between multiple probes
+//#define Z_AFTER_PROBING           5 // Z position after probing is done
+
+#define Z_PROBE_LOW_POINT          -2 // Farthest distance below the trigger-point to go before stopping
+
+// For M851 give a range for adjusting the Z probe offset
+#define Z_PROBE_OFFSET_RANGE_MIN -20
+#define Z_PROBE_OFFSET_RANGE_MAX 20
+
+// Enable the M48 repeatability test to test probe accuracy
+//#define Z_MIN_PROBE_REPEATABILITY_TEST
+
+// Before deploy/stow pause for user confirmation
+//#define PAUSE_BEFORE_DEPLOY_STOW
+#if ENABLED(PAUSE_BEFORE_DEPLOY_STOW)
+  //#define PAUSE_PROBE_DEPLOY_WHEN_TRIGGERED // For Manual Deploy Allenkey Probe
+#endif
+
+/**
+ * Enable one or more of the following if probing seems unreliable.
+ * Heaters and/or fans can be disabled during probing to minimize electrical
+ * noise. A delay can also be added to allow noise and vibration to settle.
+ * These options are most useful for the BLTouch probe, but may also improve
+ * readings with inductive probes and piezo sensors.
+ */
+//#define PROBING_HEATERS_OFF       // Turn heaters off when probing
+#if ENABLED(PROBING_HEATERS_OFF)
+  //#define WAIT_FOR_BED_HEATER     // Wait for bed to heat back up between probes (to improve accuracy)
+  //#define WAIT_FOR_HOTEND         // Wait for hotend to heat back up between probes (to improve accuracy & prevent cold extrude)
+#endif
+//#define PROBING_FANS_OFF          // Turn fans off when probing
+//#define PROBING_ESTEPPERS_OFF     // Turn all extruder steppers off when probing
+//#define PROBING_STEPPERS_OFF      // Turn all steppers off (unless needed to hold position) when probing (including extruders)
+//#define DELAY_BEFORE_PROBING 200  // (ms) To prevent vibrations from triggering piezo sensors
+
+// Require minimum nozzle and/or bed temperature for probing
+//#define PREHEAT_BEFORE_PROBING
+#if ENABLED(PREHEAT_BEFORE_PROBING)
+  #define PROBING_NOZZLE_TEMP 120   // (°C) Only applies to E0 at this time
+  #define PROBING_BED_TEMP     50
+#endif
+
+// For Inverting Stepper Enable Pins (Active Low) use 0, Non Inverting (Active High) use 1
+// :{ 0:'Low', 1:'High' }
+#define X_ENABLE_ON 0
+#define Y_ENABLE_ON 0
+#define Z_ENABLE_ON 0
+#define E_ENABLE_ON 0 // For all extruders
+//#define I_ENABLE_ON 0
+//#define J_ENABLE_ON 0
+//#define K_ENABLE_ON 0
+//#define U_ENABLE_ON 0
+//#define V_ENABLE_ON 0
+//#define W_ENABLE_ON 0
+
+// Disable axis steppers immediately when they're not being stepped.
+// WARNING: When motors turn off there is a chance of losing position accuracy!
+#define DISABLE_X false
+#define DISABLE_Y false
+#define DISABLE_Z false
+//#define DISABLE_I false
+//#define DISABLE_J false
+//#define DISABLE_K false
+//#define DISABLE_U false
+//#define DISABLE_V false
+//#define DISABLE_W false
+
+// Turn off the display blinking that warns about possible accuracy reduction
+//#define DISABLE_REDUCED_ACCURACY_WARNING
+
+// @section extruder
+
+#define DISABLE_E false             // Disable the extruder when not stepping
+//#define DISABLE_INACTIVE_EXTRUDER // Keep only the active extruder enabled
+
+// @section motion
+
+// Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
+#define INVERT_X_DIR true
+#define INVERT_Y_DIR true
+#define INVERT_Z_DIR false
+//#define INVERT_I_DIR false
+//#define INVERT_J_DIR false
+//#define INVERT_K_DIR false
+//#define INVERT_U_DIR false
+//#define INVERT_V_DIR false
+//#define INVERT_W_DIR false
+
+// @section extruder
+
+// For direct drive extruder v9 set to true, for geared extruder set to false.
+#define INVERT_E0_DIR true
+#define INVERT_E1_DIR false
+#define INVERT_E2_DIR false
+#define INVERT_E3_DIR false
+#define INVERT_E4_DIR false
+#define INVERT_E5_DIR false
+#define INVERT_E6_DIR false
+#define INVERT_E7_DIR false
+
+// @section homing
+
+//#define NO_MOTION_BEFORE_HOMING // Inhibit movement until all axes have been homed. Also enable HOME_AFTER_DEACTIVATE for extra safety.
+//#define HOME_AFTER_DEACTIVATE   // Require rehoming after steppers are deactivated. Also enable NO_MOTION_BEFORE_HOMING for extra safety.
+
+/**
+ * Set Z_IDLE_HEIGHT if the Z-Axis moves on its own when steppers are disabled.
+ *  - Use a low value (i.e., Z_MIN_POS) if the nozzle falls down to the bed.
+ *  - Use a large value (i.e., Z_MAX_POS) if the bed falls down, away from the nozzle.
+ */
+//#define Z_IDLE_HEIGHT Z_HOME_POS
+
+//#define Z_HOMING_HEIGHT  4      // (mm) Minimal Z height before homing (G28) for Z clearance above the bed, clamps, ...
+                                  // Be sure to have this much clearance over your Z_MAX_POS to prevent grinding.
+
+//#define Z_AFTER_HOMING  10      // (mm) Height to move to after homing Z
+
+// Direction of endstops when homing; 1=MAX, -1=MIN
+// :[-1,1]
+#define X_HOME_DIR -1
+#define Y_HOME_DIR -1
+#define Z_HOME_DIR -1
+//#define I_HOME_DIR -1
+//#define J_HOME_DIR -1
+//#define K_HOME_DIR -1
+//#define U_HOME_DIR -1
+//#define V_HOME_DIR -1
+//#define W_HOME_DIR -1
+
+// @section geometry
+
+// The size of the printable area
+#define X_BED_SIZE 235
+#define Y_BED_SIZE 235
+
+// Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.
+#define X_MIN_POS 0
+#define Y_MIN_POS 0
+#define Z_MIN_POS 0
+#define X_MAX_POS X_BED_SIZE
+#define Y_MAX_POS Y_BED_SIZE
+#define Z_MAX_POS 250
+//#define I_MIN_POS 0
+//#define I_MAX_POS 50
+//#define J_MIN_POS 0
+//#define J_MAX_POS 50
+//#define K_MIN_POS 0
+//#define K_MAX_POS 50
+//#define U_MIN_POS 0
+//#define U_MAX_POS 50
+//#define V_MIN_POS 0
+//#define V_MAX_POS 50
+//#define W_MIN_POS 0
+//#define W_MAX_POS 50
+
+/**
+ * Software Endstops
+ *
+ * - Prevent moves outside the set machine bounds.
+ * - Individual axes can be disabled, if desired.
+ * - X and Y only apply to Cartesian robots.
+ * - Use 'M211' to set software endstops on/off or report current state
+ */
+
+// Min software endstops constrain movement within minimum coordinate bounds
+#define MIN_SOFTWARE_ENDSTOPS
+#if ENABLED(MIN_SOFTWARE_ENDSTOPS)
+  #define MIN_SOFTWARE_ENDSTOP_X
+  #define MIN_SOFTWARE_ENDSTOP_Y
+  #define MIN_SOFTWARE_ENDSTOP_Z
+  #define MIN_SOFTWARE_ENDSTOP_I
+  #define MIN_SOFTWARE_ENDSTOP_J
+  #define MIN_SOFTWARE_ENDSTOP_K
+  #define MIN_SOFTWARE_ENDSTOP_U
+  #define MIN_SOFTWARE_ENDSTOP_V
+  #define MIN_SOFTWARE_ENDSTOP_W
+#endif
+
+// Max software endstops constrain movement within maximum coordinate bounds
+#define MAX_SOFTWARE_ENDSTOPS
+#if ENABLED(MAX_SOFTWARE_ENDSTOPS)
+  #define MAX_SOFTWARE_ENDSTOP_X
+  #define MAX_SOFTWARE_ENDSTOP_Y
+  #define MAX_SOFTWARE_ENDSTOP_Z
+  #define MAX_SOFTWARE_ENDSTOP_I
+  #define MAX_SOFTWARE_ENDSTOP_J
+  #define MAX_SOFTWARE_ENDSTOP_K
+  #define MAX_SOFTWARE_ENDSTOP_U
+  #define MAX_SOFTWARE_ENDSTOP_V
+  #define MAX_SOFTWARE_ENDSTOP_W
+#endif
+
+#if EITHER(MIN_SOFTWARE_ENDSTOPS, MAX_SOFTWARE_ENDSTOPS)
+  //#define SOFT_ENDSTOPS_MENU_ITEM  // Enable/Disable software endstops from the LCD
+#endif
+
+/**
+ * Filament Runout Sensors
+ * Mechanical or opto endstops are used to check for the presence of filament.
+ *
+ * IMPORTANT: Runout will only trigger if Marlin is aware that a print job is running.
+ * Marlin knows a print job is running when:
+ *  1. Running a print job from media started with M24.
+ *  2. The Print Job Timer has been started with M75.
+ *  3. The heaters were turned on and PRINTJOB_TIMER_AUTOSTART is enabled.
+ *
+ * RAMPS-based boards use SERVO3_PIN for the first runout sensor.
+ * For other boards you may need to define FIL_RUNOUT_PIN, FIL_RUNOUT2_PIN, etc.
+ */
+//#define FILAMENT_RUNOUT_SENSOR
+#if ENABLED(FILAMENT_RUNOUT_SENSOR)
+  #define FIL_RUNOUT_ENABLED_DEFAULT true // Enable the sensor on startup. Override with M412 followed by M500.
+  #define NUM_RUNOUT_SENSORS   1          // Number of sensors, up to one per extruder. Define a FIL_RUNOUT#_PIN for each.
+
+  #define FIL_RUNOUT_STATE     LOW        // Pin state indicating that filament is NOT present.
+  #define FIL_RUNOUT_PULLUP               // Use internal pullup for filament runout pins.
+  //#define FIL_RUNOUT_PULLDOWN           // Use internal pulldown for filament runout pins.
+  //#define WATCH_ALL_RUNOUT_SENSORS      // Execute runout script on any triggering sensor, not only for the active extruder.
+                                          // This is automatically enabled for MIXING_EXTRUDERs.
+
+  // Override individually if the runout sensors vary
+  //#define FIL_RUNOUT1_STATE LOW
+  //#define FIL_RUNOUT1_PULLUP
+  //#define FIL_RUNOUT1_PULLDOWN
+
+  //#define FIL_RUNOUT2_STATE LOW
+  //#define FIL_RUNOUT2_PULLUP
+  //#define FIL_RUNOUT2_PULLDOWN
+
+  //#define FIL_RUNOUT3_STATE LOW
+  //#define FIL_RUNOUT3_PULLUP
+  //#define FIL_RUNOUT3_PULLDOWN
+
+  //#define FIL_RUNOUT4_STATE LOW
+  //#define FIL_RUNOUT4_PULLUP
+  //#define FIL_RUNOUT4_PULLDOWN
+
+  //#define FIL_RUNOUT5_STATE LOW
+  //#define FIL_RUNOUT5_PULLUP
+  //#define FIL_RUNOUT5_PULLDOWN
+
+  //#define FIL_RUNOUT6_STATE LOW
+  //#define FIL_RUNOUT6_PULLUP
+  //#define FIL_RUNOUT6_PULLDOWN
+
+  //#define FIL_RUNOUT7_STATE LOW
+  //#define FIL_RUNOUT7_PULLUP
+  //#define FIL_RUNOUT7_PULLDOWN
+
+  //#define FIL_RUNOUT8_STATE LOW
+  //#define FIL_RUNOUT8_PULLUP
+  //#define FIL_RUNOUT8_PULLDOWN
+
+  // Commands to execute on filament runout.
+  // With multiple runout sensors use the %c placeholder for the current tool in commands (e.g., "M600 T%c")
+  // NOTE: After 'M412 H1' the host handles filament runout and this script does not apply.
+  #define FILAMENT_RUNOUT_SCRIPT "M600"
+
+  // After a runout is detected, continue printing this length of filament
+  // before executing the runout script. Useful for a sensor at the end of
+  // a feed tube. Requires 4 bytes SRAM per sensor, plus 4 bytes overhead.
+  //#define FILAMENT_RUNOUT_DISTANCE_MM 25
+
+  #ifdef FILAMENT_RUNOUT_DISTANCE_MM
+    // Enable this option to use an encoder disc that toggles the runout pin
+    // as the filament moves. (Be sure to set FILAMENT_RUNOUT_DISTANCE_MM
+    // large enough to avoid false positives.)
+    //#define FILAMENT_MOTION_SENSOR
+  #endif
+#endif
+
+//===========================================================================
+//=============================== Bed Leveling ==============================
+//===========================================================================
+// @section calibrate
+
+/**
+ * Choose one of the options below to enable G29 Bed Leveling. The parameters
+ * and behavior of G29 will change depending on your selection.
+ *
+ *  If using a Probe for Z Homing, enable Z_SAFE_HOMING also!
+ *
+ * - AUTO_BED_LEVELING_3POINT
+ *   Probe 3 arbitrary points on the bed (that aren't collinear)
+ *   You specify the XY coordinates of all 3 points.
+ *   The result is a single tilted plane. Best for a flat bed.
+ *
+ * - AUTO_BED_LEVELING_LINEAR
+ *   Probe several points in a grid.
+ *   You specify the rectangle and the density of sample points.
+ *   The result is a single tilted plane. Best for a flat bed.
+ *
+ * - AUTO_BED_LEVELING_BILINEAR
+ *   Probe several points in a grid.
+ *   You specify the rectangle and the density of sample points.
+ *   The result is a mesh, best for large or uneven beds.
+ *
+ * - AUTO_BED_LEVELING_UBL (Unified Bed Leveling)
+ *   A comprehensive bed leveling system combining the features and benefits
+ *   of other systems. UBL also includes integrated Mesh Generation, Mesh
+ *   Validation and Mesh Editing systems.
+ *
+ * - MESH_BED_LEVELING
+ *   Probe a grid manually
+ *   The result is a mesh, suitable for large or uneven beds. (See BILINEAR.)
+ *   For machines without a probe, Mesh Bed Leveling provides a method to perform
+ *   leveling in steps so you can manually adjust the Z height at each grid-point.
+ *   With an LCD controller the process is guided step-by-step.
+ */
+//#define AUTO_BED_LEVELING_3POINT
+//#define AUTO_BED_LEVELING_LINEAR
+//#define AUTO_BED_LEVELING_BILINEAR
+//#define AUTO_BED_LEVELING_UBL
+#define MESH_BED_LEVELING
+
+/**
+ * Normally G28 leaves leveling disabled on completion. Enable one of
+ * these options to restore the prior leveling state or to always enable
+ * leveling immediately after G28.
+ */
+//#define RESTORE_LEVELING_AFTER_G28
+//#define ENABLE_LEVELING_AFTER_G28
+
+/**
+ * Auto-leveling needs preheating
+ */
+//#define PREHEAT_BEFORE_LEVELING
+#if ENABLED(PREHEAT_BEFORE_LEVELING)
+  #define LEVELING_NOZZLE_TEMP 120   // (°C) Only applies to E0 at this time
+  #define LEVELING_BED_TEMP     50
+#endif
+
+/**
+ * Bed Distance Sensor
+ *
+ * Measures the distance from bed to nozzle with accuracy of 0.01mm.
+ * For information about this sensor https://github.com/markniu/Bed_Distance_sensor
+ * Uses I2C port, so it requires I2C library markyue/Panda_SoftMasterI2C.
+ */
+//#define BD_SENSOR
+
+/**
+ * Enable detailed logging of G28, G29, M48, etc.
+ * Turn on with the command 'M111 S32'.
+ * NOTE: Requires a lot of PROGMEM!
+ */
+//#define DEBUG_LEVELING_FEATURE
+
+#if ANY(MESH_BED_LEVELING, AUTO_BED_LEVELING_UBL, PROBE_MANUALLY)
+  // Set a height for the start of manual adjustment
+  #define MANUAL_PROBE_START_Z 0.2  // (mm) Comment out to use the last-measured height
+#endif
+
+#if ANY(MESH_BED_LEVELING, AUTO_BED_LEVELING_BILINEAR, AUTO_BED_LEVELING_UBL)
+  /**
+   * Gradually reduce leveling correction until a set height is reached,
+   * at which point movement will be level to the machine's XY plane.
+   * The height can be set with M420 Z<height>
+   */
+  #define ENABLE_LEVELING_FADE_HEIGHT
+  #if ENABLED(ENABLE_LEVELING_FADE_HEIGHT)
+    #define DEFAULT_LEVELING_FADE_HEIGHT 10.0 // (mm) Default fade height.
+  #endif
+
+  /**
+   * For Cartesian machines, instead of dividing moves on mesh boundaries,
+   * split up moves into short segments like a Delta. This follows the
+   * contours of the bed more closely than edge-to-edge straight moves.
+   */
+  #define SEGMENT_LEVELED_MOVES
+  #define LEVELED_SEGMENT_LENGTH 5.0 // (mm) Length of all segments (except the last one)
+
+  /**
+   * Enable the G26 Mesh Validation Pattern tool.
+   */
+  //#define G26_MESH_VALIDATION
+  #if ENABLED(G26_MESH_VALIDATION)
+    #define MESH_TEST_NOZZLE_SIZE    0.4  // (mm) Diameter of primary nozzle.
+    #define MESH_TEST_LAYER_HEIGHT   0.2  // (mm) Default layer height for G26.
+    #define MESH_TEST_HOTEND_TEMP  205    // (°C) Default nozzle temperature for G26.
+    #define MESH_TEST_BED_TEMP      60    // (°C) Default bed temperature for G26.
+    #define G26_XY_FEEDRATE         20    // (mm/s) Feedrate for G26 XY moves.
+    #define G26_XY_FEEDRATE_TRAVEL 100    // (mm/s) Feedrate for G26 XY travel moves.
+    #define G26_RETRACT_MULTIPLIER   1.0  // G26 Q (retraction) used by default between mesh test elements.
+  #endif
+
+#endif
+
+#if EITHER(AUTO_BED_LEVELING_LINEAR, AUTO_BED_LEVELING_BILINEAR)
+
+  // Set the number of grid points per dimension.
+  #define GRID_MAX_POINTS_X 5
+  #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
+
+  // Probe along the Y axis, advancing X after each column
+  //#define PROBE_Y_FIRST
+
+  #if ENABLED(AUTO_BED_LEVELING_BILINEAR)
+
+    // Beyond the probed grid, continue the implied tilt?
+    // Default is to maintain the height of the nearest edge.
+    #define EXTRAPOLATE_BEYOND_GRID
+
+    //
+    // Experimental Subdivision of the grid by Catmull-Rom method.
+    // Synthesizes intermediate points to produce a more detailed mesh.
+    //
+    //#define ABL_BILINEAR_SUBDIVISION
+    #if ENABLED(ABL_BILINEAR_SUBDIVISION)
+      // Number of subdivisions between probe points
+      #define BILINEAR_SUBDIVISIONS 3
+    #endif
+
+  #endif
+
+#elif ENABLED(AUTO_BED_LEVELING_UBL)
+
+  //===========================================================================
+  //========================= Unified Bed Leveling ============================
+  //===========================================================================
+
+  //#define MESH_EDIT_GFX_OVERLAY   // Display a graphics overlay while editing the mesh
+
+  #define MESH_INSET 1              // Set Mesh bounds as an inset region of the bed
+  #define GRID_MAX_POINTS_X 10      // Don't use more than 15 points per axis, implementation limited.
+  #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
+
+  //#define UBL_HILBERT_CURVE       // Use Hilbert distribution for less travel when probing multiple points
+
+  #define UBL_MESH_EDIT_MOVES_Z     // Sophisticated users prefer no movement of nozzle
+  #define UBL_SAVE_ACTIVE_ON_M500   // Save the currently active mesh in the current slot on M500
+
+  //#define UBL_Z_RAISE_WHEN_OFF_MESH 2.5 // When the nozzle is off the mesh, this value is used
+                                          // as the Z-Height correction value.
+
+  //#define UBL_MESH_WIZARD         // Run several commands in a row to get a complete mesh
+
+#elif ENABLED(MESH_BED_LEVELING)
+
+  //===========================================================================
+  //=================================== Mesh ==================================
+  //===========================================================================
+
+  #define MESH_INSET 10          // Set Mesh bounds as an inset region of the bed
+  #define GRID_MAX_POINTS_X 3    // Don't use more than 7 points per axis, implementation limited.
+  #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
+
+  //#define MESH_G28_REST_ORIGIN // After homing all axes ('G28' or 'G28 XYZ') rest Z at Z_MIN_POS
+
+#endif // BED_LEVELING
+
+/**
+ * Add a bed leveling sub-menu for ABL or MBL.
+ * Include a guided procedure if manual probing is enabled.
+ */
+#define LCD_BED_LEVELING
+
+#if ENABLED(LCD_BED_LEVELING)
+  #define MESH_EDIT_Z_STEP  0.025 // (mm) Step size while manually probing Z axis.
+  #define LCD_PROBE_Z_RANGE 4     // (mm) Z Range centered on Z_MIN_POS for LCD Z adjustment
+  #define MESH_EDIT_MENU        // Add a menu to edit mesh points
+#endif
+
+// Add a menu item to move between bed corners for manual bed adjustment
+#define LCD_BED_TRAMMING
+
+#if ENABLED(LCD_BED_TRAMMING)
+  #define BED_TRAMMING_INSET_LFRB { 30, 30, 30, 30 } // (mm) Left, Front, Right, Back insets
+  #define BED_TRAMMING_HEIGHT      0.0        // (mm) Z height of nozzle at leveling points
+  #define BED_TRAMMING_Z_HOP       4.0        // (mm) Z height of nozzle between leveling points
+  //#define BED_TRAMMING_INCLUDE_CENTER       // Move to the center after the last corner
+  //#define BED_TRAMMING_USE_PROBE
+  #if ENABLED(BED_TRAMMING_USE_PROBE)
+    #define BED_TRAMMING_PROBE_TOLERANCE 0.1  // (mm)
+    #define BED_TRAMMING_VERIFY_RAISED        // After adjustment triggers the probe, re-probe to verify
+    //#define BED_TRAMMING_AUDIO_FEEDBACK
+  #endif
+
+  /**
+   * Corner Leveling Order
+   *
+   * Set 2 or 4 points. When 2 points are given, the 3rd is the center of the opposite edge.
+   *
+   *  LF  Left-Front    RF  Right-Front
+   *  LB  Left-Back     RB  Right-Back
+   *
+   * Examples:
+   *
+   *      Default        {LF,RB,LB,RF}         {LF,RF}           {LB,LF}
+   *  LB --------- RB   LB --------- RB    LB --------- RB   LB --------- RB
+   *  |  4       3  |   | 3         2 |    |     <3>     |   | 1           |
+   *  |             |   |             |    |             |   |          <3>|
+   *  |  1       2  |   | 1         4 |    | 1         2 |   | 2           |
+   *  LF --------- RF   LF --------- RF    LF --------- RF   LF --------- RF
+   */
+  #define BED_TRAMMING_LEVELING_ORDER { LF, RF, RB, LB }
+#endif
+
+/**
+ * Commands to execute at the end of G29 probing.
+ * Useful to retract or move the Z probe out of the way.
+ */
+//#define Z_PROBE_END_SCRIPT "G1 Z10 F12000\nG1 X15 Y330\nG1 Z0.5\nG1 Z10"
+
+// @section homing
+
+// The center of the bed is at (X=0, Y=0)
+//#define BED_CENTER_AT_0_0
+
+// Manually set the home position. Leave these undefined for automatic settings.
+// For DELTA this is the top-center of the Cartesian print volume.
+//#define MANUAL_X_HOME_POS 0
+//#define MANUAL_Y_HOME_POS 0
+//#define MANUAL_Z_HOME_POS 0
+//#define MANUAL_I_HOME_POS 0
+//#define MANUAL_J_HOME_POS 0
+//#define MANUAL_K_HOME_POS 0
+//#define MANUAL_U_HOME_POS 0
+//#define MANUAL_V_HOME_POS 0
+//#define MANUAL_W_HOME_POS 0
+
+/**
+ * Use "Z Safe Homing" to avoid homing with a Z probe outside the bed area.
+ *
+ * - Moves the Z probe (or nozzle) to a defined XY point before Z homing.
+ * - Allows Z homing only when XY positions are known and trusted.
+ * - If stepper drivers sleep, XY homing may be required again before Z homing.
+ */
+//#define Z_SAFE_HOMING
+
+#if ENABLED(Z_SAFE_HOMING)
+  #define Z_SAFE_HOMING_X_POINT X_CENTER  // X point for Z homing
+  #define Z_SAFE_HOMING_Y_POINT Y_CENTER  // Y point for Z homing
+#endif
+
+// Homing speeds (linear=mm/min, rotational=°/min)
+#define HOMING_FEEDRATE_MM_M { (20*60), (20*60), (4*60) }
+
+// Validate that endstops are triggered on homing moves
+#define VALIDATE_HOMING_ENDSTOPS
+
+// @section calibrate
+
+/**
+ * Bed Skew Compensation
+ *
+ * This feature corrects for misalignment in the XYZ axes.
+ *
+ * Take the following steps to get the bed skew in the XY plane:
+ *  1. Print a test square (e.g., https://www.thingiverse.com/thing:2563185)
+ *  2. For XY_DIAG_AC measure the diagonal A to C
+ *  3. For XY_DIAG_BD measure the diagonal B to D
+ *  4. For XY_SIDE_AD measure the edge A to D
+ *
+ * Marlin automatically computes skew factors from these measurements.
+ * Skew factors may also be computed and set manually:
+ *
+ *  - Compute AB     : SQRT(2*AC*AC+2*BD*BD-4*AD*AD)/2
+ *  - XY_SKEW_FACTOR : TAN(PI/2-ACOS((AC*AC-AB*AB-AD*AD)/(2*AB*AD)))
+ *
+ * If desired, follow the same procedure for XZ and YZ.
+ * Use these diagrams for reference:
+ *
+ *    Y                     Z                     Z
+ *    ^     B-------C       ^     B-------C       ^     B-------C
+ *    |    /       /        |    /       /        |    /       /
+ *    |   /       /         |   /       /         |   /       /
+ *    |  A-------D          |  A-------D          |  A-------D
+ *    +-------------->X     +-------------->X     +-------------->Y
+ *     XY_SKEW_FACTOR        XZ_SKEW_FACTOR        YZ_SKEW_FACTOR
+ */
+//#define SKEW_CORRECTION
+
+#if ENABLED(SKEW_CORRECTION)
+  // Input all length measurements here:
+  #define XY_DIAG_AC 282.8427124746
+  #define XY_DIAG_BD 282.8427124746
+  #define XY_SIDE_AD 200
+
+  // Or, set the XY skew factor directly:
+  //#define XY_SKEW_FACTOR 0.0
+
+  //#define SKEW_CORRECTION_FOR_Z
+  #if ENABLED(SKEW_CORRECTION_FOR_Z)
+    #define XZ_DIAG_AC 282.8427124746
+    #define XZ_DIAG_BD 282.8427124746
+    #define YZ_DIAG_AC 282.8427124746
+    #define YZ_DIAG_BD 282.8427124746
+    #define YZ_SIDE_AD 200
+
+    // Or, set the Z skew factors directly:
+    //#define XZ_SKEW_FACTOR 0.0
+    //#define YZ_SKEW_FACTOR 0.0
+  #endif
+
+  // Enable this option for M852 to set skew at runtime
+  //#define SKEW_CORRECTION_GCODE
+#endif
+
+//=============================================================================
+//============================= Additional Features ===========================
+//=============================================================================
+
+// @section eeprom
+
+/**
+ * EEPROM
+ *
+ * Persistent storage to preserve configurable settings across reboots.
+ *
+ *   M500 - Store settings to EEPROM.
+ *   M501 - Read settings from EEPROM. (i.e., Throw away unsaved changes)
+ *   M502 - Revert settings to "factory" defaults. (Follow with M500 to init the EEPROM.)
+ */
+#define EEPROM_SETTINGS       // Persistent storage with M500 and M501
+//#define DISABLE_M503        // Saves ~2700 bytes of flash. Disable for release!
+#define EEPROM_CHITCHAT       // Give feedback on EEPROM commands. Disable to save PROGMEM.
+#define EEPROM_BOOT_SILENT    // Keep M503 quiet and only give errors during first load
+#if ENABLED(EEPROM_SETTINGS)
+  #define EEPROM_AUTO_INIT    // Init EEPROM automatically on any errors.
+  //#define EEPROM_INIT_NOW   // Init EEPROM on first boot after a new build.
+#endif
+
+// @section host
+
+//
+// Host Keepalive
+//
+// When enabled Marlin will send a busy status message to the host
+// every couple of seconds when it can't accept commands.
+//
+#define HOST_KEEPALIVE_FEATURE        // Disable this if your host doesn't like keepalive messages
+#define DEFAULT_KEEPALIVE_INTERVAL 2  // Number of seconds between "busy" messages. Set with M113.
+#define BUSY_WHILE_HEATING            // Some hosts require "busy" messages even during heating
+
+// @section units
+
+//
+// G20/G21 Inch mode support
+//
+//#define INCH_MODE_SUPPORT
+
+//
+// M149 Set temperature units support
+//
+//#define TEMPERATURE_UNITS_SUPPORT
+
+// @section temperature
+
+//
+// Preheat Constants - Up to 10 are supported without changes
+//
+#define PREHEAT_1_LABEL       "PLA"
+#define PREHEAT_1_TEMP_HOTEND 185
+#define PREHEAT_1_TEMP_BED     45
+#define PREHEAT_1_TEMP_CHAMBER 35
+#define PREHEAT_1_FAN_SPEED   255 // Value from 0 to 255
+
+#define PREHEAT_2_LABEL       "ABS"
+#define PREHEAT_2_TEMP_HOTEND 240
+#define PREHEAT_2_TEMP_BED    110
+#define PREHEAT_2_TEMP_CHAMBER 35
+#define PREHEAT_2_FAN_SPEED   255 // Value from 0 to 255
+
+// @section motion
+
+/**
+ * Nozzle Park
+ *
+ * Park the nozzle at the given XYZ position on idle or G27.
+ *
+ * The "P" parameter controls the action applied to the Z axis:
+ *
+ *    P0  (Default) If Z is below park Z raise the nozzle.
+ *    P1  Raise the nozzle always to Z-park height.
+ *    P2  Raise the nozzle by Z-park amount, limited to Z_MAX_POS.
+ */
+#define NOZZLE_PARK_FEATURE
+
+#if ENABLED(NOZZLE_PARK_FEATURE)
+  // Specify a park position as { X, Y, Z_raise }
+  #define NOZZLE_PARK_POINT { (X_MIN_POS + 10), (Y_MAX_POS - 10), 20 }
+  #define NOZZLE_PARK_MOVE          0   // Park motion: 0 = XY Move, 1 = X Only, 2 = Y Only, 3 = X before Y, 4 = Y before X
+  #define NOZZLE_PARK_Z_RAISE_MIN   2   // (mm) Always raise Z by at least this distance
+  #define NOZZLE_PARK_XY_FEEDRATE 100   // (mm/s) X and Y axes feedrate (also used for delta Z axis)
+  #define NOZZLE_PARK_Z_FEEDRATE    5   // (mm/s) Z axis feedrate (not used for delta printers)
+#endif
+
+/**
+ * Clean Nozzle Feature -- EXPERIMENTAL
+ *
+ * Adds the G12 command to perform a nozzle cleaning process.
+ *
+ * Parameters:
+ *   P  Pattern
+ *   S  Strokes / Repetitions
+ *   T  Triangles (P1 only)
+ *
+ * Patterns:
+ *   P0  Straight line (default). This process requires a sponge type material
+ *       at a fixed bed location. "S" specifies strokes (i.e. back-forth motions)
+ *       between the start / end points.
+ *
+ *   P1  Zig-zag pattern between (X0, Y0) and (X1, Y1), "T" specifies the
+ *       number of zig-zag triangles to do. "S" defines the number of strokes.
+ *       Zig-zags are done in whichever is the narrower dimension.
+ *       For example, "G12 P1 S1 T3" will execute:
+ *
+ *          --
+ *         |  (X0, Y1) |     /\        /\        /\     | (X1, Y1)
+ *         |           |    /  \      /  \      /  \    |
+ *       A |           |   /    \    /    \    /    \   |
+ *         |           |  /      \  /      \  /      \  |
+ *         |  (X0, Y0) | /        \/        \/        \ | (X1, Y0)
+ *          --         +--------------------------------+
+ *                       |________|_________|_________|
+ *                           T1        T2        T3
+ *
+ *   P2  Circular pattern with middle at NOZZLE_CLEAN_CIRCLE_MIDDLE.
+ *       "R" specifies the radius. "S" specifies the stroke count.
+ *       Before starting, the nozzle moves to NOZZLE_CLEAN_START_POINT.
+ *
+ *   Caveats: The ending Z should be the same as starting Z.
+ * Attention: EXPERIMENTAL. G-code arguments may change.
+ */
+//#define NOZZLE_CLEAN_FEATURE
+
+#if ENABLED(NOZZLE_CLEAN_FEATURE)
+  // Default number of pattern repetitions
+  #define NOZZLE_CLEAN_STROKES  12
+
+  // Default number of triangles
+  #define NOZZLE_CLEAN_TRIANGLES  3
+
+  // Specify positions for each tool as { { X, Y, Z }, { X, Y, Z } }
+  // Dual hotend system may use { {  -20, (Y_BED_SIZE / 2), (Z_MIN_POS + 1) },  {  420, (Y_BED_SIZE / 2), (Z_MIN_POS + 1) }}
+  #define NOZZLE_CLEAN_START_POINT { {  30, 30, (Z_MIN_POS + 1) } }
+  #define NOZZLE_CLEAN_END_POINT   { { 100, 60, (Z_MIN_POS + 1) } }
+
+  // Circular pattern radius
+  #define NOZZLE_CLEAN_CIRCLE_RADIUS 6.5
+  // Circular pattern circle fragments number
+  #define NOZZLE_CLEAN_CIRCLE_FN 10
+  // Middle point of circle
+  #define NOZZLE_CLEAN_CIRCLE_MIDDLE NOZZLE_CLEAN_START_POINT
+
+  // Move the nozzle to the initial position after cleaning
+  #define NOZZLE_CLEAN_GOBACK
+
+  // For a purge/clean station that's always at the gantry height (thus no Z move)
+  //#define NOZZLE_CLEAN_NO_Z
+
+  // For a purge/clean station mounted on the X axis
+  //#define NOZZLE_CLEAN_NO_Y
+
+  // Require a minimum hotend temperature for cleaning
+  #define NOZZLE_CLEAN_MIN_TEMP 170
+  //#define NOZZLE_CLEAN_HEATUP       // Heat up the nozzle instead of skipping wipe
+
+  // Explicit wipe G-code script applies to a G12 with no arguments.
+  //#define WIPE_SEQUENCE_COMMANDS "G1 X-17 Y25 Z10 F4000\nG1 Z1\nM114\nG1 X-17 Y25\nG1 X-17 Y95\nG1 X-17 Y25\nG1 X-17 Y95\nG1 X-17 Y25\nG1 X-17 Y95\nG1 X-17 Y25\nG1 X-17 Y95\nG1 X-17 Y25\nG1 X-17 Y95\nG1 X-17 Y25\nG1 X-17 Y95\nG1 Z15\nM400\nG0 X-10.0 Y-9.0"
+
+#endif
+
+// @section host
+
+/**
+ * Print Job Timer
+ *
+ * Automatically start and stop the print job timer on M104/M109/M140/M190/M141/M191.
+ * The print job timer will only be stopped if the bed/chamber target temp is
+ * below BED_MINTEMP/CHAMBER_MINTEMP.
+ *
+ *   M104 (hotend, no wait)  - high temp = none,        low temp = stop timer
+ *   M109 (hotend, wait)     - high temp = start timer, low temp = stop timer
+ *   M140 (bed, no wait)     - high temp = none,        low temp = stop timer
+ *   M190 (bed, wait)        - high temp = start timer, low temp = none
+ *   M141 (chamber, no wait) - high temp = none,        low temp = stop timer
+ *   M191 (chamber, wait)    - high temp = start timer, low temp = none
+ *
+ * For M104/M109, high temp is anything over EXTRUDE_MINTEMP / 2.
+ * For M140/M190, high temp is anything over BED_MINTEMP.
+ * For M141/M191, high temp is anything over CHAMBER_MINTEMP.
+ *
+ * The timer can also be controlled with the following commands:
+ *
+ *   M75 - Start the print job timer
+ *   M76 - Pause the print job timer
+ *   M77 - Stop the print job timer
+ */
+#define PRINTJOB_TIMER_AUTOSTART
+
+// @section stats
+
+/**
+ * Print Counter
+ *
+ * Track statistical data such as:
+ *
+ *  - Total print jobs
+ *  - Total successful print jobs
+ *  - Total failed print jobs
+ *  - Total time printing
+ *
+ * View the current statistics with M78.
+ */
+//#define PRINTCOUNTER
+#if ENABLED(PRINTCOUNTER)
+  #define PRINTCOUNTER_SAVE_INTERVAL 60 // (minutes) EEPROM save interval during print. A value of 0 will save stats at end of print.
+#endif
+
+// @section security
+
+/**
+ * Password
+ *
+ * Set a numerical password for the printer which can be requested:
+ *
+ *  - When the printer boots up
+ *  - Upon opening the 'Print from Media' Menu
+ *  - When SD printing is completed or aborted
+ *
+ * The following G-codes can be used:
+ *
+ *  M510 - Lock Printer. Blocks all commands except M511.
+ *  M511 - Unlock Printer.
+ *  M512 - Set, Change and Remove Password.
+ *
+ * If you forget the password and get locked out you'll need to re-flash
+ * the firmware with the feature disabled, reset EEPROM, and (optionally)
+ * re-flash the firmware again with this feature enabled.
+ */
+//#define PASSWORD_FEATURE
+#if ENABLED(PASSWORD_FEATURE)
+  #define PASSWORD_LENGTH 4                 // (#) Number of digits (1-9). 3 or 4 is recommended
+  #define PASSWORD_ON_STARTUP
+  #define PASSWORD_UNLOCK_GCODE             // Unlock with the M511 P<password> command. Disable to prevent brute-force attack.
+  #define PASSWORD_CHANGE_GCODE             // Change the password with M512 P<old> S<new>.
+  //#define PASSWORD_ON_SD_PRINT_MENU       // This does not prevent gcodes from running
+  //#define PASSWORD_AFTER_SD_PRINT_END
+  //#define PASSWORD_AFTER_SD_PRINT_ABORT
+  //#include "Configuration_Secure.h"       // External file with PASSWORD_DEFAULT_VALUE
+#endif
+
+//=============================================================================
+//============================= LCD and SD support ============================
+//=============================================================================
+
+// @section interface
+
+/**
+ * LCD LANGUAGE
+ *
+ * Select the language to display on the LCD. These languages are available:
+ *
+ *   en, an, bg, ca, cz, da, de, el, el_CY, es, eu, fi, fr, gl, hr, hu, it,
+ *   jp_kana, ko_KR, nl, pl, pt, pt_br, ro, ru, sk, sv, tr, uk, vi, zh_CN, zh_TW
+ *
+ * :{ 'en':'English', 'an':'Aragonese', 'bg':'Bulgarian', 'ca':'Catalan', 'cz':'Czech', 'da':'Danish', 'de':'German', 'el':'Greek (Greece)', 'el_CY':'Greek (Cyprus)', 'es':'Spanish', 'eu':'Basque-Euskera', 'fi':'Finnish', 'fr':'French', 'gl':'Galician', 'hr':'Croatian', 'hu':'Hungarian', 'it':'Italian', 'jp_kana':'Japanese', 'ko_KR':'Korean (South Korea)', 'nl':'Dutch', 'pl':'Polish', 'pt':'Portuguese', 'pt_br':'Portuguese (Brazilian)', 'ro':'Romanian', 'ru':'Russian', 'sk':'Slovak', 'sv':'Swedish', 'tr':'Turkish', 'uk':'Ukrainian', 'vi':'Vietnamese', 'zh_CN':'Chinese (Simplified)', 'zh_TW':'Chinese (Traditional)' }
+ */
+#define LCD_LANGUAGE en
+
+/**
+ * LCD Character Set
+ *
+ * Note: This option is NOT applicable to Graphical Displays.
+ *
+ * All character-based LCDs provide ASCII plus one of these
+ * language extensions:
+ *
+ *  - JAPANESE ... the most common
+ *  - WESTERN  ... with more accented characters
+ *  - CYRILLIC ... for the Russian language
+ *
+ * To determine the language extension installed on your controller:
+ *
+ *  - Compile and upload with LCD_LANGUAGE set to 'test'
+ *  - Click the controller to view the LCD menu
+ *  - The LCD will display Japanese, Western, or Cyrillic text
+ *
+ * See https://marlinfw.org/docs/development/lcd_language.html
+ *
+ * :['JAPANESE', 'WESTERN', 'CYRILLIC']
+ */
+#define DISPLAY_CHARSET_HD44780 WESTERN
+
+/**
+ * Info Screen Style (0:Classic, 1:Průša)
+ *
+ * :[0:'Classic', 1:'Průša']
+ */
+#define LCD_INFO_SCREEN_STYLE 0
+
+/**
+ * SD CARD
+ *
+ * SD Card support is disabled by default. If your controller has an SD slot,
+ * you must uncomment the following option or it won't work.
+ */
+#define SDSUPPORT
+
+/**
+ * SD CARD: ENABLE CRC
+ *
+ * Use CRC checks and retries on the SD communication.
+ */
+//#define SD_CHECK_AND_RETRY
+
+/**
+ * LCD Menu Items
+ *
+ * Disable all menus and only display the Status Screen, or
+ * just remove some extraneous menu items to recover space.
+ */
+//#define NO_LCD_MENUS
+//#define SLIM_LCD_MENUS
+
+//
+// ENCODER SETTINGS
+//
+// This option overrides the default number of encoder pulses needed to
+// produce one step. Should be increased for high-resolution encoders.
+//
+//#define ENCODER_PULSES_PER_STEP 4
+
+//
+// Use this option to override the number of step signals required to
+// move between next/prev menu items.
+//
+//#define ENCODER_STEPS_PER_MENU_ITEM 1
+
+/**
+ * Encoder Direction Options
+ *
+ * Test your encoder's behavior first with both options disabled.
+ *
+ *  Reversed Value Edit and Menu Nav? Enable REVERSE_ENCODER_DIRECTION.
+ *  Reversed Menu Navigation only?    Enable REVERSE_MENU_DIRECTION.
+ *  Reversed Value Editing only?      Enable BOTH options.
+ */
+
+//
+// This option reverses the encoder direction everywhere.
+//
+//  Set this option if CLOCKWISE causes values to DECREASE
+//
+//#define REVERSE_ENCODER_DIRECTION
+
+//
+// This option reverses the encoder direction for navigating LCD menus.
+//
+//  If CLOCKWISE normally moves DOWN this makes it go UP.
+//  If CLOCKWISE normally moves UP this makes it go DOWN.
+//
+//#define REVERSE_MENU_DIRECTION
+
+//
+// This option reverses the encoder direction for Select Screen.
+//
+//  If CLOCKWISE normally moves LEFT this makes it go RIGHT.
+//  If CLOCKWISE normally moves RIGHT this makes it go LEFT.
+//
+//#define REVERSE_SELECT_DIRECTION
+
+//
+// Encoder EMI Noise Filter
+//
+// This option increases encoder samples to filter out phantom encoder clicks caused by EMI noise.
+//
+//#define ENCODER_NOISE_FILTER
+#if ENABLED(ENCODER_NOISE_FILTER)
+  #define ENCODER_SAMPLES 10
+#endif
+
+//
+// Individual Axis Homing
+//
+// Add individual axis homing items (Home X, Home Y, and Home Z) to the LCD menu.
+//
+#define INDIVIDUAL_AXIS_HOMING_MENU
+//#define INDIVIDUAL_AXIS_HOMING_SUBMENU
+
+//
+// SPEAKER/BUZZER
+//
+// If you have a speaker that can produce tones, enable it here.
+// By default Marlin assumes you have a buzzer with a fixed frequency.
+//
+//#define SPEAKER
+
+//
+// The duration and frequency for the UI feedback sound.
+// Set these to 0 to disable audio feedback in the LCD menus.
+//
+// Note: Test audio output with the G-Code:
+//  M300 S<frequency Hz> P<duration ms>
+//
+//#define LCD_FEEDBACK_FREQUENCY_DURATION_MS 2
+//#define LCD_FEEDBACK_FREQUENCY_HZ 5000
+
+//=============================================================================
+//======================== LCD / Controller Selection =========================
+//========================   (Character-based LCDs)   =========================
+//=============================================================================
+// @section lcd
+
+//
+// RepRapDiscount Smart Controller.
+// https://reprap.org/wiki/RepRapDiscount_Smart_Controller
+//
+// Note: Usually sold with a white PCB.
+//
+//#define REPRAP_DISCOUNT_SMART_CONTROLLER
+
+//
+// GT2560 (YHCB2004) LCD Display
+//
+// Requires Testato, Koepel softwarewire library and
+// Andriy Golovnya's LiquidCrystal_AIP31068 library.
+//
+//#define YHCB2004
+
+//
+// Original RADDS LCD Display+Encoder+SDCardReader
+// http://doku.radds.org/dokumentation/lcd-display/
+//
+//#define RADDS_DISPLAY
+
+//
+// ULTIMAKER Controller.
+//
+//#define ULTIMAKERCONTROLLER
+
+//
+// ULTIPANEL as seen on Thingiverse.
+//
+//#define ULTIPANEL
+
+//
+// PanelOne from T3P3 (via RAMPS 1.4 AUX2/AUX3)
+// https://reprap.org/wiki/PanelOne
+//
+//#define PANEL_ONE
+
+//
+// GADGETS3D G3D LCD/SD Controller
+// https://reprap.org/wiki/RAMPS_1.3/1.4_GADGETS3D_Shield_with_Panel
+//
+// Note: Usually sold with a blue PCB.
+//
+//#define G3D_PANEL
+
+//
+// RigidBot Panel V1.0
+// http://www.inventapart.com/
+//
+//#define RIGIDBOT_PANEL
+
+//
+// Makeboard 3D Printer Parts 3D Printer Mini Display 1602 Mini Controller
+// https://www.aliexpress.com/item/32765887917.html
+//
+//#define MAKEBOARD_MINI_2_LINE_DISPLAY_1602
+
+//
+// ANET and Tronxy 20x4 Controller
+//
+//#define ZONESTAR_LCD            // Requires ADC_KEYPAD_PIN to be assigned to an analog pin.
+                                  // This LCD is known to be susceptible to electrical interference
+                                  // which scrambles the display.  Pressing any button clears it up.
+                                  // This is a LCD2004 display with 5 analog buttons.
+
+//
+// Generic 16x2, 16x4, 20x2, or 20x4 character-based LCD.
+//
+//#define ULTRA_LCD
+
+//=============================================================================
+//======================== LCD / Controller Selection =========================
+//=====================   (I2C and Shift-Register LCDs)   =====================
+//=============================================================================
+
+//
+// CONTROLLER TYPE: I2C
+//
+// Note: These controllers require the installation of Arduino's LiquidCrystal_I2C
+// library. For more info: https://github.com/kiyoshigawa/LiquidCrystal_I2C
+//
+
+//
+// Elefu RA Board Control Panel
+// https://web.archive.org/web/20140823033947/http://www.elefu.com/index.php?route=product/product&product_id=53
+//
+//#define RA_CONTROL_PANEL
+
+//
+// Sainsmart (YwRobot) LCD Displays
+//
+// These require F.Malpartida's LiquidCrystal_I2C library
+// https://bitbucket.org/fmalpartida/new-liquidcrystal/wiki/Home
+//
+//#define LCD_SAINSMART_I2C_1602
+//#define LCD_SAINSMART_I2C_2004
+
+//
+// Generic LCM1602 LCD adapter
+//
+//#define LCM1602
+
+//
+// PANELOLU2 LCD with status LEDs,
+// separate encoder and click inputs.
+//
+// Note: This controller requires Arduino's LiquidTWI2 library v1.2.3 or later.
+// For more info: https://github.com/lincomatic/LiquidTWI2
+//
+// Note: The PANELOLU2 encoder click input can either be directly connected to
+// a pin (if BTN_ENC defined to != -1) or read through I2C (when BTN_ENC == -1).
+//
+//#define LCD_I2C_PANELOLU2
+
+//
+// Panucatt VIKI LCD with status LEDs,
+// integrated click & L/R/U/D buttons, separate encoder inputs.
+//
+//#define LCD_I2C_VIKI
+
+//
+// CONTROLLER TYPE: Shift register panels
+//
+
+//
+// 2-wire Non-latching LCD SR from https://goo.gl/aJJ4sH
+// LCD configuration: https://reprap.org/wiki/SAV_3D_LCD
+//
+//#define SAV_3DLCD
+
+//
+// 3-wire SR LCD with strobe using 74HC4094
+// https://github.com/mikeshub/SailfishLCD
+// Uses the code directly from Sailfish
+//
+//#define FF_INTERFACEBOARD
+
+//
+// TFT GLCD Panel with Marlin UI
+// Panel connected to main board by SPI or I2C interface.
+// See https://github.com/Serhiy-K/TFTGLCDAdapter
+//
+//#define TFTGLCD_PANEL_SPI
+//#define TFTGLCD_PANEL_I2C
+
+//=============================================================================
+//=======================   LCD / Controller Selection  =======================
+//=========================      (Graphical LCDs)      ========================
+//=============================================================================
+
+//
+// CONTROLLER TYPE: Graphical 128x64 (DOGM)
+//
+// IMPORTANT: The U8glib library is required for Graphical Display!
+//            https://github.com/olikraus/U8glib_Arduino
+//
+// NOTE: If the LCD is unresponsive you may need to reverse the plugs.
+//
+
+//
+// RepRapDiscount FULL GRAPHIC Smart Controller
+// https://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller
+//
+//#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
+
+//
+// K.3D Full Graphic Smart Controller
+//
+//#define K3D_FULL_GRAPHIC_SMART_CONTROLLER
+
+//
+// ReprapWorld Graphical LCD
+// https://reprapworld.com/electronics/3d-printer-modules/autonomous-printing/graphical-lcd-screen-v1-0/
+//
+//#define REPRAPWORLD_GRAPHICAL_LCD
+
+//
+// Activate one of these if you have a Panucatt Devices
+// Viki 2.0 or mini Viki with Graphic LCD
+// https://www.panucatt.com
+//
+//#define VIKI2
+//#define miniVIKI
+
+//
+// Alfawise Ex8 printer LCD marked as WYH L12864 COG
+//
+//#define WYH_L12864
+
+//
+// MakerLab Mini Panel with graphic
+// controller and SD support - https://reprap.org/wiki/Mini_panel
+//
+//#define MINIPANEL
+
+//
+// MaKr3d Makr-Panel with graphic controller and SD support.
+// https://reprap.org/wiki/MaKr3d_MaKrPanel
+//
+//#define MAKRPANEL
+
+//
+// Adafruit ST7565 Full Graphic Controller.
+// https://github.com/eboston/Adafruit-ST7565-Full-Graphic-Controller/
+//
+//#define ELB_FULL_GRAPHIC_CONTROLLER
+
+//
+// BQ LCD Smart Controller shipped by
+// default with the BQ Hephestos 2 and Witbox 2.
+//
+//#define BQ_LCD_SMART_CONTROLLER
+
+//
+// Cartesio UI
+// http://mauk.cc/webshop/cartesio-shop/electronics/user-interface
+//
+//#define CARTESIO_UI
+
+//
+// LCD for Melzi Card with Graphical LCD
+//
+//#define LCD_FOR_MELZI
+
+//
+// Original Ulticontroller from Ultimaker 2 printer with SSD1309 I2C display and encoder
+// https://github.com/Ultimaker/Ultimaker2/tree/master/1249_Ulticontroller_Board_(x1)
+//
+//#define ULTI_CONTROLLER
+
+//
+// MKS MINI12864 with graphic controller and SD support
+// https://reprap.org/wiki/MKS_MINI_12864
+//
+//#define MKS_MINI_12864
+
+//
+// MKS MINI12864 V3 is an alias for FYSETC_MINI_12864_2_1. Type A/B. NeoPixel RGB Backlight.
+//
+//#define MKS_MINI_12864_V3
+
+//
+// MKS LCD12864A/B with graphic controller and SD support. Follows MKS_MINI_12864 pinout.
+// https://www.aliexpress.com/item/33018110072.html
+//
+//#define MKS_LCD12864A
+//#define MKS_LCD12864B
+
+//
+// FYSETC variant of the MINI12864 graphic controller with SD support
+// https://wiki.fysetc.com/Mini12864_Panel/
+//
+//#define FYSETC_MINI_12864_X_X    // Type C/D/E/F. No tunable RGB Backlight by default
+//#define FYSETC_MINI_12864_1_2    // Type C/D/E/F. Simple RGB Backlight (always on)
+//#define FYSETC_MINI_12864_2_0    // Type A/B. Discreet RGB Backlight
+//#define FYSETC_MINI_12864_2_1    // Type A/B. NeoPixel RGB Backlight
+//#define FYSETC_GENERIC_12864_1_1 // Larger display with basic ON/OFF backlight.
+
+//
+// BigTreeTech Mini 12864 V1.0 is an alias for FYSETC_MINI_12864_2_1. Type A/B. NeoPixel RGB Backlight.
+//
+//#define BTT_MINI_12864_V1
+
+//
+// Factory display for Creality CR-10
+// https://www.aliexpress.com/item/32833148327.html
+//
+// This is RAMPS-compatible using a single 10-pin connector.
+// (For CR-10 owners who want to replace the Melzi Creality board but retain the display)
+//
+#define CR10_STOCKDISPLAY
+
+//
+// Ender-2 OEM display, a variant of the MKS_MINI_12864
+//
+//#define ENDER2_STOCKDISPLAY
+
+//
+// ANET and Tronxy Graphical Controller
+//
+// Anet 128x64 full graphics lcd with rotary encoder as used on Anet A6
+// A clone of the RepRapDiscount full graphics display but with
+// different pins/wiring (see pins_ANET_10.h). Enable one of these.
+//
+//#define ANET_FULL_GRAPHICS_LCD
+//#define ANET_FULL_GRAPHICS_LCD_ALT_WIRING
+
+//
+// AZSMZ 12864 LCD with SD
+// https://www.aliexpress.com/item/32837222770.html
+//
+//#define AZSMZ_12864
+
+//
+// Silvergate GLCD controller
+// https://github.com/android444/Silvergate
+//
+//#define SILVER_GATE_GLCD_CONTROLLER
+
+//
+// eMotion Tech LCD with SD
+// https://www.reprap-france.com/produit/1234568748-ecran-graphique-128-x-64-points-2-1
+//
+//#define EMOTION_TECH_LCD
+
+//=============================================================================
+//==============================  OLED Displays  ==============================
+//=============================================================================
+
+//
+// SSD1306 OLED full graphics generic display
+//
+//#define U8GLIB_SSD1306
+
+//
+// SAV OLEd LCD module support using either SSD1306 or SH1106 based LCD modules
+//
+//#define SAV_3DGLCD
+#if ENABLED(SAV_3DGLCD)
+  #define U8GLIB_SSD1306
+  //#define U8GLIB_SH1106
+#endif
+
+//
+// TinyBoy2 128x64 OLED / Encoder Panel
+//
+//#define OLED_PANEL_TINYBOY2
+
+//
+// MKS OLED 1.3" 128×64 Full Graphics Controller
+// https://reprap.org/wiki/MKS_12864OLED
+//
+// Tiny, but very sharp OLED display
+//
+//#define MKS_12864OLED          // Uses the SH1106 controller (default)
+//#define MKS_12864OLED_SSD1306  // Uses the SSD1306 controller
+
+//
+// Zonestar OLED 128×64 Full Graphics Controller
+//
+//#define ZONESTAR_12864LCD           // Graphical (DOGM) with ST7920 controller
+//#define ZONESTAR_12864OLED          // 1.3" OLED with SH1106 controller (default)
+//#define ZONESTAR_12864OLED_SSD1306  // 0.96" OLED with SSD1306 controller
+
+//
+// Einstart S OLED SSD1306
+//
+//#define U8GLIB_SH1106_EINSTART
+
+//
+// Overlord OLED display/controller with i2c buzzer and LEDs
+//
+//#define OVERLORD_OLED
+
+//
+// FYSETC OLED 2.42" 128×64 Full Graphics Controller with WS2812 RGB
+// Where to find : https://www.aliexpress.com/item/4000345255731.html
+//#define FYSETC_242_OLED_12864   // Uses the SSD1309 controller
+
+//
+// K.3D SSD1309 OLED 2.42" 128×64 Full Graphics Controller
+//
+//#define K3D_242_OLED_CONTROLLER   // Software SPI
+
+//=============================================================================
+//========================== Extensible UI Displays ===========================
+//=============================================================================
+
+/**
+ * DGUS Touch Display with DWIN OS. (Choose one.)
+ * ORIGIN : https://www.aliexpress.com/item/32993409517.html
+ * FYSETC : https://www.aliexpress.com/item/32961471929.html
+ * MKS    : https://www.aliexpress.com/item/1005002008179262.html
+ *
+ * Flash display with DGUS Displays for Marlin:
+ *  - Format the SD card to FAT32 with an allocation size of 4kb.
+ *  - Download files as specified for your type of display.
+ *  - Plug the microSD card into the back of the display.
+ *  - Boot the display and wait for the update to complete.
+ *
+ * ORIGIN (Marlin DWIN_SET)
+ *  - Download https://github.com/coldtobi/Marlin_DGUS_Resources
+ *  - Copy the downloaded DWIN_SET folder to the SD card.
+ *
+ * FYSETC (Supplier default)
+ *  - Download https://github.com/FYSETC/FYSTLCD-2.0
+ *  - Copy the downloaded SCREEN folder to the SD card.
+ *
+ * HIPRECY (Supplier default)
+ *  - Download https://github.com/HiPrecy/Touch-Lcd-LEO
+ *  - Copy the downloaded DWIN_SET folder to the SD card.
+ *
+ * MKS (MKS-H43) (Supplier default)
+ *  - Download https://github.com/makerbase-mks/MKS-H43
+ *  - Copy the downloaded DWIN_SET folder to the SD card.
+ *
+ * RELOADED (T5UID1)
+ *  - Download https://github.com/Desuuuu/DGUS-reloaded/releases
+ *  - Copy the downloaded DWIN_SET folder to the SD card.
+ */
+//#define DGUS_LCD_UI_ORIGIN
+//#define DGUS_LCD_UI_FYSETC
+//#define DGUS_LCD_UI_HIPRECY
+//#define DGUS_LCD_UI_MKS
+//#define DGUS_LCD_UI_RELOADED
+#if ENABLED(DGUS_LCD_UI_MKS)
+  #define USE_MKS_GREEN_UI
+#endif
+
+//
+// Touch-screen LCD for Malyan M200/M300 printers
+//
+//#define MALYAN_LCD
+
+//
+// Touch UI for FTDI EVE (FT800/FT810) displays
+// See Configuration_adv.h for all configuration options.
+//
+//#define TOUCH_UI_FTDI_EVE
+
+//
+// Touch-screen LCD for Anycubic printers
+//
+//#define ANYCUBIC_LCD_I3MEGA
+//#define ANYCUBIC_LCD_CHIRON
+#if EITHER(ANYCUBIC_LCD_I3MEGA, ANYCUBIC_LCD_CHIRON)
+  //#define ANYCUBIC_LCD_DEBUG
+  //#define ANYCUBIC_LCD_GCODE_EXT  // Add ".gcode" to menu entries for DGUS clone compatibility
+#endif
+
+//
+// 320x240 Nextion 2.8" serial TFT Resistive Touch Screen NX3224T028
+//
+//#define NEXTION_TFT
+
+//
+// Third-party or vendor-customized controller interfaces.
+// Sources should be installed in 'src/lcd/extui'.
+//
+//#define EXTENSIBLE_UI
+
+#if ENABLED(EXTENSIBLE_UI)
+  //#define EXTUI_LOCAL_BEEPER // Enables use of local Beeper pin with external display
+#endif
+
+//=============================================================================
+//=============================== Graphical TFTs ==============================
+//=============================================================================
+
+/**
+ * Specific TFT Model Presets. Enable one of the following options
+ * or enable TFT_GENERIC and set sub-options.
+ */
+
+//
+// 480x320, 3.5", SPI Display with Rotary Encoder from MKS
+// Usually paired with MKS Robin Nano V2 & V3
+//
+//#define MKS_TS35_V2_0
+
+//
+// 320x240, 2.4", FSMC Display From MKS
+// Usually paired with MKS Robin Nano V1.2
+//
+//#define MKS_ROBIN_TFT24
+
+//
+// 320x240, 2.8", FSMC Display From MKS
+// Usually paired with MKS Robin Nano V1.2
+//
+//#define MKS_ROBIN_TFT28
+
+//
+// 320x240, 3.2", FSMC Display From MKS
+// Usually paired with MKS Robin Nano V1.2
+//
+//#define MKS_ROBIN_TFT32
+
+//
+// 480x320, 3.5", FSMC Display From MKS
+// Usually paired with MKS Robin Nano V1.2
+//
+//#define MKS_ROBIN_TFT35
+
+//
+// 480x272, 4.3", FSMC Display From MKS
+//
+//#define MKS_ROBIN_TFT43
+
+//
+// 320x240, 3.2", FSMC Display From MKS
+// Usually paired with MKS Robin
+//
+//#define MKS_ROBIN_TFT_V1_1R
+
+//
+// 480x320, 3.5", FSMC Stock Display from Tronxy
+//
+//#define TFT_TRONXY_X5SA
+
+//
+// 480x320, 3.5", FSMC Stock Display from AnyCubic
+//
+//#define ANYCUBIC_TFT35
+
+//
+// 320x240, 2.8", FSMC Stock Display from Longer/Alfawise
+//
+//#define LONGER_LK_TFT28
+
+//
+// 320x240, 2.8", FSMC Stock Display from ET4
+//
+//#define ANET_ET4_TFT28
+
+//
+// 480x320, 3.5", FSMC Stock Display from ET5
+//
+//#define ANET_ET5_TFT35
+
+//
+// 1024x600, 7", RGB Stock Display with Rotary Encoder from BIQU-BX
+//
+//#define BIQU_BX_TFT70
+
+//
+// 480x320, 3.5", SPI Stock Display with Rotary Encoder from BIQU B1 SE Series
+//
+//#define BTT_TFT35_SPI_V1_0
+
+//
+// Generic TFT with detailed options
+//
+//#define TFT_GENERIC
+#if ENABLED(TFT_GENERIC)
+  // :[ 'AUTO', 'ST7735', 'ST7789', 'ST7796', 'R61505', 'ILI9328', 'ILI9341', 'ILI9488' ]
+  #define TFT_DRIVER AUTO
+
+  // Interface. Enable one of the following options:
+  //#define TFT_INTERFACE_FSMC
+  //#define TFT_INTERFACE_SPI
+
+  // TFT Resolution. Enable one of the following options:
+  //#define TFT_RES_320x240
+  //#define TFT_RES_480x272
+  //#define TFT_RES_480x320
+  //#define TFT_RES_1024x600
+#endif
+
+/**
+ * TFT UI - User Interface Selection. Enable one of the following options:
+ *
+ *   TFT_CLASSIC_UI - Emulated DOGM - 128x64 Upscaled
+ *   TFT_COLOR_UI   - Marlin Default Menus, Touch Friendly, using full TFT capabilities
+ *   TFT_LVGL_UI    - A Modern UI using LVGL
+ *
+ *   For LVGL_UI also copy the 'assets' folder from the build directory to the
+ *   root of your SD card, together with the compiled firmware.
+ */
+//#define TFT_CLASSIC_UI
+//#define TFT_COLOR_UI
+//#define TFT_LVGL_UI
+
+#if ENABLED(TFT_COLOR_UI)
+  //#define TFT_SHARED_SPI   // SPI is shared between TFT display and other devices. Disable async data transfer
+#endif
+
+#if ENABLED(TFT_LVGL_UI)
+  //#define MKS_WIFI_MODULE  // MKS WiFi module
+#endif
+
+/**
+ * TFT Rotation. Set to one of the following values:
+ *
+ *   TFT_ROTATE_90,  TFT_ROTATE_90_MIRROR_X,  TFT_ROTATE_90_MIRROR_Y,
+ *   TFT_ROTATE_180, TFT_ROTATE_180_MIRROR_X, TFT_ROTATE_180_MIRROR_Y,
+ *   TFT_ROTATE_270, TFT_ROTATE_270_MIRROR_X, TFT_ROTATE_270_MIRROR_Y,
+ *   TFT_MIRROR_X, TFT_MIRROR_Y, TFT_NO_ROTATION
+ */
+//#define TFT_ROTATION TFT_NO_ROTATION
+
+//=============================================================================
+//============================  Other Controllers  ============================
+//=============================================================================
+
+//
+// Ender-3 v2 OEM display. A DWIN display with Rotary Encoder.
+//
+//#define DWIN_CREALITY_LCD           // Creality UI
+//#define DWIN_LCD_PROUI              // Pro UI by MRiscoC
+//#define DWIN_CREALITY_LCD_JYERSUI   // Jyers UI by Jacob Myers
+//#define DWIN_MARLINUI_PORTRAIT      // MarlinUI (portrait orientation)
+//#define DWIN_MARLINUI_LANDSCAPE     // MarlinUI (landscape orientation)
+
+//
+// Touch Screen Settings
+//
+//#define TOUCH_SCREEN
+#if ENABLED(TOUCH_SCREEN)
+  #define BUTTON_DELAY_EDIT      50 // (ms) Button repeat delay for edit screens
+  #define BUTTON_DELAY_MENU     250 // (ms) Button repeat delay for menus
+
+  //#define DISABLE_ENCODER         // Disable the click encoder, if any
+  //#define TOUCH_IDLE_SLEEP_MINS 5 // (minutes) Display Sleep after a period of inactivity. Set with M255 S.
+
+  #define TOUCH_SCREEN_CALIBRATION
+
+  //#define TOUCH_CALIBRATION_X 12316
+  //#define TOUCH_CALIBRATION_Y -8981
+  //#define TOUCH_OFFSET_X        -43
+  //#define TOUCH_OFFSET_Y        257
+  //#define TOUCH_ORIENTATION TOUCH_LANDSCAPE
+
+  #if BOTH(TOUCH_SCREEN_CALIBRATION, EEPROM_SETTINGS)
+    #define TOUCH_CALIBRATION_AUTO_SAVE // Auto save successful calibration values to EEPROM
+  #endif
+
+  #if ENABLED(TFT_COLOR_UI)
+    //#define SINGLE_TOUCH_NAVIGATION
+  #endif
+#endif
+
+//
+// RepRapWorld REPRAPWORLD_KEYPAD v1.1
+// https://reprapworld.com/products/electronics/ramps/keypad_v1_0_fully_assembled/
+//
+//#define REPRAPWORLD_KEYPAD
+//#define REPRAPWORLD_KEYPAD_MOVE_STEP 10.0 // (mm) Distance to move per key-press
+
+//
+// EasyThreeD ET-4000+ with button input and status LED
+//
+//#define EASYTHREED_UI
+
+//=============================================================================
+//=============================== Extra Features ==============================
+//=============================================================================
+
+// @section fans
+
+// Set number of user-controlled fans. Disable to use all board-defined fans.
+// :[1,2,3,4,5,6,7,8]
+//#define NUM_M106_FANS 1
+
+// Use software PWM to drive the fan, as for the heaters. This uses a very low frequency
+// which is not as annoying as with the hardware PWM. On the other hand, if this frequency
+// is too low, you should also increment SOFT_PWM_SCALE.
+//#define FAN_SOFT_PWM
+
+// Incrementing this by 1 will double the software PWM frequency,
+// affecting heaters, and the fan if FAN_SOFT_PWM is enabled.
+// However, control resolution will be halved for each increment;
+// at zero value, there are 128 effective control positions.
+// :[0,1,2,3,4,5,6,7]
+#define SOFT_PWM_SCALE 0
+
+// If SOFT_PWM_SCALE is set to a value higher than 0, dithering can
+// be used to mitigate the associated resolution loss. If enabled,
+// some of the PWM cycles are stretched so on average the desired
+// duty cycle is attained.
+//#define SOFT_PWM_DITHER
+
+// @section extras
+
+// Support for the BariCUDA Paste Extruder
+//#define BARICUDA
+
+// @section lights
+
+// Temperature status LEDs that display the hotend and bed temperature.
+// If all hotends, bed temperature, and target temperature are under 54C
+// then the BLUE led is on. Otherwise the RED led is on. (1C hysteresis)
+//#define TEMP_STAT_LEDS
+
+// Support for BlinkM/CyzRgb
+//#define BLINKM
+
+// Support for PCA9632 PWM LED driver
+//#define PCA9632
+
+// Support for PCA9533 PWM LED driver
+//#define PCA9533
+
+/**
+ * RGB LED / LED Strip Control
+ *
+ * Enable support for an RGB LED connected to 5V digital pins, or
+ * an RGB Strip connected to MOSFETs controlled by digital pins.
+ *
+ * Adds the M150 command to set the LED (or LED strip) color.
+ * If pins are PWM capable (e.g., 4, 5, 6, 11) then a range of
+ * luminance values can be set from 0 to 255.
+ * For NeoPixel LED an overall brightness parameter is also available.
+ *
+ *  === CAUTION ===
+ *  LED Strips require a MOSFET Chip between PWM lines and LEDs,
+ *  as the Arduino cannot handle the current the LEDs will require.
+ *  Failure to follow this precaution can destroy your Arduino!
+ *
+ *  NOTE: A separate 5V power supply is required! The NeoPixel LED needs
+ *  more current than the Arduino 5V linear regulator can produce.
+ *
+ *  Requires PWM frequency between 50 <> 100Hz (Check HAL or variant)
+ *  Use FAST_PWM_FAN, if possible, to reduce fan noise.
+ */
+
+// LED Type. Enable only one of the following two options:
+//#define RGB_LED
+//#define RGBW_LED
+
+#if EITHER(RGB_LED, RGBW_LED)
+  //#define RGB_LED_R_PIN 34
+  //#define RGB_LED_G_PIN 43
+  //#define RGB_LED_B_PIN 35
+  //#define RGB_LED_W_PIN -1
+  //#define RGB_STARTUP_TEST              // For PWM pins, fade between all colors
+  #if ENABLED(RGB_STARTUP_TEST)
+    #define RGB_STARTUP_TEST_INNER_MS 10  // (ms) Reduce or increase fading speed
+  #endif
+#endif
+
+// Support for Adafruit NeoPixel LED driver
+//#define NEOPIXEL_LED
+#if ENABLED(NEOPIXEL_LED)
+  #define NEOPIXEL_TYPE          NEO_GRBW // NEO_GRBW, NEO_RGBW, NEO_GRB, NEO_RBG, etc.
+                                          // See https://github.com/adafruit/Adafruit_NeoPixel/blob/master/Adafruit_NeoPixel.h
+  //#define NEOPIXEL_PIN                4 // LED driving pin
+  //#define NEOPIXEL2_TYPE  NEOPIXEL_TYPE
+  //#define NEOPIXEL2_PIN               5
+  #define NEOPIXEL_PIXELS              30 // Number of LEDs in the strip. (Longest strip when NEOPIXEL2_SEPARATE is disabled.)
+  #define NEOPIXEL_IS_SEQUENTIAL          // Sequential display for temperature change - LED by LED. Disable to change all LEDs at once.
+  #define NEOPIXEL_BRIGHTNESS         127 // Initial brightness (0-255)
+  //#define NEOPIXEL_STARTUP_TEST         // Cycle through colors at startup
+
+  // Support for second Adafruit NeoPixel LED driver controlled with M150 S1 ...
+  //#define NEOPIXEL2_SEPARATE
+  #if ENABLED(NEOPIXEL2_SEPARATE)
+    #define NEOPIXEL2_PIXELS           15 // Number of LEDs in the second strip
+    #define NEOPIXEL2_BRIGHTNESS      127 // Initial brightness (0-255)
+    #define NEOPIXEL2_STARTUP_TEST        // Cycle through colors at startup
+    #define NEOPIXEL_M150_DEFAULT      -1 // Default strip for M150 without 'S'. Use -1 to set all by default.
+  #else
+    //#define NEOPIXEL2_INSERIES          // Default behavior is NeoPixel 2 in parallel
+  #endif
+
+  // Use some of the NeoPixel LEDs for static (background) lighting
+  //#define NEOPIXEL_BKGD_INDEX_FIRST   0 // Index of the first background LED
+  //#define NEOPIXEL_BKGD_INDEX_LAST    5 // Index of the last background LED
+  //#define NEOPIXEL_BKGD_COLOR { 255, 255, 255, 0 }  // R, G, B, W
+  //#define NEOPIXEL_BKGD_ALWAYS_ON       // Keep the backlight on when other NeoPixels are off
+#endif
+
+/**
+ * Printer Event LEDs
+ *
+ * During printing, the LEDs will reflect the printer status:
+ *
+ *  - Gradually change from blue to violet as the heated bed gets to target temp
+ *  - Gradually change from violet to red as the hotend gets to temperature
+ *  - Change to white to illuminate work surface
+ *  - Change to green once print has finished
+ *  - Turn off after the print has finished and the user has pushed a button
+ */
+#if ANY(BLINKM, RGB_LED, RGBW_LED, PCA9632, PCA9533, NEOPIXEL_LED)
+  #define PRINTER_EVENT_LEDS
+#endif
+
+// @section servos
+
+/**
+ * Number of servos
+ *
+ * For some servo-related options NUM_SERVOS will be set automatically.
+ * Set this manually if there are extra servos needing manual control.
+ * Set to 0 to turn off servo support.
+ */
+//#define NUM_SERVOS 3 // Note: Servo index starts with 0 for M280-M282 commands
+
+// (ms) Delay before the next move will start, to give the servo time to reach its target angle.
+// 300ms is a good value but you can try less delay.
+// If the servo can't reach the requested position, increase it.
+#define SERVO_DELAY { 300 }
+
+// Only power servos during movement, otherwise leave off to prevent jitter
+//#define DEACTIVATE_SERVOS_AFTER_MOVE
+
+// Edit servo angles with M281 and save to EEPROM with M500
+//#define EDITABLE_SERVO_ANGLES
+
+// Disable servo with M282 to reduce power consumption, noise, and heat when not in use
+//#define SERVO_DETACH_GCODE
